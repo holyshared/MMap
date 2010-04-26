@@ -12,13 +12,13 @@ var MMap = new Class({
 	initialize: function(container, options) {
 		this.setOptions(options);
 		this.container = container;
-		var latlng = new google.maps.LatLng(this.options.latitude, this.options.longitude);
+///		var latlng = new google.maps.LatLng(this.options.latitude, this.options.longitude);
 		var map = new google.maps.Map(this.container, {
 			"zoom": this.options.zoom,
-			"center": latlng,
+			"center": new google.maps.LatLng(this.options.latitude, this.options.longitude),
 			"mapTypeId": this.getType(this.options.mapType)
 		});
-//		$extend(map, this);
+		$extend(this, map);
 	},
 
 	getType: function(type) {
