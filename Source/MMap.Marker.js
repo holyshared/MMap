@@ -16,11 +16,12 @@ MMap.Marker = new Class({
 		this.photo.inject(this.container);
 	},
 
+/*
 	setLatLng: function(latlng) {
 		this.latlng = latlng;
 		this.draw();
 	}, 
-
+*/
 	setImage: function(image) {
 	}, 
 
