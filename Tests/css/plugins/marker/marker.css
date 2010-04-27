@@ -1,1 +1,29 @@
 @charset "utf-8";
+
+.marker {
+	background: url(skin/bgi_marker_header.png) no-repeat left top;
+	width: 68px;
+}
+
+.marker .photo {
+	text-align: center;
+	background: url(skin/bgi_marker_footer.png) no-repeat left bottom;
+	padding-bottom: 16px;
+	padding-top: 9px;
+}
+
+.marker .photo a {
+	display: block;
+}
+
+.marker .photo img {
+	vertical-align: top;
+}
+
+.marker.active {
+	background: url(skin/bgi_marker_header.png) no-repeat -68px top;
+}
+
+.marker.active .photo {
+	background: url(skin/bgi_marker_footer.png) no-repeat -68px bottom;
+}
