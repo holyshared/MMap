@@ -10,17 +10,6 @@
 		<meta http-equiv="Content-Script-Type" content="text/javascript" />
 		<meta http-equiv="Content-Style-Type" content="text/css" />
 		<link rel="stylesheet" href="css/style.css" type="text/css" media="screen" />
-		<script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>
-		<script type="text/javascript" src="../Demos/js/mootools/mootools-1.2.4-core.js"></script>
-		<script type="text/javascript" src="../Source/MMap.js"></script>
-		<script type="text/javascript">
-			window.addEvent("load", function(){
-				var gmap = new MMap($("map"), {
-					"zoom": 10,
-					"mapType": "roadmap"
-				});
-			});
-		</script>
 	</head>
 	<body>
 		<div class="page gs960">
@@ -36,8 +25,31 @@
 					</ul>
 				</div>
 				<div class="main">
-					<h2>MMap.js</h2>
-					<div id="map" class="map"></div>
+					<h2>MMap.Marker.js</h2>
+					<div class="marker square">
+						<p class="photo"><a href="#"><img src="images/img_demo_s1.jpg" /></a></p>
+					</div>
+					<div class="marker square active">
+						<p class="photo"><a href="#"><img src="images/img_demo_s1.jpg" /></a></p>
+					</div>
+					<div class="marker rounded">
+						<p class="photo"><a href="#"><img src="images/img_demo_s1.jpg" /></a></p>
+					</div>
+					<div class="marker rounded active">
+						<p class="photo"><a href="#"><img src="images/img_demo_s1.jpg" /></a></p>
+					</div>
+					<div class="marker cafe">
+						<p class="photo"><a href="#"><img src="images/img_demo_s1.jpg" /></a></p>
+					</div>
+					<div class="marker cafe active">
+						<p class="photo"><a href="#"><img src="images/img_demo_s1.jpg" /></a></p>
+					</div>
+					<div class="marker restaurant">
+						<p class="photo"><a href="#"><img src="images/img_demo_s1.jpg" /></a></p>
+					</div>
+					<div class="marker restaurant active">
+						<p class="photo"><a href="#"><img src="images/img_demo_s1.jpg" /></a></p>
+					</div>
 				</div>
 			</div>
 		</div>

@@ -12,13 +12,17 @@ var MMap = new Class({
 	initialize: function(container, options) {
 		this.setOptions(options);
 		this.container = container;
-///		var latlng = new google.maps.LatLng(this.options.latitude, this.options.longitude);
-		var map = new google.maps.Map(this.container, {
+		var latlng = new google.maps.LatLng(this.options.latitude, this.options.longitude);
+		this.map = new google.maps.Map(this.container, {
 			"zoom": this.options.zoom,
-			"center": new google.maps.LatLng(this.options.latitude, this.options.longitude),
+			"center": latlng,
 			"mapTypeId": this.getType(this.options.mapType)
 		});
-		$extend(this, map);
+//		$extend(map, this);
+	},
+
+	getMap: function() {
+		return this.map;
 	},
 
 	getType: function(type) {
@@ -31,5 +35,5 @@ var MMap = new Class({
 		}
 		return typeId;
 	}
-	
+
 });
