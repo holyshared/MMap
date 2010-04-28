@@ -1,13 +1,13 @@
 @charset "utf-8";
 
+/* Marker Default Styles
+--------------------------------*/
 .marker {
-	background: url(skin/bgi_marker_header.png) no-repeat left top;
 	width: 68px;
 }
 
 .marker .photo {
 	text-align: center;
-	background: url(skin/bgi_marker_footer.png) no-repeat left bottom;
 	padding-bottom: 16px;
 	padding-top: 9px;
 }
@@ -20,10 +20,88 @@
 	vertical-align: top;
 }
 
-.marker.active {
-	background: url(skin/bgi_marker_header.png) no-repeat -68px top;
+
+
+/* Marker - Square
+--------------------------------*/
+.square {
+	background: url(skin/bgi_square_header.png) no-repeat left top;
 }
 
-.marker.active .photo {
-	background: url(skin/bgi_marker_footer.png) no-repeat -68px bottom;
+.square .photo {
+	background: url(skin/bgi_square_footer.png) no-repeat left bottom;
+}
+
+.square.active {
+	background: url(skin/bgi_square_header.png) no-repeat -68px top;
+}
+
+.square.active .photo {
+	background: url(skin/bgi_square_footer.png) no-repeat -68px bottom;
+}
+
+
+
+/* Marker - Rounded
+--------------------------------*/
+.rounded {
+	background: url(skin/bgi_rounded_header.png) no-repeat left top;
+}
+
+.rounded .photo {
+	background: url(skin/bgi_rounded_footer.png) no-repeat left bottom;
+}
+
+.rounded.active {
+	background: url(skin/bgi_rounded_header.png) no-repeat -68px top;
+}
+
+.rounded.active .photo {
+	background: url(skin/bgi_rounded_footer.png) no-repeat -68px bottom;
+}
+
+
+
+/* Marker - Cafe
+--------------------------------*/
+.cafe {
+	width: 114px;
+	background: url(skin/bgi_cafe_header.png) no-repeat left top;
+}
+
+.cafe .photo {
+	padding-bottom: 17px;
+	padding-top: 32px;
+	background: url(skin/bgi_cafe_footer.png) no-repeat left bottom;
+}
+
+.cafe.active {
+	background: url(skin/bgi_cafe_header.png) no-repeat -114px top;
+}
+
+.cafe.active .photo {
+	background: url(skin/bgi_cafe_footer.png) no-repeat -114px bottom;
+}
+
+
+
+/* Marker - Restaurant
+--------------------------------*/
+.restaurant {
+	width: 114px;
+	background: url(skin/bgi_restaurant_header.png) no-repeat left top;
+}
+
+.restaurant .photo {
+	padding-bottom: 17px;
+	padding-top: 32px;
+	background: url(skin/bgi_restaurant_footer.png) no-repeat left bottom;
+}
+
+.restaurant.active {
+	background: url(skin/bgi_restaurant_header.png) no-repeat -114px top;
+}
+
+.restaurant.active .photo {
+	background: url(skin/bgi_restaurant_footer.png) no-repeat -114px bottom;
 }
