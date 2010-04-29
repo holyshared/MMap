@@ -1,27 +1,25 @@
 var MMap = new Class({
 
-	Implements: [Events, Options],
+	Implements: [Options],
 
-	"options": {
-		"latitude": -34.397,
-		"longitude": 150.644,
+	options: {
+		"center": null,
 		"zoom": 10,
 		"mapType": "roadmap"
 	},
 
 	initialize: function(container, options) {
-		this.setOptions(options);
 		this.container = container;
-		var latlng = new google.maps.LatLng(this.options.latitude, this.options.longitude);
+		this.setOptions(options);
+		var latlng = this.options.center;
 		this.map = new google.maps.Map(this.container, {
 			"zoom": this.options.zoom,
-			"center": latlng,
+			"center": new google.maps.LatLng(latlng.lat, latlng.lng),
 			"mapTypeId": this.getType(this.options.mapType)
 		});
-//		$extend(map, this);
 	},
 
-	getMap: function() {
+	getInstance: function() {
 		return this.map;
 	},
 

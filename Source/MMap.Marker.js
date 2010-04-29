@@ -4,25 +4,23 @@ MMap.Marker = new Class({
 
 	options: {
 		"className": "square",
-
-		"latitude": -34.397,
-		"longitude": 150.644,
-
 		"latlng": null,
 		"title": null,
 		"url": null,
 		"src": null
 	},
 
+	proxyEvents: ["click", "mouseover", "mouseout", "mousedown", "mouseup"],
+
 	/**
 	 * @id MMap.Marker.initialize
 	 */
 	initialize: function(map, options) {
 		this.setOptions(options);
-//		this.setLatLng(this.options.latlng);
 		$extend(this, new google.maps.OverlayView());
 		this.build();
-		this.setMap(map.getMap());
+		this.setupProxy();
+		this.setMap(map.getInstance());
 	},
 
 	/**
@@ -31,14 +29,18 @@ MMap.Marker = new Class({
 	build: function() {
 		this.container = new Element("div", {"class": "marker " + this.options.className});
 		this.photo = new Element("p", {"class": "photo"});
-		this.trriger = new Element("a", {"title": this.options.title, "href": this.options.src});
+		this.trriger = new Element("a", {"title": this.options.title, "href": this.options.url});
 		this.image = new Element("img", {"src": this.options.src});
 		this.image.inject(this.trriger);
 		this.trriger.inject(this.photo);
 		this.photo.inject(this.container);
+		new Tips(this.trriger);
+	},
 
-		this.trriger.addEvent("click",		this.eventProxy.bind(this));
-		this.trriger.addEvent("dblclick",	this.eventProxy.bind(this));
+	setupProxy: function(event) {
+		this.proxyEvents.each(function(eventType) {
+			this.trriger.addEvent(eventType, this.eventProxy.bind(this));
+		}, this);
 	},
 
 	eventProxy: function(event) {
@@ -51,7 +53,9 @@ MMap.Marker = new Class({
 	 * @id MMap.Marker.addEvent
 	 */
 	addEvent: function(type, handler) {
-		google.maps.event.addListener(this, type, handler);
+		var eventType = Events.removeOn(type);
+		eventType = eventType.toLowerCase();
+		google.maps.event.addListener(this, eventType, handler);
 	},
 
 	/**
@@ -83,12 +87,17 @@ MMap.Marker = new Class({
 	 */
 	getURL: function() { return this.options.url; }, 
 
-
-	setLatLng: function(latlng) {
+	/**
+	 * @id MMap.Marker.setPosition
+	 */
+	setPosition: function(latlng) {
 		this.options.latlng = latlng;
 	},
 
-	getLatLng: function() {
+	/**
+	 * @id MMap.Marker.getPosition
+	 */
+	getPosition: function() {
 		return this.options.latlng;
 	},
 
