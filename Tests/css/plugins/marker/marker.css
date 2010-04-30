@@ -3,23 +3,55 @@
 /* Marker Default Styles
 --------------------------------*/
 .marker {
+	color: #ffffff;
+}
+
+.marker .header {
+	background: #000000;
+}
+
+.marker .body {
+	background: #000000;
+}
+
+.marker .footer {
+	background: url(skin/bgi_arrow.gif) no-repeat center bottom;
+	padding-bottom: 7px;
+}
+
+.marker a {
+	color: #add8e6;
+}
+
+.marker a:hover {
+	color: #daa520;
+}
+
+
+
+/* Marker Image
+------------------------------------*/
+.marker.image {
 	width: 68px;
 }
 
-.marker .photo {
+.marker.image .body {
+	background: none;
+}
+
+.marker.image .photo {
 	text-align: center;
 	padding-bottom: 16px;
 	padding-top: 9px;
 }
 
-.marker .photo a {
+.marker.image .photo a {
 	display: block;
 }
 
-.marker .photo img {
+.marker.image .photo img {
 	vertical-align: top;
 }
-
 
 
 /* Marker - Square
