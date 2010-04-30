@@ -31,25 +31,25 @@
 
 /* Marker Image
 ------------------------------------*/
-.marker.image {
+.image {
 	width: 68px;
 }
 
-.marker.image .body {
+.image .body {
 	background: none;
 }
 
-.marker.image .photo {
+.image .photo {
 	text-align: center;
 	padding-bottom: 16px;
 	padding-top: 9px;
 }
 
-.marker.image .photo a {
+.image .photo a {
 	display: block;
 }
 
-.marker.image .photo img {
+.image .photo img {
 	vertical-align: top;
 }
 
