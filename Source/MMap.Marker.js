@@ -3,11 +3,11 @@ MMap.Marker = new Class({
 	Implements: [Options],
 
 	options: {
-		"className": "square",
+		"className": "html",
 		"latlng": null,
 		"title": null,
 		"url": null,
-		"src": null
+		"content": null
 	},
 
 	proxyEvents: ["click", "mouseover", "mouseout", "mousedown", "mouseup"],
@@ -18,6 +18,9 @@ MMap.Marker = new Class({
 	initialize: function(map, options) {
 		this.setOptions(options);
 		$extend(this, new google.maps.OverlayView());
+		this.container = new Element("div", {"class": "marker " + this.options.className});
+		this.body = new Element("div", {"class": "body"});
+		this.body.inject(this.container);
 		this.build();
 		this.setupProxy();
 		this.setMap(map.getInstance());
@@ -27,19 +30,17 @@ MMap.Marker = new Class({
 	 * @id MMap.Marker.build
 	 */
 	build: function() {
-		this.container = new Element("div", {"class": "marker " + this.options.className});
-		this.photo = new Element("p", {"class": "photo"});
-		this.trriger = new Element("a", {"title": this.options.title, "href": this.options.url});
-		this.image = new Element("img", {"src": this.options.src});
-		this.image.inject(this.trriger);
-		this.trriger.inject(this.photo);
-		this.photo.inject(this.container);
-		new Tips(this.trriger);
+		this.header = new Element("div", {"class": "header"});
+		this.footer = new Element("div", {"class": "footer"});
+		this.header.inject(this.body, "before");
+		this.footer.inject(this.body, "after");
+		this.trigger = this.container;
+		this.setContent(this.options.content);
 	},
 
 	setupProxy: function(event) {
 		this.proxyEvents.each(function(eventType) {
-			this.trriger.addEvent(eventType, this.eventProxy.bind(this));
+			this.trigger.addEvent(eventType, this.eventProxy.bind(this));
 		}, this);
 	},
 
@@ -67,15 +68,16 @@ MMap.Marker = new Class({
 		}
 	},
 
-	/**
-	 * @id MMap.Marker.setImage
-	 */
-	setImage: function(image) { this.options.src = image; }, 
+	setContent: function(content) {
+		if (!content) return false;
+		this.content = content;
+		this.body.set("html", "");
+		($type(this.content) == "string")
+		? this.body.set("html", this.content)
+		: this.content.inject(this.body);
+	},
 
-	/**
-	 * @id MMap.Marker.getImage
-	 */
-	getImage: function() { return this.options.src; }, 
+	getContent: function() { return this.content; },
 
 	/**
 	 * @id MMap.Marker.setURL
@@ -107,7 +109,9 @@ MMap.Marker = new Class({
 	draw: function() {
 		var size = this.container.getSize();
 		var projection = this.getProjection();
-		var point = projection.fromLatLngToDivPixel(this.options.latlng);
+		var position = this.options.latlng;
+		var latlng = new google.maps.LatLng(position.lat, position.lng)
+		var point = projection.fromLatLngToDivPixel(latlng);
 		this.container.setStyles({
 			"position": "absolute",
 			"top": point.y - size.y,
