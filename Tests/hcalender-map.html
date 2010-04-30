@@ -18,6 +18,18 @@
 		<script type="text/javascript">
 			window.addEvent("load", function() {
 				var events = HCalendar.discover();
+				events.each(function(event) {
+/**
+event.summary
+event.description
+event.dtstart
+event.dtend
+event.location
+event.url
+event.geo.latitude
+event.geo.longitude
+*/
+				});
 			});
 		</script>
 	</head>

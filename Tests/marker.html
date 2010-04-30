@@ -15,6 +15,8 @@
 		<script type="text/javascript" src="../Demos/js/mootools/mootools-1.2.4.4-more.js"></script>
 		<script type="text/javascript" src="../Source/MMap.js"></script>
 		<script type="text/javascript" src="../Source/MMap.Marker.js"></script>
+		<script type="text/javascript" src="../Source/MMap.Marker.Image.js"></script>
+		<script type="text/javascript" src="../Source/MMap.Marker.Images.js"></script>
 		<script type="text/javascript">
 			window.addEvent("domready", function() {
 				var gmap = new MMap($("map"), {
@@ -22,38 +24,52 @@
 					"zoom": 14, "mapType": "roadmap"
 				});
 
-				var marker	= new MMap.Marker(gmap, {
-					"latlng": new google.maps.LatLng(35.6666870, 139.731859),
+				//image marker1
+				new MMap.Marker.Image(gmap, {
+					"latlng": {"lat": 35.6666870, "lng": 139.731859},
 					"title": "demo1", "src": "images/img_demo_s1.jpg", "url": "demo1.html",
 					"onClick": function(event) {
 						$("message").set("html", "demo1 click");
 					}
 				});
 
-				var marker	= new MMap.Marker(gmap, {
-					"latlng": new google.maps.LatLng(35.621822, 139.735863),
+				//image marker2
+				new MMap.Marker.Image(gmap, {
+					"latlng": {"lat": 35.621822, "lng": 139.735863},
 					"title": "demo2", "src": "images/img_demo_s2.jpg", "url": "demo2.html",
 					"onMouseover": function(event) {
 						$("message").set("html", "demo2 over");
 					}
 				});
 
-				var marker	= new MMap.Marker(gmap, {
-					"latlng": new google.maps.LatLng(35.672718, 139.76652),
+				//image marker3
+				new MMap.Marker.Image(gmap, {
+					"latlng": {"lat": 35.672718, "lng": 139.76652},
 					"title": "demo3", "src": "images/img_demo_s3.jpg", "url": "demo3.html",
 					"onMouseout": function(event) {
 						$("message").set("html", "demo3 out");
 					}
 				});
 
-				var marker	= new MMap.Marker(gmap, {
-					"latlng": new google.maps.LatLng(35.671468, 139.765066),
+				//image marker4
+				new MMap.Marker.Image(gmap, {
+					"latlng": {"lat": 35.671468, "lng": 139.765066},
 					"title": "demo4", "src": "images/img_demo_s4.jpg", "url": "demo4.html",
 					"onMouseout": function(event) {
 						$("message").set("html", "demo4 out");
 					}
 				});
 
+				var content = "<p>";
+				content += "<strong>demo4</strong><br />";
+				content += "<a href=\"demo5.html\">demo5.html</a>";
+				content += "</p>";
+
+				//image marker5
+				new MMap.Marker(gmap, {
+					"latlng": {"lat": 35.68000, "lng": 139.765066},
+					"title": "demo4", "url": "demo5.html", "content": content
+				});
 			});
 		</script>
 	</head>
