@@ -32,11 +32,11 @@
 	background: url(skin/bgi_square_footer.png) no-repeat left bottom;
 }
 
-.square.active {
+.square.active, .square:hover {
 	background: url(skin/bgi_square_header.png) no-repeat -68px top;
 }
 
-.square.active .photo {
+.square.active .photo, .square:hover .photo {
 	background: url(skin/bgi_square_footer.png) no-repeat -68px bottom;
 }
 
@@ -52,11 +52,11 @@
 	background: url(skin/bgi_rounded_footer.png) no-repeat left bottom;
 }
 
-.rounded.active {
+.rounded.active, .rounded:hover  {
 	background: url(skin/bgi_rounded_header.png) no-repeat -68px top;
 }
 
-.rounded.active .photo {
+.rounded.active .photo, .rounded:hover .photo {
 	background: url(skin/bgi_rounded_footer.png) no-repeat -68px bottom;
 }
 
@@ -75,12 +75,12 @@
 	background: url(skin/bgi_cafe_footer.png) no-repeat left bottom;
 }
 
-.cafe.active {
-	background: url(skin/bgi_cafe_header.png) no-repeat -114px top;
+.cafe.active, .cafe:hover {
+	background: url(skin/bgi_cafe_header.png) no-repeat -113px top;
 }
 
-.cafe.active .photo {
-	background: url(skin/bgi_cafe_footer.png) no-repeat -114px bottom;
+.cafe.active .photo, .cafe:hover .photo {
+	background: url(skin/bgi_cafe_footer.png) no-repeat -113px bottom;
 }
 
 
@@ -98,10 +98,10 @@
 	background: url(skin/bgi_restaurant_footer.png) no-repeat left bottom;
 }
 
-.restaurant.active {
-	background: url(skin/bgi_restaurant_header.png) no-repeat -114px top;
+.restaurant.active, .restaurant:hover  {
+	background: url(skin/bgi_restaurant_header.png) no-repeat -113px top;
 }
 
-.restaurant.active .photo {
-	background: url(skin/bgi_restaurant_footer.png) no-repeat -114px bottom;
+.restaurant.active .photo, .restaurant:hover .photo {
+	background: url(skin/bgi_restaurant_footer.png) no-repeat -113px bottom;
 }

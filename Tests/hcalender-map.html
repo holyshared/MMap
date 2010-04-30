@@ -1,0 +1,77 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ja" lang="ja">
+	<head>
+		<meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+		<title>MMap.js</title>
+		<meta name="description" content="aa" />
+		<meta name="keywords" content="Noritaka Horio,Web,Design,Javascript" />
+		<meta http-equiv="Content-Language" content="ja" />
+		<meta http-equiv="Content-Script-Type" content="text/javascript" />
+		<meta http-equiv="Content-Style-Type" content="text/css" />
+		<link rel="stylesheet" href="css/style.css" type="text/css" media="screen" />
+		<script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>
+		<script type="text/javascript" src="../Demos/js/mootools/mootools-1.2.4-core.js"></script>
+		<script type="text/javascript" src="../Source/MMap.js"></script>
+		<script type="text/javascript" src="../Demos/js/microformat/microformat.js"></script>
+		<script type="text/javascript" src="../Demos/js/microformat/hcalendar.js"></script>
+		<script type="text/javascript">
+			window.addEvent("load", function() {
+				var events = HCalendar.discover();
+			});
+		</script>
+	</head>
+	<body>
+		<div class="page gs960">
+			<h1>MMap</h1>
+			<div class="body">
+				<div class="leftCol">
+					<h2>index</h2>
+					<ul>
+						<li><a href="index.html">home</a></li>
+						<li><a href="map.html">map</a></li>
+						<li><a href="marker.html">marker</a></li>
+						<li><a href="marker-style.html">marker-style</a></li>
+					</ul>
+				</div>
+				<div class="main">
+					<h2>MMap.js</h2>
+					<div id="map" class="map"></div>
+
+<div class="vcalendar">
+	<div class="vevent">
+		<h3 class="summary"><a class="url" href="#">XYZ Project Review</a></h3>
+		<p class="description">Project XYZ Review Meeting</p>
+		<p>To held on <abbr class="dtstart" title="1998-03-12T08:30:00-05:00">12 March 1998 from 8:30am EST</abbr> until <abbr class="dtend" title="1998-03-12T09:30:00-05:00">9:30am EST</abbr></p>
+		<p>Location: <abbr title="35;139" class="location geo">1CP Conference Room 4350</abbr></p>
+	</div>
+	<div class="vevent">
+		<h3 class="summary"><a class="url" href="#">XYZ Project Review</a></h3>
+		<p class="description">Project XYZ Review Meeting</p>
+		<p>To held on <abbr class="dtstart" title="1998-03-12T08:30:00-05:00">12 March 1998 from 8:30am EST</abbr> until <abbr class="dtend" title="1998-03-12T09:30:00-05:00">9:30am EST</abbr></p>
+		<p>Location: <abbr title="35;139" class="location geo">1CP Conference Room 4350</abbr></p>
+	</div>
+	<div class="vevent">
+		<h3 class="summary"><a class="url" href="#">XYZ Project Review</a></h3>
+		<p class="description">Project XYZ Review Meeting</p>
+		<p>To held on <abbr class="dtstart" title="1998-03-12T08:30:00-05:00">12 March 1998 from 8:30am EST</abbr> until <abbr class="dtend" title="1998-03-12T09:30:00-05:00">9:30am EST</abbr></p>
+		<p>Location: <abbr title="35;139" class="location geo">1CP Conference Room 4350</abbr></p>
+	</div>
+	<div class="vevent">
+		<h3 class="summary"><a class="url" href="#">XYZ Project Review</a></h3>
+		<dl>
+			<dt>Description:</dt>
+			<dd class="description">Project XYZ Review Meeting</dd>
+			<dt>Date:</dt>
+			<dd>To held on <abbr class="dtstart" title="1998-03-12T08:30:00-05:00">12 March 1998 from 8:30am EST</abbr> until <abbr class="dtend" title="1998-03-12T09:30:00-05:00">9:30am EST</abbr></dd>
+			<dt>Location:</dt>
+			<dd><abbr title="35;139" class="location geo">1CP Conference Room 4350</abbr></dd>
+		</dl>
+	</div>
+</div>
+
+				</div>
+			</div>
+		</div>
+	</body>
+</html>
