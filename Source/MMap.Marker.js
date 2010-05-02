@@ -1,3 +1,43 @@
+MMap.Overlays = {};
+MMap.Overlays.Markers = {
+
+	markers: [],
+	minIndex: 0,
+	maxIndex: 0,
+
+	add: function(marker) {
+		this.markers.push(marker);
+		this.minIndex = Math.min(this.minIndex, marker.getZIndex());
+		this.maxIndex = Math.max(this.maxIndex, marker.getZIndex());
+	},
+
+	orderToFront: function(marker) {
+		var zIndex = this.maxIndex;
+		marker.setZIndex(zIndex);
+		var container = marker.getContainer();
+		container.addClass("active");
+		this.markers.each(function(target) {
+			zIndex--;
+			if (target != marker) {
+				target.setZIndex(zIndex);
+				var container = target.getContainer();
+				container.removeClass("active");
+			}
+		});
+	},
+
+	orderToBack: function(marker) {
+		var zIndex = this.minIndex;
+		marker.setZIndex(zIndex);
+		marker.deactivate();
+		this.markers.each(function(target) {
+			zIndex++;
+			if (target != marker) target.setZIndex(zIndex);
+		});
+	}
+
+};
+
 MMap.Marker = new Class({
 
 	Implements: [Options],
@@ -7,14 +47,13 @@ MMap.Marker = new Class({
 		"latlng": null,
 		"title": null,
 		"url": null,
+		"zIndex": 900,
 		"content": null
 	},
 
 	proxyEvents: ["click", "mouseover", "mouseout", "mousedown", "mouseup"],
 
-	/**
-	 * @id MMap.Marker.initialize
-	 */
+	/** @id MMap.Marker.initialize */
 	initialize: function(map, options) {
 		this.setOptions(options);
 		$extend(this, new google.maps.OverlayView());
@@ -22,13 +61,13 @@ MMap.Marker = new Class({
 		this.body = new Element("div", {"class": "body"});
 		this.body.inject(this.container);
 		this.build();
+		this.setZIndex(this.options.zIndex);
 		this.setupProxy();
 		this.setMap(map.getInstance());
+		MMap.Overlays.Markers.add(this);
 	},
 
-	/**
-	 * @id MMap.Marker.build
-	 */
+	/** @id MMap.Marker.build */
 	build: function() {
 		this.header = new Element("div", {"class": "header"});
 		this.footer = new Element("div", {"class": "footer"});
@@ -50,22 +89,22 @@ MMap.Marker = new Class({
 		google.maps.event.trigger(this, event.type, e);
 	},	
 
-	/**
-	 * @id MMap.Marker.addEvent
-	 */
+	/** @id MMap.Marker.addEvent */
 	addEvent: function(type, handler) {
 		var eventType = Events.removeOn(type);
 		eventType = eventType.toLowerCase();
 		google.maps.event.addListener(this, eventType, handler);
 	},
 
-	/**
-	 * @id MMap.Marker.addEvents
-	 */
+	/** @id MMap.Marker.addEvents */
 	addEvents: function(handlers) {
 		for (var type in handlers) {
 			this.addEvent(type, handlers[type]);
 		}
+	},
+
+	getContainer: function() {
+		return this.container;
 	},
 
 	setContent: function(content) {
@@ -79,33 +118,32 @@ MMap.Marker = new Class({
 
 	getContent: function() { return this.content; },
 
-	/**
-	 * @id MMap.Marker.setURL
-	 */
+	/** @id MMap.Marker.setURL */
 	setURL: function(url) { this.options.url = url; }, 
 
-	/**
-	 * @id MMap.Marker.getURL
-	 */
+	/** @id MMap.Marker.getURL */
 	getURL: function() { return this.options.url; }, 
 
-	/**
-	 * @id MMap.Marker.setPosition
-	 */
+	/** @id MMap.Marker.setPosition */
 	setPosition: function(latlng) {
 		this.options.latlng = latlng;
 	},
 
-	/**
-	 * @id MMap.Marker.getPosition
-	 */
+	/** @id MMap.Marker.getPosition */
 	getPosition: function() {
 		return this.options.latlng;
 	},
 
-	/**
-	 * @id MMap.Marker.draw
-	 */
+	/** @id MMap.Marker.setPosition */
+	setZIndex: function(index) {
+		this.options.zIndex = index;
+		this.container.setStyle("z-index", this.options.zIndex);
+	},
+
+	/** @id MMap.Marker.getPosition */
+	getZIndex: function() { return this.options.zIndex; },
+
+	/** @id MMap.Marker.draw */
 	draw: function() {
 		var size = this.container.getSize();
 		var projection = this.getProjection();
@@ -127,6 +165,14 @@ MMap.Marker = new Class({
 
 	onRemove: function() {
 		this.container.destory();
+	},
+
+	orderToFront: function() {
+		MMap.Overlays.Markers.orderToFront(this);
+	},
+
+	orderToBack:  function() {
+		MMap.Overlays.Markers.orderToBack(this);
 	}
-	
+
 });

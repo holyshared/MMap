@@ -32,6 +32,14 @@ var MMap = new Class({
 			case "roadmap": typeId = google.maps.MapTypeId.ROADMAP; break;
 		}
 		return typeId;
-	}
+	},
+
+	getCenter: function() { return this.map.getCenter(); },
+	setCenter: function(latlng) {
+		var point = new google.maps.LatLng(latlng.lat, latlng.lng);
+		this.map.setCenter(point);
+	},
+	setZoom: function(zoom) { this.map.setZoom(zoom); },
+	getZoom: function() { return this.map.getZoom(); }
 
 });
