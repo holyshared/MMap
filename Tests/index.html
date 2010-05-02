@@ -1,15 +1,53 @@
-﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ja" lang="ja">
 	<head>
+		<meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 		<title>MMap.js</title>
-		<meta name="description" content="" />
+		<meta name="description" content="aa" />
 		<meta name="keywords" content="Noritaka Horio,Web,Design,Javascript" />
 		<meta http-equiv="Content-Language" content="ja" />
 		<meta http-equiv="Content-Script-Type" content="text/javascript" />
 		<meta http-equiv="Content-Style-Type" content="text/css" />
 		<link rel="stylesheet" href="css/style.css" type="text/css" media="screen" />
-		<meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+		<script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>
+		<script type="text/javascript" src="../Demos/js/mootools/mootools-1.2.4-core.js"></script>
+		<script type="text/javascript" src="../Source/MMap.js"></script>
+		<script type="text/javascript">
+			window.addEvent("load", function(){
+				var gmap = new MMap($("map"), {
+					"center": {"lat": 35.6666870, "lng": 139.731859},
+					"zoom": 10,
+					"mapType": "roadmap"
+				});
+
+				new google.maps.Marker({
+					map: gmap.getInstance(),
+					position: new google.maps.LatLng(35.6666870, 139.731859),
+					title: "A"
+				});
+				new google.maps.Marker({
+					map: gmap.getInstance(),
+					position: new google.maps.LatLng(35.6666870, 139.731859),
+					title: "A"
+				});
+				new google.maps.Marker({
+					map: gmap.getInstance(),
+					position: new google.maps.LatLng(35.6666870, 139.731859),
+					title: "A"
+				});
+				new google.maps.Marker({
+					map: gmap.getInstance(),
+					position: new google.maps.LatLng(35.6666870, 139.731859),
+					title: "A"
+				});
+				new google.maps.Marker({
+					map: gmap.getInstance(),
+					position: new google.maps.LatLng(35.6666870, 139.731859),
+					title: "A"
+				});
+			});
+		</script>
 	</head>
 	<body>
 		<div class="page gs960">
@@ -18,24 +56,17 @@
 				<div class="leftCol">
 					<h2>index</h2>
 					<ul>
-						<li><a href="index.html">home</a></li>
-						<li><a href="map.html">map</a></li>
+						<li><a href="index.html">map</a></li>
 						<li><a href="marker.html">marker</a></li>
 						<li><a href="marker-style.html">marker-style</a></li>
+						<li><a href="hcalender-map.html">hcalender</a></li>
 					</ul>
 				</div>
 				<div class="main">
-					<h2>AAAAAAAAAAAAA</h2>
-					<ul>
-						<li><a href="a">aaaaa</a></li>
-						<li><a href="a">aaaaa</a></li>
-						<li><a href="a">aaaaa</a></li>
-						<li><a href="a">aaaaa</a></li>
-					</ul>
-					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+					<h2>MMap.js</h2>
+					<div id="map" class="map"></div>
 				</div>
 			</div>
-
 		</div>
 	</body>
 </html>

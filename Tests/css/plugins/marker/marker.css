@@ -4,18 +4,29 @@
 --------------------------------*/
 .marker {
 	color: #ffffff;
+	width: auto;
 }
 
-.marker .header {
-	background: #000000;
-}
-
+.marker .header,
 .marker .body {
 	background: #000000;
 }
 
 .marker .footer {
-	background: url(skin/bgi_arrow.gif) no-repeat center bottom;
+	background: url(skin/bgi_arrow.png) no-repeat center top;
+	padding-bottom: 7px;
+}
+
+.marker:hover .header,
+.marker:hover .body,
+.marker.active .header,
+.marker.active .body {
+	background: #666666;
+}
+
+.marker:hover .footer,
+.marker.active .footer {
+	background: url(skin/bgi_arrow.png) no-repeat center bottom;
 	padding-bottom: 7px;
 }
 
@@ -29,13 +40,27 @@
 
 
 
+/* Marker HTML
+------------------------------------*/
+.html {
+	width: auto;
+}
+
+.html .body {
+	width: 200px;
+}
+
+
+
 /* Marker Image
 ------------------------------------*/
 .image {
 	width: 68px;
 }
 
-.image .body {
+.image .body,
+.image.active .body,
+.image:hover .body {
 	background: none;
 }
 

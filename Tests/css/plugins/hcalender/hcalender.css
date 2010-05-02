@@ -1,0 +1,16 @@
+@charset "utf-8";
+
+.vcalendar {
+}
+
+.vevent {
+	border-top: 1px solid #cccccc;	
+}
+
+.vcalendar dl dt {
+	float: left;
+	clear: both;
+	width: 80px;
+	font-weight: bold;
+	color: #616161;
+}
