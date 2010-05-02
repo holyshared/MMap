@@ -1,0 +1,37 @@
+@charset "utf-8";
+
+.hreview {
+	border-bottom: 1px solid #cccccc;
+	padding-bottom: 10px;
+}
+
+.properties {
+	overflow: hidden;
+	margin-bottom: 0px;
+	padding-bottom: 0px;
+}
+
+.properties li {
+	float: left;
+	padding-right: 10px;
+	margin-bottom: 0px;
+	padding-bottom: 0px;
+}
+
+.item {
+	border: 1px solid #cccccc;
+	padding: 0px 10px 10px 10px;
+}
+
+.item dl {
+	margin: 0px;
+	padding-bottom: 0px;
+}
+
+.item dt {
+	float: left;
+	clear: both;
+	width: 85px;
+	font-weight: bold;
+	color: #5f5f5f;
+}
