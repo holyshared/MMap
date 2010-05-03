@@ -33,7 +33,7 @@ MMap.Marker.Images = new Class({
 	buildImages: function() {
 		var images = this.options.images;
 		images.each(function(image) {
-			var container = new Element("li");
+			var container = new Element("li", {"class": "photo"});
 			var trigger = new Element("a", {"title": image.title, "href": image.url});
 			var photo = new Element("img", {"title": image.title, "src": image.src});
 			photo.inject(trigger);
@@ -51,9 +51,10 @@ MMap.Marker.Images = new Class({
 
 	activate: function() {
 		this.trigger.each(function(image, key){
+			var li = image.parentNode;
 			(this.current == key)
-			? image.setStyle("display", "")
-			: image.setStyle("display", "none");
+			? li.setStyle("display", "")
+			: li.setStyle("display", "none");
 		}, this);
 	}
 

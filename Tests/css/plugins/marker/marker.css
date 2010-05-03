@@ -5,6 +5,8 @@
 .marker {
 	color: #ffffff;
 	width: auto;
+	padding: 0px;
+	margin: 0px;
 }
 
 .marker .header,
@@ -55,7 +57,7 @@
 /* Marker Image
 ------------------------------------*/
 .image {
-	width: 68px;
+	width: 70px;
 }
 
 .image .body,
@@ -66,16 +68,20 @@
 
 .image .photo {
 	text-align: center;
-	padding-bottom: 16px;
-	padding-top: 9px;
+	padding: 9px 0px 12px 0px;
 }
 
 .image .photo a {
-	display: block;
+	display: inline-block;
 }
 
 .image .photo img {
 	vertical-align: top;
+	border: 1px solid #cccccc;
+}
+
+.image ul {
+	padding: 0px;
 }
 
 
@@ -90,11 +96,11 @@
 }
 
 .square.active, .square:hover {
-	background: url(skin/bgi_square_header.png) no-repeat -68px top;
+	background: url(skin/bgi_square_header.png) no-repeat -70px top;
 }
 
 .square.active .photo, .square:hover .photo {
-	background: url(skin/bgi_square_footer.png) no-repeat -68px bottom;
+	background: url(skin/bgi_square_footer.png) no-repeat -70px bottom;
 }
 
 
@@ -110,11 +116,11 @@
 }
 
 .rounded.active, .rounded:hover  {
-	background: url(skin/bgi_rounded_header.png) no-repeat -68px top;
+	background: url(skin/bgi_rounded_header.png) no-repeat -70px top;
 }
 
 .rounded.active .photo, .rounded:hover .photo {
-	background: url(skin/bgi_rounded_footer.png) no-repeat -68px bottom;
+	background: url(skin/bgi_rounded_footer.png) no-repeat -70px bottom;
 }
 
 
@@ -127,17 +133,17 @@
 }
 
 .cafe .photo {
-	padding-bottom: 17px;
+	padding-bottom: 11px;
 	padding-top: 32px;
 	background: url(skin/bgi_cafe_footer.png) no-repeat left bottom;
 }
 
 .cafe.active, .cafe:hover {
-	background: url(skin/bgi_cafe_header.png) no-repeat -113px top;
+	background: url(skin/bgi_cafe_header.png) no-repeat -115px top;
 }
 
 .cafe.active .photo, .cafe:hover .photo {
-	background: url(skin/bgi_cafe_footer.png) no-repeat -113px bottom;
+	background: url(skin/bgi_cafe_footer.png) no-repeat -115px bottom;
 }
 
 
@@ -150,15 +156,15 @@
 }
 
 .restaurant .photo {
-	padding-bottom: 17px;
+	padding-bottom: 11px;
 	padding-top: 32px;
 	background: url(skin/bgi_restaurant_footer.png) no-repeat left bottom;
 }
 
 .restaurant.active, .restaurant:hover  {
-	background: url(skin/bgi_restaurant_header.png) no-repeat -113px top;
+	background: url(skin/bgi_restaurant_header.png) no-repeat -115px top;
 }
 
 .restaurant.active .photo, .restaurant:hover .photo {
-	background: url(skin/bgi_restaurant_footer.png) no-repeat -113px bottom;
+	background: url(skin/bgi_restaurant_footer.png) no-repeat -115px bottom;
 }
