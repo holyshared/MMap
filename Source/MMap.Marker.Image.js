@@ -7,7 +7,8 @@ MMap.Marker.Image = new Class({
 		"latlng": null,
 		"title": null,
 		"url": null,
-		"src": null
+		"src": null,
+		"zIndex": null		
 	},
 
 	initialize: function(map, options) {

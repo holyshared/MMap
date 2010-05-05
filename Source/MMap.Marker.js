@@ -1,5 +1,22 @@
-MMap.Overlays = {};
-MMap.Overlays.Markers = {
+MMap.Overlay = {
+	zIndex: 900,
+
+	setZIndex: function(index) {
+		this.zIndex = index;
+	},
+
+	getCurrent: function() {
+		return this.zIndex;
+	},
+
+	next: function() {
+		this.zIndex++;
+		return this.zIndex;
+	}
+
+};
+
+MMap.Overlay.Markers = {
 
 	markers: [],
 	minIndex: 0,
@@ -47,11 +64,15 @@ MMap.Marker = new Class({
 		"latlng": null,
 		"title": null,
 		"url": null,
-		"zIndex": 900,
+		"zIndex": null,
 		"content": null
 	},
 
 	proxyEvents: ["click", "mouseover", "mouseout", "mousedown", "mouseup"],
+
+	panel: null,
+	container: null,
+	body: null,
 
 	/** @id MMap.Marker.initialize */
 	initialize: function(map, options) {
@@ -61,10 +82,10 @@ MMap.Marker = new Class({
 		this.body = new Element("div", {"class": "body"});
 		this.body.inject(this.container);
 		this.build();
-		this.setZIndex(this.options.zIndex);
+		this.setZIndex(this.generateZIndex());
 		this.setupProxy();
 		this.setMap(map.getInstance());
-		MMap.Overlays.Markers.add(this);
+		MMap.Overlay.Markers.add(this);
 	},
 
 	/** @id MMap.Marker.build */
@@ -101,6 +122,17 @@ MMap.Marker = new Class({
 		for (var type in handlers) {
 			this.addEvent(type, handlers[type]);
 		}
+	},
+
+	generateZIndex: function() {
+		var zIndex = null; 
+		if (this.options.zIndex) {
+			zIndex = this.options.zIndex;
+		} else {
+			zIndex = MMap.Overlay.getCurrent();
+			MMap.Overlay.next();
+		}
+		return zIndex;
 	},
 
 	getContainer: function() {
@@ -159,20 +191,24 @@ MMap.Marker = new Class({
 
 	onAdd: function() {
 		var panes = this.getPanes();
-		var panel = panes.overlayImage;
-		this.container.inject(panel);
+		this.panel = panes.overlayImage;
+		this.container.inject(this.panel);
 	},
 
 	onRemove: function() {
 		this.container.destory();
 	},
 
+	getPanel: function() {
+		return this.panel;
+	},
+
 	orderToFront: function() {
-		MMap.Overlays.Markers.orderToFront(this);
+		MMap.Overlay.Markers.orderToFront(this);
 	},
 
 	orderToBack:  function() {
-		MMap.Overlays.Markers.orderToBack(this);
+		MMap.Overlay.Markers.orderToBack(this);
 	}
 
 });
