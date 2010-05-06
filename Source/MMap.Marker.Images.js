@@ -1,3 +1,42 @@
+/*
+---
+description: Marker who can do mapping of image on map. Two or more images can be used and the image changes at regular intervals.
+
+license: MIT-style
+
+authors:
+- Noritaka Horio
+
+requires:
+  core/1.2.4:
+  - Core/Core
+  - Core/Browser
+  - Native/Array
+  - Native/Function
+  - Native/Number
+  - Native/String
+  - Native/Hash
+  - Native/Event
+  - Class/Class
+  - Class/Class.Extras
+  - Element/Element
+  - Element/Element.Event
+  - Element/Element.Style
+  - Element/Element.Dimensions
+  - Utilities/Selecter
+  - Utilities/DomReady
+  - Fx/Fx
+  - Fx/Fx.CSS
+  - Fx/Fx.Tween
+  - Fx/Fx.Transitions
+
+more/1.2.4.4:
+  - Tips
+
+provides: [MMap,MMap.Marker,MMap.Marker.Image,MMap.Marker.Images]
+...
+*/
+
 MMap.Marker.Images = new Class({
 
 	Extends: MMap.Marker,
@@ -17,7 +56,6 @@ MMap.Marker.Images = new Class({
 		this.over = false;
 		this.trigger.addEvent("mouseover",	this.onMouseOver.bind(this));
 		this.photo.addEvent("mouseout",		this.onMouseOut.bind(this));
-		//this.activate();
 	},
 
 	build: function() {
@@ -102,7 +140,7 @@ MMap.Marker.Images = new Class({
 		var current = this.trigger[this.current].parentNode;
 		var fx = current.get("morph", {
 			"duration": 600,
-			"transition": "expo:in:out",
+			"transition": "expo:in",
 			"onComplete": function() {
 				this.toFront();
 				this.next();
