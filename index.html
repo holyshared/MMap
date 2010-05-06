@@ -4,13 +4,99 @@
 		<meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 		<title>MMap.js</title>
-		<meta name="description" content="aa" />
+		<meta name="description" content="" />
 		<meta name="keywords" content="Noritaka Horio,Web,Design,Javascript" />
 		<meta http-equiv="Content-Language" content="ja" />
 		<meta http-equiv="Content-Script-Type" content="text/javascript" />
 		<meta http-equiv="Content-Style-Type" content="text/css" />
+		<link rel="stylesheet" type="text/css" href="css/style.css" media="screen,print" />
+		<script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>
+		<script type="text/javascript" src="js/mootools/mootools-1.2.4-core.js"></script>
+		<script type="text/javascript" src="js/mootools/mootools-1.2.4.4-more.js"></script>
+		<script type="text/javascript" src="js/mmap/MMap.js"></script>
+		<script type="text/javascript" src="js/mmap/MMap.Marker.js"></script>
+		<script type="text/javascript" src="js/mmap/MMap.Marker.Image.js"></script>
+		<script type="text/javascript" src="js/mmap/MMap.Marker.Images.js"></script>
+		<script type="text/javascript">
+			window.addEvent("load", function(){
+				var map = new MMap($("map"), {
+					"center": {"lat": 35.6666870, "lng": 139.731859},
+					"zoom": 10,
+					"mapType": "roadmap"
+				});
+			});
+		</script>
 	</head>
 	<body>
-		<h1>MMap</h1>
+		<div class="page gs960">
+			<h1>MMap</h1>
+			<div class="body">
+				<div class="main">
+
+					<div class="navconte">
+						<h2>Index</h2>
+						<ul class="gnav">
+							<li><a title="home" href="/">home</a></li>
+						</ul>
+					</div>
+
+					<div class="line">
+						<div class="unit size5of5 lastUnit">
+							<div id="map" class="map"></div>
+						</div>
+					</div>
+
+
+					<div class="line vcalendar">
+						<h2>Events List</h2>
+
+						<div class="unit size1of3 vevent">
+							<h3 class="summary"><a class="url" href="#">XYZ Project Review - A</a></h3>
+							<dl>
+								<dt>Description:</dt>
+								<dd class="description">Project XYZ Review Meeting</dd>
+								<dt>Date:</dt>
+								<dd>To held on <abbr class="dtstart" title="1998-03-12T08:30:00-05:00">12 March 1998 from 8:30am EST</abbr> until <abbr class="dtend" title="1998-03-12T09:30:00-05:00">9:30am EST</abbr></dd>
+								<dt>Location:</dt>
+								<dd>
+									<span class="location">1CP Conference Room 4350</span>
+									<abbr title="35.6666870;139.731859" class="geo">35.6666870, 139.731859</abbr>
+								</dd>
+							</dl>
+						</div>
+
+						<div class="unit size1of3 vevent">
+							<h3 class="summary"><a class="url" href="#">XYZ Project Review - A</a></h3>
+							<dl>
+								<dt>Description:</dt>
+								<dd class="description">Project XYZ Review Meeting</dd>
+								<dt>Date:</dt>
+								<dd>To held on <abbr class="dtstart" title="1998-03-12T08:30:00-05:00">12 March 1998 from 8:30am EST</abbr> until <abbr class="dtend" title="1998-03-12T09:30:00-05:00">9:30am EST</abbr></dd>
+								<dt>Location:</dt>
+								<dd>
+									<span class="location">1CP Conference Room 4350</span>
+									<abbr title="35.6666870;139.731859" class="geo">35.6666870, 139.731859</abbr>
+								</dd>
+							</dl>
+						</div>
+						<div class="unit size1of3 lastUnit vevent">
+							<h3 class="summary"><a class="url" href="#">XYZ Project Review - A</a></h3>
+							<dl>
+								<dt>Description:</dt>
+								<dd class="description">Project XYZ Review Meeting</dd>
+								<dt>Date:</dt>
+								<dd>To held on <abbr class="dtstart" title="1998-03-12T08:30:00-05:00">12 March 1998 from 8:30am EST</abbr> until <abbr class="dtend" title="1998-03-12T09:30:00-05:00">9:30am EST</abbr></dd>
+								<dt>Location:</dt>
+								<dd>
+									<span class="location">1CP Conference Room 4350</span>
+									<abbr title="35.6666870;139.731859" class="geo">35.6666870, 139.731859</abbr>
+								</dd>
+							</dl>
+						</div>
+
+					</div>
+				</div>
+			</div>
+		</div>
 	</body>
 </html>

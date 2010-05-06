@@ -1,0 +1,55 @@
+@charset "utf-8";
+
+/*
+Copyright (c) 2009, Nicole Sullivan. All rights reserved.
+Code licensed under the BSD License:
+version: 0.2
+
+author: Noritaka Horio
+
+*/
+
+/* **************** BLOCK STRUCTURES ***************** */
+/* mod */
+.mod{margin:10px;}
+.mod .inner{/*background: url(skin/transparent.png) repeat left top;*/}
+.hd,.bd,.ft{overflow:hidden;_overflow:visible; _zoom:1;}
+.inner{position:relative;}
+.top{background-position:center top;}
+.bottom{background-position:center bottom;_zoom:1;}/* this zoom required for IE5.5 only*/
+
+.navconte {
+	background: #000000;
+}
+
+.navconte h2 {
+	color: #ffffff;
+	border-bottom: 1px solid #333333;
+	padding-bottom: 5px;
+}
+
+.gnav {
+	overflow: hidden;
+}
+
+.gnav li {
+	float: left;
+}
+
+.gnav a {
+	color: #ffffff;
+	display: block;
+	background: #333333;
+	padding: 5px 15px;
+	text-transform: uppercase;
+	font-weight: normal;
+	text-decoration: none;
+}
+
+.gnav a:hover {
+	background: #1f7fa6;
+}
+
+.map {
+	height: 500px;
+}
