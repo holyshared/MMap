@@ -1,33 +1,34 @@
 @charset "utf-8";
 
-/*
-Copyright (c) 2009, Nicole Sullivan. All rights reserved.
-Code licensed under the BSD License:
-version: 0.2
+h1 {
+	position: absolute;
+	color: #ffffff;
+	font-size: 1.2em;
+	border-right: 1px solid #333333;
+	padding: 13px 15px;
+}
 
-author: Noritaka Horio
 
-*/
+/*---------- Module ----------*/
+.mod { margin: 10px; }
+.mod .inner { }
 
-/* **************** BLOCK STRUCTURES ***************** */
-/* mod */
-.mod{margin:10px;}
-.mod .inner{/*background: url(skin/transparent.png) repeat left top;*/}
-.hd,.bd,.ft{overflow:hidden;_overflow:visible; _zoom:1;}
-.inner{position:relative;}
-.top{background-position:center top;}
-.bottom{background-position:center bottom;_zoom:1;}/* this zoom required for IE5.5 only*/
 
+/*---------- Navigation ----------*/
 .navconte {
 	background: #000000;
 }
 
 .navconte h2 {
 	color: #ffffff;
-	border-bottom: 1px solid #333333;
 	padding-bottom: 5px;
+	float: left;
+	margin-left: 250px;
+	font-size: 1.2em;
 }
 
+
+/*---------- Global Navigation ----------*/
 .gnav {
 	overflow: hidden;
 }
@@ -50,6 +51,102 @@ author: Noritaka Horio
 	background: #1f7fa6;
 }
 
+
+/*---------- map ----------*/
 .map {
 	height: 500px;
+}
+
+
+/*---------- hCalender ----------*/
+.vcalendar {
+	width: 750px;
+	margin: 0px auto;
+}
+
+.vevent {
+	border: 1px solid #cccccc;
+	background: #ffffff;
+}
+
+.vevent .summary {
+	font-size: 1.2em;
+	background: #333333;
+	padding: 5px 15px 5px 15px;
+}
+
+.vevent .summary a {
+	font-weight: normal;
+	color: #ffffff;
+}
+
+.vevent .location {
+	margin-bottom: 10px;
+}
+
+.vevent p {
+	text-align: center;
+	margin-bottom: 0px;
+	padding-bottom: 0px;
+}
+
+.vevent p strong {
+	text-transform: capitalize;
+	color: #333333;
+}
+
+
+/*---------- Controller ----------*/
+.before { margin-left: 0px; }
+.after { margin-right: 0px; }
+.current { margin-left: 5px; margin-right: 5px; }
+
+.controller {
+	background: url(../images/bgi_control.jpg) no-repeat center 70px;
+	position: relative;
+}
+
+.contentController {
+	top:65px;
+	padding: 0px;
+	position: absolute;
+	width: 100%;
+}
+
+.contentController .prev,
+.contentController .next {
+	width: 50%;
+	outline: none;
+}
+
+.contentController .prev {
+	float: left;
+}
+
+.contentController .next {
+	float: right;
+}
+
+.contentController .prevEvent,
+.contentController .nextEvent {
+	width: 68px;
+	height: 101px;
+	display: inline-block;
+	text-indent: -9999px;
+}
+
+.contentController .prevEvent {
+	background: url(../images/btn_event_prev.gif) no-repeat left top;
+}
+
+.contentController .nextEvent {
+	background: url(../images/btn_event_next.gif) no-repeat right top;
+}
+
+.contentController .prevEvent:hover {
+	background-position: left -99px;
+}
+
+.contentController .nextEvent:hover {
+	background-position: right -99px;
 }
