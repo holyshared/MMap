@@ -64,9 +64,14 @@ h1 {
 	margin: -100px auto 0px auto;
 }
 
+.lastUnit .vevent {
+	margin: 0px;
+}
+
 .vevent {
 	border: 1px solid #cccccc;
 	background: #ffffff;
+	margin: 0px 10px 0px 0px;
 }
 
 .vevent .summary {
@@ -95,12 +100,16 @@ h1 {
 	color: #333333;
 }
 
+.vevent.active .summary {
+	background: #daa520;
+}
 
 /*---------- Controller ----------*/
+/*
 .before { margin-left: 0px; }
 .after { margin-right: 0px; }
 .current { margin-left: 5px; margin-right: 5px; }
-
+}*/
 .controller {
 	background: url(../images/bgi_control.png) no-repeat center 70px;
 	position: relative;

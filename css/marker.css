@@ -1,0 +1,170 @@
+@charset "utf-8";
+
+/* Marker Default Styles
+--------------------------------*/
+.marker {
+	color: #ffffff;
+	width: auto;
+	padding: 0px;
+	margin: 0px;
+}
+
+.marker .header,
+.marker .body {
+	background: #000000;
+}
+
+.marker .footer {
+	background: url(skin/bgi_arrow.png) no-repeat center top;
+	padding-bottom: 7px;
+}
+
+.marker:hover .header,
+.marker:hover .body,
+.marker.active .header,
+.marker.active .body {
+	background: #666666;
+}
+
+.marker:hover .footer,
+.marker.active .footer {
+	background: url(skin/bgi_arrow.png) no-repeat center bottom;
+	padding-bottom: 7px;
+}
+
+.marker a {
+	color: #add8e6;
+}
+
+.marker a:hover {
+	color: #daa520;
+}
+
+
+
+/* Marker HTML
+------------------------------------*/
+.html {
+	width: auto;
+}
+
+.html .body {
+	width: 200px;
+}
+
+
+
+/* Marker Image
+------------------------------------*/
+.image {
+	width: 116px;
+}
+
+.image .body,
+.image.active .body,
+.image:hover .body {
+	background: none;
+}
+
+.image .photo {
+	text-align: center;
+	padding: 8px 0px 15px 0px;
+	overflow: hidden;
+	height: 70px;
+	position: relative;
+}
+
+.image .photo a {
+	display: inline-block;
+}
+
+.image .photo img {
+	vertical-align: top;
+	border: 1px solid #cccccc;
+	width: 100px;
+	height: 70px;
+}
+
+/* Marker - Square
+--------------------------------*/
+.square {
+	background: url(../images/marker/bgi_marker_square_top.png) no-repeat left top;
+}
+
+.square .photo {
+	background: url(../images/marker/bgi_marker_square_bottom.png) no-repeat left bottom;
+}
+
+.square.active, .square:hover {
+	background: url(skin/bgi_square_header.png) no-repeat -70px top;
+}
+
+.square.active .photo, .square:hover .photo {
+	background: url(skin/bgi_square_footer.png) no-repeat -70px bottom;
+}
+
+
+
+/* Marker - Rounded
+--------------------------------*/
+.rounded {
+	background: url(skin/bgi_rounded_header.png) no-repeat left top;
+}
+
+.rounded .photo {
+	background: url(skin/bgi_rounded_footer.png) no-repeat left bottom;
+}
+
+.rounded.active, .rounded:hover  {
+	background: url(skin/bgi_rounded_header.png) no-repeat -70px top;
+}
+
+.rounded.active .photo, .rounded:hover .photo {
+	background: url(skin/bgi_rounded_footer.png) no-repeat -70px bottom;
+}
+
+
+
+/* Marker - Cafe
+--------------------------------*/
+.cafe {
+	width: 114px;
+	background: url(skin/bgi_cafe_header.png) no-repeat left top;
+}
+
+.cafe .photo {
+	padding-bottom: 11px;
+	padding-top: 32px;
+	background: url(skin/bgi_cafe_footer.png) no-repeat left bottom;
+}
+
+.cafe.active, .cafe:hover {
+	background: url(skin/bgi_cafe_header.png) no-repeat -115px top;
+}
+
+.cafe.active .photo, .cafe:hover .photo {
+	background: url(skin/bgi_cafe_footer.png) no-repeat -115px bottom;
+}
+
+
+
+/* Marker - Restaurant
+--------------------------------*/
+.restaurant {
+	width: 114px;
+	background: url(skin/bgi_restaurant_header.png) no-repeat left top;
+}
+
+.restaurant .photo {
+	padding-bottom: 11px;
+	padding-top: 32px;
+	background: url(skin/bgi_restaurant_footer.png) no-repeat left bottom;
+}
+
+.restaurant.active, .restaurant:hover  {
+	background: url(skin/bgi_restaurant_header.png) no-repeat -115px top;
+}
+
+.restaurant.active .photo, .restaurant:hover .photo {
+	background: url(skin/bgi_restaurant_footer.png) no-repeat -115px bottom;
+}
