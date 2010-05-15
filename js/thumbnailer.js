@@ -1,4 +1,4 @@
-var EventController = new Class({
+var Thumbnailer = new Class({
 
 	Implements: [Events, Options],
 
@@ -41,6 +41,7 @@ var EventController = new Class({
 			(this.range.to == key) ? event.addClass("lastUnit") : event.removeClass("lastUnit");
 			(this.current == key) ? vevent.addClass("active") : vevent.removeClass("active");
 		}, this);
+		this.fireEvent("active", [this.current, this.events[this.current]]);
 	},
 
 	getRange: function() {
@@ -78,24 +79,3 @@ var EventController = new Class({
 		this.next();
 	}
 });
-
-
-var Home = {
-
-	initialize: function() {
-		this.map = new MMap($("map"), {
-			"center": {"lat": 35.6666870, "lng": 139.731859},
-			"zoom": 10,
-			"mapType": "roadmap"
-		});
-
-		new MMap.Marker.Image(this.map, {
-			"latlng": {"lat": 35.6666870, "lng": 139.731859},
-			"src": "images/index/img_event1.jpg"
-		});
-		new EventController($("calendar"));
-	}
-
-};
-
-window.addEvent("domready", Home.initialize.bind(this));

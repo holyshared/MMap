@@ -61,7 +61,13 @@ h1 {
 /*---------- hCalender ----------*/
 .vcalendar {
 	width: 750px;
-	margin: -100px auto 0px auto;
+	margin: -88px auto 0px auto;
+}
+
+.vcalendar h2 {
+	height: 0px;
+	width: 0px;
+	overflow: hidden;
 }
 
 .lastUnit .vevent {
@@ -105,18 +111,13 @@ h1 {
 }
 
 /*---------- Controller ----------*/
-/*
-.before { margin-left: 0px; }
-.after { margin-right: 0px; }
-.current { margin-left: 5px; margin-right: 5px; }
-}*/
 .controller {
-	background: url(../images/bgi_control.png) no-repeat center 70px;
+	background: url(../images/bgi_control.png) no-repeat center 37px;
 	position: relative;
 }
 
 .contentController {
-	top:65px;
+	top: 30px;
 	padding: 0px;
 	position: absolute;
 	width: 100%;
