@@ -96,75 +96,9 @@
 }
 
 .square.active, .square:hover {
-	background: url(skin/bgi_square_header.png) no-repeat -70px top;
+	background: url(../images/marker/bgi_marker_square_top.png) no-repeat -116px top;
 }
 
 .square.active .photo, .square:hover .photo {
-	background: url(skin/bgi_square_footer.png) no-repeat -70px bottom;
-}
-
-
-
-/* Marker - Rounded
---------------------------------*/
-.rounded {
-	background: url(skin/bgi_rounded_header.png) no-repeat left top;
-}
-
-.rounded .photo {
-	background: url(skin/bgi_rounded_footer.png) no-repeat left bottom;
-}
-
-.rounded.active, .rounded:hover  {
-	background: url(skin/bgi_rounded_header.png) no-repeat -70px top;
-}
-
-.rounded.active .photo, .rounded:hover .photo {
-	background: url(skin/bgi_rounded_footer.png) no-repeat -70px bottom;
-}
-
-
-
-/* Marker - Cafe
---------------------------------*/
-.cafe {
-	width: 114px;
-	background: url(skin/bgi_cafe_header.png) no-repeat left top;
-}
-
-.cafe .photo {
-	padding-bottom: 11px;
-	padding-top: 32px;
-	background: url(skin/bgi_cafe_footer.png) no-repeat left bottom;
-}
-
-.cafe.active, .cafe:hover {
-	background: url(skin/bgi_cafe_header.png) no-repeat -115px top;
-}
-
-.cafe.active .photo, .cafe:hover .photo {
-	background: url(skin/bgi_cafe_footer.png) no-repeat -115px bottom;
-}
-
-
-
-/* Marker - Restaurant
---------------------------------*/
-.restaurant {
-	width: 114px;
-	background: url(skin/bgi_restaurant_header.png) no-repeat left top;
-}
-
-.restaurant .photo {
-	padding-bottom: 11px;
-	padding-top: 32px;
-	background: url(skin/bgi_restaurant_footer.png) no-repeat left bottom;
-}
-
-.restaurant.active, .restaurant:hover  {
-	background: url(skin/bgi_restaurant_header.png) no-repeat -115px top;
-}
-
-.restaurant.active .photo, .restaurant:hover .photo {
-	background: url(skin/bgi_restaurant_footer.png) no-repeat -115px bottom;
+	background: url(../images/marker/bgi_marker_square_bottom.png) no-repeat -116px bottom;
 }

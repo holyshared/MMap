@@ -112,6 +112,7 @@ MMap.Marker = new Class({
 	panel: null,
 	container: null,
 	body: null,
+	latlng: null,
 
 	/** @id MMap.Marker.initialize */
 	initialize: function(map, options) {
@@ -124,6 +125,7 @@ MMap.Marker = new Class({
 		this.setZIndex(this.generateZIndex());
 		this.setupProxy();
 		this.setMap(map.getInstance());
+		this.setPosition(new google.maps.LatLng(this.options.latlng.lat, this.options.latlng.lng));
 		MMap.Overlay.Markers.add(this);
 	},
 
@@ -174,9 +176,7 @@ MMap.Marker = new Class({
 		return zIndex;
 	},
 
-	getContainer: function() {
-		return this.container;
-	},
+	getContainer: function() { return this.container; },
 
 	setContent: function(content) {
 		if (!content) return false;
@@ -196,14 +196,10 @@ MMap.Marker = new Class({
 	getURL: function() { return this.options.url; }, 
 
 	/** @id MMap.Marker.setPosition */
-	setPosition: function(latlng) {
-		this.options.latlng = latlng;
-	},
+	setPosition: function(latlng) { this.latlng = latlng; },
 
 	/** @id MMap.Marker.getPosition */
-	getPosition: function() {
-		return this.options.latlng;
-	},
+	getPosition: function() { return this.latlng; },
 
 	/** @id MMap.Marker.setPosition */
 	setZIndex: function(index) {
@@ -219,7 +215,7 @@ MMap.Marker = new Class({
 		var size = this.container.getSize();
 		var projection = this.getProjection();
 		var position = this.options.latlng;
-		var latlng = new google.maps.LatLng(position.lat, position.lng)
+		var latlng = new google.maps.LatLng(position.lat, position.lng);
 		var point = projection.fromLatLngToDivPixel(latlng);
 		this.container.setStyles({
 			"position": "absolute",
@@ -234,20 +230,14 @@ MMap.Marker = new Class({
 		this.container.inject(this.panel);
 	},
 
-	onRemove: function() {
-		this.container.destory();
-	},
-
-	getPanel: function() {
-		return this.panel;
-	},
+	onRemove: function() { this.container.destroy(); },
+	getPanel: function() { return this.panel; },
 
 	orderToFront: function() {
 		MMap.Overlay.Markers.orderToFront(this);
 	},
 
-	orderToBack:  function() {
+	orderToBack: function() {
 		MMap.Overlay.Markers.orderToBack(this);
 	}
-
 });

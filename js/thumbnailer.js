@@ -21,13 +21,15 @@ var Thumbnailer = new Class({
 		this.controller = $(this.container).getElement("." + this.options.controller);
 		this.calendar = $(this.container).getElement(".vcalendar");
 		this.events = $(this.calendar).getElements("." + this.options.element);
+		this.triggers = $(this.container).getElements(".summary a");
 	},
 
 	setupInterface: function(){
 		this.prevButton = $(this.controller).getElement(".prev");
 		this.nextButton = $(this.controller).getElement(".next");
-		this.prevButton.addEvent("click", this.onPrev.bind(this));
-		this.nextButton.addEvent("click", this.onNext.bind(this));
+		this.prevButton.addEvent("click", this.onPrevClick.bind(this));
+		this.nextButton.addEvent("click", this.onNextClick.bind(this));
+		this.triggers.addEvent("click", this.onSummaryClick.bind(this));
 	},
 	
 	set: function(index) {
@@ -69,12 +71,18 @@ var Thumbnailer = new Class({
 		this.set(this.current);
 	},
 
-	onPrev: function(event) {
+	onSummaryClick: function(event) {
+		event.stop();
+		var index = this.triggers.indexOf(event.target);
+		this.set(index);
+	},
+
+	onPrevClick: function(event) {
 		event.stop();
 		this.prev();
 	},
 
-	onNext: function(event) {
+	onNextClick: function(event) {
 		event.stop();
 		this.next();
 	}

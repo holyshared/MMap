@@ -74,10 +74,7 @@ var MMap = new Class({
 	},
 
 	getCenter: function() { return this.map.getCenter(); },
-	setCenter: function(latlng) {
-		var point = new google.maps.LatLng(latlng.lat, latlng.lng);
-		this.map.setCenter(point);
-	},
+	setCenter: function(latlng) { this.map.setCenter(latlng); },
 	setZoom: function(zoom) { this.map.setZoom(zoom); },
 	getZoom: function() { return this.map.getZoom(); }
 

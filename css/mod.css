@@ -58,10 +58,180 @@ h1 {
 }
 
 
+
+
+
+
+/* Widget Style
+-----------------------------------*/
+.window {
+	font-family: verdana;
+	position: relative;
+	text-align: left;
+	width: 300px; /* DYNAMIC CHANGE */
+	margin: 0px 0px 15px 0px;
+}
+
+.window .header .title,
+.window .header .controls {
+	height: 28px;
+	margin-bottom: 0px;
+}
+
+.window .header .title {
+	background: url(../images/window/bgi_widget.png) top left no-repeat;
+	float: left;
+	width: 275px; /* DYNAMIC CHANGE */
+	padding: 0px;
+}
+
+.window .header:hover .close {
+	background: url(../images/window/bgi_close.gif) right -36px no-repeat;
+}
+
+.window .header strong {
+	padding: 14px 0px 0px 16px;
+	display: inline-block;
+}
+
+.window .header .controls {
+	background: url(../images/window/bgi_widget.png) top right no-repeat;
+	position: relative;	
+	width: 25px;
+	padding: 0px;
+	margin-left: 275px; /* DYNAMIC CHANGE */
+}
+
+.window .header .close {
+	background: url(../images/window/bgi_close.gif) top left no-repeat;
+	width: 18px;
+	height: 18px;
+	display: block;
+	text-indent: -9999px;
+	outline: none;
+	position: relative; 
+	top: 10px;
+	left: -2px;
+	cursor: pointer;
+}
+
+.window .header .close:hover {
+	background-position: left -18px;
+}
+
+.window .body {
+	position: relative;
+	background: url(../images/window/bgi_body.png) top left repeat-y;
+	margin-right: 15px;
+}
+
+.window .content {
+	background: url(../images/window/bgi_body.png) top right repeat-y;
+	padding: 0px 0px 8px 0px;
+	position: relative;
+	right: -15px;
+	z-index: 1;
+}
+
+.window .content * {
+	padding-left: 0px;
+	padding-bottom: 0px;
+}
+
+.window .footer {
+	background: url(../images/window/bgi_widget.png) bottom left no-repeat;
+	height: 37px;
+	position: relative;
+	margin-right: 20px;
+}
+
+.window .footer p {
+	height: 37px;
+	position: relative;
+	background: url(../images/window/bgi_widget.png) bottom right no-repeat;
+	width: 20px;
+	float: right;
+	padding: 0px;
+	right: -20px;
+}
+
+.window .footer .resize {
+	background: url(../images/window/bgi_resize.gif) bottom right no-repeat;
+	height: 17px;
+	width: 17px;
+	display: block;
+	text-indent: -9999px;
+	outline: none;
+	position: relative;
+	top: -1px;
+	left: -3px;
+	cursor: se-resize;
+}
+
+.window a {
+	color: #C4F0FF;
+}
+
+.window a:hover {
+	color: #FFCC00;
+}
+
+.window .header:after, .window .footer:after {
+	content: ".";
+	display: block;
+	height: 0px;
+	clear: both;
+	visibility: hidden;
+}
+
+.window .header, .window .footer {
+	display: inline-block;
+}
+
+* html .window .header, * html .window .footer {
+	height: 1%;
+}
+
+.window .header, .window .footer {
+	display: block;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 /*---------- hCalender ----------*/
 .vcalendar {
 	width: 750px;
-	margin: -88px auto 0px auto;
+	margin: 0px auto 0px auto;
 }
 
 .vcalendar h2 {
@@ -106,13 +276,14 @@ h1 {
 	color: #333333;
 }
 
-.vevent.active .summary {
-	background: #daa520;
+.vevent.active .summary,
+.vevent .summary:hover {
+	background: #006699;
 }
 
 /*---------- Controller ----------*/
 .controller {
-	background: url(../images/bgi_control.png) no-repeat center 37px;
+	background: url(../images/bgi_control.png) no-repeat center 35px;
 	position: relative;
 }
 

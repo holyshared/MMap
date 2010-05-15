@@ -6,7 +6,7 @@ Pages.Home = {
 
 	"options": {
 		"center": {"lat": 35.665326, "lng": 139.726325},
-		"zoom": 15,
+		"zoom": 12,
 		"mapType": "roadmap"
 	},
 
@@ -32,9 +32,10 @@ Pages.Home = {
 			var marker = new MMap.Marker.Image(this.map, {
 				"latlng": {"lat": geo.latitude, "lng": geo.longitude},
 				"title": event.summary + " - " + event.location,
-				"url": event.url, "src": image,
-				"onClick": this.onMarkerClick.bind(this, [marker])
+				"url": event.url, "src": image
 			});
+			marker.addEvent("click", this.onMarkerClick.bind(this, [marker]));
+
 			this.markers.push(marker);
 		}, this);
 	},
@@ -47,8 +48,17 @@ Pages.Home = {
 
 	onMarkerClick: function(marker) {
 		marker.orderToFront();
+		var index = this.markers.indexOf(marker);
 		this.map.setCenter(marker.getPosition());
-	}
+		this.thumbnailer.set(index);
+
+		var info = new MMap.Window({"title": "aaa", "content": "<p>aaaa</p>"});
+		info.open(this.map, marker);
+	},
+
+	getEventWindow: function(index) {
+		var event = this.events[index];
+	},
 
 };
 window.addEvent("domready", Pages.Home.initialize.bind(Pages.Home));
