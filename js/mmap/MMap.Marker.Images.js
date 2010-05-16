@@ -33,7 +33,7 @@ requires:
 more/1.2.4.4:
   - Tips
 
-provides: [MMap,MMap.Marker,MMap.Marker.Image,MMap.Marker.Images]
+provides: [MMap,MMap.Marker,MMap.Marker.Image,MMap.Marker.Images,MMap.Window]
 ...
 */
 
