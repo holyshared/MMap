@@ -68,8 +68,8 @@ h1 {
 	font-family: verdana;
 	position: relative;
 	text-align: left;
-	width: 300px; /* DYNAMIC CHANGE */
-	margin: 0px 0px 15px 0px;
+/*	width: 300px; */ /* DYNAMIC CHANGE */
+	margin: 0px;
 }
 
 .window .header .title,
@@ -81,7 +81,7 @@ h1 {
 .window .header .title {
 	background: url(../images/window/bgi_widget.png) top left no-repeat;
 	float: left;
-	width: 275px; /* DYNAMIC CHANGE */
+/*	width: 275px; */ /* DYNAMIC CHANGE */
 	padding: 0px;
 }
 
@@ -99,7 +99,7 @@ h1 {
 	position: relative;	
 	width: 25px;
 	padding: 0px;
-	margin-left: 275px; /* DYNAMIC CHANGE */
+/*	margin-left: 275px; */ /* DYNAMIC CHANGE */
 }
 
 .window .header .close {
@@ -140,13 +140,13 @@ h1 {
 
 .window .footer {
 	background: url(../images/window/bgi_widget.png) bottom left no-repeat;
-	height: 37px;
+	height: 24px;
 	position: relative;
 	margin-right: 20px;
 }
 
 .window .footer p {
-	height: 37px;
+	height: 24px;
 	position: relative;
 	background: url(../images/window/bgi_widget.png) bottom right no-repeat;
 	width: 20px;
@@ -166,6 +166,14 @@ h1 {
 	top: -1px;
 	left: -3px;
 	cursor: se-resize;
+}
+
+.window .arrow {
+	background: url(../images/window/bgi_arrow.png) bottom center no-repeat;
+	padding-bottom: 14px;
+	margin: -8px auto 0px auto;
+	position: relative;
+	width: 200px;
 }
 
 .window a {
@@ -195,36 +203,6 @@ h1 {
 .window .header, .window .footer {
 	display: block;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
