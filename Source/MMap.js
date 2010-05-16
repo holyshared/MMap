@@ -74,11 +74,28 @@ var MMap = new Class({
 	},
 
 	getCenter: function() { return this.map.getCenter(); },
-	setCenter: function(latlng) {
-		var point = new google.maps.LatLng(latlng.lat, latlng.lng);
-		this.map.setCenter(point);
-	},
+	setCenter: function(latlng) { this.map.setCenter(latlng); },
 	setZoom: function(zoom) { this.map.setZoom(zoom); },
 	getZoom: function() { return this.map.getZoom(); }
+
+});
+
+MMap.Events = new Class({
+
+	fireEvent: function(type, paramters) {
+		google.maps.event.trigger(this, type, paramters);
+	},	
+
+	addEvent: function(type, handler) {
+		var eventType = Events.removeOn(type);
+		eventType = eventType.toLowerCase();
+		google.maps.event.addListener(this, eventType, handler);
+	},
+
+	addEvents: function(handlers) {
+		for (var type in handlers) {
+			this.addEvent(type, handlers[type]);
+		}
+	}
 
 });

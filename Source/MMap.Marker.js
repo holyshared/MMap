@@ -96,7 +96,7 @@ MMap.Overlay.Markers = {
 
 MMap.Marker = new Class({
 
-	Implements: [Options],
+	Implements: [Options, MMap.Events],
 
 	options: {
 		"className": "html",
@@ -107,11 +107,10 @@ MMap.Marker = new Class({
 		"content": null
 	},
 
-	proxyEvents: ["click", "mouseover", "mouseout", "mousedown", "mouseup"],
-
 	panel: null,
 	container: null,
 	body: null,
+	latlng: null,
 
 	/** @id MMap.Marker.initialize */
 	initialize: function(map, options) {
@@ -122,8 +121,9 @@ MMap.Marker = new Class({
 		this.body.inject(this.container);
 		this.build();
 		this.setZIndex(this.generateZIndex());
-		this.setupProxy();
+		this.setupEvents();
 		this.setMap(map.getInstance());
+		this.setPosition(new google.maps.LatLng(this.options.latlng.lat, this.options.latlng.lng));
 		MMap.Overlay.Markers.add(this);
 	},
 
@@ -137,30 +137,16 @@ MMap.Marker = new Class({
 		this.setContent(this.options.content);
 	},
 
-	setupProxy: function(event) {
-		this.proxyEvents.each(function(eventType) {
-			this.trigger.addEvent(eventType, this.eventProxy.bind(this));
-		}, this);
-	},
-
-	eventProxy: function(event) {
-		event.stop();
-		var e = new Event(event);
-		google.maps.event.trigger(this, event.type, e);
-	},	
-
-	/** @id MMap.Marker.addEvent */
-	addEvent: function(type, handler) {
-		var eventType = Events.removeOn(type);
-		eventType = eventType.toLowerCase();
-		google.maps.event.addListener(this, eventType, handler);
-	},
-
-	/** @id MMap.Marker.addEvents */
-	addEvents: function(handlers) {
-		for (var type in handlers) {
-			this.addEvent(type, handlers[type]);
-		}
+	setupEvents: function(event) {
+		var proxy = function(event) {
+			event.stop();
+			this.fireEvent(event.type, new Event(event));
+		}.bind(this);
+		this.trigger.addEvent("click", proxy);
+		this.trigger.addEvent("mouseover", proxy);
+		this.trigger.addEvent("mouseout", proxy);
+		this.trigger.addEvent("mousedown", proxy);
+		this.trigger.addEvent("mouseup", proxy);
 	},
 
 	generateZIndex: function() {
@@ -174,9 +160,7 @@ MMap.Marker = new Class({
 		return zIndex;
 	},
 
-	getContainer: function() {
-		return this.container;
-	},
+	getContainer: function() { return this.container; },
 
 	setContent: function(content) {
 		if (!content) return false;
@@ -196,14 +180,10 @@ MMap.Marker = new Class({
 	getURL: function() { return this.options.url; }, 
 
 	/** @id MMap.Marker.setPosition */
-	setPosition: function(latlng) {
-		this.options.latlng = latlng;
-	},
+	setPosition: function(latlng) { this.latlng = latlng; },
 
 	/** @id MMap.Marker.getPosition */
-	getPosition: function() {
-		return this.options.latlng;
-	},
+	getPosition: function() { return this.latlng; },
 
 	/** @id MMap.Marker.setPosition */
 	setZIndex: function(index) {
@@ -219,7 +199,7 @@ MMap.Marker = new Class({
 		var size = this.container.getSize();
 		var projection = this.getProjection();
 		var position = this.options.latlng;
-		var latlng = new google.maps.LatLng(position.lat, position.lng)
+		var latlng = new google.maps.LatLng(position.lat, position.lng);
 		var point = projection.fromLatLngToDivPixel(latlng);
 		this.container.setStyles({
 			"position": "absolute",
@@ -234,20 +214,14 @@ MMap.Marker = new Class({
 		this.container.inject(this.panel);
 	},
 
-	onRemove: function() {
-		this.container.destory();
-	},
-
-	getPanel: function() {
-		return this.panel;
-	},
+	onRemove: function() { this.container.destroy(); },
+	getPanel: function() { return this.panel; },
 
 	orderToFront: function() {
 		MMap.Overlay.Markers.orderToFront(this);
 	},
 
-	orderToBack:  function() {
+	orderToBack: function() {
 		MMap.Overlay.Markers.orderToBack(this);
 	}
-
 });
