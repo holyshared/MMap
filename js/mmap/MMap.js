@@ -80,16 +80,18 @@ var MMap = new Class({
 
 });
 
+
 MMap.Events = new Class({
 
 	fireEvent: function(type, paramters) {
 		google.maps.event.trigger(this, type, paramters);
-	},	
+	},
 
 	addEvent: function(type, handler) {
 		var eventType = Events.removeOn(type);
+		var target = (this.getInstance) ? this.getInstance() : this;
 		eventType = eventType.toLowerCase();
-		google.maps.event.addListener(this, eventType, handler);
+		google.maps.event.addListener(target, eventType, handler);
 	},
 
 	addEvents: function(handlers) {
@@ -97,5 +99,6 @@ MMap.Events = new Class({
 			this.addEvent(type, handlers[type]);
 		}
 	}
-
 });
+
+MMap.implement(new MMap.Events());
