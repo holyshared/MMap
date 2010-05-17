@@ -1,6 +1,6 @@
 /*
 ---
-description:
+description: Custom information window.
 
 license: MIT-style
 
