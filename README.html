@@ -33,7 +33,7 @@
 </pre>
 
 <h4>Javascript</h4>
-<p>記述しなければならないJavascriptは下記の通りになります。<br />通常のGoogle Map APIとそれほど変わりません。</p>
+<p>Javascript that should be described becomes as follows. It looks like usual Google Map API. </p>
 
 <pre>
 <code>
@@ -50,9 +50,17 @@ window.addEvent("load", function(){
 
 <h4>Options</h4>
 <ul>
-	<li><strong>center</strong>: <em>(object)</em> 中心とする座標位置</li>
-	<li><strong>zoom</strong>: <em>(interger)</em> ズームレベル</li>
-	<li><strong>mapType</strong>: <em>(string)</em> Google Map のマップタイプ。hybrid, roadmap, satellite, terrainが指定可能</li>
+	<li><strong>center</strong>: <em>(object)</em> - Displayed coordinates position.</li>
+	<li><strong>zoom</strong>: <em>(interger)</em> - Zoom level</li>
+	<li><strong>mapType</strong>: <em>(string)</em> - Map type of Google Map. Hybrid, roadmap, satellite, and terrain can be specified.</li>
+	<li><strong>onClick</strong>: <em>(MouseEvent)</em> - When the map is clicked, it is generated. </li>
+	<li><strong>onDblClick</strong>: <em>(MouseEvent)</em> - When the map is double clicked, it is generated. </li>
+	<li><strong>onDrag</strong>: <em>(void)</em> - It is generated while the mouse is being dragged. </li>
+	<li><strong>onDragEnd</strong>: <em>(void)</em> - When mouse's drug is completed, it is generated.</li>
+	<li><strong>onDragStart</strong>: <em>(void)</em> - When mouse's drug is begun, it is generated.</li>
+	<li><strong>onMouseMove</strong>: <em>(MouseEvent)</em> - It is generated while moving the mouse. </li>
+	<li><strong>onMouseOver</strong>: <em>(MouseEvent)</em> - When the mouse cursor comes in succession in the marker, this event is generated.</li>
+	<li><strong>onMouseOut</strong>: <em>(MouseEvent)</em> - When the mouse cursor parts from the marker, this event is generated.</li>
 </ul>
 
 
@@ -61,7 +69,7 @@ window.addEvent("load", function(){
 <h3>MMap.Marker</h3>
 
 <h4>HTML</h4>
-<p>The structure of the marker is as follows. </p>
+<p>The structure of the marker is as follows.</p>
 
 <pre>
 <code>
@@ -75,7 +83,7 @@ window.addEvent("load", function(){
 </pre>
 
 <h4>Javascript</h4>
-<p></p>
+<p>Javascript becomes as follows.</p>
 
 <pre>
 <code>
@@ -103,16 +111,16 @@ window.addEvent("load", function(){
 
 <h4>Options</h4>
 <ul>
-	<li><strong>className</strong>: <em>(object)</em></li>
-	<li><strong>latlng</strong>: <em>(interger)</em></li>
-	<li><strong>title</strong>: <em>(string)</em></li>
-	<li><strong>content</strong>: <em>(string)</em></li>
-	<li><strong>zIndex</strong>: <em>(string)</em></li>
-	<li><strong>onClick</strong>: <em>(event)</em></li>
-	<li><strong>onMouseOver</strong>: <em>(event)</em></li>
-	<li><strong>onMouseOut</strong>: <em>(event)</em></li>
-	<li><strong>onMouseDown</strong>: <em>(event)</em></li>
-	<li><strong>onMouseUp</strong>: <em>(event)</em></li>
+	<li><strong>className</strong>: <em>(string)</em> - Class name of marker style. Default is image.</li>
+	<li><strong>latlng</strong>: <em>(interger)</em> - Displayed coordinates position.</li>
+	<li><strong>title</strong>: <em>(string)</em> - Displayed title.</li>
+	<li><strong>content</strong>: <em>(string)</em> - Content displayed in marker.</li>
+	<li><strong>zIndex</strong>: <em>(interger)</em> - The order of piling. An initial value is null.</li>
+	<li><strong>onClick</strong>: <em>(event)</em> - When the marker is clicked, this event is generated.</li>
+	<li><strong>onMouseOver</strong>: <em>(event)</em> - When the mouse cursor comes in succession in the marker, this event is generated.</li>
+	<li><strong>onMouseOut</strong>: <em>(event)</em> - When the mouse cursor parts from the marker, this event is generated.</li>
+	<li><strong>onMouseDown</strong>: <em>(event)</em> - When mouse's button is pushed on the marker, it is generated.</li>
+	<li><strong>onMouseUp</strong>: <em>(event)</em> - When the button on the marker is pushed, and released, it is generated.</li>
 </ul>
 
 
@@ -120,7 +128,7 @@ window.addEvent("load", function(){
 <!-- MMap.Marker.Image.js -->
 <h3>MMap.Marker.Image</h3>
 <h4>HTML</h4>
-<p>The structure of the image marker is as follows. </p>
+<p>The structure of the image marker is as follows.</p>
 
 <pre>
 <code>
@@ -134,7 +142,7 @@ window.addEvent("load", function(){
 </pre>
 
 <h4>Javascript</h4>
-<p></p>
+<p>Javascript becomes as follows.</p>
 
 <pre>
 <code>
@@ -156,30 +164,161 @@ window.addEvent("load", function(){
 
 <h4>Options</h4>
 <ul>
-	<li><strong>className</strong>: <em>(object)</em></li>
-	<li><strong>latlng</strong>: <em>(interger)</em></li>
-	<li><strong>title</strong>: <em>(string)</em></li>
-	<li><strong>url</strong>: <em>(string)</em></li>
-	<li><strong>src</strong>: <em>(string)</em></li>
-	<li><strong>zIndex</strong>: <em>(string)</em></li>
-	<li><strong>onClick</strong>: <em>(event)</em></li>
-	<li><strong>onMouseOver</strong>: <em>(event)</em></li>
-	<li><strong>onMouseOut</strong>: <em>(event)</em></li>
-	<li><strong>onMouseDown</strong>: <em>(event)</em></li>
-	<li><strong>onMouseUp</strong>: <em>(event)</em></li>
+	<li><strong>className</strong>: <em>(string)</em> - Class name of marker style. Default is image.</li>
+	<li><strong>latlng</strong>: <em>(interger)</em> - Displayed coordinates position.</li>
+	<li><strong>title</strong>: <em>(string)</em> - Displayed title.</li>
+	<li><strong>url</strong>: <em>(string)</em>  - Linked Websites URL</li>
+	<li><strong>src</strong>: <em>(string)</em> -  - URL of displayed thumbnail image.</li>
+	<li><strong>zIndex</strong>: <em>(interger)</em> - The order of piling. An initial value is null.</li>
+	<li><strong>onClick</strong>: <em>(event)</em> - When the marker is clicked, this event is generated.</li>
+	<li><strong>onMouseOver</strong>: <em>(event)</em> - When the mouse cursor comes in succession in the marker, this event is generated.</li>
+	<li><strong>onMouseOut</strong>: <em>(event)</em> - When the mouse cursor parts from the marker, this event is generated.</li>
+	<li><strong>onMouseDown</strong>: <em>(event)</em> - When mouse's button is pushed on the marker, it is generated.</li>
+	<li><strong>onMouseUp</strong>: <em>(event)</em> - When the button on the marker is pushed, and released, it is generated.</li>
 </ul>
 
 
 
-<!-- MMap.Marker.Images.js -->
+<!--
+-----------------------------------
+	MMap.Marker.Images.js
+-----------------------------------
+-->
 <h3>MMap.Marker.Images</h3>
+<h4>HTML</h4>
+<p>HTML of the image marker becomes as follows. Please refer applying the style.</p>
+
+<pre>
+<code>
+#HTML
+&lt;div class="marker image"&gt;
+	&lt;div class="body"&gt;
+		&lt;p class="photo"&gt;&lt;a href="http://holyshared.github.com/MMap/"&gt;&lt;img src="photo.jpg" alt="photo" /&gt;&lt;/a>&lt;/p&gt;
+	&lt;/div&gt;
+&lt;/div&gt;
+</code>
+</pre>
+
+<h4>Javascript</h4>
+<p>Javascript using the image marker is as follows.</p>
+
+<pre>
+<code>
+#JS
+window.addEvent("load", function(){
+	var gmap = new MMap($("map"), {
+		"center": {"lat": 35.6666870, "lng": 139.731859},
+		"zoom": 10,
+		"mapType": "roadmap"
+	});
+
+	new MMap.Marker.Images(gmap, {
+		"latlng": {"lat": 35.5666870, "lng": 139.731859},
+		"images": [
+			{"title": "demo1", "src": "images/img_demo_s1.jpg", "url": "demo1.html"},
+			{"title": "demo2", "src": "images/img_demo_s2.jpg", "url": "demo2.html"},
+			{"title": "demo3", "src": "images/img_demo_s3.jpg", "url": "demo3.html"},
+			{"title": "demo4", "src": "images/img_demo_s4.jpg", "url": "demo4.html"}
+		]
+	});
+});
+</code>
+</pre>
+
+<h4>Options</h4>
+<ul>
+	<li><strong>className</strong>: <em>(string)</em> - Class name of marker style. Default is image.</li>
+	<li><strong>latlng</strong>: <em>(interger)</em> - Displayed coordinates position.</li>
+	<li><strong>images</strong>: <em>(array)</em> - <a href="#images">Thumbnail image group that displays it.</a></li>
+	<li><strong>interval</strong>: <em>(interger)</em> - Interval when image changes.</li>
+	<li><strong>zIndex</strong>: <em>(interger)</em> - The order of piling. An initial value is null.</li>
+	<li><strong>onClick</strong>: <em>(event)</em> - When the marker is clicked, this event is generated.</li>
+	<li><strong>onMouseOver</strong>: <em>(event)</em> - When the mouse cursor comes in succession in the marker, this event is generated.</li>
+	<li><strong>onMouseOut</strong>: <em>(event)</em> - When the mouse cursor parts from the marker, this event is generated.</li>
+	<li><strong>onMouseDown</strong>: <em>(event)</em> - When mouse's button is pushed on the marker, it is generated.</li>
+	<li><strong>onMouseUp</strong>: <em>(event)</em> - When the button on the marker is pushed, and released, it is generated.</li>
+</ul>
+
+<h5>Thumbnail image group that displays it.</h5>
+<p>The image group is an array of the object with the following property.</p>
+<ul id="images">
+	<li><strong>title</strong>: <em>(string)</em> - Displayed title</li>
+	<li><strong>src</strong>: <em>(string)</em> - URL of displayed thumbnail image.</a></li>
+	<li><strong>url</strong>: <em>(interger)</em> - Linked Websites URL</li>
+</ul>
 
 
-<!-- MMap.Window.js -->
+<!--
+-----------------------------------
+	MMap.Window.js
+-----------------------------------
+-->
 <h3>MMap.Window</h3>
+<h4>HTML</h4>
+<p>The HTM structure of the information window becomes as follows. Please refer when you specify the style.</p>
+
+<pre>
+<code>
+#HTML
+&lt;div class="window default"&gt;
+	&lt;div class="header"&gt;
+		&lt;p class="title"&gt;&lt;strong&gt;Hara Museum&lt;/strong&gt;&lt;/p&gt;
+		&lt;p class="controls"&gt;&lt;a class="close"&gt;&lt;/a&gt;&lt;/p&gt;
+	&lt;/div&gt;
+	&lt;div class="body"&gt;
+		&lt;div class="content"&gt;
+			&lt;h3&gt;&lt;a href="http://holyshared.github.com/MMap/index.html" title="Hara Museum"&gt;Hara Museum&lt;/a&gt;&lt;/h3&gt;
+			&lt;p&gt;start: Tue May 11 2010 19:00:00 GMT+0900&lt;br&gt;end: Tue May 11 2010 20:00:00 GMT+0900&lt;br&gt;Location:Hara Museum&lt;br&gt;35.621822, 139.735863&lt;/p&gt;
+			&lt;p&gt;&lt;a href="http://holyshared.github.com/MMap/index.html" title="Hara Museum"&gt;http://holyshared.github.com/MMap/index.html&lt;/a&gt;&lt;/p&gt;
+		&lt;/div&gt;
+	&lt;/div&gt;
+								
+	&lt;div class="footer"&gt;
+		&lt;div class="inner"&gt;
+			&lt;span class="point"&gt;latitude: 35.621822, longitude: 139.735863&lt;/span&gt;
+		&lt;/div&gt;
+	&lt;/div&gt;
+	&lt;div class="arrow"&gt;&lt;/div&gt;
+&lt;/div&gt;
+</code>
+</pre>
 
 
+<h4>Javascript</h4>
+<p>Javascript that displays the information window becomes the one as follows.</p>
+<pre>
+<code>
+#JS
+window.addEvent("load", function(){
+	var gmap = new MMap($("map"), {
+		"center": {"lat": 35.6666870, "lng": 139.731859},
+		"zoom": 10,
+		"mapType": "roadmap"
+	});
 
+	var marker = new MMap.Marker.Image(gmap, {
+		"latlng": {"lat": 35.5666870, "lng": 139.731859},
+		"url": "http://holyshared.github.com/MMap", "src": "photo.jpg",
+		"onClick": function(event) {
+			event.stop();
+			var window = new MMap.Window({"content": "some content"});
+			window.open(gmap, this);
+		}
+	});
+});
+</code>
+</pre>
+
+<h4>Options</h4>
+<ul>
+	<li><strong>className</strong>: <em>(string)</em> - Class name of window style. Default is default.</li>
+	<li><strong>latlng</strong>: <em>(object)</em> - Displayed coordinates position.</li>
+	<li><strong>title</strong>: <em>(string)</em> - Displayed title.</li>
+	<li><strong>zIndex</strong>: <em>(interger)</em> - The order of piling. An initial value is null.</li>
+	<li><strong>content</strong>: <em>(string)</em> - Content displayed in window.</li>
+	<li><strong>width</strong>: <em>(interger)</em> - The width and the default of the window are 400px.</li>
+	<li><strong>onClose</strong>: <em>(void)</em> - When the shutting button is clicked, it is generated.</li>
+</ul>
 
 </body>
 
