@@ -1,0 +1,186 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ja" lang="ja">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title></title>
+	<meta name="keywords" content="" />
+	<meta name="description" content="" />
+	<meta http-equiv="Content-Language" content="ja" />
+	<meta http-equiv="Content-Script-Type" content="text/javascript" />
+	<meta http-equiv="Content-Style-Type" content="text/css" />
+</head>
+
+<body>
+
+<h1>MMap</h1>
+<p>Map using Google Maps Api Version 3. A comprehensible map can be displayed by using the custom marker.</p>
+<p><img src="http://holyshared.github.com/MMap/logo.png" alt="Screenshot" /></p>
+
+<h2>How to use</h2>
+
+<!-- MMap.js -->
+<h3>MMap</h3>
+<p>A description necessary to use MMap is as follows.</p>
+
+<h4>HTML</h4>
+<p>The mark putting of HTML becomes as follows.</p>
+
+<pre>
+<code>
+#HTML
+&lt;div id="map"&gt;&lt;/div&gt;
+</code>
+</pre>
+
+<h4>Javascript</h4>
+<p>記述しなければならないJavascriptは下記の通りになります。<br />通常のGoogle Map APIとそれほど変わりません。</p>
+
+<pre>
+<code>
+#JS
+window.addEvent("load", function(){
+	var gmap = new MMap($("map"), {
+		"center": {"lat": 35.6666870, "lng": 139.731859},
+		"zoom": 10,
+		"mapType": "roadmap"
+	});
+});
+</code>
+</pre>
+
+<h4>Options</h4>
+<ul>
+	<li><strong>center</strong>: <em>(object)</em> 中心とする座標位置</li>
+	<li><strong>zoom</strong>: <em>(interger)</em> ズームレベル</li>
+	<li><strong>mapType</strong>: <em>(string)</em> Google Map のマップタイプ。hybrid, roadmap, satellite, terrainが指定可能</li>
+</ul>
+
+
+
+<!-- MMap.Marker.js -->
+<h3>MMap.Marker</h3>
+
+<h4>HTML</h4>
+<p>The structure of the marker is as follows. </p>
+
+<pre>
+<code>
+#HTML
+&lt;div class="marker html"&gt;
+	&lt;div class="header"&gt;&lt;/div&gt;
+	&lt;div class="body"&gt;&lt;/div&gt;
+	&lt;div class="footer"&gt;&lt;/div&gt;
+&lt;/div&gt;
+</code>
+</pre>
+
+<h4>Javascript</h4>
+<p></p>
+
+<pre>
+<code>
+#JS
+window.addEvent("load", function(){
+
+	var gmap = new MMap($("map"), {
+		"center": {"lat": 35.6666870, "lng": 139.731859},
+		"zoom": 10,
+		"mapType": "roadmap"
+	});
+
+	var content = "&lt;p&gt;";
+	content += "&lt;strong&gt;demo4&lt;/strong&gt;&lt;br /&gt;";
+	content += "&lt;a href=\"demo5.html\"&gt;demo5.html&lt;/a&gt;";
+	content += "&lt;/p&gt;";
+
+	new MMap.Marker(gmap, {
+		"latlng": {"lat": 35.68000, "lng": 139.765066},
+		"title": "demo4", "content": content
+	});
+});
+</code>
+</pre>
+
+<h4>Options</h4>
+<ul>
+	<li><strong>className</strong>: <em>(object)</em></li>
+	<li><strong>latlng</strong>: <em>(interger)</em></li>
+	<li><strong>title</strong>: <em>(string)</em></li>
+	<li><strong>content</strong>: <em>(string)</em></li>
+	<li><strong>zIndex</strong>: <em>(string)</em></li>
+	<li><strong>onClick</strong>: <em>(event)</em></li>
+	<li><strong>onMouseOver</strong>: <em>(event)</em></li>
+	<li><strong>onMouseOut</strong>: <em>(event)</em></li>
+	<li><strong>onMouseDown</strong>: <em>(event)</em></li>
+	<li><strong>onMouseUp</strong>: <em>(event)</em></li>
+</ul>
+
+
+
+<!-- MMap.Marker.Image.js -->
+<h3>MMap.Marker.Image</h3>
+<h4>HTML</h4>
+<p>The structure of the image marker is as follows. </p>
+
+<pre>
+<code>
+#HTML
+&lt;div class="marker image"&gt;
+	&lt;div class="body"&gt;
+		&lt;p class="photo"&gt;&lt;a href="http://holyshared.github.com/MMap/"&gt;&lt;img src="photo.jpg" alt="photo" /&gt;&lt;/a>&lt;/p&gt;
+	&lt;/div&gt;
+&lt;/div&gt;
+</code>
+</pre>
+
+<h4>Javascript</h4>
+<p></p>
+
+<pre>
+<code>
+#JS
+window.addEvent("load", function(){
+	var gmap = new MMap($("map"), {
+		"center": {"lat": 35.6666870, "lng": 139.731859},
+		"zoom": 10,
+		"mapType": "roadmap"
+	});
+
+	new MMap.Marker.Image(gmap, {
+		"latlng": {"lat": 35.68000, "lng": 139.765066},
+		"title": "some title", "src": "image.jpg", "url": "http://holyshared.github.com/MMap/"
+	});
+});
+</code>
+</pre>
+
+<h4>Options</h4>
+<ul>
+	<li><strong>className</strong>: <em>(object)</em></li>
+	<li><strong>latlng</strong>: <em>(interger)</em></li>
+	<li><strong>title</strong>: <em>(string)</em></li>
+	<li><strong>url</strong>: <em>(string)</em></li>
+	<li><strong>src</strong>: <em>(string)</em></li>
+	<li><strong>zIndex</strong>: <em>(string)</em></li>
+	<li><strong>onClick</strong>: <em>(event)</em></li>
+	<li><strong>onMouseOver</strong>: <em>(event)</em></li>
+	<li><strong>onMouseOut</strong>: <em>(event)</em></li>
+	<li><strong>onMouseDown</strong>: <em>(event)</em></li>
+	<li><strong>onMouseUp</strong>: <em>(event)</em></li>
+</ul>
+
+
+
+<!-- MMap.Marker.Images.js -->
+<h3>MMap.Marker.Images</h3>
+
+
+<!-- MMap.Window.js -->
+<h3>MMap.Window</h3>
+
+
+
+
+</body>
+
+</html>

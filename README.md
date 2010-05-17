@@ -1,89 +1,30 @@
-Exhibition
+MMap
 ===========
 
-This plugin beautifully arranges the image. Moreover, the image is smoothly moved.
+Map using Google Maps Api Version 3. A comprehensible map can be displayed by using the custom marker.
 
-![Screenshot](http://holyshared.github.com/Exhibition/images/screenshot.jpg)
+![Screenshot](http://holyshared.github.com/MMap/logo.jpg)
 
 How to use
 ----------
 
-A description necessary to use Exhibition is as follows.
+
+How to use
+----------
+
+### MMap
+
+A description necessary to use MMap is as follows.
 
 The mark putting of HTML becomes as follows.
 
 	#HTML
-	<div id="container">
-		<ul id="exhibition" class="exhibition">
-			<li><a href="#"><img src="images/home/img_tn1.jpg" width="152" height="228" /></a></li>
-			<li><a href="#"><img src="images/home/img_tn2.jpg" width="218" height="147" /></a></li>
-			<li><a href="#"><img src="images/home/img_tn3.jpg" width="154" height="191" /></a></li>
-			<li><a href="#"><img src="images/home/img_tn4.jpg" width="167" height="233" /></a></li>
-			<li><a href="#"><img src="images/home/img_tn5.jpg" width="301" height="187" /></a></li>
-	
-			<li><a href="#"><img src="images/home/img_tn6.jpg" width="167" height="221" /></a></li>
-			<li><a href="#"><img src="images/home/img_tn7.jpg" width="251" height="167" /></a></li>
-			<li><a href="#"><img src="images/home/img_tn8.jpg" width="182" height="213" /></a></li>
-			<li><a href="#"><img src="images/home/img_tn9.jpg" width="249" height="178" /></a></li>
-			<li><a href="#"><img src="images/home/img_tn10.jpg" width="159" height="238" /></a></li>
-	
-			<li><a href="#"><img src="images/home/img_tn1.jpg" width="152" height="228" /></a></li>
-			<li><a href="#"><img src="images/home/img_tn2.jpg" width="218" height="147" /></a></li>
-			<li><a href="#"><img src="images/home/img_tn3.jpg" width="154" height="191" /></a></li>
-			<li><a href="#"><img src="images/home/img_tn4.jpg" width="167" height="233" /></a></li>
-			<li><a href="#"><img src="images/home/img_tn5.jpg" width="301" height="187" /></a></li>
-	
-			<li><a href="#"><img src="images/home/img_tn5.jpg" width="301" height="187" /></a></li>
-			<li><a href="#"><img src="images/home/img_tn6.jpg" width="167" height="221" /></a></li>
-			<li><a href="#"><img src="images/home/img_tn7.jpg" width="251" height="167" /></a></li>
-			<li><a href="#"><img src="images/home/img_tn8.jpg" width="182" height="213" /></a></li>
-			<li><a href="#"><img src="images/home/img_tn9.jpg" width="249" height="178" /></a></li>
-	
-			<li><a href="#"><img src="images/home/img_tn10.jpg" width="159" height="238" /></a></li>
-			<li><a href="#"><img src="images/home/img_tn11.jpg" width="233" height="153" /></a></li>
-			<li><a href="#"><img src="images/home/img_tn1.jpg" width="152" height="228" /></a></li>
-			<li><a href="#"><img src="images/home/img_tn2.jpg" width="218" height="147" /></a></li>
-			<li><a href="#"><img src="images/home/img_tn3.jpg" width="154" height="191" /></a></li>
-	
-			<li><a href="#"><img src="images/home/img_tn4.jpg" width="167" height="233" /></a></li>
-			<li><a href="#"><img src="images/home/img_tn5.jpg" width="301" height="187" /></a></li>
-			<li><a href="#"><img src="images/home/img_tn6.jpg" width="167" height="221" /></a></li>
-			<li><a href="#"><img src="images/home/img_tn7.jpg" width="251" height="167" /></a></li>
-			<li><a href="#"><img src="images/home/img_tn8.jpg" width="182" height="213" /></a></li>
-		</ul>
+	<div id="map">
 	</div>
 
 The description of CSS becomes as follows.
 It becomes full screen specifying 100% in height for body and the html element.
 
-	#CSS
-	div#container {
-		overflow: hidden;
-	}
-	
-	ul.exhibition {
-		overflow: hidden;
-		list-style: none;
-		position: relative;
-	}
-	
-	ul.exhibition li {
-		position: absolute;
-	}
-	
-	ul.exhibition li a {
-		display: block;
-		padding: 10px;
-		background: #333333;
-	}
-	
-	ul.exhibition li a:hover {
-		background: #3c94af;
-	}
-
-	ul.exhibition li.active a {
-		background: #3c94af;
-	}
 
 Javascript is described at the end. The height of the screen is acquired and it specifies it for container element (*div#container*,*ul#exhibition*). 
 It is necessary to note it because it doesn't become full screen if this processing is not done.
