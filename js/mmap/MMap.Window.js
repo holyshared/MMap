@@ -50,10 +50,11 @@ MMap.Window = new Class({
 		"width": 400
 	},
 
-	panel: null,
+	overlayType: "window",
 	container: null,
 	body: null,
 	latlng: null,
+	panel: null,
 
 	initialize: function(options) {
 		this.setOptions(options);
@@ -68,7 +69,7 @@ MMap.Window = new Class({
 		this.setupEvents();
 		if (this.options.content) { this.setContent(this.options.content); }
 		if (this.options.title) { this.text.set("html", this.options.title); }
-//		MMap.Overlay.Markers.add(this);
+		MMap.Overlay.Windows.add(this);
 	},
 
 	build: function() {
@@ -109,8 +110,8 @@ MMap.Window = new Class({
 		if (this.options.zIndex) {
 			zIndex = this.options.zIndex;
 		} else {
-			zIndex = MMap.Overlay.getCurrent();
-			MMap.Overlay.next();
+			zIndex = MMap.Overlay.getCurrent(this.overlayType);
+			MMap.Overlay.next(this.overlayType);
 		}
 		return zIndex;
 	},

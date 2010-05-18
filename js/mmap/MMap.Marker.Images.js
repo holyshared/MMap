@@ -87,7 +87,7 @@ MMap.Marker.Images = new Class({
 		var left = 0;
 		var zIndex = this.getZIndex() + this.trigger.length;
 
-		MMap.Overlay.setZIndex(zIndex);
+		MMap.Overlay.setZIndex(this.overlayType, zIndex);
 
 		this.width = this.photo.getSize().x;
 		this.trigger.each(function(image, key) {

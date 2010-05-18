@@ -37,63 +37,6 @@ provides: [MMap,MMap.Marker,MMap.Marker.Image,MMap.Marker.Images,MMap.Window]
 ...
 */
 
-MMap.Overlay = {
-	zIndex: 900,
-
-	setZIndex: function(index) {
-		this.zIndex = index;
-	},
-
-	getCurrent: function() {
-		return this.zIndex;
-	},
-
-	next: function() {
-		this.zIndex++;
-		return this.zIndex;
-	}
-
-};
-
-MMap.Overlay.Markers = {
-
-	markers: [],
-	minIndex: 0,
-	maxIndex: 0,
-
-	add: function(marker) {
-		this.markers.push(marker);
-		this.minIndex = Math.min(this.minIndex, marker.getZIndex());
-		this.maxIndex = Math.max(this.maxIndex, marker.getZIndex());
-	},
-
-	orderToFront: function(marker) {
-		var zIndex = this.maxIndex;
-		marker.setZIndex(zIndex);
-		var container = marker.getContainer();
-		container.addClass("active");
-		this.markers.each(function(target) {
-			zIndex--;
-			if (target != marker) {
-				target.setZIndex(zIndex);
-				var container = target.getContainer();
-				container.removeClass("active");
-			}
-		});
-	},
-
-	orderToBack: function(marker) {
-		var zIndex = this.minIndex;
-		marker.setZIndex(zIndex);
-		marker.deactivate();
-		this.markers.each(function(target) {
-			zIndex++;
-			if (target != marker) target.setZIndex(zIndex);
-		});
-	}
-
-};
-
 MMap.Marker = new Class({
 
 	Implements: [Options, MMap.Events],
@@ -107,10 +50,11 @@ MMap.Marker = new Class({
 		"content": null
 	},
 
-	panel: null,
+	overlayType: "marker",
+	latlng: null,
 	container: null,
 	body: null,
-	latlng: null,
+	panel: null,
 
 	/** @id MMap.Marker.initialize */
 	initialize: function(map, options) {
@@ -154,8 +98,8 @@ MMap.Marker = new Class({
 		if (this.options.zIndex) {
 			zIndex = this.options.zIndex;
 		} else {
-			zIndex = MMap.Overlay.getCurrent();
-			MMap.Overlay.next();
+			zIndex = MMap.Overlay.getCurrent(this.overlayType);
+			MMap.Overlay.next(this.overlayType);
 		}
 		return zIndex;
 	},
@@ -219,9 +163,6 @@ MMap.Marker = new Class({
 
 	orderToFront: function() {
 		MMap.Overlay.Markers.orderToFront(this);
-	},
-
-	orderToBack: function() {
-		MMap.Overlay.Markers.orderToBack(this);
 	}
+
 });

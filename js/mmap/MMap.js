@@ -102,3 +102,61 @@ MMap.Events = new Class({
 });
 
 MMap.implement(new MMap.Events());
+
+
+
+
+MMap.Overlay = {
+
+	zIndex: {
+		"marker":  900,
+		"window": 1000
+	},
+
+	setZIndex: function(overlay, index) {
+		this.zIndex[overlay] = index;
+	},
+
+	getCurrent: function(overlay) {
+		return this.zIndex[overlay];
+	},
+
+	next: function(overlay) {
+		var zIndex = this.zIndex[overlay]++;
+		return zIndex;
+	}
+
+};
+
+
+MMap.Overlay.Collection = new Class({
+
+	overlays: [],
+	minIndex: 0,
+	maxIndex: 0,
+
+	add: function(overlay) {
+		this.overlays.push(overlay);
+		this.minIndex = Math.min(this.minIndex, overlay.getZIndex());
+		this.maxIndex = Math.max(this.maxIndex, overlay.getZIndex());
+	},
+
+	orderToFront: function(overlay) {
+		var zIndex = this.maxIndex;
+		overlay.setZIndex(zIndex);
+		var container = overlay.getContainer();
+		container.addClass("active");
+		this.overlays.each(function(target) {
+			zIndex--;
+			if (target != window) {
+				target.setZIndex(zIndex);
+				var container = target.getContainer();
+				container.removeClass("active");
+			}
+		});
+	}
+
+});
+
+MMap.Overlay.Markers = new MMap.Overlay.Collection();
+MMap.Overlay.Windows = new MMap.Overlay.Collection();
