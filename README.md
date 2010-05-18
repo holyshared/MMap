@@ -4,9 +4,7 @@ Map using Google Maps Api Version 3. A comprehensible map can be displayed by us
 
 ![Screenshot](http://holyshared.github.com/MMap/logo.png)
 
-
 ## How to use
-
 
 ### MMap
 A description necessary to use MMap is as follows.A description necessary to use MMap is as follows.
@@ -14,16 +12,11 @@ A description necessary to use MMap is as follows.A description necessary to use
 #### HTML
 The mark putting of HTML becomes as follows.The mark putting of HTML becomes as follows.
 
-
-
 #HTML
 <div id="map"></div>
 
-
 #### Javascript
 Javascript that should be described becomes as follows. It looks like usual Google Map API. Javascript that should be described becomes as follows. It looks like usual Google Map API. 
-
-
 
 #JS
 window.addEvent("load", function(){
@@ -33,8 +26,6 @@ window.addEvent("load", function(){
 		"mapType": "roadmap"
 	});
 });
-
-
 
 #### Options
 
@@ -49,7 +40,6 @@ window.addEvent("load", function(){
 * : **onMouseMove**: *(MouseEvent)* - It is generated while moving the mouse. 
 * : **onMouseOver**: *(MouseEvent)* - When the mouse cursor comes in succession in the marker, this event is generated.
 * : **onMouseOut**: *(MouseEvent)* - When the mouse cursor parts from the marker, this event is generated.
-
 
 
 
@@ -212,7 +202,7 @@ window.addEvent("load", function(){
 * : **className**: *(string)* - Class name of marker style. Default is image.
 * : **latlng**: *(interger)* - Displayed coordinates position.
 * : **images**: *(array)* - 
-[image object](#images "image object") 
+[](#images "") 
 	
 * : **interval**: *(interger)* - Interval when image changes.
 * : **zIndex**: *(interger)* - The order of piling. An initial value is null.
