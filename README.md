@@ -1,6 +1,5 @@
 # MMap
-
-Map using Google Maps Api Version 3. A comprehensible map can be displayed by using the custom marker.Map using Google Maps Api Version 3. A comprehensible map can be displayed by using the custom marker.
+Map using Google Maps Api Version 3. A comprehensible map can be displayed by using the custom marker.
 
 ![Screenshot](http://holyshared.github.com/MMap/logo.png)
 
@@ -17,7 +16,7 @@ The mark putting of HTML becomes as follows.The mark putting of HTML becomes as 
 
 #### Javascript
 
-Javascript that should be described becomes as follows. It looks like usual Google Map API. Javascript that should be described becomes as follows. It looks like usual Google Map API. 
+Javascript that should be described becomes as follows. It looks like usual Google Map API.
 
 	#JS
 	window.addEvent("load", function(){
@@ -27,7 +26,6 @@ Javascript that should be described becomes as follows. It looks like usual Goog
 			"mapType": "roadmap"
 		});
 	});
-
 
 #### Options
 
@@ -42,6 +40,8 @@ Javascript that should be described becomes as follows. It looks like usual Goog
 * **onMouseMove**: *(MouseEvent)* - It is generated while moving the mouse. 
 * **onMouseOver**: *(MouseEvent)* - When the mouse cursor comes in succession in the marker, this event is generated.
 * **onMouseOut**: *(MouseEvent)* - When the mouse cursor parts from the marker, this event is generated.
+
+
 
 
 ### MMap.Marker
@@ -96,11 +96,13 @@ Javascript becomes as follows.Javascript becomes as follows.
 * **onMouseUp**: *(event)* - When the button on the marker is pushed, and released, it is generated.
 
 
+
+
 ### MMap.Marker.Image
 
 #### HTML
 
-The structure of the image marker is as follows.The structure of the image marker is as follows.
+The structure of the image marker is as follows.
 
 	#HTML
 	<div class="marker image">
@@ -142,11 +144,13 @@ Javascript becomes as follows.Javascript becomes as follows.
 * **onMouseUp**: *(event)* - When the button on the marker is pushed, and released, it is generated.
 
 
+
+
 ### MMap.Marker.Images
 
 #### HTML
 
-HTML of the image marker becomes as follows. Please refer applying the style.HTML of the image marker becomes as follows. Please refer applying the style.
+HTML of the image marker becomes as follows. Please refer applying the style.
 
 	#HTML
 	<div class="marker image">
@@ -157,7 +161,7 @@ HTML of the image marker becomes as follows. Please refer applying the style.HTM
 
 #### Javascript
 
-Javascript using the image marker is as follows.Javascript using the image marker is as follows.
+Javascript using the image marker is as follows.
 
 	#JS
 	window.addEvent("load", function(){
@@ -194,7 +198,7 @@ Javascript using the image marker is as follows.Javascript using the image marke
 
 ##### Thumbnail image group that displays it.
 
-The image group is an array of the object with the following property.The image group is an array of the object with the following property.
+The image group is an array of the object with the following property.
 
 * : **title**: *(string)* - Displayed title
 * : **src**: *(string)* - URL of displayed thumbnail image.
@@ -202,11 +206,12 @@ The image group is an array of the object with the following property.The image 
 
 
 
+
 ### MMap.Window
 
 #### HTML
 
-The HTM structure of the information window becomes as follows. Please refer when you specify the style.The HTM structure of the information window becomes as follows. Please refer when you specify the style.
+The HTM structure of the information window becomes as follows. Please refer when you specify the style.
 
 	#HTML
 	<div class="window default">
@@ -237,7 +242,7 @@ The HTM structure of the information window becomes as follows. Please refer whe
 
 #### Javascript
 
-Javascript that displays the information window becomes the one as follows.Javascript that displays the information window becomes the one as follows.
+Javascript that displays the information window becomes the one as follows.
 
 	#JS
 	window.addEvent("load", function(){
