@@ -45,7 +45,7 @@ MMap.Marker = new Class({
 		"className": "html",
 		"latlng": null,
 		"title": null,
-		"url": null,
+//		"url": null,
 		"zIndex": null,
 		"content": null
 	},

@@ -76,7 +76,32 @@ var MMap = new Class({
 	getCenter: function() { return this.map.getCenter(); },
 	setCenter: function(latlng) { this.map.setCenter(latlng); },
 	setZoom: function(zoom) { this.map.setZoom(zoom); },
-	getZoom: function() { return this.map.getZoom(); }
+	getZoom: function() { return this.map.getZoom(); },
+
+
+	/**
+	 * var map = new MMap({arg}).loadJSON({marker options});
+	 */
+	loadJSON:function(markers) {
+/*
+markers = [
+	{"className": "html", "latlng": null, "title": null, "content": null},
+	{"className": "square", "latlng": null, "title": null, "url": null, "src": null},
+	{"className": "square", "latlng": null, "images": [], "interval": 1000}
+];
+*/
+		markers.each(function(option, key) {
+			var marker = null;
+			//MMap.Marker.Image
+			if (option.src) { marker = new MMap.Marker.Image(option); }
+			//MMap.Marker.Images
+			else if (option.images) { marker = new MMap.Marker.Images(option); }
+			//MMap.Marker
+			else { marker = new MMap.Marker(option); }
+			marker.setMap(this.getInstance());
+		});
+		return this;
+	}
 
 });
 
@@ -148,7 +173,7 @@ MMap.Overlay.Collection = new Class({
 		container.addClass("active");
 		this.overlays.each(function(target) {
 			zIndex--;
-			if (target != window) {
+			if (target != overlay) {
 				target.setZIndex(zIndex);
 				var container = target.getContainer();
 				container.removeClass("active");
