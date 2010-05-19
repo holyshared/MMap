@@ -66,8 +66,8 @@ MMap.Marker = new Class({
 		this.build();
 		this.setZIndex(this.generateZIndex());
 		this.setupEvents();
-		this.setMap(map.getInstance());
 		this.setPosition(new google.maps.LatLng(this.options.latlng.lat, this.options.latlng.lng));
+		this.setMap(map.getInstance());
 		MMap.Overlay.Markers.add(this);
 	},
 

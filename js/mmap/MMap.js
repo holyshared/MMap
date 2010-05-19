@@ -78,27 +78,19 @@ var MMap = new Class({
 	setZoom: function(zoom) { this.map.setZoom(zoom); },
 	getZoom: function() { return this.map.getZoom(); },
 
-
 	/**
 	 * var map = new MMap({arg}).loadJSON({marker options});
 	 */
 	loadJSON:function(markers) {
-/*
-markers = [
-	{"className": "html", "latlng": null, "title": null, "content": null},
-	{"className": "square", "latlng": null, "title": null, "url": null, "src": null},
-	{"className": "square", "latlng": null, "images": [], "interval": 1000}
-];
-*/
+		var map = this;
 		markers.each(function(option, key) {
 			var marker = null;
 			//MMap.Marker.Image
-			if (option.src) { marker = new MMap.Marker.Image(option); }
+			if (option.src) { marker = new MMap.Marker.Image(map, option); }
 			//MMap.Marker.Images
-			else if (option.images) { marker = new MMap.Marker.Images(option); }
+			else if (option.images) { marker = new MMap.Marker.Images(map, option); }
 			//MMap.Marker
-			else { marker = new MMap.Marker(option); }
-			marker.setMap(this.getInstance());
+			else { marker = new MMap.Marker(map, option); }
 		});
 		return this;
 	}
