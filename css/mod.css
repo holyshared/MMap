@@ -35,6 +35,7 @@ h1 {
 
 .gnav li {
 	float: left;
+	margin-right: 5px;
 }
 
 .gnav a {

@@ -15,7 +15,7 @@
 }
 
 .marker .footer {
-	background: url(skin/bgi_arrow.png) no-repeat center top;
+	background: url(../images/marker/bgi_arrow.png) no-repeat center top;
 	padding-bottom: 7px;
 }
 
@@ -28,7 +28,7 @@
 
 .marker:hover .footer,
 .marker.active .footer {
-	background: url(skin/bgi_arrow.png) no-repeat center bottom;
+	background: url(../images/marker/bgi_arrow.png) no-repeat center bottom;
 	padding-bottom: 7px;
 }
 
@@ -50,6 +50,7 @@
 
 .html .body {
 	width: 200px;
+	padding: 15px;
 }
 
 
