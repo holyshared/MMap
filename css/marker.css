@@ -15,7 +15,7 @@
 }
 
 .marker .footer {
-	background: url(skin/bgi_arrow.png) no-repeat center top;
+	background: url(../images/marker/bgi_arrow.png) no-repeat center top;
 	padding-bottom: 7px;
 }
 
@@ -28,7 +28,7 @@
 
 .marker:hover .footer,
 .marker.active .footer {
-	background: url(skin/bgi_arrow.png) no-repeat center bottom;
+	background: url(../images/marker/bgi_arrow.png) no-repeat center bottom;
 	padding-bottom: 7px;
 }
 
@@ -49,7 +49,8 @@
 }
 
 .html .body {
-	width: 200px;
+	width: auto;
+	padding: 10px;
 }
 
 
@@ -66,7 +67,8 @@
 	background: none;
 }
 
-.image .photo {
+.image .photo,
+.image .photos {
 	text-align: center;
 	padding: 8px 0px 15px 0px;
 	overflow: hidden;
@@ -74,16 +76,26 @@
 	position: relative;
 }
 
-.image .photo a {
+.image .photo a,
+.image .photos a {
 	display: inline-block;
 }
 
-.image .photo img {
+.image .photo img,
+.image .photos img {
 	vertical-align: top;
 	border: 1px solid #cccccc;
 	width: 100px;
 	height: 70px;
 }
+
+.image .photos li {
+	padding-left: 7px;
+	position: absolute;
+	left: 0px;
+}
+
+
 
 /* Marker - Square
 --------------------------------*/
@@ -91,14 +103,19 @@
 	background: url(../images/marker/bgi_marker_square_top.png) no-repeat left top;
 }
 
-.square .photo {
+.square .photo,
+.square .photos {
 	background: url(../images/marker/bgi_marker_square_bottom.png) no-repeat left bottom;
 }
 
-.square.active, .square:hover {
+.square.active,
+.square:hover {
 	background: url(../images/marker/bgi_marker_square_top.png) no-repeat -116px top;
 }
 
-.square.active .photo, .square:hover .photo {
+.square.active .photo,
+.square:hover .photo,
+.square.active .photos,
+.square:hover .photos {
 	background: url(../images/marker/bgi_marker_square_bottom.png) no-repeat -116px bottom;
 }
