@@ -84,7 +84,9 @@ MMap.Marker = new Class({
 	setupEvents: function(event) {
 		var proxy = function(event) {
 			event.stop();
-			this.fireEvent(event.type, new Event(event));
+			var proxyEvent = new Event(event);
+			proxyEvent.target = this;
+			this.fireEvent(proxyEvent.type, proxyEvent);
 		}.bind(this);
 		this.trigger.addEvent("click", proxy);
 		this.trigger.addEvent("mouseover", proxy);
