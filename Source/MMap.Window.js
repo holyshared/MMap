@@ -1,6 +1,6 @@
 /*
 ---
-description:
+description: Custom information window.
 
 license: MIT-style
 
@@ -33,7 +33,7 @@ requires:
 more/1.2.4.4:
   - Tips
 
-provides: [MMap,MMap.Marker,MMap.Marker.Image,MMap.Marker.Images]
+provides: [MMap,MMap.Marker,MMap.Marker.Image,MMap.Marker.Images,MMap.Window]
 ...
 */
 
@@ -50,10 +50,11 @@ MMap.Window = new Class({
 		"width": 400
 	},
 
-	panel: null,
+	overlayType: "window",
 	container: null,
 	body: null,
 	latlng: null,
+	panel: null,
 
 	initialize: function(options) {
 		this.setOptions(options);
@@ -66,15 +67,9 @@ MMap.Window = new Class({
 		this.build();
 		this.setZIndex(this.generateZIndex());
 		this.setupEvents();
-
-		if (this.options.content) {
-			this.setContent(this.options.content);
-		}
-
-		if (this.options.title) {
-			this.text.set("html", this.options.title);
-		}
-//		MMap.Overlay.Markers.add(this);
+		if (this.options.content) { this.setContent(this.options.content); }
+		if (this.options.title) { this.text.set("html", this.options.title); }
+		MMap.Overlay.Windows.add(this);
 	},
 
 	build: function() {
@@ -90,10 +85,10 @@ MMap.Window = new Class({
 		this.footer = new Element("div", {"class": "footer"});
 		this.arrow = new Element("div", {"class": "arrow"});
 
-		var p = new Element("p");
-		this.resize = new Element("a", {"class": "resize"});
-		this.resize.inject(p);
-		p.inject(this.footer);
+		this.inner = new Element("div", {"class": "inner"});
+		this.point = new Element("span", {"class": "point"});
+		this.point.inject(this.inner);
+		this.inner.inject(this.footer);
 
 		this.header.inject(this.body, "before");
 		this.footer.inject(this.body, "after");
@@ -115,8 +110,8 @@ MMap.Window = new Class({
 		if (this.options.zIndex) {
 			zIndex = this.options.zIndex;
 		} else {
-			zIndex = MMap.Overlay.getCurrent();
-			MMap.Overlay.next();
+			zIndex = MMap.Overlay.getCurrent(this.overlayType);
+			MMap.Overlay.next(this.overlayType);
 		}
 		return zIndex;
 	},
@@ -184,6 +179,7 @@ MMap.Window = new Class({
 			"top": aPoint.y - aSize.y - wSize.y,
 			"left": aPoint.x - (wSize.x / 2)
 		});
+		this.point.set("html", "latitude: " + position.lat() + ", longitude: " + position.lng());
 	},
 
 	onAdd: function() {
@@ -194,6 +190,9 @@ MMap.Window = new Class({
 		this.container.setStyle("width", this.options.width);
 		this.title.setStyle("width",  this.options.width - controlsWidth);
 		this.controls.setStyle("margin-left", this.options.width - controlsWidth);
+		this.footer.setStyle("margin-left", this.options.width - controlsWidth);
+		this.inner.setStyle("width", this.options.width - controlsWidth);
+		this.inner.setStyle("left", -(this.options.width - controlsWidth));
 	},
 
 	onRemove: function() { this.container.destroy(); },

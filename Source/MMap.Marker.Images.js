@@ -33,7 +33,7 @@ requires:
 more/1.2.4.4:
   - Tips
 
-provides: [MMap,MMap.Marker,MMap.Marker.Image,MMap.Marker.Images]
+provides: [MMap,MMap.Marker,MMap.Marker.Image,MMap.Marker.Images,MMap.Window]
 ...
 */
 
@@ -60,7 +60,7 @@ MMap.Marker.Images = new Class({
 
 	build: function() {
 		this.container.addClass("image");
-		this.photo = new Element("ul", {"class": "photo"});
+		this.photo = new Element("ul", {"class": "photos"});
 		this.buildImages();
 		this.trigger = $(this.photo).getElements("a");
 		this.setContent(this.photo);
@@ -87,7 +87,7 @@ MMap.Marker.Images = new Class({
 		var left = 0;
 		var zIndex = this.getZIndex() + this.trigger.length;
 
-		MMap.Overlay.setZIndex(zIndex);
+		MMap.Overlay.setZIndex(this.overlayType, zIndex);
 
 		this.width = this.photo.getSize().x;
 		this.trigger.each(function(image, key) {
@@ -96,9 +96,8 @@ MMap.Marker.Images = new Class({
 			var styles = {
 				"position": "absolute",
 				"left": left,
-				"z-index": zIndex,
-				"padding-left": (this.width - thumbWidth) / 2
-			}
+				"z-index": zIndex
+			};
 			container.setStyles(styles);
 			zIndex--;
 		}, this);
