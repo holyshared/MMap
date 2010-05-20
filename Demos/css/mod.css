@@ -1,0 +1,291 @@
+@charset "utf-8";
+
+h1 {
+	position: absolute;
+	color: #ffffff;
+	font-size: 1.2em;
+	border-right: 1px solid #333333;
+	padding: 13px 15px;
+}
+
+
+/*---------- Module ----------*/
+.mod { margin: 10px; }
+.mod .inner { }
+
+
+/*---------- Navigation ----------*/
+.navconte {
+	background: #000000;
+}
+
+.navconte h2 {
+	color: #ffffff;
+	padding-bottom: 5px;
+	float: left;
+	margin-left: 250px;
+	font-size: 1.2em;
+}
+
+
+/*---------- Global Navigation ----------*/
+.gnav {
+	overflow: hidden;
+}
+
+.gnav li {
+	float: left;
+	margin-right: 5px;
+}
+
+.gnav a {
+	color: #ffffff;
+	display: block;
+	background: #333333;
+	padding: 5px 15px;
+	text-transform: uppercase;
+	font-weight: normal;
+	text-decoration: none;
+}
+
+.gnav a:hover {
+	background: #1f7fa6;
+}
+
+
+/*---------- map ----------*/
+.map {
+	height: 500px;
+}
+
+
+
+
+
+
+/* Widget Style
+-----------------------------------*/
+.window {
+	position: relative;
+	text-align: left;
+/*	width: 300px; */ /* DYNAMIC CHANGE */
+	margin: 0px;
+}
+
+.window .header .title,
+.window .header .controls {
+	height: 28px;
+	margin-bottom: 0px;
+}
+
+.window .header .title {
+	background: url(../images/window/bgi_window.png) top left no-repeat;
+	float: left;
+/*	width: 275px; */ /* DYNAMIC CHANGE */
+	padding: 0px;
+}
+
+.window .header:hover .close {
+	background: url(../images/window/bgi_close.gif) right -36px no-repeat;
+}
+
+.window .header strong {
+	padding: 14px 0px 0px 16px;
+	display: inline-block;
+}
+
+.window .header .controls {
+	background: url(../images/window/bgi_window.png) top right no-repeat;
+	position: relative;	
+	width: 25px;
+	padding: 0px;
+/*	margin-left: 275px; */ /* DYNAMIC CHANGE */
+}
+
+.window .header .close {
+	background: url(../images/window/bgi_close.gif) top left no-repeat;
+	width: 18px;
+	height: 18px;
+	display: block;
+	text-indent: -9999px;
+	outline: none;
+	position: relative; 
+	top: 10px;
+	left: -2px;
+	cursor: pointer;
+}
+
+.window .header .close:hover {
+	background-position: left -18px;
+}
+
+.window .body {
+	position: relative;
+	background: url(../images/window/bgi_body.png) top left repeat-y;
+	margin-right: 15px;
+}
+
+.window .content {
+	background: url(../images/window/bgi_body.png) top right repeat-y;
+	padding: 0px 0px 8px 0px;
+	position: relative;
+	right: -15px;
+	z-index: 1;
+}
+
+.window .content * {
+	padding-left: 0px;
+	padding-bottom: 0px;
+}
+
+.window .footer {
+	background: url(../images/window/bgi_window.png) bottom right no-repeat;
+	height: 37px;
+	position: relative;
+	margin-left: 275px;
+}
+
+.window .footer .inner {
+	height: 37px;
+	position: relative;
+	background: url(../images/window/bgi_window.png) bottom left no-repeat;
+	width: 275px;
+	left: -275px;
+	float: left;
+	padding: 0px;
+	text-align: right;
+}
+
+.window .arrow {
+	background: url(../images/window/bgi_arrow.png) bottom center no-repeat;
+	padding-bottom: 14px;
+	margin: -8px auto 0px auto;
+	position: relative;
+	width: 200px;
+}
+
+.window .header:after, .window .footer:after {
+	content: ".";
+	display: block;
+	height: 0px;
+	clear: both;
+	visibility: hidden;
+}
+
+.window .header, .window .footer {
+	display: inline-block;
+}
+
+* html .window .header, * html .window .footer {
+	height: 1%;
+}
+
+.window .header, .window .footer {
+	display: block;
+}
+
+
+
+/*---------- hCalender ----------*/
+.vcalendar {
+	width: 750px;
+	margin: 0px auto 0px auto;
+}
+
+.vcalendar h2 {
+	height: 0px;
+	width: 0px;
+	overflow: hidden;
+}
+
+.lastUnit .vevent {
+	margin: 0px;
+}
+
+.vevent {
+	border: 1px solid #cccccc;
+	background: #ffffff;
+	margin: 0px 10px 0px 0px;
+}
+
+.vevent .summary {
+	font-size: 1.2em;
+	background: #333333;
+	padding: 5px 15px 5px 15px;
+}
+
+.vevent .summary a {
+	font-weight: normal;
+	color: #ffffff;
+}
+
+.vevent .location {
+	margin-bottom: 10px;
+}
+
+.vevent p {
+	text-align: center;
+	margin-bottom: 0px;
+	padding-bottom: 0px;
+}
+
+.vevent p strong {
+	text-transform: capitalize;
+	color: #333333;
+}
+
+.vevent.active .summary,
+.vevent .summary:hover {
+	background: #006699;
+}
+
+/*---------- Controller ----------*/
+.controller {
+	background: url(../images/bgi_control.png) no-repeat center 35px;
+	position: relative;
+}
+
+.contentController {
+	top: 30px;
+	padding: 0px;
+	position: absolute;
+	width: 100%;
+}
+
+.contentController .prev,
+.contentController .next {
+	width: 50%;
+	outline: none;
+}
+
+.contentController .prev {
+	float: left;
+}
+
+.contentController .next {
+	float: right;
+}
+
+.contentController .prevEvent,
+.contentController .nextEvent {
+	width: 68px;
+	height: 101px;
+	display: inline-block;
+	text-indent: -9999px;
+}
+
+.contentController .prevEvent {
+	background: url(../images/btn_event_prev.gif) no-repeat left top;
+}
+
+.contentController .nextEvent {
+	background: url(../images/btn_event_next.gif) no-repeat right top;
+}
+
+.contentController .prevEvent:hover {
+	background-position: left -99px;
+}
+
+.contentController .nextEvent:hover {
+	background-position: right -99px;
+}
