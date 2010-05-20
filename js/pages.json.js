@@ -12,9 +12,14 @@ Pages.JSON = {
 
 	"markers": [
 		{
+<<<<<<< HEAD
 			"latlng": {"lat": 35.665326, "lng": 139.726325}, "title": "aaaaaaaaaaaa",
 			"content": "Some text Some text Some text Some text<br />Some text Some text Some text Some text",
 			"onClick": this.onMarkerClick
+=======
+			"latlng": {"lat": 35.665326, "lng": 139.726325}, "title": null,
+			"content": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+>>>>>>> origin/gh-pages
 		},
 		{
 			"latlng": {"lat": 35.621822, "lng": 139.735863},

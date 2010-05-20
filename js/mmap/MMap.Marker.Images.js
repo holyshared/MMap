@@ -60,7 +60,7 @@ MMap.Marker.Images = new Class({
 
 	build: function() {
 		this.container.addClass("image");
-		this.photo = new Element("ul", {"class": "photo"});
+		this.photo = new Element("ul", {"class": "photos"});
 		this.buildImages();
 		this.trigger = $(this.photo).getElements("a");
 		this.setContent(this.photo);
@@ -96,9 +96,8 @@ MMap.Marker.Images = new Class({
 			var styles = {
 				"position": "absolute",
 				"left": left,
-				"z-index": zIndex,
-				"padding-left": (this.width - thumbWidth) / 2
-			}
+				"z-index": zIndex
+			};
 			container.setStyles(styles);
 			zIndex--;
 		}, this);
