@@ -200,10 +200,9 @@ Javascript using the image marker is as follows.
 
 The image group is an array of the object with the following property.
 
-* : **title**: *(string)* - Displayed title
-* : **src**: *(string)* - URL of displayed thumbnail image.
-* : **url**: *(interger)* - Linked Websites URL
-
+* **title**: *(string)* - Displayed title
+* **src**: *(string)* - URL of displayed thumbnail image.
+* **url**: *(interger)* - Linked Websites URL
 
 
 
