@@ -42,86 +42,95 @@ var MMap = new Class({
 	Implements: [Options],
 
 	options: {
-		"center": null,
-		"zoom": 10,
-		"mapType": "roadmap"
+		center: null,
+		zoom: 10,
+		mapType: 'roadmap'
 	},
 
-	initialize: function(container, options) {
+	initialize: function(container, options){
 		this.container = container;
 		this.setOptions(options);
 		var latlng = this.options.center;
 		this.map = new google.maps.Map(this.container, {
-			"zoom": this.options.zoom,
-			"center": new google.maps.LatLng(latlng.lat, latlng.lng),
-			"mapTypeId": this.getType(this.options.mapType)
+			zoom: this.options.zoom,
+			center: new google.maps.LatLng(latlng.lat, latlng.lng),
+			mapTypeId: this.getType(this.options.mapType)
 		});
 	},
 
-	getInstance: function() {
+	getInstance: function(){
 		return this.map;
 	},
 
-	getType: function(type) {
-		var typeId = google.maps.MapTypeId.ROADMAP;
+	getType: function(type){
 		switch (type) {
-			case "hybrid": typeId = google.maps.MapTypeId.HYBRID; break;
-			case "satellite": typeId = google.maps.MapTypeId.SATELLITE; break;
-			case "terrain": typeId = google.maps.MapTypeId.TERRAIN; break;
-			case "roadmap": typeId = google.maps.MapTypeId.ROADMAP; break;
+			case 'hybrid':return google.maps.MapTypeId.HYBRID;
+			case 'satellite': return google.maps.MapTypeId.SATELLITE;
+			case 'terrain': return google.maps.MapTypeId.TERRAIN;
+			case 'roadmap': return google.maps.MapTypeId.ROADMAP;
 		}
-		return typeId;
+		return google.maps.MapTypeId.ROADMAP;
 	},
 
-	getCenter: function() { return this.map.getCenter(); },
-	setCenter: function(latlng) { this.map.setCenter(latlng); },
-	setZoom: function(zoom) { this.map.setZoom(zoom); },
-	getZoom: function() { return this.map.getZoom(); },
+	getCenter: function(){
+		return this.map.getCenter();
+	},
+
+	setCenter: function(latlng){
+		this.map.setCenter(latlng);
+	},
+
+	setZoom: function(zoom){
+		this.map.setZoom(zoom);
+	},
+
+	getZoom: function(){
+		return this.map.getZoom();
+	},
 
 	/**
 	 * var map = new MMap({arg}).loadJSON({marker options});
 	 */
-	loadJSON:function(markers) {
+	loadJSON:function(markers){
 		var map = this;
 		markers.each(function(option, key) {
 			var marker = null;
 			//MMap.Marker.Image
-			if (option.src) { marker = new MMap.Marker.Image(map, option); }
+			if (option.src) {
+				marker = new MMap.Marker.Image(map, option);
 			//MMap.Marker.Images
-			else if (option.images) { marker = new MMap.Marker.Images(map, option); }
+			} else if (option.images) {
+				marker = new MMap.Marker.Images(map, option);
 			//MMap.Marker
-			else { marker = new MMap.Marker(map, option); }
+			} else {
+				marker = new MMap.Marker(map, option);
+			}
 		});
 		return this;
 	}
 
 });
 
-
 MMap.Events = new Class({
 
-	fireEvent: function(type, paramters) {
+	fireEvent: function(type, paramters){
 		google.maps.event.trigger(this, type, paramters);
 	},
 
-	addEvent: function(type, handler) {
+	addEvent: function(type, handler){
 		var eventType = Events.removeOn(type);
 		var target = (this.getInstance) ? this.getInstance() : this;
 		eventType = eventType.toLowerCase();
 		google.maps.event.addListener(target, eventType, handler);
 	},
 
-	addEvents: function(handlers) {
+	addEvents: function(handlers){
 		for (var type in handlers) {
 			this.addEvent(type, handlers[type]);
 		}
 	}
 });
-
 MMap.implement(new MMap.Events());
-
-
-
 
 MMap.Overlay = {
 
@@ -130,21 +139,20 @@ MMap.Overlay = {
 		"window": 1000
 	},
 
-	setZIndex: function(overlay, index) {
+	setZIndex: function(overlay, index){
 		this.zIndex[overlay] = index;
 	},
 
-	getCurrent: function(overlay) {
+	getCurrent: function(overlay){
 		return this.zIndex[overlay];
 	},
 
-	next: function(overlay) {
+	next: function(overlay){
 		var zIndex = this.zIndex[overlay]++;
 		return zIndex;
 	}
 
 };
-
 
 MMap.Overlay.Collection = new Class({
 
@@ -152,23 +160,23 @@ MMap.Overlay.Collection = new Class({
 	minIndex: 0,
 	maxIndex: 0,
 
-	add: function(overlay) {
+	add: function(overlay){
 		this.overlays.push(overlay);
 		this.minIndex = Math.min(this.minIndex, overlay.getZIndex());
 		this.maxIndex = Math.max(this.maxIndex, overlay.getZIndex());
 	},
 
-	orderToFront: function(overlay) {
+	orderToFront: function(overlay){
 		var zIndex = this.maxIndex;
 		overlay.setZIndex(zIndex);
 		var container = overlay.getContainer();
-		container.addClass("active");
-		this.overlays.each(function(target) {
+		container.addClass('active');
+		this.overlays.each(function(target){
 			zIndex--;
 			if (target != overlay) {
 				target.setZIndex(zIndex);
 				var container = target.getContainer();
-				container.removeClass("active");
+				container.removeClass('active');
 			}
 		});
 	}

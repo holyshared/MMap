@@ -42,26 +42,25 @@ MMap.Marker = new Class({
 	Implements: [Options, MMap.Events],
 
 	options: {
-		"className": "html",
-		"latlng": null,
-		"title": null,
-//		"url": null,
-		"zIndex": null,
-		"content": null
+		className: 'html',
+		latlng: null,
+		title: null,
+		zIndex: null,
+		content: null
 	},
 
-	overlayType: "marker",
+	overlayType: 'marker',
 	latlng: null,
 	container: null,
 	body: null,
 	panel: null,
 
 	/** @id MMap.Marker.initialize */
-	initialize: function(map, options) {
+	initialize: function(map, options){
 		this.setOptions(options);
 		$extend(this, new google.maps.OverlayView());
-		this.container = new Element("div", {"class": "marker " + this.options.className});
-		this.body = new Element("div", {"class": "body"});
+		this.container = new Element('div', {'class': 'marker ' + this.options.className});
+		this.body = new Element('div', {'class': 'body'});
 		this.body.inject(this.container);
 		this.build();
 		this.setZIndex(this.generateZIndex());
@@ -72,30 +71,30 @@ MMap.Marker = new Class({
 	},
 
 	/** @id MMap.Marker.build */
-	build: function() {
-		this.header = new Element("div", {"class": "header"});
-		this.footer = new Element("div", {"class": "footer"});
-		this.header.inject(this.body, "before");
-		this.footer.inject(this.body, "after");
+	build: function(){
+		this.header = new Element('div', {'class': 'header'});
+		this.footer = new Element('div', {'class': 'footer'});
+		this.header.inject(this.body, 'before');
+		this.footer.inject(this.body, 'after');
 		this.trigger = this.container;
 		this.setContent(this.options.content);
 	},
 
-	setupEvents: function(event) {
+	setupEvents: function(event){
 		var proxy = function(event) {
 			event.stop();
 			var proxyEvent = new Event(event);
 			proxyEvent.target = this;
 			this.fireEvent(proxyEvent.type, proxyEvent);
 		}.bind(this);
-		this.trigger.addEvent("click", proxy);
-		this.trigger.addEvent("mouseover", proxy);
-		this.trigger.addEvent("mouseout", proxy);
-		this.trigger.addEvent("mousedown", proxy);
-		this.trigger.addEvent("mouseup", proxy);
+		this.trigger.addEvent('click', proxy);
+		this.trigger.addEvent('mouseover', proxy);
+		this.trigger.addEvent('mouseout', proxy);
+		this.trigger.addEvent('mousedown', proxy);
+		this.trigger.addEvent('mouseup', proxy);
 	},
 
-	generateZIndex: function() {
+	generateZIndex: function(){
 		var zIndex = null; 
 		if (this.options.zIndex) {
 			zIndex = this.options.zIndex;
@@ -106,39 +105,55 @@ MMap.Marker = new Class({
 		return zIndex;
 	},
 
-	getContainer: function() { return this.container; },
+	getContainer: function(){
+		return this.container;
+	},
 
 	setContent: function(content) {
 		if (!content) return false;
 		this.content = content;
-		this.body.set("html", "");
-		($type(this.content) == "string")
-		? this.body.set("html", this.content)
-		: this.content.inject(this.body);
+		this.body.set('html', '');
+		if ($type(this.content) == 'string') {
+			this.body.set('html', this.content)
+		} else {
+			this.content.inject(this.body);
+		}
 	},
 
-	getContent: function() { return this.content; },
+	getContent: function(){
+		return this.content;
+	},
 
 	/** @id MMap.Marker.setURL */
-	setURL: function(url) { this.options.url = url; }, 
+	setURL: function(url){
+		this.options.url = url;
+	}, 
 
 	/** @id MMap.Marker.getURL */
-	getURL: function() { return this.options.url; }, 
+	getURL: function(){
+		return this.options.url;
+	},
 
 	/** @id MMap.Marker.setPosition */
-	setPosition: function(latlng) { this.latlng = latlng; },
-
-	/** @id MMap.Marker.getPosition */
-	getPosition: function() { return this.latlng; },
-
-	/** @id MMap.Marker.setPosition */
-	setZIndex: function(index) {
-		this.options.zIndex = index;
-		this.container.setStyle("z-index", this.options.zIndex);
+	setPosition: function(latlng){
+		this.latlng = latlng;
 	},
 
 	/** @id MMap.Marker.getPosition */
-	getZIndex: function() { return this.options.zIndex; },
+	getPosition: function(){
+		return this.latlng;
+	},
+
+	/** @id MMap.Marker.setPosition */
+	setZIndex: function(index){
+		this.options.zIndex = index;
+		this.container.setStyle('z-index', this.options.zIndex);
+	},
+
+	/** @id MMap.Marker.getPosition */
+	getZIndex: function(){
+		return this.options.zIndex;
+	},
 
 	/** @id MMap.Marker.draw */
 	draw: function() {
@@ -148,22 +163,27 @@ MMap.Marker = new Class({
 		var latlng = new google.maps.LatLng(position.lat, position.lng);
 		var point = projection.fromLatLngToDivPixel(latlng);
 		this.container.setStyles({
-			"position": "absolute",
-			"top": point.y - size.y,
-			"left": point.x - (size.x / 2)
+			position: 'absolute',
+			top: point.y - size.y,
+			left: point.x - (size.x / 2)
 		});
 	},
 
-	onAdd: function() {
+	onAdd: function(){
 		var panes = this.getPanes();
 		this.panel = panes.overlayImage;
 		this.container.inject(this.panel);
 	},
 
-	onRemove: function() { this.container.destroy(); },
-	getPanel: function() { return this.panel; },
+	onRemove: function(){
+		this.container.destroy();
+	},
 
-	orderToFront: function() {
+	getPanel: function(){
+		return this.panel;
+	},
+
+	orderToFront: function(){
 		MMap.Overlay.Markers.orderToFront(this);
 	}
 
