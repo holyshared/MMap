@@ -1,7 +1,30 @@
 name: MMap
+
+web: "[http://sharedhat.com](http://sharedhat.com)"
+
+description: "Map using Google Maps Api Version 3. A comprehensible map can be displayed by using the custom marker."
+
+authors: "[Noritaka Horio](http://sharedhat.com)"
+
+license: "[MIT License](http://sharedhat.com/license.txt)"
+
+copyright: "&copy; [Noritaka Horio](http://sharedhat.com)"
+
+sources:
+  - "Source/MMap.js"
+  - "Source/MMap.Marker.js"
+  - "Source/MMap.Marker.Image.js"
+  - "Source/MMap.Marker.Images.js"
+  - "Source/MMap.Marker.Window.js"
+
 author: holyshared
+
 category: Interface
+
 tags: [thumnail, google map, map, marker]
-current: 0.1b
+
+current: 0.1
+
 #docs: http://url.to.docs
+
 demo: http://holyshared.github.com/MMap
