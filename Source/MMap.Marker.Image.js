@@ -1,5 +1,7 @@
 /*
 ---
+name: MMap.Marker.Image
+
 description: Marker who can do mapping of image on map
 
 license: MIT-style
@@ -8,32 +10,30 @@ authors:
 - Noritaka Horio
 
 requires:
-  core/1.2.4:
   - Core/Core
   - Core/Browser
-  - Native/Array
-  - Native/Function
-  - Native/Number
-  - Native/String
-  - Native/Hash
-  - Native/Event
-  - Class/Class
-  - Class/Class.Extras
-  - Element/Element
-  - Element/Element.Event
-  - Element/Element.Style
-  - Element/Element.Dimensions
-  - Utilities/Selecter
-  - Utilities/DomReady
-  - Fx/Fx
-  - Fx/Fx.CSS
-  - Fx/Fx.Tween
-  - Fx/Fx.Transitions
+  - Core/Array
+  - Core/Function
+  - Core/Number
+  - Core/String
+  - Core/Hash
+  - Core/Event
+  - Core/Class
+  - Core/Class.Extras
+  - Core/Element
+  - Core/Element.Event
+  - Core/Element.Style
+  - Core/Element.Dimensions
+  - Core/Selecter
+  - Core/DomReady
+  - Core/Fx
+  - Core/Fx.CSS
+  - Core/Fx.Tween
+  - Core/Fx.Transitions
+  - More/Tips
+  - MMap/MMap.Marker
 
-more/1.2.4.4:
-  - Tips
-
-provides: [MMap,MMap.Marker,MMap.Marker.Image,MMap.Marker.Images,MMap.Window]
+provides: [MMap.Marker.Image]
 ...
 */
 
