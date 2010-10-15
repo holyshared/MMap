@@ -1,0 +1,36 @@
+@charset "utf-8";
+
+.imageMarker {
+	width: 70px;
+/*	background: url(skin/bgi_marker_square_top.png) no-repeat left top; */
+ 
+	background: url(skin/bgi_square_header.png) no-repeat left top;
+
+	padding: 0px;
+	margin: 0px;
+}
+
+.imageMarker .photo {
+	background: url(skin/bgi_square_footer.png) no-repeat left bottom;
+}
+
+
+.imageMarker .photo {
+	text-align: center;
+	padding: 9px 0px 12px 0px;
+	overflow: hidden;
+	height: 56px;
+	position: relative;
+}
+
+.imageMarker .photo img {
+	vertical-align: top;
+	width: 50px;
+	height: 50px;
+	display: inline;
+}
+
+.imageMarker .footer {
+
+	padding-bottom: 7px;
+}

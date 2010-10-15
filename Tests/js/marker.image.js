@@ -7,11 +7,12 @@ window.addEvent("domready", function(){
 		mapTypeId: google.maps.MapTypeId.ROADMAP
 	});
 
-	var marker = new MMap.Marker({
+	var marker = new MMap.Marker.Image({
 		map: map,
-		className: 'marker',
+		className: 'imageMarker',
 		title: 'title',
-		content: 'content',
+		src: 'images/img_demo_s1.jpg',
+		url: 'http://sharedhat.com/',
 		position: new google.maps.LatLng(35.6666870, 139.731859),
 		zIndex: 0
 	});
@@ -24,4 +25,4 @@ window.addEvent("domready", function(){
 		title: "A"
 	});
 */
-}(document.id));
+}(document.id))
