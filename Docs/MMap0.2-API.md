@@ -11,7 +11,7 @@ removeEvents()
 ## MMap.Options
 setOptions()
 
-## MMap.Overlay
+## MMap.OverlayView
 draw()
 onAdd()
 onRemove()
