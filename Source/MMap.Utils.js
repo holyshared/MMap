@@ -2,6 +2,38 @@
 
 var MMap = (this.MMap || {});
 
+MMap.Options = new Class({
+
+	setOptions: function(options){
+		this.options = (this.options || {});
+		for (var key in options) {
+			this.options[key] = options[key];
+		}
+
+		for (var key in this.options) {
+			var value = this.options[key]; 
+			if (key == 'map') {
+				this.setMap(value);
+			} else if (instanceOf(value, Function)) {
+				this.addEvent(key, value);
+			} else {
+				this.set(key, value);
+			}
+			delete this.options[key];
+		}
+		delete this.options;
+		return this;
+	}
+
+});
+
+}(document.id));
+
+
+(function($){
+
+var MMap = (this.MMap || {});
+
 var removeOn = function(string){
 	return string.replace(/^on([A-Z])/, function(full, first){
 		return first.toLowerCase();
@@ -17,7 +49,7 @@ MMap.Events = new Class({
 		var domEvents = MMap.Events.$domEvents;
 		type = removeOn(type);
 		if (domEvents.indexOf(type) > -1) {
-			fn = google.maps.event.addDomListener(this, type, fn);
+			fn = google.maps.event.addDomListener(this.instance, type, fn);
 		} else {
 			fn = google.maps.event.addListener(this, type, fn);
 		}
@@ -33,8 +65,11 @@ MMap.Events = new Class({
 	removeEvent: function(type, fn){
 		type = removeOn(type);
 		if (this.$events[type].indexOf(fn) > -1) {
-			var eventListener = this.$events[type];
-			google.maps.event.removeListener(this, eventListener);
+			var index = this.$events[type].indexOf(fn);
+			var eventListener = this.$events[type][index];
+			var domEvents = MMap.Events.$domEvents;
+			google.maps.event.removeListener(eventListener);
+			delete this.$events[type].erase(eventListener);
 		}
 	},
 
@@ -42,10 +77,7 @@ MMap.Events = new Class({
 		if (!events) {
 			google.maps.event.clearInstanceListeners(this);
 			return this;
-		}
-
-		var type;
-		if (typeOf(events) == 'object'){
+		} else if (typeOf(events) == 'object') {
 			for (type in events) this.removeEvent(type, events[type]);
 			return this;
 		}
@@ -58,15 +90,12 @@ MMap.Events = new Class({
 		return this;		
 	},
 
-	fireEvent: function(type, args, delay){
+	fireEvent: function(type, args){
 		type = removeOn(type);
-		var events = this.$events[type];
-		if (!events) return this;
-		args = Array.from(args);
-		events.each(function(fn){
-			if (delay) fn.delay(delay, this, args);
-			else fn.apply(this, args);
-		}, this);
+		var domEvents = MMap.Events.$domEvents;
+		if (!this.$events[type]) return this;
+		var target = (domEvents.indexOf(type) > -1) ? this.instance : this;
+		google.maps.event.trigger(target, type, Array.from(args));
 		return this;
 	}
 

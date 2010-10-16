@@ -17,9 +17,9 @@ MMap.OverlayView = new Class({
 
 	build: function(){
 		var panel = this.getPanes().overlayImage;
-		this.container = this.buildWarpper();
-		this.body = this.buildBody(this.container);
-		this.container.inject(panel);
+		this.instance = this.buildWarpper();
+		this.body = this.buildBody(this.instance);
+		this.instance.inject(panel);
 	},
 
 	buildWarpper: function() {
@@ -31,20 +31,20 @@ MMap.OverlayView = new Class({
 	},
 
 	getWarpper: function(){
-		return this.container;
+		return this.instance;
 	},
 
 	draw: function(){
 		var projection = this.getProjection();
 		var position = this.get('position');
-		var size = this.container.getSize();
+		var size = this.instance.getSize();
 		var xy = projection.fromLatLngToDivPixel(position);
 		var styles = {
 			position: 'absolute',
 			left: xy.x -(size.x / 2),
 			top: xy.y -(size.y / 2)
 		};
-		this.container.setStyles(styles);
+		this.instance.setStyles(styles);
 	},
 
 	onAdd: function(){
