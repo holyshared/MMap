@@ -2,6 +2,18 @@
 
 ## Menu
 
+### MMap.Options
+
+* [setOptions](utils.html#setOptions] "setOptions")
+
+### MMap.Events
+
+* [addEvent](utils.html#addEvent] "addEvent")
+* [addEvents](utils.html#addEvents] "addEvents")
+* [removeEvent](utils.html#removeEvent] "removeEvent")
+* [removeEvents](utils.html#removeEvents] "removeEvents")
+* [fireEvent](utils.html#fireEvent] "fireEvent")
+
 ### MMap.OverlayView
 
 * [constructor](overlayview.html#constructor "constructor")
