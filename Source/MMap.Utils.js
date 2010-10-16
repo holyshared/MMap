@@ -85,12 +85,14 @@ MMap.Events = new Class({
 			fn = google.maps.event.addListener(this, type, fn);
 		}
 		this.$events[type] = (this.$events[type] || []).include(fn);
+		return this;
 	},
 
-	addEvents: function(eventListners){
-		for (var key in eventListners) {
-			this.addEvent(key, eventListners[key]);
+	addEvents: function(events){
+		for (var key in events) {
+			this.addEvent(key, events[key]);
 		}
+		return this;
 	},
 
 	removeEvent: function(type, fn){
@@ -102,6 +104,7 @@ MMap.Events = new Class({
 			google.maps.event.removeListener(eventListener);
 			delete this.$events[type].erase(eventListener);
 		}
+		return this;
 	},
 
 	removeEvents: function(events){
