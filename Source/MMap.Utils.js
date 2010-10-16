@@ -1,3 +1,34 @@
+/*
+---
+name: MMap.Utils
+
+description: It comes to be able to treat Event and Options like Mootools.
+
+license: MIT-style
+
+authors:
+- Noritaka Horio
+
+requires:
+  - Core/Core
+  - Core/Array
+  - Core/String
+  - Core/Number
+  - Core/Function
+  - Core/Object
+  - Core/Event
+  - Core/Browser
+  - Core/Class
+  - Core/Element
+  - Core/Element.Style
+  - Core/Element.Event
+  - Core/Element.Dimensions
+
+provides: [MMap.Options, MMap.Events]
+
+...
+*/
+
 (function($){
 
 var MMap = (this.MMap || {});
