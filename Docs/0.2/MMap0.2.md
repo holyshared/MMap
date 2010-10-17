@@ -17,11 +17,13 @@
 ### MMap.OverlayView
 
 * [constructor](overlayview.html#constructor "constructor")
+* [getInstance](overlayview.html#getInstance] "getInstance")
+* [setup](overlayview.html#setup] "setup")
+* [draw](overlayview.html#draw] "draw")
 * [setVisible](overlayview.html#setVisible] "setVisible")
 * [setZIndex](overlayview.html#setZIndex] "setZIndex")
 * [getVisible](overlayview.html#getVisible] "getVisible")
 * [getZIndex](overlayview.html#getZIndex] "getZIndex")
-* [draw](overlayview.html#draw] "draw")
 
 ### MMap.Marker
 

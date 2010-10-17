@@ -11,15 +11,15 @@ MMap.Marker = new Class({
 		className: 'marker',
 		title: '',
 		content: '',
-		zIndex: 0
+		zIndex: 0,
+		visible: true
 	},
 
 	initialize: function(options) {
 		this.parent(options);
 	},
 
-	buildBody: function(container) {
-
+	setup: function(container) {
 		var className = this.get('className');
 		container.addClass(className);
 
@@ -36,6 +36,19 @@ MMap.Marker = new Class({
 		footer.inject(marker, 'after');
 
 		return marker;
+	},
+
+	draw: function(){
+		var projection = this.getProjection();
+		var position = this.get('position');
+		var size = this.instance.getSize();
+		var xy = projection.fromLatLngToDivPixel(position);
+		var styles = {
+			position: 'absolute',
+			left: xy.x -(size.x / 2),
+			top: xy.y -(size.y / 2)
+		};
+		this.instance.setStyles(styles);
 	},
 
 	getPosition: function() {

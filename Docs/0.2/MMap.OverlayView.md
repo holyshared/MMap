@@ -20,14 +20,22 @@ MMap.OverlayView Method: constructor {#MMap.OverlayView:constructor}
 
 ### Syntax:
 
-	var myMMap.OverlayView = new MMap.OverlayView(options);
+	var overlayView = new MMap.OverlayView(options);
 
 ### Arguments:
 
 1. options - (*mixed*) Option that can be specified
 
+### Options:
 
-MMap.OverlayView Method: getWarpper {#MMap.OverlayView:getWarpper}
+* map - (*object*) Instance of Google Map [google.maps.Map](http://code.google.com/intl/us/apis/maps/documentation/javascript/reference.html#Map "google.maps.Map")
+* zIndex - (*number*) The order of display displaying it in map
+* visible - (*number*) Displayed flag
+* onZIndexChanged - (*function*) When the order of the display changes, it is generated.
+* onVisibleChanged - (*function*) When the display changes, it is generated.
+
+
+MMap.OverlayView Method: getInstance {#MMap.OverlayView:getInstance}
 -------------------------------------------------------------------
 
 The container element that stores the overlay view is acquired.  
@@ -35,11 +43,30 @@ DOM trees such as markers and information windows are stored in this container e
 
 ### Syntax:
 
-	var container = overlayView.getWarpper();
+	var container = overlayView.getInstance();
 
 ### Returns:
 
 (element) Container element that stores overlay view.
+
+
+MMap.OverlayView Method: setup {#MMap.OverlayView:setup}
+-------------------------------------------------------
+
+This method generates the DOM tree of the overlay view class by the abstraction method.
+
+### Arguments:
+
+1. container - (*element*) Container element that inserts dom tree
+
+### Returns:
+
+(element) Dom tree of overlay view.
+
+### Notes:
+
+This method is an abstraction method.
+
 
 
 MMap.OverlayView Method: draw {#MMap.OverlayView:draw}
@@ -53,6 +80,10 @@ Please confirm the document of Google Maps to a detailed specification.
 ### Syntax:
 
 	overlayView.draw();
+
+### Notes:
+
+This method is an abstraction method.
 
 
 MMap.OverlayView Method: getVisible {#MMap.OverlayView:getVisible}
