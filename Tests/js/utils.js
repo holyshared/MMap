@@ -101,7 +101,7 @@ window.addEvent("domready", function(){
 		.addEvent('mouseover', mouseover12)
 		.removeEvent('mouseover', mouseover11)
 		.removeEvent('mouseover', mouseover12);
-/*
+
 	var overlayView2 = new Tester({
 		map: map,
 		zIndex: 0,
@@ -132,9 +132,10 @@ window.addEvent("domready", function(){
 	overlayView2.fireEvent("mouseover");
 
 	var overlayView3 = new Tester({
-		zIndex: 0,
 		position: new google.maps.LatLng(35.6666870, 139.832870),
-		className: 'ov3'
+		className: 'ov3',
+		zIndex: 100,
+		visible: false
 	});
 
 	//addEvents, removeEvents
@@ -144,9 +145,9 @@ window.addEvent("domready", function(){
 	var onAdd3 = function() { logger.log("events", "overlayView3 - onAdd"); };
 
 	overlayView3.addEvents({
-		"click": click3,
-		"mouseover": mouseover31,
-		"onAdd": onAdd3
+		click: click3,
+		mouseover: mouseover31,
+		onAdd: onAdd3
 	});
 
 	logger.log("methods", "overlayView3 - addEvents - mouseover32");
@@ -163,7 +164,13 @@ window.addEvent("domready", function(){
 
 	logger.log("methods", "overlayView3 - setMap");
 	overlayView3.setMap(map);
-*/
+
+	var zIndex = overlayView3.get('zIndex');
+	logger.log("options", "overlayView3 - zIndex: " + zIndex);
+	
+	var visible = overlayView3.get('visible');
+	logger.log("options", "overlayView3 - visible: " + visible);
+
 });
 
 }(document.id));
