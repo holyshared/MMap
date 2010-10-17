@@ -13,17 +13,20 @@ MMap.OverlayView = new Class({
 			this[k] = subclass[k];
 		}
 		this.setOptions(options);
+		this.instance = this.getInstance();
 	},
 
 	build: function(){
 		var panel = this.getPanes().overlayImage;
-		this.instance = this.buildWarpper();
-		this.body = this.buildBody(this.instance);
-		this.instance.inject(panel);
+		this.body = this.buildBody(this.getInstance());
+		this.getInstance().inject(panel);
 	},
 
-	buildWarpper: function() {
-		return new Element('div', {'class': 'ovarlayView'});
+	getInstance: function() {
+		if (!this.instance) {
+			this.instance = new Element('div', {'class': 'ovarlayView'});
+		}
+		return this.instance;
 	},
 
 	//abstract method

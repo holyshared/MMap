@@ -74,17 +74,19 @@ var removeOn = function(string){
 MMap.Events = new Class({
 
 	$events: {},
+	$handles: {},
 
 	addEvent: function(type, fn){
-		var eventListener = null;
+		var listener = null;
 		var domEvents = MMap.Events.$domEvents;
 		type = removeOn(type);
 		if (domEvents.indexOf(type) > -1) {
-			fn = google.maps.event.addDomListener(this.instance, type, fn);
+			listener = google.maps.event.addDomListener(this.instance, type, fn);
 		} else {
-			fn = google.maps.event.addListener(this, type, fn);
+			listener = google.maps.event.addListener(this, type, fn);
 		}
-		this.$events[type] = (this.$events[type] || []).include(fn);
+		this.$handles[type] = (this.$handles[type] || []).include(fn);
+		this.$events[type] = (this.$events[type] || []).include(listener);
 		return this;
 	},
 
@@ -97,12 +99,12 @@ MMap.Events = new Class({
 
 	removeEvent: function(type, fn){
 		type = removeOn(type);
-		if (this.$events[type].indexOf(fn) > -1) {
-			var index = this.$events[type].indexOf(fn);
-			var eventListener = this.$events[type][index];
-			var domEvents = MMap.Events.$domEvents;
-			google.maps.event.removeListener(eventListener);
-			delete this.$events[type].erase(eventListener);
+		var index = this.$handles[type].indexOf(fn);
+		if (index > -1) {
+			var target = this.$events[type][index];
+			google.maps.event.removeListener(target);
+			this.$events[type].erase(target);
+			this.$handles[type].erase(fn);
 		}
 		return this;
 	},

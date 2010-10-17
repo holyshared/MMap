@@ -39,15 +39,17 @@ window.addEvent("domready", function(){
 				this[k] = subclass[k];
 			}
 			this.instance = new Element('div', {
-				'class': 'instance',
-				'styles': {
-					width: 50,
-					height: 50,
-					background: '#333333'
-				}
+				'class': 'instance'
 			});
 			this.setOptions(options);
 			this.instance.addClass(this.get('className'));
+			
+			var photo = new Element('p'); 
+			var img = new Element('img', {src: 'images/img_demo_s1.jpg'});
+			var a = new Element('a', {href: 'http://sharedhat.com'});
+			img.inject(a);
+			a.inject(photo);
+			photo.inject(this.instance);
 		},
 
 		onAdd: function() {
@@ -83,10 +85,23 @@ window.addEvent("domready", function(){
 		position: new google.maps.LatLng(35.6666870, 139.731859),
 		className: 'ov1',
 		onClick: function(event){
+			event.preventDefault();
 			logger.log('events', 'overlayView1 - click');
 		}
 	});
-
+	
+	var mouseover11 = function(){
+		logger.log("events", "overlayView1 - mouseover1");
+	};
+	var mouseover12 = function(){
+		logger.log("events", "overlayView1 - mouseover2");
+	};
+	
+	overlayView1.addEvent('mouseover', mouseover11)
+		.addEvent('mouseover', mouseover12)
+		.removeEvent('mouseover', mouseover11)
+		.removeEvent('mouseover', mouseover12);
+/*
 	var overlayView2 = new Tester({
 		map: map,
 		zIndex: 0,
@@ -148,7 +163,7 @@ window.addEvent("domready", function(){
 
 	logger.log("methods", "overlayView3 - setMap");
 	overlayView3.setMap(map);
-
+*/
 });
 
 }(document.id));
