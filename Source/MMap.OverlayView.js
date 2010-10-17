@@ -1,3 +1,36 @@
+/*
+---
+name: MMap.OverlayView
+
+description: Overlayview that can be treated like Mootools.
+An original marker and the information window can be defined by making this class a subclass.
+
+license: MIT-style
+
+authors:
+- Noritaka Horio
+
+requires:
+  - Core/Core
+  - Core/Array
+  - Core/String
+  - Core/Number
+  - Core/Function
+  - Core/Object
+  - Core/Event
+  - Core/Browser
+  - Core/Class
+  - Core/Element
+  - Core/Element.Style
+  - Core/Element.Event
+  - Core/Element.Dimensions
+  - MMap/MMap.Utils
+
+provides: [MMap.OverlayView]
+
+...
+*/
+
 (function($){
 
 var MMap = (this.MMap || {});
@@ -11,6 +44,12 @@ MMap.OverlayView = new Class({
 		zIndex: 0,
 		visible: true,
 /*
+		onClick
+		onDblClick
+		onMouseover
+		onMouseout
+		onMouseup
+		onMousedown
 		onVisibleChanged: $empty
 		onzIndexChanged: $empty
 */
@@ -75,6 +114,7 @@ MMap.OverlayView = new Class({
 			container.setStyle('display', 'none');
 		}
 		this.fireEvent('visibleChanged');
+		return this;
 	},
 
 	setZIndex: function(index){
@@ -83,6 +123,7 @@ MMap.OverlayView = new Class({
 		var container = this.getInstance();
 		container.setStyle('z-index', index);
 		this.fireEvent('zIndexChanged');
+		return this;
 	}
 
 });

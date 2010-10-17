@@ -13,15 +13,14 @@ window.addEvent("domready", function(){
 		title: 'title',
 		content: 'content',
 		position: new google.maps.LatLng(35.6666870, 139.731859),
-		zIndex: 0
+		zIndex: 0,
+		visible: true
 	});
+
+
+
+
+
 });
 
-/*
-	new google.maps.Marker({
-		map: gmap.getInstance(),
-		position: new google.maps.LatLng(35.6666870, 139.731859),
-		title: "A"
-	});
-*/
 }(document.id));

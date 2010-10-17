@@ -1,3 +1,36 @@
+/*
+---
+name: MMap.Marker
+
+description: A general marker who can display the title and the content can be used.
+
+license: MIT-style
+
+authors:
+- Noritaka Horio
+
+requires:
+  - Core/Core
+  - Core/Array
+  - Core/String
+  - Core/Number
+  - Core/Function
+  - Core/Object
+  - Core/Event
+  - Core/Browser
+  - Core/Class
+  - Core/Element
+  - Core/Element.Style
+  - Core/Element.Event
+  - Core/Element.Dimensions
+  - MMap/MMap.Utils
+  - MMap/MMap.OverlayView
+
+provides: [MMap.Marker]
+
+...
+*/
+
 (function($){
 
 var MMap = (this.MMap || {});
@@ -13,6 +46,19 @@ MMap.Marker = new Class({
 		content: '',
 		zIndex: 0,
 		visible: true
+		/*
+			onClick: $empty
+			onDblClick: $empty
+			onMouseover: $empty
+			onMouseout: $empty
+			onMouseup: $empty
+			onMousedown: $empty
+			onVisibleChanged: $empty
+			onzIndexChanged: $empty
+			onPositionChanged: $empty,
+			onTitleChanged: $empty,
+			onContentChanged: $empty
+		*/
 	},
 
 	initialize: function(options) {
@@ -22,19 +68,14 @@ MMap.Marker = new Class({
 	setup: function(container) {
 		var className = this.get('className');
 		container.addClass(className);
-
 		var zIndex = this.get('zIndex');
 		container.setStyle('z-index', zIndex);
-
 		var marker = new Element('div', {'class': 'body'});
-		var header = new Element('div', {'class': 'header'});
-		var footer = new Element('div', {'class': 'footer'});
-
+		this.$title = new Element('div', {'class': 'title'});
+		this.$content = new Element('div', {'class': 'content'});
 		marker.inject(container);
-
-		header.inject(marker, 'before');
-		footer.inject(marker, 'after');
-
+		this.$title.inject(marker, 'top');
+		this.$content.inject(marker);
 		return marker;
 	},
 
@@ -49,36 +90,52 @@ MMap.Marker = new Class({
 			top: xy.y -(size.y / 2)
 		};
 		this.instance.setStyles(styles);
+		this.setTitle(this.get('title'))
+			.setContent(this.get('content'))
+			.setZIndex(this.get('zIndex'))
+			.setVisible(this.get('visible'));
 	},
 
 	getPosition: function() {
 		return this.get('position');
 	},
 
+	setPosition: function(position){
+		if (!instanceOf(position, google.maps.Latlng)) {
+			new TypeError('The data type is not an Latlng.');
+		}
+		this.set('position', position);
+		this.draw();
+		this.fireEvent("positionChanged");
+		return this;
+	},
+
 	getTitle: function() {
 		return this.get('title');
+	},
+
+	setTitle: function(title){
+		if (typeOf(title) != 'string') {
+			new TypeError('The data type is not a character string.');
+		}
+		this.set('title', title);
+		this.$title.set('html', title);
+		this.fireEvent("titleChanged");
+		return this;
 	},
 
 	getContent: function() {
 		return this.get('content');
 	},
 
-	setPosition: function(position){
-		if (!instanceOf(position, google.maps.Latlng)) {
-			new TypeError('aaa');
-		}
-		this.set('position', position);
-		this.draw();
-	},
-
-	setTitle: function(title){
-		this.set('title', title);
-		this.title.set('html', title);
-	},
-
 	setContent: function(content){
+		if (typeOf(content) != 'string' || typeOf(content) != 'element') {
+			new TypeError('The data type is a character string or not an element.');
+		}
 		this.set('content', content);
-		this.content.set('html', title);
+		this.$content.set('html', content);
+		this.fireEvent("contentChanged");
+		return this;
 	}
 
 });
