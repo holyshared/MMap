@@ -31,6 +31,12 @@ MMap.OverlayView Method: constructor {#MMap.OverlayView:constructor}
 * map - (*object*) Instance of Google Map [google.maps.Map](http://code.google.com/intl/us/apis/maps/documentation/javascript/reference.html#Map "google.maps.Map")
 * zIndex - (*number*) The order of display displaying it in map
 * visible - (*number*) Displayed flag
+* onClick - (*function*) When clicking, this event is generated.
+* onDblClick - (*function*) When double-clicking it, it is generated.
+* onMouseover - (*function*) When the mouse cursor gets on, it is generated.
+* onMouseout - (*function*) When the mouse cursor comes off, it is generated.
+* onMouseup - (*function*) When the mouse button returns pushing, it is generated.
+* onMousedown - (*function*) When the mouse button is pushed, it is generated.
 * onZIndexChanged - (*function*) When the order of the display changes, it is generated.
 * onVisibleChanged - (*function*) When the display changes, it is generated.
 
