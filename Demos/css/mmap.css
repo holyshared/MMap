@@ -1,0 +1,54 @@
+@charset "utf-8";
+
+/*================Marker Styles================*/
+.default {
+	text-align: center;
+	width: 70px;
+	padding-bottom: 18px;
+	background: url(../images/markers/bgi_default_ft.png) no-repeat left bottom;
+}
+
+.default .photo {
+	background: url(../images/markers/bgi_default_bd.png) no-repeat left top;
+	margin: 0px;
+	padding: 10px 0px 4px 0px;
+}
+
+.default .photo img {
+	border: none;
+	vertical-align: bottom;
+}
+
+.default:hover {
+	background: url(../images/markers/bgi_default_ft.png) no-repeat -70px bottom;
+}
+
+.default:hover .photo {
+	background: url(../images/markers/bgi_default_bd.png) no-repeat -70px bottom;
+}
+
+.paper {
+	text-align: center;
+	width: 72px;
+	padding-bottom: 18px;
+	background: url(../images/markers/img_paper_ft.png) no-repeat left bottom;
+}
+
+.paper .photo {
+	background: url(../images/markers/img_paper_bd.png) no-repeat left top;
+	margin: 0px;
+	padding: 10px 0px 0px 0px;
+}
+
+.paper .photo img {
+	vertical-align: bottom;
+	border: 1px solid #ffffff;
+}
+
+.paper:hover {
+	background: url(../images/markers/img_paper_ft.png) no-repeat -72px bottom;
+}
+
+.paper:hover .photo {
+	background: url(../images/markers/img_paper_bd.png) no-repeat -72px bottom;
+}
