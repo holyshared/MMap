@@ -63,12 +63,15 @@ MMap.OverlayView = new Class({
 		}
 		this.instance = this.getInstance();
 		this.setOptions(options);
+		this.set('added', false);
 	},
 
 	build: function(){
 		var panel = this.getPanes().overlayImage;
 		this.body = this.setup(this.getInstance());
 		this.getInstance().inject(panel);
+		this.set('added', true);
+		this.fireEvent("add");
 	},
 
 	getInstance: function() {

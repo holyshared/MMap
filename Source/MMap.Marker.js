@@ -41,7 +41,7 @@ MMap.Marker = new Class({
 
 	options: {
 		map: null,
-		className: 'marker',
+		className: 'marker html',
 		title: '',
 		content: '',
 		zIndex: 0,
@@ -68,18 +68,31 @@ MMap.Marker = new Class({
 	setup: function(container) {
 		var className = this.get('className');
 		container.addClass(className);
+
 		var zIndex = this.get('zIndex');
 		container.setStyle('z-index', zIndex);
-		var marker = new Element('div', {'class': 'body'});
-		this.$title = new Element('div', {'class': 'title'});
+
+		var marker = new Element('div', {'class': 'inner'});
+		var hd = new Element('div', {'class': 'hd'});
+		var bd = new Element('div', {'class': 'bd'});
+		var ft = new Element('div', {'class': 'ft'});
+		marker.adopt([hd, bd, ft]);
+
+		this.$title = new Element('p', {'class': 'title'});
 		this.$content = new Element('div', {'class': 'content'});
+
 		marker.inject(container);
-		this.$title.inject(marker, 'top');
-		this.$content.inject(marker);
+		this.$title.inject(hd);
+		this.$content.inject(bd);
+
 		return marker;
 	},
 
 	draw: function(){
+		if (this.get('added') === false) {
+			return this;
+		}
+
 		var projection = this.getProjection();
 		var position = this.get('position');
 		var size = this.instance.getSize();
@@ -101,7 +114,7 @@ MMap.Marker = new Class({
 	},
 
 	setPosition: function(position){
-		if (!instanceOf(position, google.maps.Latlng)) {
+		if (!instanceOf(position, google.maps.LatLng)) {
 			new TypeError('The data type is not an Latlng.');
 		}
 		this.set('position', position);
