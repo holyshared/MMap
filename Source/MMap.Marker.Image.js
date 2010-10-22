@@ -3,13 +3,13 @@
 var MMap = (this.MMap || {});
 MMap.Marker = (this.MMap.Marker || {});
 
-MMap.Marker.Image = new Class({
+MMap.Marker.Image = this.MMap.Marker.Image = new Class({
 
 	Extends: MMap.Marker,
 
 	options: {
 		map: null,
-		className: 'imageMarker',
+		className: 'marker image default',
 		title: '',
 		src: '',
 		url: '',
@@ -20,7 +20,7 @@ MMap.Marker.Image = new Class({
 		this.parent(options);
 	},
 
-	buildBody: function(container) {
+	setup: function(container) {
 
 		var className = this.get('className');
 		container.addClass(className);
@@ -28,7 +28,7 @@ MMap.Marker.Image = new Class({
 		var zIndex = this.get('zIndex');
 		container.setStyle('z-index', zIndex);
 
-		var marker = new Element('div', {'class': 'body'});
+	//	var marker = new Element('div', {'class': 'inner'});
 		var photo = new Element('p', {'class': 'photo'});
 
 		this.anchor = new Element('a', {
@@ -37,13 +37,19 @@ MMap.Marker.Image = new Class({
 		});
 		this.image = new Element('img', {'src': this.get('src')});
 
-		marker.inject(container);
+		photo.inject(container);
 
-		photo.inject(marker);
+	//	photo.inject(marker);
 		this.anchor.inject(photo);
 		this.image.inject(this.anchor);
 
-		return marker;
+		return photo;
+	},
+
+	updateContent: function(){
+		this.setTitle(this.get('title'))
+		.setImage(this.get('src'))
+		.setURL(this.get('url'));
 	},
 
 	getTitle: function() {
@@ -62,11 +68,13 @@ MMap.Marker.Image = new Class({
 		this.set('title', title);
 		this.image.set('title', title);
 		this.anchor.set('title', title);
+		return this;
 	},
 
 	setImage: function(src){
 		this.set('src', src);
 		this.image.set('src', src);
+		return this;
 	},
 
 	setURL: function(url){

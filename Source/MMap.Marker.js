@@ -103,12 +103,24 @@ MMap.Marker = new Class({
 			top: xy.y -(size.y / 2)
 		};
 		this.instance.setStyles(styles);
-		this.setTitle(this.get('title'))
-			.setContent(this.get('content'))
-			.setZIndex(this.get('zIndex'))
-			.setVisible(this.get('visible'));
+		this.refresh();
 	},
 
+	refresh: function(){
+		this.updateVisibleState();
+		this.updateContent();
+	},
+
+	updateVisibleState: function(){
+		this.setZIndex(this.get('zIndex'))
+		.setVisible(this.get('visible'));
+	},
+
+	updateContent: function(){
+		this.setTitle(this.get('title'))
+		.setContent(this.get('content'));
+	},
+	
 	getPosition: function() {
 		return this.get('position');
 	},
