@@ -21,25 +21,66 @@ window.addEvent("domready", function(){
 			logger.log('events', "onPositionChanged");
 		},
 		onZIndexChanged: function(event) {
+			logger.log('events', "onZIndexChanged");
 		},
 		onTitleChanged: function(event) {
+			logger.log('events', "onTitleChanged");
 		},
 		onContentChanged: function(event) {
+			logger.log('events', "onContentChanged");
 		},
 		onVisibleChanged: function(event) {
+			logger.log('events', "onVisibleChanged");
 		},
 		onMouseOver: function(event) {
+			logger.log('events', "onMouseOver");
 		},
 		onMouseOut: function(event) {
+			logger.log('events', "onMouseOut");
 		},
 		onMouseUp: function(event) {
+			logger.log('events', "onMouseUp");
 		},
 		onMouseDown: function(event) {
+			logger.log('events', "onMouseDown");
 		},
 		onAdd: function(event) {
-			marker.setPosition(new google.maps.LatLng(35.6666870, 139.731869));
+			var latlng = new google.maps.LatLng(35.6666870, 139.731869);
+			marker.setPosition(latlng);
+			var position = marker.getPosition();
+			logger.log('methods', (position == latlng) ? "Position setter/getter OK" : "Position setter/getter NG");
+			
+			marker.setZIndex(10);
+			var zIndex = marker.getZIndex();
+			logger.log('methods', (zIndex == 10) ? "ZIndex setter/getter OK" : "ZIndex setter/getter NG");
+			
+			marker.setTitle("foo");
+			var title = marker.getTitle();
+			logger.log('methods', (title == "foo") ? "Title setter/getter OK" : "Title setter/getter NG");
+
+			marker.setContent("bar");
+			var content = marker.getContent();
+			logger.log('methods', (content == "bar") ? "Content setter/getter OK" : "Content setter/getter NG");
 		}
 	});
+
+	var className =	marker.get('className');
+	logger.log('options', (className == 'marker html') ? 'className option OK' : 'className option NG');
+
+	var title =	marker.get('title');
+	logger.log('options', (title == 'Marker title text') ? 'title option OK' : 'title option NG');
+
+	var content = marker.get('content');
+	logger.log('options', (content == 'Marker content text xxxx xxxx xxxx xxxx xxxx xxxxxx xx') ? 'content option OK' : 'content option NG');
+
+	var position = marker.get('position');
+	logger.log('options', (position.lat() == 35.6666870) ? 'position option OK' : 'position option NG');
+	
+	var zIndex = marker.get('zIndex');
+	logger.log('options', (zIndex == 0) ? 'position zIndex OK' : 'position zIndex NG');
+
+	var visible = marker.get('visible');
+	logger.log('options', (visible == true) ? 'position visible OK' : 'position visible NG');
 
 });
 

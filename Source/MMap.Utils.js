@@ -76,8 +76,8 @@ MMap.Events = new Class({
 		var listener = null;
 		var domEvents = MMap.Events.$domEvents;
 		type = removeOn(type);
-		if (domEvents.indexOf(type) > -1) {
-			listener = google.maps.event.addDomListener(this.instance, type, fn);
+		if (domEvents.indexOf(type.toLowerCase()) > -1) {
+			listener = google.maps.event.addDomListener(this.instance, type.toLowerCase(), fn);
 		} else {
 			listener = google.maps.event.addListener(this, type, fn);
 		}
@@ -126,7 +126,7 @@ MMap.Events = new Class({
 		type = removeOn(type);
 		var domEvents = MMap.Events.$domEvents;
 		if (!this.$events[type]) return this;
-		var target = (domEvents.indexOf(type) > -1) ? this.instance : this;
+		var target = (domEvents.indexOf(type.toLowerCase()) > -1) ? this.instance : this;
 		google.maps.event.trigger(target, type, Array.from(args));
 		return this;
 	}
