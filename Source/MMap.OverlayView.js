@@ -109,6 +109,7 @@ MMap.OverlayView = new Class({
 
 	setVisible: function(value){
 		if (typeOf(value) != 'boolean') new TypeError('The data type is not an boolean.');
+		if (value == this.get('visible')) return this;
 		this.set('visible', value);
 		var container = this.getInstance();
 		if (value) {
@@ -122,6 +123,7 @@ MMap.OverlayView = new Class({
 
 	setZIndex: function(index){
 		if (typeOf(index) != 'number') new TypeError('The data type is not an integer.');
+		if (index == this.get('zIndex')) return this;
 		this.set('zIndex', index);
 		var container = this.getInstance();
 		container.setStyle('z-index', index);

@@ -2,23 +2,7 @@
 
 window.addEvent("domready", function(){
 
-	this.Logger = new Class({
-		initialize: function() {
-			var main = $(document.body).getElement(".main");
-			this.events = main.getElement(".events ul");
-			this.methods = main.getElement(".methods ul");
-			this.options = main.getElement(".options ul");
-		},
-
-		log: function(type, message) {
-			var li = new Element("li",{"html": message});
-			switch (type) {
-				case "events": li.inject(this.events, 'top'); return
-				case "methods": li.inject(this.methods, 'top'); return
-				case "options": li.inject(this.options, 'top'); return
-			}
-		}
-	});
+	var logger = new Logger();
 
 	var Tester = new Class({
 		
@@ -33,13 +17,13 @@ window.addEvent("domready", function(){
 
 		initialize: function(options){
 			this.parent(options);
-//			this.setOptions(options);
 		},
 
 		setup: function(container){
-			var photo = new Element('p'); 
-			var img = new Element('img', {src: 'images/img_demo_s1.jpg'});
-			var a = new Element('a', {href: 'http://sharedhat.com'});
+			container.addClass('marker image default');
+			var photo = new Element('p', {'class': 'photo'}); 
+			var img = new Element('img', {src: '../Demos/images/demo/img05.jpg'});
+			var a = new Element('a', {href: 'http://sharedhat.com/'});
 			img.inject(a);
 			a.inject(photo);
 			photo.inject(container);
@@ -60,7 +44,6 @@ window.addEvent("domready", function(){
 		}
 	});
 
-	var logger = new Logger();
 
 	var map = new google.maps.Map($('gmap'), {
 		zoom: 13,

@@ -1,51 +1,30 @@
 (function($){
-
-window.addEvent("domready", function(){
-
-	this.Logger = new Class({
-		initialize: function() {
-			var main = $(document.body).getElement(".main");
-			this.events = main.getElement(".events ul");
-			this.methods = main.getElement(".methods ul");
-			this.options = main.getElement(".options ul");
-		},
-
-		log: function(type, message) {
-			var li = new Element("li",{"html": message});
-			switch (type) {
-				case "events": li.inject(this.events, 'top'); return
-				case "methods": li.inject(this.methods, 'top'); return
-				case "options": li.inject(this.options, 'top'); return
-			}
-		}
-	});
-
-	var logger = new Logger();
-
-
-	var map = new google.maps.Map($('gmap'), {
-		zoom: 13,
-		center: new google.maps.LatLng(35.6566870, 139.750859),
-		mapTypeId: google.maps.MapTypeId.ROADMAP
-	});
-
-	var Tester = new Class({
+	
+	var Tester = this.Tester = new Class({
 
 		Implements: [MMap.Events, MMap.Options],
 
+		options: {},
+
 		initialize: function(options) {
-			var subclass = Object.append(new google.maps.OverlayView(), this);
+
+			var subclass = this;
+			var origin = new google.maps.OverlayView();
+
+			subclass = Object.append(origin, subclass);
 			for (var k in subclass) {
 				this[k] = subclass[k];
 			}
+			this.set('added', false);
+
 			this.instance = new Element('div', {
 				'class': 'instance'
 			});
 			this.setOptions(options);
 			this.instance.addClass(this.get('className'));
 			
-			var photo = new Element('p'); 
-			var img = new Element('img', {src: 'images/img_demo_s1.jpg'});
+			var photo = new Element('p', {'class': 'photo'}); 
+			var img = new Element('img', {src: '../Demos/images/img04.jpg'});
 			var a = new Element('a', {href: 'http://sharedhat.com'});
 			img.inject(a);
 			a.inject(photo);
@@ -78,6 +57,17 @@ window.addEvent("domready", function(){
 		}
 
 	});
+
+window.addEvent("domready", function(){
+
+	var logger = new Logger();
+
+	var map = new google.maps.Map($('gmap'), {
+		zoom: 13,
+		center: new google.maps.LatLng(35.6566870, 139.750859),
+		mapTypeId: google.maps.MapTypeId.ROADMAP
+	});
+
 
 	var overlayView1 = new Tester({
 		map: map,

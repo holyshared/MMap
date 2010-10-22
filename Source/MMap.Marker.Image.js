@@ -21,28 +21,19 @@ MMap.Marker.Image = this.MMap.Marker.Image = new Class({
 	},
 
 	setup: function(container) {
-
 		var className = this.get('className');
 		container.addClass(className);
-
 		var zIndex = this.get('zIndex');
 		container.setStyle('z-index', zIndex);
-
-	//	var marker = new Element('div', {'class': 'inner'});
 		var photo = new Element('p', {'class': 'photo'});
-
 		this.anchor = new Element('a', {
 			'title': this.get('title'),
 			'href': this.get('url')
 		});
 		this.image = new Element('img', {'src': this.get('src')});
-
 		photo.inject(container);
-
-	//	photo.inject(marker);
 		this.anchor.inject(photo);
 		this.image.inject(this.anchor);
-
 		return photo;
 	},
 
@@ -65,6 +56,7 @@ MMap.Marker.Image = this.MMap.Marker.Image = new Class({
 	},
 
 	setTitle: function(title){
+		if (this.get('title') == title) return this;
 		this.set('title', title);
 		this.image.set('title', title);
 		this.anchor.set('title', title);
@@ -72,12 +64,15 @@ MMap.Marker.Image = this.MMap.Marker.Image = new Class({
 	},
 
 	setImage: function(src){
+		if (this.get('src') == src) return this;
 		this.set('src', src);
 		this.image.set('src', src);
+		this.fireEvent('imageChanged');
 		return this;
 	},
 
 	setURL: function(url){
+		if (this.get('url') == url) return this;
 		this.set('url', url);
 		this.anchor.set('href', url);
 	}
