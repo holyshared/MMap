@@ -9,11 +9,13 @@ MMap.Marker.Image = this.MMap.Marker.Image = new Class({
 
 	options: {
 		map: null,
-		className: 'marker image default',
+		className: 'marker image imageDefault',
 		title: '',
 		src: '',
 		url: '',
-		zIndex: 0
+		position: null,
+		zIndex: 0,
+		visible: true
 	},
 
 	initialize: function(options) {

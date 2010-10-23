@@ -2,69 +2,83 @@
 
 /*================Marker Styles================*/
 
-/* Image Marker */
-.default {
+/* Image Marker
+====================================*/
+
+/* Default
+-----------------------*/
+.imageDefault {
 	text-align: center;
 	width: 70px;
 	padding-bottom: 18px;
 	background: url(../images/markers/bgi_default_ft.png) no-repeat left bottom;
 }
 
-.default .photo {
+.imageDefault .photo {
 	background: url(../images/markers/bgi_default_bd.png) no-repeat left top;
 	margin: 0px;
 	padding: 10px 0px 4px 0px;
 }
 
-.default .photo img {
+.imageDefault .photo img {
 	border: none;
 	vertical-align: bottom;
 	display: inline;
 }
 
-.default:hover {
+.imageDefault:hover {
 	background: url(../images/markers/bgi_default_ft.png) no-repeat -70px bottom;
 }
 
-.default:hover .photo {
+.imageDefault:hover .photo {
 	background: url(../images/markers/bgi_default_bd.png) no-repeat -70px bottom;
 }
 
 
 
-.paper {
+/* Paper
+-----------------------*/
+.imagePaper {
 	text-align: center;
 	width: 72px;
 	padding-bottom: 18px;
 	background: url(../images/markers/img_paper_ft.png) no-repeat left bottom;
 }
 
-.paper .photo {
+.imagePaper .photo {
 	background: url(../images/markers/img_paper_bd.png) no-repeat left top;
 	margin: 0px;
 	padding: 10px 0px 0px 0px;
 }
 
-.paper .photo img {
+.imagePaper .photo img {
 	vertical-align: bottom;
 	display: inline;
 	border: 1px solid #ffffff;
 }
 
-.paper:hover {
+.imagePaper:hover {
 	background: url(../images/markers/img_paper_ft.png) no-repeat -72px bottom;
 }
 
-.paper:hover .photo {
+.imagePaper:hover .photo {
 	background: url(../images/markers/img_paper_bd.png) no-repeat -72px bottom;
 }
 
-/* Default Marker */
-.html {
+
+
+
+
+/* Marker
+====================================*/
+
+/* Default
+----------------------*/
+.markerDefault {
 	min-width: 250px;	
 }
 
-.html .hd {
+.markerDefault .hd {
 	border-top: 5px solid #333333;
 	border-left: 5px solid #333333;
 	border-right: 5px solid #333333;
@@ -77,7 +91,7 @@
 	padding: 0px;
 }
 
-.html .hd .title {
+.markerDefault .hd .title {
 	padding: 5px 10px 5px 10px;
 	margin: 0px;
 	color: #ffffff;
@@ -85,7 +99,7 @@
 	border-bottom: 1px solid #cccccc;
 }
 
-.html .bd {
+.markerDefault .bd {
 	margin: 0px;
 	padding: 10px;
 	border-left: 5px solid #333333;
@@ -98,9 +112,88 @@
 	-webkit-border-bottom-right-radius: 7px;
 }
 
-.html .ft {
+.markerDefault .ft {
 	background: url(../images/markers/bgi_html_default_arrow.png) no-repeat left top;
 	height: 18px;
 	width: 25px;
 	margin: -5px auto 0px auto;
+}
+
+
+
+
+
+/* Marker Images
+====================================*/
+
+/* Default
+----------------------*/
+.imagesDefault {
+	text-align: center;
+	width: 70px;
+	padding-bottom: 18px;
+	background: url(../images/markers/bgi_default_ft.png) no-repeat left bottom;
+}
+
+.imagesDefault .photos {
+	background: url(../images/markers/bgi_default_bd.png) no-repeat left top;
+	margin: 0px;
+	padding: 10px 0px 4px 0px;
+	position: relative;
+	height: 50px;
+}
+
+.imagesDefault .photos li {
+	position: absolute;
+	left: 10px;
+}
+
+.imagesDefault .photos img {
+	border: none;
+	vertical-align: bottom;
+	display: inline;
+}
+
+.imagesDefault:hover {
+	background: url(../images/markers/bgi_default_ft.png) no-repeat -70px bottom;
+}
+
+.imagesDefault:hover .photos {
+	background: url(../images/markers/bgi_default_bd.png) no-repeat -70px bottom;
+}
+
+
+/* Paper
+ ----------------------*/
+.imagesPaper {
+	text-align: center;
+	width: 72px;
+	padding-bottom: 18px;
+	background: url(../images/markers/img_paper_ft.png) no-repeat left bottom;
+}
+
+.imagesPaper .photos {
+	background: url(../images/markers/img_paper_bd.png) no-repeat left top;
+	margin: 0px;
+	padding: 10px 0px 0px 0px;
+	height: 52px;
+}
+
+.imagesPaper .photos li {
+	position: absolute;
+	left: 10px;
+}
+
+.imagesPaper .photos img {
+	vertical-align: bottom;
+	display: inline;
+	border: 1px solid #ffffff;
+}
+
+.imagesPaper:hover {
+	background: url(../images/markers/img_paper_ft.png) no-repeat -72px bottom;
+}
+
+.imagesPaper:hover .photos {
+	background: url(../images/markers/img_paper_bd.png) no-repeat -72px bottom;
 }

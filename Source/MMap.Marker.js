@@ -41,9 +41,10 @@ MMap.Marker = new Class({
 
 	options: {
 		map: null,
-		className: 'marker html',
+		className: 'marker markerDefault',
 		title: '',
 		content: '',
+		position: '',
 		zIndex: 0,
 		visible: true
 		/*
