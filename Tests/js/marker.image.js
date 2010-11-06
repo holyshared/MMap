@@ -12,7 +12,7 @@ window.addEvent('domready', function(){
 
 	var marker = new MMap.Marker.Image({
 		map: map,
-		className: 'marker image paper',
+//		className: 'marker image paper',
 		title: 'Marker title text',
 		src: '../Demos/images/demo/img01.jpg',
 		url: 'http://sharedhat.com/',

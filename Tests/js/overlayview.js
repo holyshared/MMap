@@ -20,7 +20,7 @@ window.addEvent("domready", function(){
 		},
 
 		setup: function(container){
-			container.addClass('marker image default');
+			container.addClass('marker imageDefault');
 			var photo = new Element('p', {'class': 'photo'}); 
 			var img = new Element('img', {src: '../Demos/images/demo/img05.jpg'});
 			var a = new Element('a', {href: 'http://sharedhat.com/'});
