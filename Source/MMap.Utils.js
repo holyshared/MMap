@@ -69,20 +69,20 @@ var removeOn = function(string){
 
 MMap.Events = new Class({
 
-	$events: {},
-	$handles: {},
+	_events: {},
+	_handles: {},
 
 	addEvent: function(type, fn){
 		var listener = null;
-		var domEvents = MMap.Events.$domEvents;
+		var domEvents = MMap.Events._domEvents;
 		type = removeOn(type);
 		if (domEvents.indexOf(type.toLowerCase()) > -1) {
 			listener = google.maps.event.addDomListener(this.instance, type.toLowerCase(), fn);
 		} else {
 			listener = google.maps.event.addListener(this, type, fn);
 		}
-		this.$handles[type] = (this.$handles[type] || []).include(fn);
-		this.$events[type] = (this.$events[type] || []).include(listener);
+		this._handles[type] = (this._handles[type] || []).include(fn);
+		this._events[type] = (this._events[type] || []).include(listener);
 		return this;
 	},
 
@@ -95,12 +95,12 @@ MMap.Events = new Class({
 
 	removeEvent: function(type, fn){
 		type = removeOn(type);
-		var index = this.$handles[type].indexOf(fn);
+		var index = this._handles[type].indexOf(fn);
 		if (index > -1) {
-			var target = this.$events[type][index];
+			var target = this._events[type][index];
 			google.maps.event.removeListener(target);
-			this.$events[type].erase(target);
-			this.$handles[type].erase(fn);
+			this._events[type].erase(target);
+			this._handles[type].erase(fn);
 		}
 		return this;
 	},
@@ -114,9 +114,9 @@ MMap.Events = new Class({
 			return this;
 		}
 		events = removeOn(events);
-		for (type in this.$events){
+		for (type in this._events){
 			if (events && events != type) continue;
-			var fns = this.$events[type];
+			var fns = this._events[type];
 			for (var i = fns.length; i--;) this.removeEvent(type, fns[i]);
 		}
 		return this;		
@@ -124,14 +124,14 @@ MMap.Events = new Class({
 
 	fireEvent: function(type, args){
 		type = removeOn(type);
-		var domEvents = MMap.Events.$domEvents;
-		if (!this.$events[type]) return this;
+		var domEvents = MMap.Events._domEvents;
+		if (!this._events[type]) return this;
 		var target = (domEvents.indexOf(type.toLowerCase()) > -1) ? this.instance : this;
 		google.maps.event.trigger(target, type, Array.from(args));
 		return this;
 	}
 
 });
-MMap.Events.$domEvents = ["mouseover", "mouseout", "mouseup", "mousedown", "click", "dblclick"];
+MMap.Events._domEvents = ["mouseover", "mouseout", "mouseup", "mousedown", "click", "dblclick"];
 
 }(document.id))

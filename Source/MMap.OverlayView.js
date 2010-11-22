@@ -61,20 +61,20 @@ MMap.OverlayView = new Class({
 		for (var k in subclass) {
 			this[k] = subclass[k];
 		}
-		this.instance = this.getInstance();
+		this.instance = this._getInstance();
 		this.setOptions(options);
 		this.set('added', false);
 	},
 
 	build: function(){
 		var panel = this.getPanes().overlayImage;
-		this.body = this.setup(this.getInstance());
-		this.getInstance().inject(panel);
+		this.body = this._setup(this._getInstance());
+		this._getInstance().inject(panel);
 		this.set('added', true);
 		this.fireEvent("add");
 	},
 
-	getInstance: function() {
+	_getInstance: function() {
 		if (!this.instance) {
 			this.instance = new Element('div', {'class': 'ovarlayView'});
 		}
@@ -82,7 +82,7 @@ MMap.OverlayView = new Class({
 	},
 
 	//abstract method
-	setup: function(container){
+	_setup: function(container){
 	},
 
 	//abstract method
@@ -125,7 +125,7 @@ MMap.OverlayView = new Class({
 		if (typeOf(index) != 'number') new TypeError('The data type is not an integer.');
 		if (index == this.get('zIndex')) return this;
 		this.set('zIndex', index);
-		var container = this.getInstance();
+		var container = this._getInstance();
 		container.setStyle('z-index', index);
 		this.fireEvent('zIndexChanged');
 		return this;

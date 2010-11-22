@@ -66,7 +66,7 @@ MMap.Marker = new Class({
 		this.parent(options);
 	},
 
-	setup: function(container) {
+	_setup: function(container) {
 		var className = this.get('className');
 		container.addClass(className);
 
@@ -79,12 +79,12 @@ MMap.Marker = new Class({
 		var ft = new Element('div', {'class': 'ft'});
 		marker.adopt([hd, bd, ft]);
 
-		this.$title = new Element('p', {'class': 'title'});
-		this.$content = new Element('div', {'class': 'content'});
+		this._title = new Element('p', {'class': 'title'});
+		this._content = new Element('div', {'class': 'content'});
 
 		marker.inject(container);
-		this.$title.inject(hd);
-		this.$content.inject(bd);
+		this._title.inject(hd);
+		this._content.inject(bd);
 
 		return marker;
 	},
@@ -108,20 +108,20 @@ MMap.Marker = new Class({
 	},
 
 	refresh: function(){
-		this.updateVisibleState();
-		this.updateContent();
+		this._updateVisibleState();
+		this._update();
 	},
 
-	updateVisibleState: function(){
+	_updateVisibleState: function(){
 		this.setZIndex(this.get('zIndex'))
 		.setVisible(this.get('visible'));
 	},
 
-	updateContent: function(){
+	_update: function(){
 		this.setTitle(this.get('title'))
 		.setContent(this.get('content'));
 	},
-	
+
 	getPosition: function() {
 		return this.get('position');
 	},
@@ -145,7 +145,7 @@ MMap.Marker = new Class({
 			new TypeError('The data type is not a character string.');
 		}
 		this.set('title', title);
-		this.$title.set('html', title);
+		this._title.set('html', title);
 		this.fireEvent("titleChanged");
 		return this;
 	},
@@ -159,7 +159,7 @@ MMap.Marker = new Class({
 			new TypeError('The data type is a character string or not an element.');
 		}
 		this.set('content', content);
-		this.$content.set('html', content);
+		this._content.set('html', content);
 		this.fireEvent("contentChanged");
 		return this;
 	}

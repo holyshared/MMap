@@ -22,7 +22,7 @@ MMap.Marker.Image = this.MMap.Marker.Image = new Class({
 		this.parent(options);
 	},
 
-	setup: function(container) {
+	_setup: function(container) {
 		var className = this.get('className');
 		container.addClass(className);
 		var zIndex = this.get('zIndex');
@@ -39,7 +39,7 @@ MMap.Marker.Image = this.MMap.Marker.Image = new Class({
 		return photo;
 	},
 
-	updateContent: function(){
+	_update: function(){
 		this.setTitle(this.get('title'))
 		.setImage(this.get('src'))
 		.setURL(this.get('url'));

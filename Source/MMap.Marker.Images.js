@@ -21,14 +21,14 @@ MMap.Marker.Images = this.MMap.Marker.Images = new Class({
 
 	initialize: function(options){
 		this.parent(options);
-		this.$images = [];
-		this.$stack = [];
-		this.$index = 0;
+		this._images = [];
+		this._stack = [];
+		this._index = 0;
 	},
 
-	setup: function(container){
+	_setup: function(container){
 
-		this.addEvent('add', this.onPrepare.bind(this));
+		this.addEvent('add', this._onPrepare.bind(this));
 
 		var className = this.get('className');
 		container.addClass(className);
@@ -36,39 +36,34 @@ MMap.Marker.Images = this.MMap.Marker.Images = new Class({
 		var zIndex = this.get('zIndex');
 		container.setStyle('z-index', zIndex);
 
-		this.$photos = new Element('ul', {'class': 'photos'});
-		this.$photos.inject(container);
+		this._photos = new Element('ul', {'class': 'photos'});
+		this._photos.inject(container);
 
 		var images = this.get('images');
 		if (images && typeOf(images) == 'array') {
 			this.addImages(images);
 		}
-		return this.$photos;
+		return this._photos;
 	},
 
-	updateContent: function(){
-/*
-		this.setTitle(this.get('title'))
-		.setImage(this.get('src'))
-		.setURL(this.get('url'));
-*/
+	_update: function(){
 	},
 
-	onPrepare: function(){
-		for (var i = 0; l = this.$stack.length, i < l; i++) {
-			var image = this.$stack[i];
-			image.inject(this.$photos);
+	_onPrepare: function(){
+		for (var i = 0; l = this._stack.length, i < l; i++) {
+			var image = this._stack[i];
+			image.inject(this._photos);
 		}
-		delete this.$stack;
+		delete this._stack;
 		var index = this.get('defaultIndex');
 		this.setCurrent(index);
 		this.next.delay(this.get('interval'), this);
 	},
 
 	setCurrent: function(index){
-		var i = length = this.$images.length, image = null, style = {};
+		var i = length = this._images.length, image = null, style = {};
 		for (i = 0; i < length; i++) {
-			image = this.$images[i];
+			image = this._images[i];
 			if (i == index) {
 				style = { 'z-index': 1, opacity: 1 };
 			} else {
@@ -76,15 +71,15 @@ MMap.Marker.Images = this.MMap.Marker.Images = new Class({
 			}
 			image.setStyles(style);
 		}
-		this.$index = index;
+		this._index = index;
 	},
 
 	next: function() {
 		var self = this;
-		var image = this.$images[this.$index];
+		var image = this._images[this._index];
 		image.setStyle('z-index', 1);
-		this.$index = (this.$index + 1 < this.$images.length) ? this.$index + 1 : 0;
-		var image = this.$images[this.$index];
+		this._index = (this._index + 1 < this._images.length) ? this._index + 1 : 0;
+		var image = this._images[this._index];
 		image.setStyle('z-index', 2);
 		var tween = image.get('tween');
 		tween.start('opacity', 0, 1);
@@ -101,16 +96,16 @@ MMap.Marker.Images = this.MMap.Marker.Images = new Class({
 		li.set('tween', {
 			duration: this.get('duration'),
 			onComplete: function() {
-				self.setCurrent(self.$index);
+				self.setCurrent(self._index);
 				self.next.delay(self.get('interval'), self);
 			}
 		});
-		this.$images.push(li);
+		this._images.push(li);
 		if (this.get('added') === false) {
-			this.$stack.push(li);
+			this._stack.push(li);
 			return this;
 		}
-		li.inject(this.$photos);
+		li.inject(this._photos);
 	},
 
 	addImages: function(images){
