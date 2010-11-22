@@ -27,7 +27,6 @@ MMap.Marker.Images = this.MMap.Marker.Images = new Class({
 	},
 
 	_setup: function(container){
-
 		this.addEvent('add', this._onPrepare.bind(this));
 
 		var className = this.get('className');
@@ -57,7 +56,7 @@ MMap.Marker.Images = this.MMap.Marker.Images = new Class({
 		delete this._stack;
 		var index = this.get('defaultIndex');
 		this.setCurrent(index);
-		this.next.delay(this.get('interval'), this);
+		this._next.delay(this.get('interval'), this);
 	},
 
 	setCurrent: function(index){
@@ -74,7 +73,7 @@ MMap.Marker.Images = this.MMap.Marker.Images = new Class({
 		this._index = index;
 	},
 
-	next: function() {
+	_next: function() {
 		var self = this;
 		var image = this._images[this._index];
 		image.setStyle('z-index', 1);
@@ -97,7 +96,7 @@ MMap.Marker.Images = this.MMap.Marker.Images = new Class({
 			duration: this.get('duration'),
 			onComplete: function() {
 				self.setCurrent(self._index);
-				self.next.delay(self.get('interval'), self);
+				self._next.delay(self.get('interval'), self);
 			}
 		});
 		this._images.push(li);
