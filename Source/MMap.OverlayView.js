@@ -43,6 +43,7 @@ MMap.OverlayView = new Class({
 		map: null,
 		zIndex: 0,
 		visible: true,
+		active: false,
 /*
 		onClick
 		onDblClick
@@ -50,8 +51,10 @@ MMap.OverlayView = new Class({
 		onMouseout
 		onMouseup
 		onMousedown
-		onVisibleChanged: $empty
-		onzIndexChanged: $empty
+		onVisibleChanged
+		onZIndexChanged
+		onActive
+		onDeactive
 */
 	},
 
@@ -107,11 +110,15 @@ MMap.OverlayView = new Class({
 		return this.get('zIndex');
 	},
 
+	isActive: function() {
+		return this.get('active');
+	},
+
 	setVisible: function(value){
-		if (typeOf(value) != 'boolean') new TypeError('The data type is not an boolean.');
+		if (!Type.isBoolean(value)) new TypeError('The data type is not an boolean.');
 		if (value == this.get('visible')) return this;
 		this.set('visible', value);
-		var container = this.getInstance();
+		var container = this._getInstance();
 		if (value) {
 			container.setStyle('display', '');
 		} else {
@@ -122,12 +129,27 @@ MMap.OverlayView = new Class({
 	},
 
 	setZIndex: function(index){
-		if (typeOf(index) != 'number') new TypeError('The data type is not an integer.');
+		if (!Type.isNumber(index)) new TypeError('The data type is not an integer.');
 		if (index == this.get('zIndex')) return this;
 		this.set('zIndex', index);
 		var container = this._getInstance();
 		container.setStyle('z-index', index);
 		this.fireEvent('zIndexChanged');
+		return this;
+	},
+
+	setActive: function(value) {
+		if (!Type.isBoolean(value)) new TypeError('The data type is not an boolean.');
+		if (value == this.get('active')) return this;
+		this.set('active', value);
+		var container = this._getInstance();
+		if (value) {
+			container.addClass('active');
+			this.fireEvent('active');
+		} else {
+			container.removeClass('active');
+			this.fireEvent('deactive');
+		}
 		return this;
 	}
 

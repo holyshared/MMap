@@ -19,7 +19,7 @@ window.addEvent("domready", function(){
 			this.parent(options);
 		},
 
-		setup: function(container){
+		_setup: function(container){
 			container.addClass('marker imageDefault');
 			var photo = new Element('p', {'class': 'photo'}); 
 			var img = new Element('img', {src: '../Demos/images/demo/img05.jpg'});
@@ -53,7 +53,7 @@ window.addEvent("domready", function(){
 
 	var o1 = new Tester({
 		map: map,
-		zInbex: 1000,
+		zIndex: 1000,
 		visible: false,
 		position: new google.maps.LatLng(35.6566870, 139.750859),
 		onZIndexChanged: function(){
@@ -61,8 +61,18 @@ window.addEvent("domready", function(){
 		},
 		onVisibleChanged: function(){
 			logger.log('events', 'o1 - onVisibleChanged');
+		},
+		onActive: function(){
+			logger.log('events', 'o1 - onActive');
+		},
+		onDeactive: function(){
+			logger.log('events', 'o1 - onDeactive');
 		}
 	});
+
+	logger.log('options', (o1.getZIndex() == 1000) ? 'zIndex option OK' : 'zIndex option NG' );
+	logger.log('options', (o1.getVisible() == false) ? 'visible option OK' : 'visible option NG');
+	logger.log('options', (o1.isActive() == false) ? 'active option OK' : 'active option NG');
 
 	o1.setVisible(true);
 	logger.log('methods', 'o1 - visible: ' + o1.getVisible());
@@ -70,6 +80,10 @@ window.addEvent("domready", function(){
 	o1.setZIndex(100);
 	logger.log('methods', 'o1 - z-index: ' + o1.getZIndex());
 	logger.log('methods', 'o1 - get: ' + o1.get('position').lat() + ' ' + o1.get('position').lng());
+
+	o1.setActive(true);
+	logger.log('methods', 'o1 - active: ' + o1.isActive());
+
 });
 
 }(document.id));

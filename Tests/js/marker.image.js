@@ -74,7 +74,7 @@ window.addEvent('domready', function(){
 	});
 
 	var className =	marker.get('className');
-	logger.log('options', (className == 'marker image paper') ? 'className option OK' : 'className option NG');
+	logger.log('options', (className == 'marker image imageDefault') ? 'className option OK' : 'className option NG');
 
 	var title =	marker.get('title');
 	logger.log('options', (title == 'Marker title text') ? 'title option OK' : 'title option NG');

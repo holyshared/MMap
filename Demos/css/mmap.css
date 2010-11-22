@@ -26,11 +26,13 @@
 	display: inline;
 }
 
-.imageDefault:hover {
+.imageDefault:hover,
+.imageDefault.active {
 	background: url(../images/markers/bgi_default_ft.png) no-repeat -70px bottom;
 }
 
-.imageDefault:hover .photo {
+.imageDefault:hover .photo,
+.imageDefault.active .photo {
 	background: url(../images/markers/bgi_default_bd.png) no-repeat -70px bottom;
 }
 

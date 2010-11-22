@@ -80,7 +80,7 @@ window.addEvent('domready', function(){
 	]);
 
 	var className =	marker.get('className');
-	logger.log('options', (className == 'marker image paper') ? 'className option OK' : 'className option NG');
+	logger.log('options', (className == 'marker images imagesPaper') ? 'className option OK' : 'className option NG');
 
 	var position = marker.get('position');
 	logger.log('options', (position.lat() == 35.6666870) ? 'position option OK' : 'position option NG');
