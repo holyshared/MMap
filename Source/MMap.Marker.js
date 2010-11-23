@@ -141,7 +141,7 @@ MMap.Marker = new Class({
 	},
 
 	setTitle: function(title){
-		if (typeOf(title) != 'string') {
+		if (!Type.isString(title)) {
 			new TypeError('The data type is not a character string.');
 		}
 		this.set('title', title);
@@ -155,7 +155,7 @@ MMap.Marker = new Class({
 	},
 
 	setContent: function(content){
-		if (typeOf(content) != 'string' || typeOf(content) != 'element') {
+		if (!Type.isString(content) || !Type.isElement(content)) {
 			new TypeError('The data type is a character string or not an element.');
 		}
 		this.set('content', content);
