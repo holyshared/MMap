@@ -51,16 +51,21 @@ window.addEvent('domready', function(){
 		}
 	});
 
-	marker.addImage({
+	var i1 = {
 		title: 'demo1',
 		src: '../Demos/images/demo/img01.jpg',
 		url: 'http://sharedhat.com'
-	});
-	marker.addImage({
+	};
+	marker.addImage(i1);
+
+
+	var i2 = {
 		title: 'demo2',
 		src: '../Demos/images/demo/img02.jpg',
 		url: 'http://sharedhat.com'
-	});
+	};
+	marker.addImage(i2);
+
 	marker.addImages([
 		{
 			title: 'demo3',
@@ -78,6 +83,7 @@ window.addEvent('domready', function(){
 			url: 'http://sharedhat.com'
 		}
 	]);
+	marker.removeImages(i1, i2);
 
 	var className =	marker.get('className');
 	logger.log('options', (className == 'marker images imagesPaper') ? 'className option OK' : 'className option NG');

@@ -64,8 +64,8 @@ window.addEvent("domready", function(){
 		}
 	});
 
-	var className =	marker.get('marker markerDefault');
-	logger.log('options', (className == 'marker html') ? 'className option OK' : 'className option NG');
+	var className =	marker.get('className');
+	logger.log('options', (className == 'marker markerDefault') ? 'className option OK' : 'className option NG');
 
 	var title =	marker.get('title');
 	logger.log('options', (title == 'Marker title text') ? 'title option OK' : 'title option NG');

@@ -22,8 +22,10 @@
 * [draw](overlayview.html#draw] "draw")
 * [setVisible](overlayview.html#setVisible] "setVisible")
 * [setZIndex](overlayview.html#setZIndex] "setZIndex")
+* [setActive](overlayview.html#setActive] "setActive")
 * [getVisible](overlayview.html#getVisible] "getVisible")
 * [getZIndex](overlayview.html#getZIndex] "getZIndex")
+* [isActive](overlayview.html#isActive] "isActive")
 
 ### MMap.Marker
 
@@ -53,3 +55,5 @@
 * [setCurrent](marker-images.html#setCurrent "setCurrent")
 * [addImage](marker-images.html#addImage "addImage")
 * [addImages](marker-images.html#addImages "addImages")
+* [removeImage](marker-images.html#removeImage "removeImage")
+* [removeImages](marker-images.html#removeImages "removeImages")
