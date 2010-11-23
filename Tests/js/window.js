@@ -9,7 +9,7 @@ window.addEvent("domready", function(){
 		mapTypeId: google.maps.MapTypeId.ROADMAP
 	});
 
-	var marker = new MMap.Marker({
+	var marker = new MMap.Marker.Image({
 		map: map,
 		title: 'Marker title text',
 		src: '../Demos/images/demo/img01.jpg',
@@ -17,7 +17,8 @@ window.addEvent("domready", function(){
 		position: new google.maps.LatLng(35.6666870, 139.731859),
 		zIndex: 0,
 		visible: true,
-		onClick: function(event) {
+		onClick: function(event){
+			event.preventDefault();
 			var window = new MMap.Window({
 				title: 'aa',
 				content: 'aa'

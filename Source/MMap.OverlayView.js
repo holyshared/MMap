@@ -73,6 +73,7 @@ MMap.OverlayView = new Class({
 		var panel = this.getPanes().overlayImage;
 		this.body = this._setup(this._getInstance());
 		this._getInstance().inject(panel);
+		this._setupListeners();
 		this.set('added', true);
 		this.fireEvent("add");
 	},
@@ -89,6 +90,10 @@ MMap.OverlayView = new Class({
 	},
 
 	//abstract method
+	_setupListeners: function(){
+	},
+
+	//abstract method
 	draw: function(){
 	},
 
@@ -98,8 +103,8 @@ MMap.OverlayView = new Class({
 
 	onRemove: function(){
 		this.removeEvents();
-		this.unbindall();
-		this.container.destory();
+		this.unbindAll();
+		this.instance.destroy();
 	},
 
 	getVisible: function() {

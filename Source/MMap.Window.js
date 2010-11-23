@@ -20,8 +20,9 @@ MMap.Window = new Class({
 			onMouseout: $empty
 			onMouseup: $empty
 			onMousedown: $empty
+			onClose: $empty
 			onVisibleChanged: $empty
-			onzIndexChanged: $empty
+			onZIndexChanged: $empty
 			onPositionChanged: $empty,
 			onTitleChanged: $empty,
 			onContentChanged: $empty
@@ -43,21 +44,41 @@ MMap.Window = new Class({
 		var hd = new Element('div', {'class': 'hd'});
 		var bd = new Element('div', {'class': 'bd'});
 		var ft = new Element('div', {'class': 'ft'});
-		window.adopt([hd, bd, ft]);
 
 		this._title = new Element('p', {'class': 'title'});
+		this._closeButton = new Element('a', {title: 'Close', href: '#', html: 'Close'});
+		var hdgroup = new Element('div', {'class': 'hdgroup'});
+		var close = new Element('p', {'class': 'close'});
+		this._closeButton.inject(close);
 		this._content = new Element('div', {'class': 'content'});
-
-		window.inject(container);
-		this._title.inject(hd);
 		this._content.inject(bd);
+		hdgroup.adopt([ this._title, close ]);
+		hdgroup.inject(hd);
+
+		window.adopt([hd, bd, ft]);
+		window.inject(container);
 
 		return window;
 	},
 
+	_setupListeners: function(){
+		var self = this;
+		self.addEvent('click', function(event){
+			if (event.target == self._closeButton) {
+				self.close();
+				self.fireEvent('close');
+			}
+		});
+	},
+
 	draw: function(){
-		if (this.get('added') === false) {
-			return this;
+		if (this.get('added') === false) return this;
+
+		var anchorHeight = 0;
+		if (this.get('anchor')) {
+			var anchor = this.get('anchor');
+			var instance = anchor.instance;
+			anchorHeight = instance.getSize().y;
 		}
 
 		var projection = this.getProjection();
@@ -66,10 +87,15 @@ MMap.Window = new Class({
 		var xy = projection.fromLatLngToDivPixel(position);
 		var styles = {
 			position: 'absolute',
-			left: xy.x -(size.x / 2),
-			top: xy.y -(size.y / 2)
+			left: xy.x - (size.x / 2),
+			top: xy.y - size.y - anchorHeight
 		};
 		this.instance.setStyles(styles);
+
+		var center = new google.maps.Point(xy.x, xy.y - 20);
+		var centerLatlng = projection.fromDivPixelToLatLng(center);
+
+		this.getMap().setCenter(centerLatlng);
 		this.refresh();
 	},
 

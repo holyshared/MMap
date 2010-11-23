@@ -101,7 +101,7 @@ MMap.Marker = new Class({
 		var styles = {
 			position: 'absolute',
 			left: xy.x -(size.x / 2),
-			top: xy.y -(size.y / 2)
+			top: xy.y - size.y
 		};
 		this.instance.setStyles(styles);
 		this.refresh();

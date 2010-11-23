@@ -77,7 +77,7 @@ MMap.Events = new Class({
 		var domEvents = MMap.Events._domEvents;
 		type = removeOn(type);
 		if (domEvents.contains(type.toLowerCase())) {
-			listener = google.maps.event.addDomListener(this.instance, type.toLowerCase(), fn);
+			listener = google.maps.event.addDomListener(this.instance, type.toLowerCase(), fn.bind(this));
 		} else {
 			listener = google.maps.event.addListener(this, type, fn);
 		}
