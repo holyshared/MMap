@@ -96,7 +96,8 @@ MMap.Events = new Class({
 	removeEvent: function(type, fn){
 		type = removeOn(type);
 		var find = this._handles[type].contains(fn);
-		if (find > -1) {
+		if (find) {
+			var index = this._handles[type].indexOf(fn);
 			var target = this._events[type][index];
 			google.maps.event.removeListener(target);
 			this._events[type].erase(target);
