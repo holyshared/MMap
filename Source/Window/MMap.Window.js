@@ -117,11 +117,18 @@ MMap.Window = new Class({
 	open: function(map, anchor){
 		this.set('anchor', anchor);
 		this.setPosition(anchor.getPosition());
+		if (this.isOpen()) return;
 		this.setMap(map);
+		this.set('opened', true);
 	},
 
 	close: function(){
 		this.setMap(null);
+		this.set('opened', false);
+	},
+
+	isOpen: function(){
+		return (this.get('opened')) ? true : false;
 	},
 
 	getPosition: function() {

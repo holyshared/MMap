@@ -105,6 +105,7 @@ MMap.OverlayView = new Class({
 		this.removeEvents();
 		this.unbindAll();
 		this.instance.destroy();
+		this.set('added', false);
 	},
 
 	getVisible: function() {

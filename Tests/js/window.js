@@ -3,6 +3,11 @@
 window.addEvent("domready", function(){
 	var logger = new Logger();
 
+	var window = new MMap.Window({
+		title: 'aa',
+		content: 'aa'
+	});
+
 	var map = new google.maps.Map($('gmap'), {
 		zoom: 15,
 		center: new google.maps.LatLng(35.6666870, 139.731859),
@@ -19,10 +24,13 @@ window.addEvent("domready", function(){
 		visible: true,
 		onClick: function(event){
 			event.preventDefault();
-			var window = new MMap.Window({
-				title: 'aa',
-				content: 'aa'
-			});
+console.log(window);
+			if (!window) {
+				window = new MMap.Window({
+					title: 'aa',
+					content: 'aa'
+				});
+			}
 			window.open(this.getMap(), this);
 		}
 	});
