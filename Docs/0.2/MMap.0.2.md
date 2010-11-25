@@ -57,3 +57,16 @@
 * [addImages](marker-images.html#addImages "addImages")
 * [removeImage](marker-images.html#removeImage "removeImage")
 * [removeImages](marker-images.html#removeImages "removeImages")
+
+### MMap.Window
+
+* [constructor](window.html#constructor "constructor")
+* [open](window.html#open "open")
+* [close](window.html#close "close")
+* [isOpen](window.html#isOpen "isOpen")
+* [setPosition](window.html#setPosition "setPosition")
+* [setTitle](window.html#setTitle "setTitle")
+* [setContent](window.html#setContent "setContent")
+* [getPosition](window.html#getPosition "getPosition")
+* [getTitle](window.html#getTitle "getTitle")
+* [getContent](window.html#getContent "getContent")
