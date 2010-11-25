@@ -24,7 +24,8 @@ window.addEvent("domready", function(){
 		visible: true,
 		onClick: function(event){
 			event.preventDefault();
-console.log(window);
+//console.log(window.getMap());
+//console.log(window);
 			if (!window) {
 				window = new MMap.Window({
 					title: 'aa',

@@ -26,6 +26,7 @@
 * [getVisible](overlayview.html#getVisible] "getVisible")
 * [getZIndex](overlayview.html#getZIndex] "getZIndex")
 * [isActive](overlayview.html#isActive] "isActive")
+* [isAdded](overlayview.html#isAdded] "isAdded")
 
 ### MMap.Marker
 
@@ -57,7 +58,7 @@
 * [addImages](marker-images.html#addImages "addImages")
 * [removeImage](marker-images.html#removeImage "removeImage")
 * [removeImages](marker-images.html#removeImages "removeImages")
-
+<<<<<<< .mine
 ### MMap.Window
 
 * [constructor](window.html#constructor "constructor")
@@ -70,3 +71,19 @@
 * [getPosition](window.html#getPosition "getPosition")
 * [getTitle](window.html#getTitle "getTitle")
 * [getContent](window.html#getContent "getContent")
+=======
+### MMap.Window
+
+* [constructor](window.html#constructor "constructor")
+* [open](window.html#open "open")
+* [close](window.html#open "close")
+* [isOpen](window.html#open "isOpen")
+* [getPosition](window.html#getPosition "getPosition")
+* [getTitle](window.html#getTitle "getTitle")
+* [getContent](window.html#getContent "getContent")
+* [setPosition](window.html#setPosition "setPosition")
+* [setTitle](window.html#setTitle "setTitle")
+* [setContent](window.html#setContent "setContent")
+
+### MMap.Container
+>>>>>>> .theirs
