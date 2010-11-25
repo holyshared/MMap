@@ -105,6 +105,7 @@ MMap.OverlayView = new Class({
 		this.removeEvents();
 		this.unbindAll();
 		this.instance.destroy();
+		delete this.instance;
 		this.set('added', false);
 	},
 
@@ -114,6 +115,10 @@ MMap.OverlayView = new Class({
 
 	getZIndex: function() {
 		return this.get('zIndex');
+	},
+
+	isAdded: function() {
+		return this.get('added');
 	},
 
 	isActive: function() {
