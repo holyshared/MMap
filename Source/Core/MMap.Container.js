@@ -84,6 +84,12 @@ MMap.Container = new Class({
 		var items = this.getItems();
 		this.rewind();
 		items.empty();
+	},
+
+	find: function() {
+	},
+
+	findAll: function() {
 	}
 
 });

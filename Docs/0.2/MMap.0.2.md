@@ -58,7 +58,7 @@
 * [addImages](marker-images.html#addImages "addImages")
 * [removeImage](marker-images.html#removeImage "removeImage")
 * [removeImages](marker-images.html#removeImages "removeImages")
-<<<<<<< .mine
+
 ### MMap.Window
 
 * [constructor](window.html#constructor "constructor")
@@ -71,7 +71,7 @@
 * [getPosition](window.html#getPosition "getPosition")
 * [getTitle](window.html#getTitle "getTitle")
 * [getContent](window.html#getContent "getContent")
-=======
+
 ### MMap.Window
 
 * [constructor](window.html#constructor "constructor")
@@ -86,4 +86,21 @@
 * [setContent](window.html#setContent "setContent")
 
 ### MMap.Container
->>>>>>> .theirs
+
+
+### MMap.MarkerManager
+
+* [constructor](marker-manager.html#constructor "constructor")
+* [setBounds](marker-manager.html#setBounds "setBounds")
+* [getBounds](marker-manager.html#getBounds "getBounds")
+* [getDisplayMarkers](marker-manager.html#getDisplayMarkers "getDisplayMarkers")
+* [hasDisplayMarkers](marker-manager.html#hasDisplayMarkers "hasDisplayMarkers")
+* [hasMarker](marker-manager.html#hasMarker "hasMarker")
+* [activate](marker-manager.html#activate "activate")
+* [deactivate](marker-manager.html#deactivate "deactivate")
+* [find](marker-manager.html#find "find")
+* [findAll](marker-manager.html#findAll "findAll")
+
+#### Events
+
+* onDisplayMarkerChanged
