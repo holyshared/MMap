@@ -121,6 +121,10 @@ MMap.OverlayView = new Class({
 		return this.get('added');
 	},
 
+	isVisible: function() {
+		return this.get('visible');
+	},
+
 	isActive: function() {
 		return this.get('active');
 	},

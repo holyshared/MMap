@@ -37,17 +37,20 @@ MMap.Container = new Class({
 	setItems: function(items){
 		if (!Type.isArray(items)) return;
 		this.set('items', items);
+		return this;
 	},
 
 	setCurrent: function(index){
 		if (!Type.isNumber(index)) return;
 		this.set('index', index);
+		return this;
 	},
 
 	addItem: function(item){
 		if (this.hasItem(item)) return;
 		var items = this.getItems();
 		items.push(item);
+		return this;
 	},
 
 	hasItem: function(item){
@@ -59,10 +62,15 @@ MMap.Container = new Class({
 		}
 	},
 
+	count: function(){
+		return this.getItems().length;		
+	},
+
 	removeItem: function(item){
 		if (!this.hasItem(item)) return;
 		var items = this.get('items');
 		items.erase(item);
+		return this;
 	},
 
 	next: function() {
@@ -78,6 +86,7 @@ MMap.Container = new Class({
 
 	rewind: function() {
 		this.setCurrent(0);
+		return this;
 	},
 
 	empty: function() {
