@@ -67,6 +67,15 @@ var removeOn = function(string){
 	});
 };
 
+var toNotifyFormat = function(string){
+	var regex = /(Changed)$/;
+	return string.replace(regex, '_$1').toLowerCase();
+};
+
+var toFormat = function(string){
+	return toNotifyFormat(removeOn(string));
+};
+
 MMap.Events = new Class({
 
 	_events: {},
@@ -75,7 +84,7 @@ MMap.Events = new Class({
 	addEvent: function(type, fn){
 		var listener = null;
 		var domEvents = MMap.Events._domEvents;
-		type = removeOn(type);
+		type = toFormat(type);
 		if (domEvents.contains(type.toLowerCase())) {
 			listener = google.maps.event.addDomListener(this.instance, type.toLowerCase(), fn.bind(this));
 		} else {
@@ -94,7 +103,7 @@ MMap.Events = new Class({
 	},
 
 	removeEvent: function(type, fn){
-		type = removeOn(type);
+		type = toFormat(type);
 		var find = this._handles[type].contains(fn);
 		if (find) {
 			var index = this._handles[type].indexOf(fn);
@@ -114,7 +123,7 @@ MMap.Events = new Class({
 			for (type in events) this.removeEvent(type, events[type]);
 			return this;
 		}
-		events = removeOn(events);
+		type = toFormat(type);
 		for (type in this._events){
 			if (events && events != type) continue;
 			var fns = this._events[type];
@@ -124,7 +133,7 @@ MMap.Events = new Class({
 	},
 
 	fireEvent: function(type, args){
-		type = removeOn(type);
+		type = toFormat(type);
 		var domEvents = MMap.Events._domEvents;
 		if (!this._events[type]) return this;
 		var target = (domEvents.contains(type.toLowerCase())) ? this.instance : this;

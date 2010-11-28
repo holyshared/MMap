@@ -56,12 +56,23 @@ var MarkerManagerTest = {
 			markers: manageMarkers
 		});
 		this.manager = manager;
+		
+		var self = this.logger;
+		this.manager.addEvent('boundsChanged', function(){
+			self.log('events', 'boundsChanged');
+		});
+		this.manager.addEvent('zoomChanged', function(){
+			self.log('events', 'zoomChanged');
+		});
+		this.manager.addEvent('displayMarkersChanged', function(){
+			self.log('events', 'displayMarkers');
+		});
 
 		//LatLngBounds
 		var sw = new google.maps.LatLng(35.6646870, 139.726859)
 		var ne = new google.maps.LatLng(35.6666870, 139.731859)
 		this.bounds = new google.maps.LatLngBounds(sw, ne);
-		
+
 		this.runTest();
 	},
 
@@ -76,6 +87,7 @@ var MarkerManagerTest = {
 		this.testSetBounds();
 		this.testRemoveMaker();
 		this.testAddMarker();
+		this.testSetZoom();
 	},
 
 	testVisibleMarkerByMarker: function(){
@@ -235,6 +247,16 @@ var MarkerManagerTest = {
 			this.logger.log('methods', 'addMarkers method NG');
 			this.logger.log('methods', 'addMarkers method NG');
 		};
+	},
+
+	testSetZoom: function(){
+		this.manager.setZoom(18);
+		var zoom = this.manager.getZoom();
+		if (zoom == 18) {
+			this.logger.log('methods', 'setZoom method OK');
+		} else {
+			this.logger.log('methods', 'setZoom method OK');
+		}
 	}
 
 };
