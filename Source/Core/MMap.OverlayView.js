@@ -139,7 +139,7 @@ MMap.OverlayView = new Class({
 		} else {
 			container.setStyle('display', 'none');
 		}
-		this.fireEvent('visibleChanged');
+		this.notify('visible');
 		return this;
 	},
 
@@ -149,7 +149,7 @@ MMap.OverlayView = new Class({
 		this.set('zIndex', index);
 		var container = this._getInstance();
 		container.setStyle('z-index', index);
-		this.fireEvent('zIndexChanged');
+		this.notify('zindex');
 		return this;
 	},
 
@@ -160,11 +160,10 @@ MMap.OverlayView = new Class({
 		var container = this._getInstance();
 		if (value) {
 			container.addClass('active');
-			this.fireEvent('active');
 		} else {
 			container.removeClass('active');
-			this.fireEvent('deactive');
 		}
+		this.notify('active');
 		return this;
 	}
 

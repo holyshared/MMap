@@ -40,17 +40,17 @@ MMap.MarkerManager = new Class({
 				var bounds = this.getMap().getBounds();
 				this.setBounds(bounds);
 			}
-			this.removeEvent('bounds_changed', this.defaultBounds);
+			this.removeEvent('boundsChanged', this.defaultBounds);
 		};
 		this.defaultZoom = function(){
 			if (!this.get('zoom')) {
 				var zoom = this.getMap().getZoom();
 				this.setZoom(zoom);
 			}
-			this.removeEvent('zoom_changed', this.defaultZoom);
+			this.removeEvent('zoomChanged', this.defaultZoom);
 		};
-		this.addEvent('zoom_changed', this.defaultZoom);
-		this.addEvent('bounds_changed', this.defaultBounds);
+		this.addEvent('zoomChanged', this.defaultZoom);
+		this.addEvent('boundsChanged', this.defaultBounds);
 	},
 
 	setMap: function(map) {

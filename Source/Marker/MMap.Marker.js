@@ -132,7 +132,7 @@ MMap.Marker = new Class({
 		}
 		this.set('position', position);
 		this.draw();
-		this.fireEvent("positionChanged");
+		this.notify('position');
 		return this;
 	},
 
@@ -146,7 +146,7 @@ MMap.Marker = new Class({
 		}
 		this.set('title', title);
 		this._title.set('html', title);
-		this.fireEvent("titleChanged");
+		this.notify('title');
 		return this;
 	},
 
@@ -160,7 +160,7 @@ MMap.Marker = new Class({
 		}
 		this.set('content', content);
 		this._content.set('html', content);
-		this.fireEvent("contentChanged");
+		this.notify('content');
 		return this;
 	}
 

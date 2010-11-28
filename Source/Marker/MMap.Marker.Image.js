@@ -62,6 +62,7 @@ MMap.Marker.Image = this.MMap.Marker.Image = new Class({
 		this.set('title', title);
 		this.image.set('title', title);
 		this.anchor.set('title', title);
+		this.notify('title');
 		return this;
 	},
 
@@ -69,7 +70,7 @@ MMap.Marker.Image = this.MMap.Marker.Image = new Class({
 		if (this.get('src') == src) return this;
 		this.set('src', src);
 		this.image.set('src', src);
-		this.fireEvent('imageChanged');
+		this.notify('image');
 		return this;
 	},
 
@@ -77,6 +78,7 @@ MMap.Marker.Image = this.MMap.Marker.Image = new Class({
 		if (this.get('url') == url) return this;
 		this.set('url', url);
 		this.anchor.set('href', url);
+		this.notify('url');
 	}
 });
 
