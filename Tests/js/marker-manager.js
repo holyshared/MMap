@@ -88,6 +88,7 @@ var MarkerManagerTest = {
 		this.testRemoveMaker();
 		this.testAddMarker();
 		this.testSetZoom();
+		this.testBindTo();
 	},
 
 	testVisibleMarkerByMarker: function(){
@@ -257,6 +258,37 @@ var MarkerManagerTest = {
 		} else {
 			this.logger.log('methods', 'setZoom method OK');
 		}
+	},
+
+	testBindTo: function(){
+		var binder = new google.maps.MVCObject();
+		binder.bindTo('zoom', this.manager, 'zoom');
+		binder.bindTo('bounds', this.manager, 'bounds');
+		binder.bindTo('displayMarkers', this.manager, 'displayMarkers');
+		binder.bindTo('hiddenMarkers', this.manager, 'hiddenMarkers');
+		binder.bindTo('activeMarkers', this.manager, 'activeMarkers');
+		binder.bindTo('deactiveMarkers', this.manager, 'deactiveMarkers');
+
+		var self = this;
+		google.maps.event.addListener(binder, 'zoom_changed', function(){
+			self.logger.log('events', 'zoom_changed OK');
+		});
+		google.maps.event.addListener(binder, 'bounds_changed', function(){
+			self.logger.log('events', 'bounds_changed OK');
+		});
+		google.maps.event.addListener(binder, 'hiddenmarkers_changed', function(){
+			self.logger.log('events', 'hiddenmarkers_changed OK');
+		});
+		google.maps.event.addListener(binder, 'hiddenmarkers_changed', function(){
+			self.logger.log('events', 'hiddenmarkers_changed OK');
+		});
+		google.maps.event.addListener(binder, 'activemarkers_changed', function(){
+			self.logger.log('events', 'activemarkers_changed OK');
+		});
+		google.maps.event.addListener(binder, 'deactivemarkers_changed', function(){
+			self.logger.log('events', 'deactivemarkers_changed OK');
+		});
+		this.manager.setZoom(10);
 	}
 
 };

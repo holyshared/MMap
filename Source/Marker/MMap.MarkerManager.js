@@ -98,8 +98,6 @@ MMap.MarkerManager = new Class({
 		if (current == zoom) return;
 		this.set('zoom', zoom);
 		this._displayMarkerChange();
-		this.notify('zoom');
-		this.notify('displayMarkers');
 	},
 
 	getZoom: function(){
@@ -111,8 +109,6 @@ MMap.MarkerManager = new Class({
 		if (current == bounds) return;
 		this.set('bounds', bounds);
 		this._displayMarkerChange();
-		this.notify('bounds');
-		this.notify('displayMarkers');
 	},
 
 	getBounds: function() {
