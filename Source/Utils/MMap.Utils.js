@@ -36,19 +36,19 @@ var MMap = (this.MMap || {});
 MMap.Options = new Class({
 
 	setOptions: function(options){
-		options = Object.append(this.options, options);
+		var clone = Object.clone(this.options);
+		var options = Object.append(clone, options);
 		for (var key in options) {
 			var value = options[key]; 
 			if (key == 'map') {
 				this.setMap(value);
+				delete options[key];
 			} else if (instanceOf(value, Function)) {
 				this.addEvent(key, value);
-			} else {
-				this.set(key, value);
+				delete options[key];
 			}
 		}
-		delete options;
-		delete this.options;
+		this.options = options;
 		return this;
 	}
 
