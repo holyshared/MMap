@@ -89,6 +89,14 @@ MMap.Marker = new Class({
 		return marker;
 	},
 
+	_init: function(){
+		var self = this;
+		var props = ['title', 'content', 'position', 'zIndex', 'visible'];
+		props.each(function(key){
+			self.set(key, self.options[key]);
+		});
+	},
+
 	draw: function(){
 		if (this.get('added') === false) {
 			return this;

@@ -61,12 +61,11 @@ MMap.OverlayView = new Class({
 	initialize: function(options){
 		var subclass = this;
 		subclass = Object.append(new google.maps.OverlayView(), subclass);
-		for (var k in subclass) {
-			this[k] = subclass[k];
-		}
+		for (var k in subclass) { this[k] = subclass[k]; };
 		this.instance = this._getInstance();
 		this.setOptions(options);
-		this.set('added', false);
+		this._init();
+		this._added = false;
 	},
 
 	build: function(){
@@ -74,7 +73,7 @@ MMap.OverlayView = new Class({
 		this.body = this._setup(this._getInstance());
 		this._getInstance().inject(panel);
 		this._setupListeners();
-		this.set('added', true);
+		this._added = true;
 		this.fireEvent("add");
 	},
 
@@ -93,6 +92,9 @@ MMap.OverlayView = new Class({
 	_setupListeners: function(){
 	},
 
+	_init: function(){
+	},
+
 	//abstract method
 	draw: function(){
 	},
@@ -106,7 +108,7 @@ MMap.OverlayView = new Class({
 		this.unbindAll();
 		this.instance.destroy();
 		delete this.instance;
-		this.set('added', false);
+		this._added = false;
 	},
 
 	getVisible: function() {
@@ -118,7 +120,7 @@ MMap.OverlayView = new Class({
 	},
 
 	isAdded: function() {
-		return this.get('added');
+		return this._added;
 	},
 
 	isVisible: function() {
@@ -139,7 +141,6 @@ MMap.OverlayView = new Class({
 		} else {
 			container.setStyle('display', 'none');
 		}
-		this.notify('visible');
 		return this;
 	},
 
@@ -149,7 +150,6 @@ MMap.OverlayView = new Class({
 		this.set('zIndex', index);
 		var container = this._getInstance();
 		container.setStyle('z-index', index);
-		this.notify('zindex');
 		return this;
 	},
 
@@ -163,7 +163,6 @@ MMap.OverlayView = new Class({
 		} else {
 			container.removeClass('active');
 		}
-		this.notify('active');
 		return this;
 	}
 

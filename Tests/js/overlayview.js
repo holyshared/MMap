@@ -30,6 +30,13 @@ window.addEvent("domready", function(){
 			return photo;
 		},
 
+		_init: function(){
+			var props = [ 'zIndex', 'visible', 'active', 'position' ];
+			var values = Object.subset(this.options, props);
+			this.setValues(values);
+			for (var key in props){ delete this.options[key]; };
+		},
+
 		draw: function(){
 			var projection = this.getProjection();
 			var position = this.get('position');
@@ -62,14 +69,10 @@ window.addEvent("domready", function(){
 		onVisibleChanged: function(){
 			logger.log('events', 'o1 - onVisibleChanged');
 		},
-		onActive: function(){
-			logger.log('events', 'o1 - onActive');
-		},
-		onDeactive: function(){
-			logger.log('events', 'o1 - onDeactive');
+		onActiveChanged: function(){
+			logger.log('events', 'o1 - onActiveChanged');
 		}
 	});
-
 	logger.log('options', (o1.getZIndex() == 1000) ? 'zIndex option OK' : 'zIndex option NG' );
 	logger.log('options', (o1.getVisible() == false) ? 'visible option OK' : 'visible option NG');
 	logger.log('options', (o1.isActive() == false) ? 'active option OK' : 'active option NG');
@@ -83,6 +86,9 @@ window.addEvent("domready", function(){
 
 	o1.setActive(true);
 	logger.log('methods', 'o1 - active: ' + o1.isActive());
+
+	o1.setActive(false);
+	logger.log('methods', 'o1 - deactive: ' + o1.isActive());
 
 });
 
