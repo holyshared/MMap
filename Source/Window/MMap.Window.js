@@ -84,7 +84,7 @@ MMap.Window = new Class({
 	},
 
 	draw: function(){
-		if (this._added == false) return this;
+		if (this._added == false || this._opened == false) return this;
 
 		var anchorHeight = 0;
 		if (this._anchor) {
@@ -139,9 +139,9 @@ MMap.Window = new Class({
 	},
 
 	close: function(){
+		this._opened = false;
 		this.fireEvent('close');
 		this.setMap(null);
-		this._opened = false;
 	},
 
 	isOpen: function(){

@@ -50,13 +50,8 @@ window.addEvent("domready", function(){
 			}
 			win.open(this.getMap(), this);
 			logger.log('methods', (win.isOpen()) ? 'isOpen1 method OK' : 'isOpen1 method NG');
-
 		}
 	});
-
-
-
-
 
 });
 
