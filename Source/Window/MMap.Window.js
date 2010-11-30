@@ -20,6 +20,7 @@ MMap.Window = new Class({
 			onMouseout: $empty
 			onMouseup: $empty
 			onMousedown: $empty
+			onOpen: $empty
 			onClose: $empty
 			onVisibleChanged: $empty
 			onZIndexChanged: $empty
@@ -34,31 +35,34 @@ MMap.Window = new Class({
 	},
 
 	_setup: function(container) {
-		var className = this.get('className');
+		var className = this.options.className;
 		container.addClass(className);
 
 		var zIndex = this.get('zIndex');
 		container.setStyle('z-index', zIndex);
 
-		var window = new Element('div', {'class': 'inner'});
+		var win = new Element('div', {'class': 'inner'});
 		var hd = new Element('div', {'class': 'hd'});
 		var bd = new Element('div', {'class': 'bd'});
 		var ft = new Element('div', {'class': 'ft'});
+		win.adopt([hd, bd, ft]);
+		win.inject(container);
 
-		this._title = new Element('p', {'class': 'title'});
-		this._closeButton = new Element('a', {title: 'Close', href: '#', html: 'Close'});
 		var hdgroup = new Element('div', {'class': 'hdgroup'});
-		var close = new Element('p', {'class': 'close'});
-		this._closeButton.inject(close);
-		this._content = new Element('div', {'class': 'content'});
-		this._content.inject(bd);
-		hdgroup.adopt([ this._title, close ]);
 		hdgroup.inject(hd);
 
-		window.adopt([hd, bd, ft]);
-		window.inject(container);
+		var close = new Element('p', {'class': 'close'});
+		this._title = new Element('p', {'class': 'title'});
 
-		return window;
+		hdgroup.adopt([ this._title, close ]);
+
+		this._closeButton = new Element('a', {title: 'Close', href: '#', html: 'Close'});
+		this._closeButton.inject(close);
+
+		this._content = new Element('div', {'class': 'content'});
+		this._content.inject(bd);
+
+		return win;
 	},
 
 	_setupListeners: function(){
@@ -71,16 +75,23 @@ MMap.Window = new Class({
 		});
 	},
 
+	_init: function(){
+		var self = this;
+		var props = ['title', 'content', 'position', 'zIndex', 'visible'];
+		props.each(function(key){
+			self.set(key, self.options[key]);
+		});
+	},
+
 	draw: function(){
-		if (this.get('added') === false) return this;
+		if (this._added == false) return this;
 
 		var anchorHeight = 0;
-		if (this.get('anchor')) {
-			var anchor = this.get('anchor');
+		if (this._anchor) {
+			var anchor = this._anchor;
 			var instance = anchor.instance;
 			anchorHeight = instance.getSize().y;
 		}
-
 		var projection = this.getProjection();
 		var position = this.get('position');
 		var size = this.instance.getSize();
@@ -95,7 +106,10 @@ MMap.Window = new Class({
 		var center = new google.maps.Point(xy.x, xy.y - 20);
 		var centerLatlng = projection.fromDivPixelToLatLng(center);
 
-		this.getMap().setCenter(centerLatlng);
+		var bounds = this.getMap().getBounds();
+		bounds.extend(centerLatlng);
+
+		this.getMap().panToBounds(bounds);
 		this.refresh();
 	},
 
@@ -110,25 +124,28 @@ MMap.Window = new Class({
 	},
 
 	_update: function(){
+		if (this._added == false) return this;
 		this.setTitle(this.get('title'))
 		.setContent(this.get('content'));
 	},
 
 	open: function(map, anchor){
-		this.set('anchor', anchor);
+		this._anchor = anchor;
 		this.setPosition(anchor.getPosition());
 		if (this.isOpen()) return;
 		this.setMap(map);
-		this.set('opened', true);
+		this.fireEvent('open');
+		this._opened = true;
 	},
 
 	close: function(){
+		this.fireEvent('close');
 		this.setMap(null);
-		this.set('opened', false);
+		this._opened = false;
 	},
 
 	isOpen: function(){
-		return (this.get('opened')) ? true : false;
+		return (this._opened) ? true : false;
 	},
 
 	getPosition: function() {
@@ -141,7 +158,6 @@ MMap.Window = new Class({
 		}
 		this.set('position', position);
 		this.draw();
-		this.notify('position');
 		return this;
 	},
 
@@ -153,9 +169,8 @@ MMap.Window = new Class({
 		if (!Type.isString(title)) {
 			new TypeError('The data type is not a character string.');
 		}
-		this.set('title', title);
 		this._title.set('html', title);
-		this.notify('title');
+		this.set('title', title);
 		return this;
 	},
 
@@ -169,7 +184,6 @@ MMap.Window = new Class({
 		}
 		this.set('content', content);
 		this._content.set('html', content);
-		this.notify('content');
 		return this;
 	}
 
