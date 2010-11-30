@@ -11,7 +11,7 @@ MMap.Marker.Image = this.MMap.Marker.Image = new Class({
 		map: null,
 		className: 'marker image imageDefault',
 		title: '',
-		src: '',
+		image: '',
 		url: '',
 		position: null,
 		zIndex: 0,
@@ -23,25 +23,33 @@ MMap.Marker.Image = this.MMap.Marker.Image = new Class({
 	},
 
 	_setup: function(container) {
-		var className = this.get('className');
+		var className = this.options.className;
 		container.addClass(className);
 		var zIndex = this.get('zIndex');
 		container.setStyle('z-index', zIndex);
 		var photo = new Element('p', {'class': 'photo'});
-		this.anchor = new Element('a', {
+		this._anchor = new Element('a', {
 			'title': this.get('title'),
 			'href': this.get('url')
 		});
-		this.image = new Element('img', {'src': this.get('src')});
+		this._image = new Element('img', {'src': this.get('image')});
 		photo.inject(container);
-		this.anchor.inject(photo);
-		this.image.inject(this.anchor);
+		this._anchor.inject(photo);
+		this._image.inject(this._anchor);
 		return photo;
+	},
+
+	_init: function(){
+		var self = this;
+		var props = ['title', 'image', 'url', 'position', 'zIndex', 'visible'];
+		props.each(function(key){
+			self.set(key, self.options[key]);
+		});
 	},
 
 	_update: function(){
 		this.setTitle(this.get('title'))
-		.setImage(this.get('src'))
+		.setImage(this.get('image'))
 		.setURL(this.get('url'));
 	},
 
@@ -50,7 +58,7 @@ MMap.Marker.Image = this.MMap.Marker.Image = new Class({
 	},
 
 	getImage: function() {
-		return this.get('src');
+		return this.get('image');
 	},
 
 	getURL: function() {
@@ -60,26 +68,24 @@ MMap.Marker.Image = this.MMap.Marker.Image = new Class({
 	setTitle: function(title){
 		if (this.get('title') == title) return this;
 		this.set('title', title);
-		this.image.set('title', title);
-		this.anchor.set('title', title);
-		this.notify('title');
+		this._image.set('title', title);
+		this._anchor.set('title', title);
 		return this;
 	},
 
-	setImage: function(src){
-		if (this.get('src') == src) return this;
-		this.set('src', src);
-		this.image.set('src', src);
-		this.notify('image');
+	setImage: function(image){
+		if (this.get('image') == image) return this;
+		this.set('image', image);
+		this._image.set('src', image);
 		return this;
 	},
 
 	setURL: function(url){
 		if (this.get('url') == url) return this;
 		this.set('url', url);
-		this.anchor.set('href', url);
-		this.notify('url');
+		this._anchor.set('href', url);
 	}
+
 });
 
 }(document.id))

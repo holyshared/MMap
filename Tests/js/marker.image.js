@@ -14,7 +14,7 @@ window.addEvent('domready', function(){
 		map: map,
 //		className: 'marker image paper',
 		title: 'Marker title text',
-		src: '../Demos/images/demo/img01.jpg',
+		image: '../Demos/images/demo/img01.jpg',
 		url: 'http://sharedhat.com/',
 		position: new google.maps.LatLng(35.6666870, 139.731859),
 		zIndex: 0,
@@ -54,11 +54,11 @@ window.addEvent('domready', function(){
 			marker.setPosition(latlng);
 			var position = marker.getPosition();
 			logger.log('methods', (position == latlng) ? 'Position setter/getter OK' : 'Position setter/getter NG');
-			
+
 			marker.setZIndex(10);
 			var zIndex = marker.getZIndex();
 			logger.log('methods', (zIndex == 10) ? 'ZIndex setter/getter OK' : 'ZIndex setter/getter NG');
-			
+
 			marker.setTitle('foo');
 			var title = marker.getTitle();
 			logger.log('methods', (title == 'foo') ? 'Title setter/getter OK' : 'Title setter/getter NG');
@@ -73,14 +73,14 @@ window.addEvent('domready', function(){
 		}
 	});
 
-	var className =	marker.get('className');
+	var className =	marker.options.className;
 	logger.log('options', (className == 'marker image imageDefault') ? 'className option OK' : 'className option NG');
 
 	var title =	marker.get('title');
 	logger.log('options', (title == 'Marker title text') ? 'title option OK' : 'title option NG');
 
-	var src = marker.get('src');
-	logger.log('options', (src == '../Demos/images/demo/img01.jpg') ? 'image option OK' : 'image option NG');
+	var image = marker.get('image');
+	logger.log('options', (image == '../Demos/images/demo/img01.jpg') ? 'image option OK' : 'image option NG');
 
 	var url = marker.get('url');
 	logger.log('options', (url == 'http://sharedhat.com/') ? 'url option OK' : 'url option NG');

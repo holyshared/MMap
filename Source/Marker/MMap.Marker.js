@@ -67,7 +67,7 @@ MMap.Marker = new Class({
 	},
 
 	_setup: function(container) {
-		var className = this.get('className');
+		var className = this.options.className;
 		container.addClass(className);
 
 		var zIndex = this.get('zIndex');
@@ -98,7 +98,7 @@ MMap.Marker = new Class({
 	},
 
 	draw: function(){
-		if (this.get('added') === false) {
+		if (this._added === false) {
 			return this;
 		}
 
@@ -140,7 +140,6 @@ MMap.Marker = new Class({
 		}
 		this.set('position', position);
 		this.draw();
-		this.notify('position');
 		return this;
 	},
 
@@ -154,7 +153,6 @@ MMap.Marker = new Class({
 		}
 		this.set('title', title);
 		this._title.set('html', title);
-		this.notify('title');
 		return this;
 	},
 
@@ -168,7 +166,6 @@ MMap.Marker = new Class({
 		}
 		this.set('content', content);
 		this._content.set('html', content);
-		this.notify('content');
 		return this;
 	}
 

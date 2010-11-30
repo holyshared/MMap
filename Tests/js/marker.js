@@ -64,7 +64,7 @@ window.addEvent("domready", function(){
 		}
 	});
 
-	var className =	marker.get('className');
+	var className =	marker.options.className;
 	logger.log('options', (className == 'marker markerDefault') ? 'className option OK' : 'className option NG');
 
 	var title =	marker.get('title');
