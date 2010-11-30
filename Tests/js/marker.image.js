@@ -48,30 +48,43 @@ window.addEvent('domready', function(){
 		},
 		onMouseDown: function(event) {
 			logger.log('events', 'onMouseDown');
-		},
-		onAdd: function(event) {
-			var latlng = new google.maps.LatLng(35.6666870, 139.731869);
-			marker.setPosition(latlng);
-			var position = marker.getPosition();
-			logger.log('methods', (position == latlng) ? 'Position setter/getter OK' : 'Position setter/getter NG');
-
-			marker.setZIndex(10);
-			var zIndex = marker.getZIndex();
-			logger.log('methods', (zIndex == 10) ? 'ZIndex setter/getter OK' : 'ZIndex setter/getter NG');
-
-			marker.setTitle('foo');
-			var title = marker.getTitle();
-			logger.log('methods', (title == 'foo') ? 'Title setter/getter OK' : 'Title setter/getter NG');
-
-			marker.setImage('../Demos/images/demo/img02.jpg');
-			var image = marker.getImage();
-			logger.log('methods', (image == '../Demos/images/demo/img02.jpg') ? 'Image setter/getter OK' : 'Image setter/getter NG');
-
-			marker.setURL('http://mootools.net');
-			var url = marker.getURL();
-			logger.log('methods', (url == 'http://mootools.net') ? 'Url setter/getter OK' : 'Url setter/getter NG');
 		}
 	});
+
+
+
+	var binder = new google.maps.MVCObject();
+	binder.bindTo('title', marker, 'title');
+	binder.bindTo('image', marker, 'image');
+	binder.bindTo('url', marker, 'url');
+	binder.bindTo('position', marker, 'position');
+	binder.bindTo('zIndex', marker, 'zIndex');
+	binder.bindTo('visible', marker, 'visible');
+
+	var titleListener = google.maps.event.addListener(binder, 'title_changed', function(){
+		logger.log('events', "bindTo title_changed OK");
+	});
+	var imageListener = google.maps.event.addListener(binder, 'image_changed', function(){
+		logger.log('events', "bindTo image_changed OK");
+	});
+	var urlListener = google.maps.event.addListener(binder, 'url_changed', function(){
+		logger.log('events', "bindTo url_changed OK");
+	});
+	var positionListener = google.maps.event.addListener(binder, 'position_changed', function(){
+		logger.log('events', "bindTo position_changed OK");
+	});
+	var zindexListener = google.maps.event.addListener(binder, 'zindex_changed', function(){
+		logger.log('events', "bindTo zindex_changed OK");
+	});
+	var visibleListener = google.maps.event.addListener(binder, 'visible_changed', function(){
+		logger.log('events', "bindTo visible_changed OK");
+	});	
+
+
+
+
+
+
 
 	var className =	marker.options.className;
 	logger.log('options', (className == 'marker image imageDefault') ? 'className option OK' : 'className option NG');
@@ -93,6 +106,28 @@ window.addEvent('domready', function(){
 
 	var visible = marker.get('visible');
 	logger.log('options', (visible == true) ? 'visible option OK' : 'visible option NG');
+
+
+	var latlng = new google.maps.LatLng(35.6666870, 139.731869);
+	marker.setPosition(latlng);
+	var position = marker.getPosition();
+	logger.log('methods', (position == latlng) ? 'Position setter/getter OK' : 'Position setter/getter NG');
+
+	marker.setZIndex(10);
+	var zIndex = marker.getZIndex();
+	logger.log('methods', (zIndex == 10) ? 'ZIndex setter/getter OK' : 'ZIndex setter/getter NG');
+
+	marker.setTitle('foo');
+	var title = marker.getTitle();
+	logger.log('methods', (title == 'foo') ? 'Title setter/getter OK' : 'Title setter/getter NG');
+
+	marker.setImage('../Demos/images/demo/img02.jpg');
+	var image = marker.getImage();
+	logger.log('methods', (image == '../Demos/images/demo/img02.jpg') ? 'Image setter/getter OK' : 'Image setter/getter NG');
+
+	marker.setURL('http://mootools.net');
+	var url = marker.getURL();
+	logger.log('methods', (url == 'http://mootools.net') ? 'Url setter/getter OK' : 'Url setter/getter NG');
 
 });
 

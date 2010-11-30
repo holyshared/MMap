@@ -23,6 +23,7 @@ requires:
   - Core/Element.Style
   - Core/Element.Event
   - Core/Element.Dimensions
+  - MMap/MMap.Core
 
 provides: [MMap.Options, MMap.Events]
 

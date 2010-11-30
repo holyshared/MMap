@@ -23,6 +23,7 @@ requires:
   - Core/Element.Style
   - Core/Element.Event
   - Core/Element.Dimensions
+  - MMap/MMap.Core
   - MMap/MMap.Utils
   - MMap/MMap.OverlayView
 
@@ -98,10 +99,7 @@ MMap.Marker = new Class({
 	},
 
 	draw: function(){
-		if (this._added === false) {
-			return this;
-		}
-
+		if (!this.isAdded()) return;
 		var projection = this.getProjection();
 		var position = this.get('position');
 		var size = this.instance.getSize();
@@ -116,6 +114,7 @@ MMap.Marker = new Class({
 	},
 
 	refresh: function(){
+		if (!this.isAdded()) return;
 		this._updateVisibleState();
 		this._update();
 	},
@@ -126,8 +125,8 @@ MMap.Marker = new Class({
 	},
 
 	_update: function(){
-		this.setTitle(this.get('title'))
-		.setContent(this.get('content'));
+		this._title.set('html', this.get('title'));
+		this._content.set('html', this.get('content'));
 	},
 
 	getPosition: function() {
@@ -152,7 +151,6 @@ MMap.Marker = new Class({
 			new TypeError('The data type is not a character string.');
 		}
 		this.set('title', title);
-		this._title.set('html', title);
 		return this;
 	},
 
@@ -165,7 +163,6 @@ MMap.Marker = new Class({
 			new TypeError('The data type is a character string or not an element.');
 		}
 		this.set('content', content);
-		this._content.set('html', content);
 		return this;
 	}
 

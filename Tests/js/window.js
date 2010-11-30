@@ -26,23 +26,6 @@ window.addEvent("domready", function(){
 					onOpen: function(event){
 						logger.log('events', 'Open event OK');
 					},
-					onAdd: function() {
-						win.setZIndex(9999);
-						logger.log('methods', (win.getZIndex() == 9999) ? 'ZIndex setter/getter  OK' : 'ZIndex setter/getter NG');
-
-						win.setVisible(false);
-						logger.log('methods', (win.getVisible() == false) ? 'Visible setter/getter  OK' : 'Visible setter/getter NG');
-
-						win.setVisible(true);
-						win.close();
-						logger.log('methods', (!win.isOpen()) ? 'isOpen2 method OK' : 'isOpen2 method NG');
-
-						win.setTitle('bar bar foo foo');
-						logger.log('methods', (win.getTitle() == 'bar bar foo foo') ? 'Title setter/getter  OK' : 'Title setter/getter NG');
-
-						win.setContent('new content');
-						logger.log('methods', (win.getContent() == 'new content') ? 'Content setter/getter  OK' : 'Content setter/getter NG');
-					},
 					onClose: function(event){
 						logger.log('events', 'Close event OK');
 					}
@@ -50,6 +33,24 @@ window.addEvent("domready", function(){
 			}
 			win.open(this.getMap(), this);
 			logger.log('methods', (win.isOpen()) ? 'isOpen1 method OK' : 'isOpen1 method NG');
+
+			win.setZIndex(9999);
+			logger.log('methods', (win.getZIndex() == 9999) ? 'ZIndex setter/getter  OK' : 'ZIndex setter/getter NG');
+
+			win.setVisible(false);
+			logger.log('methods', (win.getVisible() == false) ? 'Visible setter/getter  OK' : 'Visible setter/getter NG');
+
+			win.setVisible(true);
+			win.close();
+			logger.log('methods', (!win.isOpen()) ? 'isOpen2 method OK' : 'isOpen2 method NG');
+
+			win.setTitle('bar bar foo foo');
+			logger.log('methods', (win.getTitle() == 'bar bar foo foo') ? 'Title setter/getter  OK' : 'Title setter/getter NG');
+
+			win.setContent('new content');
+			logger.log('methods', (win.getContent() == 'new content') ? 'Content setter/getter  OK' : 'Content setter/getter NG');
+
+			win.open(this.getMap(), this);
 		}
 	});
 

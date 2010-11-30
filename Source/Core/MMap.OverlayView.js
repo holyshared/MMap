@@ -24,6 +24,7 @@ requires:
   - Core/Element.Style
   - Core/Element.Event
   - Core/Element.Dimensions
+  - MMap/MMap.Core
   - MMap/MMap.Utils
 
 provides: [MMap.OverlayView]
@@ -64,8 +65,8 @@ MMap.OverlayView = new Class({
 		for (var k in subclass) { this[k] = subclass[k]; };
 		this.instance = this._getInstance();
 		this.setOptions(options);
-		this._init();
 		this._added = false;
+		this._init();
 	},
 
 	build: function(){

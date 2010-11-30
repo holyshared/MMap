@@ -16,6 +16,11 @@ window.addEvent('domready', function(){
 		position: new google.maps.LatLng(35.6666870, 139.731859),
 		zIndex: 0,
 		visible: true,
+		images: [{
+			title: 'demo1',
+			src: '../Demos/images/demo/img01.jpg',
+			url: 'http://sharedhat.com'
+		}],
 		onPositionChanged: function(event) {
 			logger.log('events', 'onPositionChanged');
 		},
@@ -38,18 +43,30 @@ window.addEvent('domready', function(){
 		},
 		onMouseDown: function(event) {
 			logger.log('events', 'onMouseDown');
-		},
-		onAdd: function(event) {
-			var latlng = new google.maps.LatLng(35.6666870, 139.731869);
-			marker.setPosition(latlng);
-			var position = marker.getPosition();
-			logger.log('methods', (position == latlng) ? 'Position setter/getter OK' : 'Position setter/getter NG');
-
-			marker.setZIndex(10);
-			var zIndex = marker.getZIndex();
-			logger.log('methods', (zIndex == 10) ? 'ZIndex setter/getter OK' : 'ZIndex setter/getter NG');
 		}
 	});
+
+	var binder = new google.maps.MVCObject();
+	binder.bindTo('position', marker, 'position');
+	binder.bindTo('zIndex', marker, 'zIndex');
+	binder.bindTo('visible', marker, 'visible');
+	binder.bindTo('images', marker, 'images');
+
+	var imagesListener = google.maps.event.addListener(binder, 'images_changed', function(){
+		logger.log('events', "bindTo images_changed OK");
+	});
+	var positionListener = google.maps.event.addListener(binder, 'position_changed', function(){
+		logger.log('events', "bindTo position_changed OK");
+	});
+	var zindexListener = google.maps.event.addListener(binder, 'zindex_changed', function(){
+		logger.log('events', "bindTo zindex_changed OK");
+	});
+	var visibleListener = google.maps.event.addListener(binder, 'visible_changed', function(){
+		logger.log('events', "bindTo visible_changed OK");
+	});	
+
+	var images = marker.getImages('images');
+	logger.log('options', (images.length == 1) ? 'images option OK' : 'images option NG');
 
 	var i1 = {
 		title: 'demo1',
@@ -58,6 +75,8 @@ window.addEvent('domready', function(){
 	};
 	marker.addImage(i1);
 
+	var images = marker.getImages();
+	logger.log('methods', (images.length == 2) ? 'addImage method OK' : 'addImage method NG');
 
 	var i2 = {
 		title: 'demo2',
@@ -83,7 +102,14 @@ window.addEvent('domready', function(){
 			url: 'http://sharedhat.com'
 		}
 	]);
+	var images = marker.getImages();
+	logger.log('methods', (images.length == 6) ? 'addImages method OK' : 'addImages method NG');
+
 	marker.removeImages(i1, i2);
+
+	var images = marker.getImages();
+	logger.log('methods', (images.length == 4) ? 'removeImages method OK' : 'removeImages method NG');
+	logger.log('methods', (images.length == 4) ? 'getImages method OK' : 'getImages method NG');
 
 	var className =	marker.options.className;
 	logger.log('options', (className == 'marker images imagesPaper') ? 'className option OK' : 'className option NG');
@@ -96,6 +122,36 @@ window.addEvent('domready', function(){
 
 	var visible = marker.get('visible');
 	logger.log('options', (visible == true) ? 'visible option OK' : 'visible option NG');
+
+	var latlng = new google.maps.LatLng(35.6666870, 139.731869);
+	marker.setPosition(latlng);
+	var position = marker.getPosition();
+	logger.log('methods', (position == latlng) ? 'Position setter/getter OK' : 'Position setter/getter NG');
+
+	marker.setZIndex(10);
+	var zIndex = marker.getZIndex();
+	logger.log('methods', (zIndex == 10) ? 'ZIndex setter/getter OK' : 'ZIndex setter/getter NG');
+
+	marker.setVisible(false);
+	logger.log('methods', (marker.getVisible() == false) ? 'Visbile setter/getter OK' : 'Visbile setter/getter NG');
+
+	marker.setImages([
+		{
+			title: 'demo3',
+			src: '../Demos/images/demo/img03.jpg',
+			url: 'http://sharedhat.com'
+		},
+		{
+			title: 'demo4',
+			src: '../Demos/images/demo/img04.jpg',
+			url: 'http://sharedhat.com'
+		}
+	]);
+
+	var images = marker.getImages();
+	logger.log('methods', (images.length == 2) ? 'setImages method OK' : 'setImages method NG');
+
+	marker.setVisible(true);
 
 });
 

@@ -1,3 +1,37 @@
+/*
+---
+name: MMap.Window
+
+description: Simple information window.
+
+license: MIT-style
+
+authors:
+- Noritaka Horio
+
+requires:
+  - Core/Core
+  - Core/Array
+  - Core/String
+  - Core/Number
+  - Core/Function
+  - Core/Object
+  - Core/Event
+  - Core/Browser
+  - Core/Class
+  - Core/Element
+  - Core/Element.Style
+  - Core/Element.Event
+  - Core/Element.Dimensions
+  - MMap/MMap.Core
+  - MMap/MMap.OverlayView
+  - MMap/MMap.Utils.js
+
+provides: [MMap.Window]
+
+...
+*/
+
 (function($){
 
 var MMap = (this.MMap || {});
@@ -62,6 +96,19 @@ MMap.Window = new Class({
 		this._content = new Element('div', {'class': 'content'});
 		this._content.inject(bd);
 
+		var self = this;
+		(function(){
+			var styleHeight = 0;
+			var elements = self.instance.getElements('*');
+			elements.each(function(element){
+				var props = element.getStyles('padding-top', 'padding-bottom', 'border-top-width', 'border-bottom-width');
+				for (var key in props) {
+					styleHeight += props[key].toInt();
+				}
+			});
+			self._styleHeight = styleHeight;		
+		}());
+
 		return win;
 	},
 
@@ -84,7 +131,7 @@ MMap.Window = new Class({
 	},
 
 	draw: function(){
-		if (this._added == false || this._opened == false) return this;
+		if (!this.isAdded() || !this.isOpen()) return this;
 
 		var anchorHeight = 0;
 		if (this._anchor) {
@@ -94,26 +141,28 @@ MMap.Window = new Class({
 		}
 		var projection = this.getProjection();
 		var position = this.get('position');
+
 		var size = this.instance.getSize();
+
 		var xy = projection.fromLatLngToDivPixel(position);
+		var top = xy.y - size.y - anchorHeight;
+		var left = xy.x - (size.x / 2);
 		var styles = {
 			position: 'absolute',
-			left: xy.x - (size.x / 2),
-			top: xy.y - size.y - anchorHeight
+			left: left,
+			top: top
 		};
 		this.instance.setStyles(styles);
 
-		var center = new google.maps.Point(xy.x, xy.y - 20);
+		var center = new google.maps.Point(xy.x, xy.y - this._styleHeight);
 		var centerLatlng = projection.fromDivPixelToLatLng(center);
 
-		var bounds = this.getMap().getBounds();
-		bounds.extend(centerLatlng);
-
-		this.getMap().panToBounds(bounds);
+		this.getMap().panTo(centerLatlng);
 		this.refresh();
 	},
 
 	refresh: function(){
+		if (!this.isAdded()) return this;
 		this._updateVisibleState();
 		this._update();
 	},
@@ -124,9 +173,8 @@ MMap.Window = new Class({
 	},
 
 	_update: function(){
-		if (this._added == false) return this;
-		this.setTitle(this.get('title'))
-		.setContent(this.get('content'));
+		this._title.set('html', this.get('title'));
+		this._content.set('html', this.get('content'));
 	},
 
 	open: function(map, anchor){
@@ -169,7 +217,6 @@ MMap.Window = new Class({
 		if (!Type.isString(title)) {
 			new TypeError('The data type is not a character string.');
 		}
-		this._title.set('html', title);
 		this.set('title', title);
 		return this;
 	},
@@ -183,7 +230,6 @@ MMap.Window = new Class({
 			new TypeError('The data type is a character string or not an element.');
 		}
 		this.set('content', content);
-		this._content.set('html', content);
 		return this;
 	}
 
