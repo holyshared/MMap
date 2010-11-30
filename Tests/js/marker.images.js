@@ -44,7 +44,7 @@ window.addEvent('domready', function(){
 			marker.setPosition(latlng);
 			var position = marker.getPosition();
 			logger.log('methods', (position == latlng) ? 'Position setter/getter OK' : 'Position setter/getter NG');
-			
+
 			marker.setZIndex(10);
 			var zIndex = marker.getZIndex();
 			logger.log('methods', (zIndex == 10) ? 'ZIndex setter/getter OK' : 'ZIndex setter/getter NG');
@@ -85,7 +85,7 @@ window.addEvent('domready', function(){
 	]);
 	marker.removeImages(i1, i2);
 
-	var className =	marker.get('className');
+	var className =	marker.options.className;
 	logger.log('options', (className == 'marker images imagesPaper') ? 'className option OK' : 'className option NG');
 
 	var position = marker.get('position');

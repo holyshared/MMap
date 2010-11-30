@@ -29,7 +29,7 @@ MMap.Marker.Images = this.MMap.Marker.Images = new Class({
 	_setup: function(container){
 		this.addEvent('add', this._onPrepare.bind(this));
 
-		var className = this.get('className');
+		var className = this.options.className;
 		container.addClass(className);
 
 		var zIndex = this.get('zIndex');
@@ -45,7 +45,12 @@ MMap.Marker.Images = this.MMap.Marker.Images = new Class({
 		return this._photos;
 	},
 
-	_update: function(){
+	_init: function(){
+		var self = this;
+		var props = ['images', 'position', 'zIndex', 'visible'];
+		props.each(function(key){
+			self.set(key, self.options[key]);
+		});
 	},
 
 	_onPrepare: function(){
@@ -54,9 +59,9 @@ MMap.Marker.Images = this.MMap.Marker.Images = new Class({
 			image.inject(this._photos);
 		}
 		delete this._stack;
-		var index = this.get('defaultIndex');
+		var index = this.options.defaultIndex;
 		this.setCurrent(index);
-		this._next.delay(this.get('interval'), this);
+		this._next.delay(this.options.interval, this);
 	},
 
 	_next: function() {
@@ -79,13 +84,16 @@ MMap.Marker.Images = this.MMap.Marker.Images = new Class({
 
 		var self = this;
 		li.set('tween', {
-			duration: this.get('duration'),
+			duration: this.options.duration,
 			onComplete: function() {
 				self.setCurrent(self._index);
-				self._next.delay(self.get('interval'), self);
+				self._next.delay(this.options.interval, self);
 			}
 		});
 		return li;
+	},
+
+	_update: function(){
 	},
 
 	setCurrent: function(index){
@@ -103,7 +111,7 @@ MMap.Marker.Images = this.MMap.Marker.Images = new Class({
 		var images = this.get('images');
 
 		if (images.indexOf(image) < 0) images.push(image);
-		if (this.get('added') === false) {
+		if (this._added === false) {
 			this._stack.push(li);
 		} else {
 			li.inject(this._photos);
