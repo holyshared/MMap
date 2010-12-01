@@ -46,7 +46,8 @@ MMap.Window = new Class({
 		content: '',
 		position: '',
 		zIndex: 0,
-		visible: true
+		visible: true,
+		minOffsetY: 15
 		/*
 			onClick: $empty
 			onDblClick: $empty
@@ -96,19 +97,6 @@ MMap.Window = new Class({
 		this._content = new Element('div', {'class': 'content'});
 		this._content.inject(bd);
 
-		var self = this;
-		(function(){
-			var styleHeight = 0;
-			var elements = self.instance.getElements('*');
-			elements.each(function(element){
-				var props = element.getStyles('padding-top', 'padding-bottom', 'border-top-width', 'border-bottom-width');
-				for (var key in props) {
-					styleHeight += props[key].toInt();
-				}
-			});
-			self._styleHeight = styleHeight;		
-		}());
-
 		return win;
 	},
 
@@ -143,7 +131,6 @@ MMap.Window = new Class({
 		var position = this.get('position');
 
 		var size = this.instance.getSize();
-
 		var xy = projection.fromLatLngToDivPixel(position);
 		var top = xy.y - size.y - anchorHeight;
 		var left = xy.x - (size.x / 2);
@@ -154,7 +141,14 @@ MMap.Window = new Class({
 		};
 		this.instance.setStyles(styles);
 
-		var center = new google.maps.Point(xy.x, xy.y - this._styleHeight);
+		var offset = 0;
+		if (top < this.options.minOffsetY && top >= 0) {
+			offset = this.options.minOffsetY - top;
+		} else if (top <= 0) {
+			offset = Math.abs(top) + this.options.minOffsetY;
+		}
+
+		var center = new google.maps.Point(xy.x, xy.y - offset);
 		var centerLatlng = projection.fromDivPixelToLatLng(center);
 
 		this.getMap().panTo(centerLatlng);

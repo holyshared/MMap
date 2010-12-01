@@ -218,6 +218,7 @@
 ----------------------*/
 .windowDefault {
 	width: 200px;
+	height: auto;
 }
 
 .windowDefault .hd {
@@ -234,7 +235,6 @@
 }
 
 .windowDefault .hd .hdgroup {
-	overflow: hidden;
 	border-bottom: 1px solid #cccccc;
 }
 
@@ -284,3 +284,15 @@
 	width: 25px;
 	margin: -5px auto 0px auto;
 }
+
+.windowDefault .hd .hdgroup:after {  
+	visibility: hidden;  
+	display: block;  
+	font-size: 0;  
+	content: " ";  
+	clear: both;  
+	height: 0;  
+}  
+
+* html .windowDefault .hd .hdgroup { zoom: 1; } /* IE6 */
+*:first-child+html .windowDefault .hd .hdgroup { zoom: 1; } /* IE7 */
