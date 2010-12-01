@@ -108,7 +108,7 @@ window.addEvent("domready", function(){
 
 	marker.setContent("foo bar");
 	var content = marker.getContent();
-	logger.log('methods', (content == "bar") ? "Content setter/getter OK" : "Content setter/getter NG");
+	logger.log('methods', (content == "foo bar") ? "Content setter/getter OK" : "Content setter/getter NG");
 
 	marker.setVisible(true);
 

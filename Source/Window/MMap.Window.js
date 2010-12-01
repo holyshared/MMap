@@ -36,6 +36,9 @@ provides: [MMap.Window]
 
 var MMap = (this.MMap || {});
 
+
+var	_offsetY = 15;
+
 MMap.Window = new Class({
 
 	Extends: MMap.OverlayView,
@@ -46,8 +49,7 @@ MMap.Window = new Class({
 		content: '',
 		position: '',
 		zIndex: 0,
-		visible: true,
-		minOffsetY: 15
+		visible: true
 		/*
 			onClick: $empty
 			onDblClick: $empty
@@ -142,16 +144,16 @@ MMap.Window = new Class({
 		this.instance.setStyles(styles);
 
 		var offset = 0;
-		if (top < this.options.minOffsetY && top >= 0) {
-			offset = this.options.minOffsetY - top;
+		if (top < _offsetY && top >= 0) {
+			offset = _offsetY - top;
 		} else if (top <= 0) {
-			offset = Math.abs(top) + this.options.minOffsetY;
+			offset = Math.abs(top) + _offsetY;
 		}
 
-		var center = new google.maps.Point(xy.x, xy.y - offset);
-		var centerLatlng = projection.fromDivPixelToLatLng(center);
+		var point = new google.maps.Point(xy.x, xy.y - offset);
+		var latlng = projection.fromDivPixelToLatLng(point);
 
-		this.getMap().panTo(centerLatlng);
+		this.getMap().panTo(latlng);
 		this.refresh();
 	},
 
@@ -212,6 +214,7 @@ MMap.Window = new Class({
 			new TypeError('The data type is not a character string.');
 		}
 		this.set('title', title);
+		this.refresh();
 		return this;
 	},
 
@@ -224,6 +227,7 @@ MMap.Window = new Class({
 			new TypeError('The data type is a character string or not an element.');
 		}
 		this.set('content', content);
+		this.refresh();
 		return this;
 	}
 
