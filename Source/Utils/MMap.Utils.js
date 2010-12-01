@@ -62,6 +62,8 @@ MMap.Options = new Class({
 
 var MMap = (this.MMap || {});
 
+var domEvents = ["mouseover", "mouseout", "mouseup", "mousedown", "click", "dblclick"];
+
 var removeOn = function(string){
 	return string.replace(/^on([A-Z])/, function(full, first){
 		return first.toLowerCase();
@@ -84,7 +86,6 @@ MMap.Events = new Class({
 
 	addEvent: function(type, fn){
 		var listener = null;
-		var domEvents = MMap.Events._domEvents;
 		type = toFormat(type);
 		if (domEvents.contains(type.toLowerCase())) {
 			listener = google.maps.event.addDomListener(this.instance, type.toLowerCase(), fn.bind(this));
@@ -130,12 +131,11 @@ MMap.Events = new Class({
 			var fns = this._events[type];
 			for (var i = fns.length; i--;) this.removeEvent(type, fns[i]);
 		}
-		return this;		
+		return this;
 	},
 
 	fireEvent: function(type, args){
 		type = toFormat(type);
-		var domEvents = MMap.Events._domEvents;
 		if (!this._events[type]) return this;
 		var target = (domEvents.contains(type.toLowerCase())) ? this.instance : this;
 		google.maps.event.trigger(target, type, Array.from(args));
@@ -143,6 +143,5 @@ MMap.Events = new Class({
 	}
 
 });
-MMap.Events._domEvents = ["mouseover", "mouseout", "mouseup", "mousedown", "click", "dblclick"];
 
 }(document.id))
