@@ -41,7 +41,7 @@ MMap.Marker = (this.MMap.Marker || {});
 
 MMap.Marker.Images = this.MMap.Marker.Images = new Class({
 
-	Extends: MMap.Marker,
+	Extends: MMap.BaseMarker,
 
 	options: {
 		map: null,
@@ -82,15 +82,14 @@ MMap.Marker.Images = this.MMap.Marker.Images = new Class({
 	},
 
 	_init: function(){
-		var self = this;
-		var props = ['images', 'position', 'zIndex', 'visible'];
-		props.each(function(key){
-			self.set(key, self.options[key]);
-		});
+		this.parent();
+		this.set('images', this.options['images']);
+		delete this.options['images'];
 	},
 
 	_onPrepare: function(){
-		for (var i = 0; l = this._stack.length, i < l; i++) {
+		var l = this._stack.length;
+		for (var i = 0; i < l; i++) {
 			var image = this._stack[i];
 			image.inject(this._photos);
 		}
@@ -127,9 +126,6 @@ MMap.Marker.Images = this.MMap.Marker.Images = new Class({
 			}
 		});
 		return li;
-	},
-
-	_update: function(){
 	},
 
 	setCurrent: function(index){

@@ -106,7 +106,7 @@ window.addEvent("domready", function(){
 	var title = marker.getTitle();
 	logger.log('methods', (title == "foo") ? "Title setter/getter OK" : "Title setter/getter NG");
 
-	marker.setContent("bar");
+	marker.setContent("foo bar");
 	var content = marker.getContent();
 	logger.log('methods', (content == "bar") ? "Content setter/getter OK" : "Content setter/getter NG");
 
