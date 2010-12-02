@@ -36,7 +36,6 @@ provides: [MMap.Window]
 
 var MMap = (this.MMap || {});
 
-
 var	_offsetY = 15;
 
 MMap.Window = new Class({
