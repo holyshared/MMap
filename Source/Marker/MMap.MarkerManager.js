@@ -1,8 +1,43 @@
+/*
+---
+name: MMap.MarkerManager
+
+description: The marker displayed in the map is managed.
+
+license: MIT-style
+
+authors:
+- Noritaka Horio
+
+requires:
+  - Core/Core
+  - Core/Array
+  - Core/String
+  - Core/Number
+  - Core/Function
+  - Core/Object
+  - Core/Event
+  - Core/Browser
+  - Core/Class
+  - Core/Element
+  - Core/Element.Style
+  - Core/Element.Event
+  - Core/Element.Dimensions
+  - MMap/MMap.Core
+  - MMap/MMap.Utils
+
+provides: [MMap.MarkerManager]
+
+...
+*/
+
 (function($){
 
 var MMap = (this.MMap || {});
 
 MMap.MarkerManager = new Class({
+
+	Extends: MMap.MVCObject,
 
 	Implements: [MMap.Events, MMap.Options],
 
@@ -19,9 +54,6 @@ MMap.MarkerManager = new Class({
 	},
 
 	initialize: function(options) {
-		var subclass = this;
-		subclass = Object.append(new google.maps.MVCObject(), subclass);
-		for (var k in subclass) { this[k] = subclass[k]; };
 		this._container = new MMap.Container();
 		this.setOptions(options);
 		this._setup();
