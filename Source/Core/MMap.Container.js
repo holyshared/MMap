@@ -8,10 +8,6 @@ MMap.Container = new Class({
 
 	initialize: function() {
 		var map = Array.from(arguments).link({ items: Type.isArray });
-/*		var subclass = this;
-		subclass = Object.append(new google.maps.MVCObject(), subclass);
-		for (var k in subclass) { this[k] = subclass[k]; };
-*/
 		this.setItems(map.items || []);
 		this.setCurrent(0);
 	},
