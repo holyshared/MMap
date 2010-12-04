@@ -102,8 +102,13 @@ MMap.MarkerManager = new Class({
 		marker.setMap(null);
 	},
 
-	removeMarkers: function(markers){
-		var marker = null;
+	removeMarkers: function(){
+		var marker = null, markers = [], args = Array.from(arguments);
+		if ((args.length <= 0)) { args = this.getMarkers().getItems(); };
+		while (args.length > 0) {
+			markers.push(args.shift());
+		};
+		markers = markers.flatten();
 		while(markers.length > 0) {
 			marker = markers.shift();
 			this.removeMarker(marker);
@@ -164,7 +169,7 @@ MMap.MarkerManager = new Class({
 
 	hasDisplayMarkers: function() {
 		var state = this.getState();
-		return (state.visibleMarkers > 0) ? true : false;
+		return (state.visibleMarkers.length > 0) ? true : false;
 	},
 
 	hasMarker: function(marker) {

@@ -18,7 +18,7 @@ window.addEvent('domready', function(){
 		visible: true,
 		images: [{
 			title: 'demo1',
-			src: '../Demos/images/demo/img01.jpg',
+			image: '../Demos/images/demo/img01.jpg',
 			url: 'http://sharedhat.com'
 		}],
 		onPositionChanged: function(event) {
@@ -70,7 +70,7 @@ window.addEvent('domready', function(){
 
 	var i1 = {
 		title: 'demo1',
-		src: '../Demos/images/demo/img01.jpg',
+		image: '../Demos/images/demo/img01.jpg',
 		url: 'http://sharedhat.com'
 	};
 	marker.addImage(i1);
@@ -80,7 +80,7 @@ window.addEvent('domready', function(){
 
 	var i2 = {
 		title: 'demo2',
-		src: '../Demos/images/demo/img02.jpg',
+		image: '../Demos/images/demo/img02.jpg',
 		url: 'http://sharedhat.com'
 	};
 	marker.addImage(i2);
@@ -88,17 +88,17 @@ window.addEvent('domready', function(){
 	marker.addImages([
 		{
 			title: 'demo3',
-			src: '../Demos/images/demo/img03.jpg',
+			image: '../Demos/images/demo/img03.jpg',
 			url: 'http://sharedhat.com'
 		},
 		{
 			title: 'demo4',
-			src: '../Demos/images/demo/img04.jpg',
+			image: '../Demos/images/demo/img04.jpg',
 			url: 'http://sharedhat.com'
 		},
 		{
 			title: 'demo5',
-			src: '../Demos/images/demo/img05.jpg',
+			image: '../Demos/images/demo/img05.jpg',
 			url: 'http://sharedhat.com'
 		}
 	]);
@@ -138,12 +138,12 @@ window.addEvent('domready', function(){
 	marker.setImages([
 		{
 			title: 'demo3',
-			src: '../Demos/images/demo/img03.jpg',
+			image: '../Demos/images/demo/img03.jpg',
 			url: 'http://sharedhat.com'
 		},
 		{
 			title: 'demo4',
-			src: '../Demos/images/demo/img04.jpg',
+			image: '../Demos/images/demo/img04.jpg',
 			url: 'http://sharedhat.com'
 		}
 	]);

@@ -110,10 +110,10 @@ MMap.Marker.Images = this.MMap.Marker.Images = new Class({
 		tween.start('opacity', 0, 1);
 	},
 
-	_buildElement: function(image){
+	_buildElement: function(context){
 		var li = new Element('li');
-		var a = new Element('a', {href: image.url, title: image.title});
-		var img = new Element('img', {src: image.src, title: image.title});
+		var a = new Element('a', {href: context.url, title: context.title});
+		var img = new Element('img', {src: context.image, title: context.title});
 		img.inject(a);
 		a.inject(li);
 

@@ -213,5 +213,6 @@ MMap.Marker = new Class({
 	}
 
 });
+MMap.Marker.Html = MMap.Marker;
 
 }(document.id))
