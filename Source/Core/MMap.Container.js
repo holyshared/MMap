@@ -62,7 +62,7 @@ MMap.Container = new Class({
 	},
 
 	count: function(){
-		return this.getItems().length;		
+		return this.getItems().length;
 	},
 
 	removeItem: function(item){
@@ -94,11 +94,28 @@ MMap.Container = new Class({
 		items.empty();
 	},
 
-	find: function() {
+	find: function(key, value) {
+		while(this.isValid()) {
+			var item = this.getCurrent();
+			if (item[key] == value) {
+				return item;
+			}
+			this.next();
+		}
+		return false;
 	},
 
-	findAll: function() {
-	}
+	findAll: function(key, value){
+		var find = [];
+		while(this.isValid()) {
+			var item = this.getCurrent();
+			if (item[key] == value) {
+				find.push(item);
+			}
+			this.next();
+		}
+		return (find.length <= 0) ? false : find;
+	},
 
 });
 
