@@ -2,7 +2,7 @@
 ---
 name: MMap.MarkerLoader
 
-description: 
+description: The loading of the marker can be done by using json and ajax(The response is json).
 
 license: MIT-style
 
@@ -24,10 +24,11 @@ requires:
   - Core/Element.Event
   - Core/Element.Dimensions
   - MMap/MMap.Core
+  - MMap/MMap.OverlayView
   - MMap/MMap.Utils
   - MMap/MMap.Marker
 
-provides: [MMap.MarkerLoader, MMap.MarkerLoader.Context, MMap.MarkerLoader.JSON]
+provides: [MMap.MarkerLoader, MMap.MarkerLoader.Parser, MMap.MarkerLoader.Context, MMap.MarkerLoader.JSON]
 
 ...
 */
@@ -41,6 +42,11 @@ MMap.MarkerLoader = new Class({
 	Implements: [MMap.Events, MMap.Options],
 
 	options: {
+/*
+		onPreload: $empty,
+		onFailure: $empty,
+		onLoad: $empty
+*/
 	},
 
 	initialize: function(options){
@@ -48,10 +54,23 @@ MMap.MarkerLoader = new Class({
 	},
 
 	load: function(){
+		var self = this;
 		var args = Array.from(arguments);
 		var loader = (Type.isArray(args[0]))
-		? MMap.MarkerLoader.Context() : MMap.MarkerLoader.JSON();
-		loader.load.apply(this, args);
+		? new MMap.MarkerLoader.Context() : new MMap.MarkerLoader.JSON();
+		loader.addEvents({
+			'onPreload': function(){
+				self.fireEvent('preload');
+			},
+			'onFailure': function(){
+				var args = Array.from(arguments);
+				self.fireEvent('failure', args);
+			},
+			'onLoad': function(markers){
+				self.fireEvent('load', self.build(markers));
+			}
+		});
+		loader.load.apply(loader, args);
 	},
 
 	build: function(context){
@@ -70,35 +89,80 @@ MMap.MarkerLoader = new Class({
 
 });
 
-MMap.MarkerLoader.Context = function(){
-	return {
-		load: function(context){
-			this.fireEvent('preload');
-			try {
-				var markers = this.build(context);
-				this.fireEvent('load', markers);
-			} catch (error) {
-				this.fireEvent('failure', error);
-			}
-		}
-	};
-};
 
-MMap.MarkerLoader.JSON = function(){
-	return {
-		load: function(url){
-			var request = new Request.JSON({
-				"url": url,
-				"method": "post",
-				"onRequest": function() { this.fireEvent('preload'); },
-				"onFailure": function(xhr) { this.fireEvent('failure', xhr); },
-				"onSuccess": function(responseJSON, responseText) {
-					this.fireEvent('load', this.build(responseJSON));
-				}
-			});
-			request.send();
+MMap.MarkerLoader.Parser = new Class({
+
+	Implements: [Events],
+
+	parse: function(markers){
+		var result = [];
+		var l = markers.length;
+		for (var i = 0; i < l; i++){
+			var marker = markers[i];
+			var latlng = marker.position;
+			delete marker.position;
+			marker.position = new google.maps.LatLng(latlng.latitude, latlng.longitude);
+			result.push(marker);
 		}
-	};
-};
+		return result;
+	}
+
+});
+
+MMap.MarkerLoader.Context = new Class({
+
+	Extends: MMap.MarkerLoader.Parser,
+
+	load: function(context){
+		this.fireEvent('preload');
+		try {
+			var markers = this.parse(context);
+			this.fireEvent('load', markers);
+		} catch (error) {
+			this.fireEvent('failure', error);
+		}
+	}
+
+});
+
+MMap.MarkerLoader.JSON = new Class({
+
+	Extends: MMap.MarkerLoader.Parser,
+
+	_onRequest: function(){
+		this.fireEvent('preload');
+	},
+
+	_onFailure: function(xhr){
+		this.fireEvent('failure', xhr);
+	},
+
+	_onSuccess: function(json, text){
+		var markers = json.markers;
+		var l = markers.length;
+		var response = this.parse(markers);
+		this.fireEvent('load', [response]);
+	},
+
+	getRequest: function(json){
+		if (this.request) return this.request;
+		var self = this;
+		var events = ['_onRequest', '_onFailure', '_onSuccess'];
+		this.request = new Request.JSON({ url: json, method: 'post' });
+		events.each(function(type){
+			var handler = self[type].bind(self);
+			var eventType = type.replace('_', '');
+			self.request.addEvent(eventType, handler);
+			delete self[type];
+		});
+		return this.request;
+	},
+
+	load: function(){
+		var args = Array.from(arguments);
+		this.getRequest(args.shift()).send(args);
+	}
+
+});
 
 }(document.id));

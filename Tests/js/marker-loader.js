@@ -56,6 +56,9 @@ var MarkerLoaderTest = {
 		this.testContextLoadTestByHTML();
 		this.testContextLoadTestByImage();
 		this.testContextLoadTestByImages();
+		this.testJsonLoadTestByHTML();
+		this.testJsonLoadTestByImage();
+		this.testJsonLoadTestByImages();
 	},
 
 	testContextLoadTestByHTML: function(){
@@ -80,6 +83,7 @@ var MarkerLoaderTest = {
 				self.logger.log('events', exception);
 			},
 			onLoad: function(markers){
+				self.logger.log('methods', 'load method OK');
 				self.logger.log('events', 'onLoad event OK');
 				self.manager.setMap(null);
 				self.manager.removeMarkers();
@@ -88,6 +92,69 @@ var MarkerLoaderTest = {
 			}
 		});
 		loader.load(markers);
+	},
+
+	testJsonLoadTestByHTML: function(){
+		var self = this, manager = null;
+		var loader = new MMap.MarkerLoader({
+			onPreload: function(){
+				self.logger.log('events', 'onPreload event OK');
+			},
+			onFailure: function(xhr){
+				self.logger.log('events', xhr.status);
+			},
+			onLoad: function(markers){
+				self.logger.log('methods', 'load method OK');
+				self.logger.log('events', 'onLoad event OK');
+				self.manager.setMap(null);
+				self.manager.removeMarkers();
+				self.manager.setMap(self.map);
+				self.manager.addMarkers(markers);
+			}
+		});
+		loader.load('js/json/content.json');
+	},
+
+	testJsonLoadTestByImage: function(){
+		var self = this, manager = null;
+		var loader = new MMap.MarkerLoader({
+			onPreload: function(){
+				self.logger.log('events', 'onPreload event OK');
+			},
+			onFailure: function(xhr){
+				self.logger.log('events', xhr.status);
+			},
+			onLoad: function(markers){
+				self.logger.log('methods', 'load method OK');
+				self.logger.log('events', 'onLoad event OK');
+				self.manager.setMap(null);
+				self.manager.removeMarkers();
+				self.manager.setMap(self.map);
+				self.manager.addMarkers(markers);
+			}
+		});
+		loader.load('js/json/image.json');
+	},
+
+	testJsonLoadTestByImages: function(){
+		var self = this, manager = null;
+		var loader = new MMap.MarkerLoader({
+			onPreload: function(){
+				self.logger.log('events', 'onPreload event OK');
+			},
+			onFailure: function(xhr){
+				self.logger.log('events', xhr.status);
+			},
+			onLoad: function(markers){
+				self.logger.log('methods', 'load method OK');
+				self.logger.log('events', 'onLoad event OK');
+				self.manager.setMap(null);
+				self.manager.removeMarkers();
+				self.manager.setMap(self.map);
+				self.manager.addMarkers(markers);
+			}
+		});
+		loader.load('js/json/images.json');
 	}
 
 };

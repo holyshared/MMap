@@ -1,0 +1,44 @@
+{
+	"markers": [
+		{
+			"type": "images",
+			"position": {
+				"latitude": 35.6666870,
+				"longitude": 139.731859
+			},
+			"images": [
+				{ "title": "Marker1", "image": "../Demos/images/demo/img01.jpg", "url": "http://sharedhat.com/" },
+				{ "title": "Marker2", "image": "../Demos/images/demo/img02.jpg", "url": "http://sharedhat.com/" },
+				{ "title": "Marker3", "image": "../Demos/images/demo/img03.jpg", "url": "http://sharedhat.com/" },
+				{ "title": "Marker4", "image": "../Demos/images/demo/img03.jpg", "url": "http://sharedhat.com/" }
+			]
+		},
+		{
+			"type": "images",
+			"position": {
+				"latitude": 35.6686870,
+				"longitude": 139.728859
+			},
+			"images": [
+				{ "title": "Marker1", "image": "../Demos/images/demo/img01.jpg", "url": "http://sharedhat.com/" },
+				{ "title": "Marker2", "image": "../Demos/images/demo/img02.jpg", "url": "http://sharedhat.com/" },
+				{ "title": "Marker3", "image": "../Demos/images/demo/img03.jpg", "url": "http://sharedhat.com/" },
+				{ "title": "Marker4", "image": "../Demos/images/demo/img03.jpg", "url": "http://sharedhat.com/" }
+			]
+		},
+		{
+			"type": "images",
+			"position": {
+				"latitude": 35.6650870,
+				"longitude": 139.729859
+			},
+			"images": [
+				{ "title": "Marker1", "image": "../Demos/images/demo/img01.jpg", "url": "http://sharedhat.com/" },
+				{ "title": "Marker2", "image": "../Demos/images/demo/img02.jpg", "url": "http://sharedhat.com/" },
+				{ "title": "Marker3", "image": "../Demos/images/demo/img03.jpg", "url": "http://sharedhat.com/" },
+				{ "title": "Marker4", "image": "../Demos/images/demo/img03.jpg", "url": "http://sharedhat.com/" }
+			]
+		}
+	]
+
+}
