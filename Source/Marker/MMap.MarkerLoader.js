@@ -45,6 +45,7 @@ MMap.MarkerLoader = new Class({
 /*
 		onPreload: $empty,
 		onFailure: $empty,
+		onComplete: $empty,
 		onLoad: $empty
 */
 	},
@@ -65,6 +66,9 @@ MMap.MarkerLoader = new Class({
 			'onFailure': function(){
 				var args = Array.from(arguments);
 				self.fireEvent('failure', args);
+			},
+			'onComplete': function(response){
+				self.fireEvent('complete', [response]);
 			},
 			'onLoad': function(markers){
 				self.fireEvent('load', self.build(markers));
@@ -116,8 +120,9 @@ MMap.MarkerLoader.Context = new Class({
 	load: function(context){
 		this.fireEvent('preload');
 		try {
+			this.fireEvent('complete', context);
 			var markers = this.parse(context);
-			this.fireEvent('load', markers);
+			this.fireEvent('load', [markers]);
 		} catch (error) {
 			this.fireEvent('failure', error);
 		}
@@ -138,6 +143,7 @@ MMap.MarkerLoader.JSON = new Class({
 	},
 
 	_onSuccess: function(json, text){
+		this.fireEvent('complete', json);
 		var markers = json.markers;
 		var l = markers.length;
 		var response = this.parse(markers);
