@@ -19,6 +19,7 @@ sources:
   - "Source/Marker/MMap.Marker.Image.js"
   - "Source/Marker/MMap.Marker.Images.js"
   - "Source/Marker/MMap.MarkerManager.js"
+  - "Source/Marker/MMap.MarkerLoader.js"
   - "Source/Window/MMap.Window.js"
 
 author: holyshared
