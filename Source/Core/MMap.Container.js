@@ -115,8 +115,8 @@ MMap.Container = new Class({
 			this.next();
 		}
 		return (find.length <= 0) ? false : find;
-	},
+	}
 
 });
 
-}(document.id))
+}(document.id));

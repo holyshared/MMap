@@ -198,4 +198,4 @@ MMap.Marker.Images = this.MMap.Marker.Images = new Class({
 
 });
 
-}(document.id))
+}(document.id));

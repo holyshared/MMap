@@ -169,4 +169,4 @@ MMap.OverlayView = new Class({
 
 });
 
-}(document.id))
+}(document.id));

@@ -144,4 +144,4 @@ MMap.Events = new Class({
 
 });
 
-}(document.id))
+}(document.id));

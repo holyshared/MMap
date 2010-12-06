@@ -232,4 +232,4 @@ MMap.Window = new Class({
 
 });
 
-}(document.id))
+}(document.id));

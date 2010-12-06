@@ -39,4 +39,4 @@ MMap.MVCObject = new Class({
 });
 MMap.MVCObject.prototype = new google.maps.MVCObject();
 
-}(document.id))
+}(document.id));

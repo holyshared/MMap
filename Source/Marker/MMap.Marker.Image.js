@@ -131,4 +131,4 @@ MMap.Marker.Image = this.MMap.Marker.Image = new Class({
 
 });
 
-}(document.id))
+}(document.id));
