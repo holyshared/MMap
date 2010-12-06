@@ -11,8 +11,8 @@ window.addEvent("domready", function(){
 	var marker = new MMap.Marker({
 		map: map,
 		className: 'marker markerDefault',
-		title: 'Marker title text',
-		content: 'Marker content text xxxx xxxx xxxx xxxx xxxx xxxxxx xx',
+		title: 'Marker who contains simple contents',
+		content: 'HTML contents can be inserted. <br />It is usual to put sentences and photographs of several lines.',
 		position: new google.maps.LatLng(35.6666870, 139.731859),
 		visible: true
 	});
