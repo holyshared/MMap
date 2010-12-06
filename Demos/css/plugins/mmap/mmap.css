@@ -1,5 +1,10 @@
 @charset "utf-8";
 
+.googleMap {
+	width: auto;
+	height: 400px;
+}
+
 /*================Marker Styles================*/
 
 /* Image Marker
@@ -11,11 +16,11 @@
 	text-align: center;
 	width: 70px;
 	padding-bottom: 18px;
-	background: url(../images/markers/bgi_default_ft.png) no-repeat left bottom;
+	background: url(skins/markers/bgi_default_ft.png) no-repeat left bottom;
 }
 
 .imageDefault .photo {
-	background: url(../images/markers/bgi_default_bd.png) no-repeat left top;
+	background: url(skins/markers/bgi_default_bd.png) no-repeat left top;
 	margin: 0px;
 	padding: 10px 0px 4px 0px;
 }
@@ -28,12 +33,12 @@
 
 .imageDefault:hover,
 .imageDefault.active {
-	background: url(../images/markers/bgi_default_ft.png) no-repeat -70px bottom;
+	background: url(skins/markers/bgi_default_ft.png) no-repeat -70px bottom;
 }
 
 .imageDefault:hover .photo,
 .imageDefault.active .photo {
-	background: url(../images/markers/bgi_default_bd.png) no-repeat -70px bottom;
+	background: url(skins/markers/bgi_default_bd.png) no-repeat -70px bottom;
 }
 
 
@@ -44,11 +49,11 @@
 	text-align: center;
 	width: 72px;
 	padding-bottom: 18px;
-	background: url(../images/markers/img_paper_ft.png) no-repeat left bottom;
+	background: url(skins/markers/img_paper_ft.png) no-repeat left bottom;
 }
 
 .imagePaper .photo {
-	background: url(../images/markers/img_paper_bd.png) no-repeat left top;
+	background: url(skins/markers/img_paper_bd.png) no-repeat left top;
 	margin: 0px;
 	padding: 10px 0px 0px 0px;
 }
@@ -60,11 +65,11 @@
 }
 
 .imagePaper:hover {
-	background: url(../images/markers/img_paper_ft.png) no-repeat -72px bottom;
+	background: url(skins/markers/img_paper_ft.png) no-repeat -72px bottom;
 }
 
 .imagePaper:hover .photo {
-	background: url(../images/markers/img_paper_bd.png) no-repeat -72px bottom;
+	background: url(skins/markers/img_paper_bd.png) no-repeat -72px bottom;
 }
 
 
@@ -84,7 +89,7 @@
 	border-top: 5px solid #333333;
 	border-left: 5px solid #333333;
 	border-right: 5px solid #333333;
-	background: url(../images/markers/bgi_html_default.jpg) repeat-x left top;
+	background: url(skins/markers/bgi_html_default.jpg) repeat-x left top;
 	-moz-border-radius-topleft: 7px;
 	-moz-border-radius-topright: 7px;
 	-webkit-border-top-left-radius: 7px;
@@ -115,7 +120,7 @@
 }
 
 .markerDefault .ft {
-	background: url(../images/markers/bgi_html_default_arrow.png) no-repeat left top;
+	background: url(skins/markers/bgi_html_default_arrow.png) no-repeat left top;
 	height: 18px;
 	width: 25px;
 	margin: -5px auto 0px auto;
@@ -134,11 +139,11 @@
 	text-align: center;
 	width: 70px;
 	padding-bottom: 18px;
-	background: url(../images/markers/bgi_default_ft.png) no-repeat left bottom;
+	background: url(skins/markers/bgi_default_ft.png) no-repeat left bottom;
 }
 
 .imagesDefault .photos {
-	background: url(../images/markers/bgi_default_bd.png) no-repeat left top;
+	background: url(skins/markers/bgi_default_bd.png) no-repeat left top;
 	margin: 0px;
 	padding: 10px 0px 4px 0px;
 	position: relative;
@@ -157,11 +162,11 @@
 }
 
 .imagesDefault:hover {
-	background: url(../images/markers/bgi_default_ft.png) no-repeat -70px bottom;
+	background: url(skins/markers/bgi_default_ft.png) no-repeat -70px bottom;
 }
 
 .imagesDefault:hover .photos {
-	background: url(../images/markers/bgi_default_bd.png) no-repeat -70px bottom;
+	background: url(skins/markers/bgi_default_bd.png) no-repeat -70px bottom;
 }
 
 
@@ -171,11 +176,11 @@
 	text-align: center;
 	width: 72px;
 	padding-bottom: 18px;
-	background: url(../images/markers/img_paper_ft.png) no-repeat left bottom;
+	background: url(skins/markers/img_paper_ft.png) no-repeat left bottom;
 }
 
 .imagesPaper .photos {
-	background: url(../images/markers/img_paper_bd.png) no-repeat left top;
+	background: url(skins/markers/img_paper_bd.png) no-repeat left top;
 	margin: 0px;
 	padding: 10px 0px 0px 0px;
 	height: 52px;
@@ -193,11 +198,11 @@
 }
 
 .imagesPaper:hover {
-	background: url(../images/markers/img_paper_ft.png) no-repeat -72px bottom;
+	background: url(skins/markers/img_paper_ft.png) no-repeat -72px bottom;
 }
 
 .imagesPaper:hover .photos {
-	background: url(../images/markers/img_paper_bd.png) no-repeat -72px bottom;
+	background: url(skins/markers/img_paper_bd.png) no-repeat -72px bottom;
 }
 
 
@@ -225,7 +230,7 @@
 	border-top: 5px solid #333333;
 	border-left: 5px solid #333333;
 	border-right: 5px solid #333333;
-	background: #333333 url(../images/windows/bgi_html_default.jpg) repeat-x left top;
+	background: #333333 url(skins/windows/bgi_html_default.jpg) repeat-x left top;
 	-moz-border-radius-topleft: 7px;
 	-moz-border-radius-topright: 7px;
 	-webkit-border-top-left-radius: 7px;
@@ -258,7 +263,7 @@
 	width: auto;
 	text-indent: -9999px;
 	display: block;
-	background: url(../images/windows/bgi_default_close.gif) repeat-x left top;
+	background: url(skins/windows/bgi_default_close.gif) repeat-x left top;
 }
 
 .windowDefault .hd .close a:hover {
@@ -279,7 +284,7 @@
 }
 
 .windowDefault .ft {
-	background: url(../images/windows/bgi_html_default_arrow.png) no-repeat left top;
+	background: url(skins/windows/bgi_html_default_arrow.png) no-repeat left top;
 	height: 18px;
 	width: 25px;
 	margin: -5px auto 0px auto;

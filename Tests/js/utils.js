@@ -29,12 +29,16 @@
 			img.inject(a);
 			a.inject(photo);
 			photo.inject(this.instance);
+			this._added = false;
 		},
 
 		onAdd: function() {
 			var panel = this.getPanes().overlayImage;
 			this.instance.inject(panel);
 			this.fireEvent("add");
+			this.set('zIndex', this.options.zIndex);
+			this.set('position', this.options.position);
+			this._added = true;
 		},
 
 		onRemove: function() {
@@ -44,6 +48,7 @@
 		},
 
 		draw: function() {
+			if (!this._added) return;
 			var projection = this.getProjection();
 			var position = this.get("position");
 			var size = this.instance.getSize();
