@@ -22,5 +22,6 @@ ul.simpleList li{list-style-type:disc; margin-left:40px;}
 /* ====== blockquote ====== */
 cite{display:block; text-align:right; padding-top: 10px;}
 
-.menu li { margin-bottom: 5px; }
+.menu li { margin-bottom: 5px; line-height: 140%; }
+
 .copyright { border-top: 1px solid #cccccc; padding-top: 10px; text-align: center; }
