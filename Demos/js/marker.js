@@ -17,6 +17,7 @@ window.addEvent("domready", function(){
 		visible: true
 	});
 
+	SyntaxHighlighter.all();
 });
 
 }(document.id));

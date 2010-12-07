@@ -1,2 +1,4 @@
 /* plugins */
 @import url("mmap/mmap.css");
+@import url("sh/shCore.css");
+@import url("sh/shThemeEclipse.css");
