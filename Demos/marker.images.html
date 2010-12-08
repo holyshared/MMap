@@ -15,7 +15,7 @@
 		<script type="text/javascript" src="js/lib/sh/shBrushJScript.js"></script>
 		<script type="text/javascript" src="js/lib/sh/shBrushCss.js"></script>
 		<script type="text/javascript" src="js/lib/sh/shBrushXml.js"></script>
-		<script type="text/javascript" src="js/marker.js"></script>
+		<script type="text/javascript" src="js/marker.images.js"></script>
 	</head>
 	<body>
 		<div class="page gs960">
@@ -66,8 +66,8 @@
 					<div class="mod map">
 						<div class="inner">
 							<div class="hd">
-								<h3>The marker is displayed.</h3>
-								<p>Simple contents are displayed in the marker.</p>
+								<h3>It displays it while imaging it in the slide.</h3>
+								<p>Two or more images are displayed in the marker.</p>
 							</div>
 							<div class="bd">
 								<div id="gmap" class="googleMap"></div>
@@ -75,9 +75,87 @@
 						</div>
 					</div>
 
-<pre class="brush: js;" title="Title/caption should render">
-var hoge; 
+
+					<div class="mod code">
+						<div class="inner">
+							<div class="hd">
+								<h3>Example code</h3>
+								<p>Source code of this demonstration</p>
+							</div>
+							<div class="bd">
+
+<pre class="brush: js;">
+(function($){
+
+window.addEvent('domready', function(){
+
+	var map = new google.maps.Map($('gmap'), {
+		zoom: 15,
+		center: new google.maps.LatLng(35.6666870, 139.731859),
+		mapTypeId: google.maps.MapTypeId.ROADMAP
+	});
+
+	var marker = new MMap.Marker.Images({
+		map: map,
+		className: 'marker images imagesPaper',
+		position: new google.maps.LatLng(35.6666870, 139.731859),
+		images: [{
+			title: 'demo1',
+			image: '../Demos/images/demo/img01.jpg',
+			url: 'http://sharedhat.com'
+		}, {
+			title: 'demo2',
+			image: '../Demos/images/demo/img02.jpg',
+			url: 'http://sharedhat.com'
+		}, {
+			title: 'demo3',
+			image: '../Demos/images/demo/img03.jpg',
+			url: 'http://sharedhat.com'
+		}, {
+			title: 'demo4',
+			image: '../Demos/images/demo/img04.jpg',
+			url: 'http://sharedhat.com'
+		}, {
+			title: 'demo5',
+			image: '../Demos/images/demo/img05.jpg',
+			url: 'http://sharedhat.com'
+		}]
+	});
+
+});
+
+}(document.id));
 </pre>
+							</div>
+						</div>
+					</div>
+
+					<div class="mod code">
+						<div class="inner">
+							<div class="hd">
+								<h3>HTML</h3>
+								<p>Document structure of this images marker</p>
+							</div>
+							<div class="bd">
+<pre class="brush: html;">
+&lt;div class="ovarlayView marker images imagesPaper"&gt;
+	&lt;ul class="photos"&gt;
+		&lt;li&gt;&lt;a href="http://sharedhat.com" title="demo1"&gt;&lt;img
+			src="../Demos/images/demo/img01.jpg" title="demo1"&gt;&lt;/a&gt;&lt;/li&gt;
+		&lt;li&gt;&lt;a href="http://sharedhat.com" title="demo2"&gt;&lt;img
+			src="../Demos/images/demo/img02.jpg" title="demo2"&gt;&lt;/a&gt;&lt;/li&gt;
+		&lt;li&gt;&lt;a href="http://sharedhat.com" title="demo3"&gt;&lt;img
+			src="../Demos/images/demo/img03.jpg" title="demo3"&gt;&lt;/a&gt;&lt;/li&gt;
+		&lt;li&gt;&lt;a href="http://sharedhat.com" title="demo4"&gt;&lt;img
+			src="../Demos/images/demo/img04.jpg" title="demo4"&gt;&lt;/a&gt;&lt;/li&gt;
+		&lt;li&gt;&lt;a href="http://sharedhat.com" title="demo5"&gt;&lt;img
+			src="../Demos/images/demo/img05.jpg" title="demo5"&gt;&lt;/a&gt;&lt;/li&gt;
+	&lt;/ul&gt;
+&lt;/div&gt;
+</pre>
+							</div>
+						</div>
+					</div>
 
 
 				</div>
