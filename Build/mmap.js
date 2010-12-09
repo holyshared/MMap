@@ -448,7 +448,6 @@ MMap.OverlayView = new Class({
 
 	setVisible: function(value){
 		if (!Type.isBoolean(value)) new TypeError('The data type is not an boolean.');
-		if (value == this.get('visible')) return this;
 		this.set('visible', value);
 		var container = this._getInstance();
 		if (value) {
@@ -461,7 +460,6 @@ MMap.OverlayView = new Class({
 
 	setZIndex: function(index){
 		if (!Type.isNumber(index)) new TypeError('The data type is not an integer.');
-		if (index == this.get('zIndex')) return this;
 		this.set('zIndex', index);
 		var container = this._getInstance();
 		container.setStyle('z-index', index);
@@ -470,7 +468,6 @@ MMap.OverlayView = new Class({
 
 	setActive: function(value) {
 		if (!Type.isBoolean(value)) new TypeError('The data type is not an boolean.');
-		if (value == this.get('active')) return this;
 		this.set('active', value);
 		var container = this._getInstance();
 		if (value) {
@@ -815,21 +812,18 @@ MMap.Marker.Image = this.MMap.Marker.Image = new Class({
 	},
 
 	setTitle: function(title){
-		if (this.get('title') == title) return this;
 		this.set('title', title);
 		this.refresh();
 		return this;
 	},
 
 	setImage: function(image){
-		if (this.get('image') == image) return this;
 		this.set('image', image);
 		this.refresh();
 		return this;
 	},
 
 	setURL: function(url){
-		if (this.get('url') == url) return this;
 		this.set('url', url);
 		this.refresh();
 		return this;

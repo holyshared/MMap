@@ -109,21 +109,18 @@ MMap.Marker.Image = this.MMap.Marker.Image = new Class({
 	},
 
 	setTitle: function(title){
-		if (this.get('title') == title) return this;
 		this.set('title', title);
 		this.refresh();
 		return this;
 	},
 
 	setImage: function(image){
-		if (this.get('image') == image) return this;
 		this.set('image', image);
 		this.refresh();
 		return this;
 	},
 
 	setURL: function(url){
-		if (this.get('url') == url) return this;
 		this.set('url', url);
 		this.refresh();
 		return this;
