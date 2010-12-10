@@ -7,7 +7,7 @@ var RadiusWidget = this.RadiusWidget = new Class({
 	Implements: [MMap.Events],
 
 	initialize: function(){
-		this._values = [200, 300, 400];
+		this._values = [200, 300, 400, 500];
 		this._circle = new google.maps.Circle({
 			fillColor: '#ffffff',
 			fillOpacity: 0,
@@ -25,9 +25,9 @@ var RadiusWidget = this.RadiusWidget = new Class({
 		this._values.each(function(radius){
 			var li = new Element('li');
 			var a = new Element('a', {
-				'href': '#' + radius,
-				'title': radius,
-				'html': radius
+				'href': '#' + radius.toString(),
+				'title': radius.toString() + 'm',
+				'html': radius.toString() + 'm'
 			});
 			a.inject(li);
 			li.inject(self._options);
@@ -104,6 +104,10 @@ var RadiusWidget = this.RadiusWidget = new Class({
 
 window.addEvent("domready", function(){
 
+	/*
+	 * The map is made.
+	 * The marker is arranged in this map.
+     */
 	var map = new google.maps.Map($('gmap'), {
 		disableDefaultUI: true,
 		zoom: 15,
@@ -111,6 +115,7 @@ window.addEvent("domready", function(){
 		mapTypeId: google.maps.MapTypeId.ROADMAP
 	});
 
+	//The marker is made based on the parameter of the marker.
 	var markers = [{
 		title: 'Marker1',
 		image: '../Demos/images/demo/img01.jpg',
@@ -145,21 +150,27 @@ window.addEvent("domready", function(){
 		manageMarkers.push(imageMarker);
 	});
 
+	//The marker manager is made, and the managed marker is set.
 	var markerManager = new MMap.MarkerManager({
 		markers: manageMarkers
 	});
-	markerManager.setMap(map);
+	markerManager.setMap(map); //The arranged map is specified for all managed markers.
 
+
+	//The widget that can specify the radius is arranged in the upper right of the map.
 	var radiusWidget = new RadiusWidget();
 	radiusWidget.setMap(map);
 	map.controls[google.maps.ControlPosition.TOP_RIGHT].push(radiusWidget.getInstance());
 
+	//An initial value is set.
 	markerManager.visible(radiusWidget.getBounds());
 
+	//When the center of the map changes, the displayed marker is adjusted with the radius.
 	google.maps.event.addListener(map, 'center_changed', function(){
 		radiusWidget.setCenter(map.getCenter());
 		markerManager.visible(radiusWidget.getBounds());
 	});
+
 	google.maps.event.addListener(radiusWidget, 'radius_changed', function(){
 		markerManager.visible(radiusWidget.getBounds());
 	});
