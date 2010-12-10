@@ -102,13 +102,68 @@ var RadiusWidget = this.RadiusWidget = new Class({
 
 });
 
+
+var MarkerStateView = this.MarkerStateView = new Class({
+
+	Extends: MMap.MVCObject,
+
+	Implements: [MMap.Events],
+
+	initialize: function(){
+		this._setup();
+	},
+
+	_setup: function(){
+		var self = this;
+		this._container = new Element('div', {'class': 'markerStateView'});
+		this._options = new Element('dl', {'class': 'states'});
+
+		var label = new Element('dt', {'html': 'Marker within the range: '});
+		var count = new Element('dd');
+		this._options.adopt([label, count]);
+		this._visibles = count;
+		
+		var label = new Element('dt', {'html': 'Marker outside range: '});
+		var count = new Element('dd');
+		this._options.adopt([label, count]);
+		this._hiddens = count;
+		this._options.inject(this._container);
+	},
+
+	getInstance: function(){
+		return this._container;
+	},
+
+	state_changed: function(){
+		var state = this.get('state');
+		this._visibles.set('html', state.visibleMarkers.length);
+		this._hiddens.set('html', state.hiddenMarkers.length);
+	}
+
+});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 window.addEvent("domready", function(){
 
 	/*
 	 * The map is made.
 	 * The marker is arranged in this map.
      */
-	var map = new google.maps.Map($('gmap'), {
+	var mapDiv = $('gmap');
+	var map = new google.maps.Map(mapDiv, {
 		disableDefaultUI: true,
 		zoom: 15,
 		center: new google.maps.LatLng(35.6666870, 139.731859),
@@ -157,6 +212,12 @@ window.addEvent("domready", function(){
 	markerManager.setMap(map); //The arranged map is specified for all managed markers.
 
 
+	var container = mapDiv.getParent();
+	var stateView = new MarkerStateView();
+	stateView.bindTo('state', markerManager, 'state');
+	stateView.getInstance().inject(container);
+
+
 	//The widget that can specify the radius is arranged in the upper right of the map.
 	var radiusWidget = new RadiusWidget();
 	radiusWidget.setMap(map);
@@ -174,6 +235,8 @@ window.addEvent("domready", function(){
 	google.maps.event.addListener(radiusWidget, 'radius_changed', function(){
 		markerManager.visible(radiusWidget.getBounds());
 	});
+
+
 
 	SyntaxHighlighter.all();
 });
