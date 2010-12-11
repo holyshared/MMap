@@ -92,15 +92,43 @@ var MarkerManagerTest = {
 		this.testAll();
 	},
 
+	testOptions: function(){
+		var marker = new MMap.Marker({
+			map: this.map
+		});
+		var mks = [marker];
+		var sw = new google.maps.LatLng(35.6646870, 139.726859)
+		var ne = new google.maps.LatLng(35.6666870, 139.931859)
+		var bounds = new google.maps.LatLngBounds(sw, ne);
+		var manager = new MMap.MarkerManager({
+			map: this.map,
+			zoom: 10,
+			bounds: bounds,
+			markers: mks
+		});
+
+		var zoom = manager.getZoom();
+		this.logger.log('options', (zoom == 10) ? 'options zoom ok' : 'options zoom ng');
+
+		var map = manager.getMap();
+		this.logger.log('options', (map == map) ? 'options map ok' : 'options map ng');
+
+		var nbounds = manager.getBounds();
+		this.logger.log('options', (nbounds == bounds) ? 'options bounds ok' : 'options bounds ng');
+
+		var nbounds = manager.getMarkers();
+		this.logger.log('options', (mks == bounds) ? 'options markers ok' : 'options markers ng');
+	},
+
 	testVisibleMarkerByMarker: function(){
 		this.manager.visible(this.manageMarkers.getLast());
 
 		var state = this.manager.getState();
-		var hidden = state.hiddenMarkers.some(function(item, index){
+		var hidden = state.hiddens.some(function(item, index){
 			return !item.isVisible();
 		});
 
-		if (state.visibleMarkers.getLast() == this.manageMarkers.getLast()) {
+		if (state.visibles.getLast() == this.manageMarkers.getLast()) {
 			this.logger.log('methods', 'visible method OK (argumetns marker)');
 			this.logger.log('methods', 'getVisibleMarkers method OK (argumetns marker)');
 		} else {
@@ -115,11 +143,11 @@ var MarkerManagerTest = {
 		this.manager.active(this.manageMarkers.getLast());
 
 		var state = this.manager.getState();
-		var deactive = state.deactiveMarkers.some(function(item, index){
+		var deactive = state.deactives.some(function(item, index){
 			return !item.isActive();
 		});
 	
-		if (state.activeMarkers.getLast() == this.manageMarkers.getLast()) {
+		if (state.actives.getLast() == this.manageMarkers.getLast()) {
 			this.logger.log('methods', 'active method OK (argumetns marker)');
 			this.logger.log('methods', 'getActiveMarkers method OK (argumetns marker)');
 		} else {
@@ -138,13 +166,21 @@ var MarkerManagerTest = {
 
 	testHasMarker: function(){
 		var state = this.manager.getState();
-		this.logger.log('methods', (this.manager.hasMarker(state.activeMarkers.getLast()))
+		this.logger.log('methods', (this.manager.hasMarker(state.actives.getLast()))
 			? 'hasMarker method OK' : 'hasMarker method NG');
 	},
 
 	testGetMarkers: function(){
-		this.logger.log('methods', (instanceOf(this.manager.getMarkers(), MMap.Container))
+		this.logger.log('methods', (Type.isArray(this.manager.getMarkers()))
 			? 'getMarkers method OK' : 'getMarkers method NG');
+
+		var mks = this.manager.getMarkers();
+		var count = mks.length;
+		this.manager.setMarkers(mks);
+		var mks = this.manager.getMarkers();
+
+		this.logger.log('methods', (mks.length == count)
+			? 'setMarkers method OK' : 'setMarkers method NG');
 	},
 
 	testVisibleMarkerByBounds: function(){
@@ -152,11 +188,11 @@ var MarkerManagerTest = {
 		this.manager.visible(this.bounds);
 	
 		var state = this.manager.getState();
-		var contains = state.visibleMarkers.some(function(item, index){
+		var contains = state.visibles.some(function(item, index){
 			return self.bounds.contains(item.getPosition());
 		});
 
-		var hidden = state.hiddenMarkers.some(function(item, index){
+		var hidden = state.hiddens.some(function(item, index){
 			return !item.isVisible();
 		});
 
@@ -176,11 +212,11 @@ var MarkerManagerTest = {
 		this.manager.active(this.bounds);
 
 		var state = this.manager.getState();
-		var deactive = state.deactiveMarkers.some(function(item, index){
+		var deactive = state.deactives.some(function(item, index){
 			return !item.isActive();
 		});
 
-		var active = state.activeMarkers.some(function(item, index){
+		var active = state.actives.some(function(item, index){
 			return item.isActive();
 		});
 
@@ -215,7 +251,7 @@ var MarkerManagerTest = {
 	},
 
 	testRemoveMaker: function(){
-		var container = this.manager.getMarkers();
+		var container = this.manager.getContainer();
 		var items = container.getItems();
 
 		this.manager.visible(this.map.getBounds());
@@ -234,7 +270,7 @@ var MarkerManagerTest = {
 	testAddMarker: function(){
 		this.manager.addMarkers(this.manageMarkers);
 
-		var container = this.manager.getMarkers();
+		var container = this.manager.getContainer();
 		var items = container.getItems();
 		if (items.length >= 0) {
 			this.logger.log('methods', 'addMarkers method OK');
@@ -275,7 +311,7 @@ var MarkerManagerTest = {
 	},
 
 	testAll: function(){
-		var markers = this.manager.getMarkers();
+		var markers = this.manager.getContainer();
 		var checkCount = 0;
 		var count = markers.count();
 

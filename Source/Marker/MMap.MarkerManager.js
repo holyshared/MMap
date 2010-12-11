@@ -61,17 +61,17 @@ MMap.MarkerManager = new Class({
 
 	_setup: function(){
 		var markers = {
-			visibleMarkers: [],
-			hiddenMarkers: [],
-			activeMarkers: [],
-			deactiveMarkers: []
+			visibles: [],
+			hiddens: [],
+			actives: [],
+			deactives: []
 		};
 		this.addMarkers(this.options.markers);
 		this.set('state', markers);
 	},
 
 	setMap: function(map) {
-		var markers = this.getMarkers().rewind();
+		var markers = this.getContainer().rewind();
 		this.set('map', map);
 		while(markers.isValid()) {
 			var marker = markers.getCurrent();
@@ -85,7 +85,7 @@ MMap.MarkerManager = new Class({
 	},
 
 	addMarker: function(marker){
-		var container = this.getMarkers();
+		var container = this.getContainer();
 		container.addItem(marker);
 		marker.setMap(this.getMap());
 	},
@@ -97,14 +97,14 @@ MMap.MarkerManager = new Class({
 	},
 
 	removeMarker: function(marker){
-		var container = this.getMarkers();
+		var container = this.getContainer();
 		container.removeItem(marker);
 		marker.setMap(null);
 	},
 
 	removeMarkers: function(){
 		var marker = null, markers = [], args = Array.from(arguments);
-		if ((args.length <= 0)) { args = this.getMarkers().getItems(); };
+		if ((args.length <= 0)) { args = this.getContainer().getItems(); };
 		while (args.length > 0) {
 			markers.push(args.shift());
 		};
@@ -137,8 +137,22 @@ MMap.MarkerManager = new Class({
 		return this.get('bounds');
 	},
 
-	getMarkers: function() {
+	getContainer: function() {
 		return this._container;
+	},
+
+	getMarkers: function() {
+		return this.getContainer().getItems();
+	},
+
+	setMarkers: function(markers) {
+		var l = markers.length, items = [];
+		for(var i = 0; i < l; i++){
+			items.push(markers[i]);
+		}
+		this.getContainer().empty();
+		this.addMarkers(items);
+		this._displayMarkerChange();
 	},
 
 	getState: function(){
@@ -147,7 +161,7 @@ MMap.MarkerManager = new Class({
 	},
 
 	_displayMarkerChange: function() {
-		var markers = this.getMarkers().rewind();
+		var markers = this.getContainer().rewind();
 		var visibleMarkers = [], hiddenMarkers = [], activeMarkers = [], deactiveMarkers = [];
 		while(markers.isValid()) {
 			var marker = markers.getCurrent();
@@ -159,22 +173,22 @@ MMap.MarkerManager = new Class({
 			markers.next();
 		}
 		var markers = {
-			visibleMarkers: visibleMarkers,
-			hiddenMarkers: hiddenMarkers,
-			activeMarkers: activeMarkers,
-			deactiveMarkers: deactiveMarkers
+			visibles: visibleMarkers,
+			hiddens: hiddenMarkers,
+			actives: activeMarkers,
+			deactives: deactiveMarkers
 		};
 		return this.set('state', markers);
 	},
 
 	hasDisplayMarkers: function() {
 		var state = this.getState();
-		return (state.visibleMarkers.length > 0) ? true : false;
+		return (state.visibles.length > 0) ? true : false;
 	},
 
 	hasMarker: function(marker) {
 		var findMaker = false;
-		var markers = this.getMarkers().rewind();
+		var markers = this.getContainer().rewind();
 		while(markers.isValid()) {
 			if (marker == markers.getCurrent()) {
 				findMaker = true;
@@ -203,7 +217,7 @@ MMap.MarkerManager = new Class({
 	},
 
 	_activeMarkers: function(target, closer) {
-		var markers = this.getMarkers().rewind();
+		var markers = this.getContainer().rewind();
 		while(markers.isValid()) {
 			var current = markers.getCurrent();
 			current.setActive(closer(target, current));
@@ -212,7 +226,7 @@ MMap.MarkerManager = new Class({
 	},
 
 	_visibleMarkers: function(target, closer) {
-		var markers = this.getMarkers().rewind();
+		var markers = this.getContainer().rewind();
 		while(markers.isValid()) {
 			var current = markers.getCurrent();
 			current.setVisible(closer(target, current));
