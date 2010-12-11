@@ -44,7 +44,7 @@ MMap.Options = new Class({
 			if (key == 'map') {
 				this.setMap(value);
 				delete options[key];
-			} else if (instanceOf(value, Function)) {
+			} else if (instanceOf(value, Function) && (/^on[A-Z]/).test(key)) {
 				this.addEvent(key, value);
 				delete options[key];
 			}

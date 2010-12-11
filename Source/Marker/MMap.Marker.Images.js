@@ -60,6 +60,7 @@ MMap.Marker.Images = this.MMap.Marker.Images = new Class({
 		this._elements = [];
 		this._stack = [];
 		this._index = 0;
+		this._start = false;
 	},
 
 	_setup: function(container){
@@ -81,6 +82,16 @@ MMap.Marker.Images = this.MMap.Marker.Images = new Class({
 		return this._photos;
 	},
 
+	_setupListeners: function(){
+		var self = this;
+		this._photos.addEvent('mouseover', function(event){
+			self.stop();
+		});
+		this._photos.addEvent('mouseout', function(event){
+			self.start();
+		});
+	},
+
 	_init: function(){
 		this.parent();
 		this.set('images', this.options['images']);
@@ -97,6 +108,7 @@ MMap.Marker.Images = this.MMap.Marker.Images = new Class({
 		var index = this.options.defaultIndex;
 		this.setCurrent(index);
 		this._timerID = this._next.delay(this.options.interval, this);
+		this._start = true;
 	},
 
 	_next: function() {
@@ -121,8 +133,10 @@ MMap.Marker.Images = this.MMap.Marker.Images = new Class({
 		li.set('tween', {
 			duration: this.options.duration,
 			onComplete: function() {
-				self.setCurrent(self._index);
-				self._timerID = self._next.delay(this.options.interval, self);
+				if (self.isStart()) {
+					self.setCurrent(self._index);
+					self._timerID = self._next.delay(this.options.interval, self);
+				}
 			}
 		});
 		return li;
@@ -194,6 +208,21 @@ MMap.Marker.Images = this.MMap.Marker.Images = new Class({
 		images.each(function(image){
 			self.removeImage(image);
 		});
+	},
+
+	isStart: function(){
+		return (this._start) ? true : false;
+	},
+
+	start: function(){
+		if (this.isStart()) return;
+		this._timerID = this._next.delay(this.options.interval, this);
+		this._start = true;
+	},
+
+	stop: function(){
+		clearTimeout(this._timerID);
+		this._start = false;
 	}
 
 });

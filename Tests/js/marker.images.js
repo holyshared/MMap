@@ -153,6 +153,34 @@ window.addEvent('domready', function(){
 
 	marker.setVisible(true);
 
+
+
+
+
+	var mouseover = false;
+	var marker1 = new MMap.Marker.Images({
+		position: new google.maps.LatLng(35.6666870, 139.721859)
+	});
+
+	marker1.addImages([
+		{
+			title: 'demo3',
+			image: '../Demos/images/demo/img03.jpg',
+			url: 'http://sharedhat.com'
+		},
+		{
+			title: 'demo4',
+			image: '../Demos/images/demo/img04.jpg',
+			url: 'http://sharedhat.com'
+		},
+		{
+			title: 'demo5',
+			image: '../Demos/images/demo/img05.jpg',
+			url: 'http://sharedhat.com'
+		}
+	]);
+	marker1.setMap(map);
+
 });
 
 }(document.id));
