@@ -57,6 +57,7 @@ MMap.MarkerManager = new Class({
 		this._container = new MMap.Container();
 		this.setOptions(options);
 		this._setup();
+		this._init();
 	},
 
 	_setup: function(){
@@ -68,6 +69,17 @@ MMap.MarkerManager = new Class({
 		};
 		this.addMarkers(this.options.markers);
 		this.set('state', markers);
+		delete this.options.markers;
+	},
+
+	_init: function(){
+		var self = this;
+		var props = ['zoom', 'bounds'];
+		props.each(function(key){
+			var value = self.options[key];
+			self.set(key, value);
+			delete self.options[key];
+		});
 	},
 
 	setMap: function(map) {

@@ -77,6 +77,7 @@ var MarkerManagerTest = {
 	},
 
 	runTest: function()	{
+		this.testOptions();
 		this.testBindTo();
 		this.testVisibleMarkerByMarker();
 		this.testActiveMarkerByMarker();
@@ -94,7 +95,8 @@ var MarkerManagerTest = {
 
 	testOptions: function(){
 		var marker = new MMap.Marker({
-			map: this.map
+			map: this.map,
+			position: new google.maps.LatLng(35.6646870, 139.726859)
 		});
 		var mks = [marker];
 		var sw = new google.maps.LatLng(35.6646870, 139.726859)
@@ -116,8 +118,8 @@ var MarkerManagerTest = {
 		var nbounds = manager.getBounds();
 		this.logger.log('options', (nbounds == bounds) ? 'options bounds ok' : 'options bounds ng');
 
-		var nbounds = manager.getMarkers();
-		this.logger.log('options', (mks == bounds) ? 'options markers ok' : 'options markers ng');
+		var markers = manager.getMarkers();
+		this.logger.log('options', (mks.length == markers.length) ? 'options markers ok' : 'options markers ng');
 	},
 
 	testVisibleMarkerByMarker: function(){
