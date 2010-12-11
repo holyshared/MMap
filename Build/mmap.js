@@ -471,6 +471,7 @@ MMap.OverlayView = new Class({
 		this.set('active', value);
 		var container = this._getInstance();
 		if (value) {
+			this.fireEvent('active');
 			container.addClass('active');
 		} else {
 			container.removeClass('active');
