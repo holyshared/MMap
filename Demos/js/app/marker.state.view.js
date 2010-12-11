@@ -33,8 +33,8 @@ var MarkerStateView = this.MarkerStateView = new Class({
 
 	state_changed: function(){
 		var state = this.get('state');
-		this._visibles.set('html', state.visibleMarkers.length);
-		this._hiddens.set('html', state.hiddenMarkers.length);
+		this._visibles.set('html', state.visibles.length);
+		this._hiddens.set('html', state.hiddens.length);
 	}
 
 });
