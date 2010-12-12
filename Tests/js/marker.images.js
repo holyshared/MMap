@@ -29,20 +29,6 @@ window.addEvent('domready', function(){
 		},
 		onVisibleChanged: function(event) {
 			logger.log('events', 'onVisibleChanged');
-		},
-/*
-		onMouseOver: function(event) {
-			logger.log('events', 'onMouseOver');
-		},
-		onMouseOut: function(event) {
-			logger.log('events', 'onMouseOut');
-		},
-*/
-		onMouseUp: function(event) {
-			logger.log('events', 'onMouseUp');
-		},
-		onMouseDown: function(event) {
-			logger.log('events', 'onMouseDown');
 		}
 	});
 
@@ -154,12 +140,31 @@ window.addEvent('domready', function(){
 	marker.setVisible(true);
 
 
-
-
-
-	var mouseover = false;
 	var marker1 = new MMap.Marker.Images({
-		position: new google.maps.LatLng(35.6666870, 139.721859)
+		position: new google.maps.LatLng(35.6666870, 139.721859),
+		autoplay: false,
+		onClick: function(event) {
+			event.preventDefault();
+			logger.log('events', 'onClick Test');
+		},
+		onDblClick: function(event) {
+			event.preventDefault();
+			logger.log('events', 'onDblClick Test');
+		},
+		onMouseOver: function(event) {
+			this.start();
+			logger.log('events', 'onMouseOver Test');
+		},
+		onMouseOut: function(event) {
+			this.stop();
+			logger.log('events', 'onMouseOut Test');
+		},
+		onMouseUp: function(event) {
+			logger.log('events', 'onMouseUp Test');
+		},
+		onMouseDown: function(event) {
+			logger.log('events', 'onMouseDown Test');
+		}
 	});
 
 	marker1.addImages([

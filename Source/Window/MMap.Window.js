@@ -50,12 +50,6 @@ MMap.Window = new Class({
 		zIndex: 0,
 		visible: true
 		/*
-			onClick: $empty
-			onDblClick: $empty
-			onMouseover: $empty
-			onMouseout: $empty
-			onMouseup: $empty
-			onMousedown: $empty
 			onOpen: $empty
 			onClose: $empty
 			onVisibleChanged: $empty
@@ -103,11 +97,10 @@ MMap.Window = new Class({
 
 	_setupListeners: function(){
 		var self = this;
-		self.addEvent('click', function(event){
-			if (event.target == self._closeButton) {
-				self.close();
-				self.fireEvent('close');
-			}
+		var win = this._getInstance();
+		this._closeButton.addEvent('click', function(event){
+			self.close();
+			self.fireEvent('close');
 		});
 	},
 

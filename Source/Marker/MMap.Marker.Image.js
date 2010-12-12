@@ -75,6 +75,19 @@ MMap.Marker.Image = this.MMap.Marker.Image = new Class({
 		return photo;
 	},
 
+	_setupListeners: function(){
+		var self = this;
+		var marker = this._getInstance();
+		var proxy = function(event){
+			event.target = self;
+			self.fireEvent(event.type, event);
+		}
+		var events = ['click', 'dblclick', 'mouseover', 'mouseout', 'mouseup', 'mousedown'];
+		events.each(function(type){
+			marker.addEvent(type, proxy);
+		});
+	},
+
 	_init: function(){
 		this.parent();
 		var self = this;

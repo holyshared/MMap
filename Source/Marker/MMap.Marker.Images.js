@@ -50,6 +50,7 @@ MMap.Marker.Images = this.MMap.Marker.Images = new Class({
 		defaultIndex: 0,
 		interval: 2000,
 		duration: 2000,
+		autoplay: true,
 		zIndex: 0,
 		position: null,
 		visible: true
@@ -61,6 +62,7 @@ MMap.Marker.Images = this.MMap.Marker.Images = new Class({
 		this._stack = [];
 		this._index = 0;
 		this._start = false;
+		this._mouseovered = false;
 	},
 
 	_setup: function(container){
@@ -84,12 +86,16 @@ MMap.Marker.Images = this.MMap.Marker.Images = new Class({
 
 	_setupListeners: function(){
 		var self = this;
-		this._photos.addEvent('mouseover', function(event){
-			self.stop();
+		var marker = this._getInstance();
+		var proxy = function(event){
+			event.target = self;
+			self.fireEvent(event.type, event);
+		}
+		var events = ['click', 'dblclick', 'mouseup', 'mousedown'];
+		events.each(function(type){
+			marker.addEvent(type, proxy);
 		});
-		this._photos.addEvent('mouseout', function(event){
-			self.start();
-		});
+		marker.addEvent('mouseout', this._mouseout.bind(this));
 	},
 
 	_init: function(){
@@ -107,8 +113,10 @@ MMap.Marker.Images = this.MMap.Marker.Images = new Class({
 		delete this._stack;
 		var index = this.options.defaultIndex;
 		this.setCurrent(index);
-		this._timerID = this._next.delay(this.options.interval, this);
-		this._start = true;
+		if (this.options.autoplay) {
+			this._timerID = this._next.delay(this.options.interval, this);
+			this._start = true;
+		}
 	},
 
 	_next: function() {
@@ -139,7 +147,23 @@ MMap.Marker.Images = this.MMap.Marker.Images = new Class({
 				}
 			}
 		});
+		li.addEvent('mouseover', self._mouseover.bind(this));
 		return li;
+	},
+
+	_mouseover: function(event){
+		if (this._mouseovered) return false;
+		event.target = this;
+		this.fireEvent(event.type, event);
+		this._mouseovered = true;
+	},
+	
+	_mouseout: function(event){
+		if (!(event.target == this._photos || event.target == this._getInstance())) return false;
+		if (!this._mouseovered) return false;
+		event.target = this;
+		this.fireEvent(event.type, event);
+		this._mouseovered = false;
 	},
 
 	setCurrent: function(index){

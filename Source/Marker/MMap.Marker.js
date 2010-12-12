@@ -72,6 +72,14 @@ MMap.BaseMarker = new Class({
 		});
 	},
 
+	_updateVisibleState: function(){
+		this.setZIndex(this.get('zIndex'))
+		.setVisible(this.get('visible'));
+	},
+
+	_update: function(){
+	},
+
 	draw: function(){
 		if (!this.isAdded()) return;
 		var projection = this.getProjection();
@@ -91,14 +99,6 @@ MMap.BaseMarker = new Class({
 		if (!this.isAdded()) return;
 		this._updateVisibleState();
 		this._update();
-	},
-
-	_updateVisibleState: function(){
-		this.setZIndex(this.get('zIndex'))
-		.setVisible(this.get('visible'));
-	},
-
-	_update: function(){
 	},
 
 	getPosition: function() {
@@ -169,6 +169,19 @@ MMap.Marker = new Class({
 		this._content.inject(bd);
 
 		return marker;
+	},
+
+	_setupListeners: function(){
+		var self = this;
+		var marker = this._getInstance();
+		var proxy = function(event){
+			event.target = self;
+			self.fireEvent(event.type, event);
+		}
+		var events = ['click', 'dblclick', 'mouseover', 'mouseout', 'mouseup', 'mousedown'];
+		events.each(function(type){
+			marker.addEvent(type, proxy);
+		});
 	},
 
 	_init: function(){

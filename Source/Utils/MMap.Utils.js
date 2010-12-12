@@ -62,8 +62,6 @@ MMap.Options = new Class({
 
 var MMap = (this.MMap || {});
 
-var domEvents = ["mouseover", "mouseout", "mouseup", "mousedown", "click", "dblclick"];
-
 var removeOn = function(string){
 	return string.replace(/^on([A-Z])/, function(full, first){
 		return first.toLowerCase();
@@ -87,11 +85,7 @@ MMap.Events = new Class({
 	addEvent: function(type, fn){
 		var listener = null;
 		type = toFormat(type);
-		if (domEvents.contains(type.toLowerCase())) {
-			listener = google.maps.event.addDomListener(this.instance, type.toLowerCase(), fn.bind(this));
-		} else {
-			listener = google.maps.event.addListener(this, type, fn);
-		}
+		listener = google.maps.event.addListener(this, type, fn);
 		this._handles[type] = (this._handles[type] || []).include(fn);
 		this._events[type] = (this._events[type] || []).include(listener);
 		return this;
@@ -125,7 +119,6 @@ MMap.Events = new Class({
 			for (type in events) this.removeEvent(type, events[type]);
 			return this;
 		}
-		type = toFormat(type);
 		for (type in this._events){
 			if (events && events != type) continue;
 			var fns = this._events[type];
@@ -137,8 +130,9 @@ MMap.Events = new Class({
 	fireEvent: function(type, args){
 		type = toFormat(type);
 		if (!this._events[type]) return this;
-		var target = (domEvents.contains(type.toLowerCase())) ? this.instance : this;
-		google.maps.event.trigger(target, type, Array.from(args));
+		var callArguments = [this, type, args];
+		callArguments = Array.flatten(callArguments);
+		google.maps.event.trigger.apply(this, callArguments);
 		return this;
 	}
 

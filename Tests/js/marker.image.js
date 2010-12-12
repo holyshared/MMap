@@ -20,34 +20,42 @@ window.addEvent('domready', function(){
 		zIndex: 0,
 		visible: true,
 		onPositionChanged: function(event) {
-			logger.log('events', 'onPositionChanged');
+			logger.log('events', 'onPositionChanged OK');
 		},
 		onZIndexChanged: function(event) {
-			logger.log('events', 'onZIndexChanged');
+			logger.log('events', 'onZIndexChanged OK');
 		},
 		onTitleChanged: function(event) {
-			logger.log('events', 'onTitleChanged');
+			logger.log('events', 'onTitleChanged OK');
 		},
 		onImageChanged: function(event) {
-			logger.log('events', 'onImageChanged');
+			logger.log('events', 'onImageChanged OK');
 		},
 		onURLChanged: function(event) {
-			logger.log('events', 'onURLChanged');
+			logger.log('events', 'onURLChanged OK');
 		},
 		onVisibleChanged: function(event) {
-			logger.log('events', 'onVisibleChanged');
+			logger.log('events', 'onVisibleChanged OK');
+		},
+		onDblClick: function(event) {
+			event.preventDefault();
+			logger.log('events', 'onDblClick OK');
+		},
+		onClick: function(event) {
+			event.preventDefault();
+			logger.log('events', 'onClick OK');
 		},
 		onMouseOver: function(event) {
-			logger.log('events', 'onMouseOver');
+			logger.log('events', 'onMouseOver OK');
 		},
 		onMouseOut: function(event) {
-			logger.log('events', 'onMouseOut');
+			logger.log('events', 'onMouseOut OK');
 		},
 		onMouseUp: function(event) {
-			logger.log('events', 'onMouseUp');
+			logger.log('events', 'onMouseUp OK');
 		},
 		onMouseDown: function(event) {
-			logger.log('events', 'onMouseDown');
+			logger.log('events', 'onMouseDown OK');
 		}
 	});
 
@@ -79,8 +87,6 @@ window.addEvent('domready', function(){
 	var visibleListener = google.maps.event.addListener(binder, 'visible_changed', function(){
 		logger.log('events', "bindTo visible_changed OK");
 	});	
-
-
 
 
 
