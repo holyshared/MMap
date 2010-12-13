@@ -122,7 +122,9 @@ MMap.BaseMarker = new Class({
 		if (!Type.isNumber(index)) new TypeError('The data type is not an integer.');
 		this.set('zIndex', index);
 		var container = this._getInstance();
-		container.setStyle('z-index', index);
+		if (!this.isActive()) {
+			container.setStyle('z-index', index);
+		}
 		return this;
 	},
 
@@ -136,6 +138,21 @@ MMap.BaseMarker = new Class({
 		}
 		this.set('position', position);
 		this.draw();
+		return this;
+	},
+
+	setActive: function(value) {
+		if (!Type.isBoolean(value)) new TypeError('The data type is not an boolean.');
+		this.set('active', value);
+		var container = this._getInstance();
+		if (value) {
+			this.fireEvent('active');
+			container.setStyle('z-index', 10000);
+			container.addClass('active');
+		} else {
+			container.setStyle('z-index', this.getZIndex());
+			container.removeClass('active');
+		}
 		return this;
 	}
 
@@ -248,6 +265,7 @@ MMap.Marker = new Class({
 		this.draw();
 		return this;
 	}
+
 
 });
 MMap.Marker.Html = MMap.Marker;

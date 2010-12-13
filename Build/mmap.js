@@ -87,7 +87,7 @@ MMap.Options = new Class({
 			if (key == 'map') {
 				this.setMap(value);
 				delete options[key];
-			} else if (instanceOf(value, Function)) {
+			} else if (instanceOf(value, Function) && (/^on[A-Z]/).test(key)) {
 				this.addEvent(key, value);
 				delete options[key];
 			}
@@ -104,8 +104,6 @@ MMap.Options = new Class({
 (function($){
 
 var MMap = (this.MMap || {});
-
-var domEvents = ["mouseover", "mouseout", "mouseup", "mousedown", "click", "dblclick"];
 
 var removeOn = function(string){
 	return string.replace(/^on([A-Z])/, function(full, first){
@@ -130,11 +128,7 @@ MMap.Events = new Class({
 	addEvent: function(type, fn){
 		var listener = null;
 		type = toFormat(type);
-		if (domEvents.contains(type.toLowerCase())) {
-			listener = google.maps.event.addDomListener(this.instance, type.toLowerCase(), fn.bind(this));
-		} else {
-			listener = google.maps.event.addListener(this, type, fn);
-		}
+		listener = google.maps.event.addListener(this, type, fn);
 		this._handles[type] = (this._handles[type] || []).include(fn);
 		this._events[type] = (this._events[type] || []).include(listener);
 		return this;
@@ -168,7 +162,6 @@ MMap.Events = new Class({
 			for (type in events) this.removeEvent(type, events[type]);
 			return this;
 		}
-		type = toFormat(type);
 		for (type in this._events){
 			if (events && events != type) continue;
 			var fns = this._events[type];
@@ -180,8 +173,9 @@ MMap.Events = new Class({
 	fireEvent: function(type, args){
 		type = toFormat(type);
 		if (!this._events[type]) return this;
-		var target = (domEvents.contains(type.toLowerCase())) ? this.instance : this;
-		google.maps.event.trigger(target, type, Array.from(args));
+		var callArguments = [this, type, args];
+		callArguments = Array.flatten(callArguments);
+		google.maps.event.trigger.apply(this, callArguments);
 		return this;
 	}
 
@@ -430,10 +424,6 @@ MMap.OverlayView = new Class({
 		return this.get('visible');
 	},
 
-	getZIndex: function() {
-		return this.get('zIndex');
-	},
-
 	isAdded: function() {
 		return this._added;
 	},
@@ -458,26 +448,7 @@ MMap.OverlayView = new Class({
 		return this;
 	},
 
-	setZIndex: function(index){
-		if (!Type.isNumber(index)) new TypeError('The data type is not an integer.');
-		this.set('zIndex', index);
-		var container = this._getInstance();
-		container.setStyle('z-index', index);
-		return this;
-	},
-
-	setActive: function(value) {
-		if (!Type.isBoolean(value)) new TypeError('The data type is not an boolean.');
-		this.set('active', value);
-		var container = this._getInstance();
-		if (value) {
-			this.fireEvent('active');
-			container.addClass('active');
-		} else {
-			container.removeClass('active');
-		}
-		return this;
-	}
+	setActive: function(value) {}
 
 });
 
@@ -529,7 +500,7 @@ MMap.BaseMarker = new Class({
 		map: null,
 		className: 'marker markerDefault',
 		position: '',
-		zIndex: 0,
+		zIndex: null,
 		visible: true
 		/*
 			onClick: $empty
@@ -552,13 +523,35 @@ MMap.BaseMarker = new Class({
 		var self = this;
 		var props = ['position', 'zIndex', 'visible'];
 		props.each(function(key){
-			self.set(key, self.options[key]);
+			var value = self.options[key];
+			self.set(key, value);
 			delete self.options[key];
 		});
 	},
 
+	_updateVisibleState: function(){
+		this.setZIndex(this.get('zIndex'))
+		.setVisible(this.get('visible'));
+	},
+
+	_update: function(){
+	},
+
+	setDefaultZIndex:function(){
+		var zIndex = this.get('zIndex');
+		if (!zIndex){
+			var projection = this.getProjection();
+			var position = this.get('position');
+			var xy = projection.fromLatLngToDivPixel(position);
+			this.setZIndex(xy.y);
+		} else {
+			this.setZIndex(zIndex);
+		}
+	},
+
 	draw: function(){
 		if (!this.isAdded()) return;
+		this.refresh();
 		var projection = this.getProjection();
 		var position = this.get('position');
 		var size = this.instance.getSize();
@@ -569,7 +562,6 @@ MMap.BaseMarker = new Class({
 			top: xy.y - size.y
 		};
 		this.instance.setStyles(styles);
-		this.refresh();
 	},
 
 	refresh: function(){
@@ -578,12 +570,18 @@ MMap.BaseMarker = new Class({
 		this._update();
 	},
 
-	_updateVisibleState: function(){
-		this.setZIndex(this.get('zIndex'))
-		.setVisible(this.get('visible'));
+	getZIndex: function() {
+		return this.get('zIndex');
 	},
 
-	_update: function(){
+	setZIndex: function(index){
+		if (!Type.isNumber(index)) new TypeError('The data type is not an integer.');
+		this.set('zIndex', index);
+		var container = this._getInstance();
+		if (!this.isActive()) {
+			container.setStyle('z-index', index);
+		}
+		return this;
 	},
 
 	getPosition: function() {
@@ -596,6 +594,21 @@ MMap.BaseMarker = new Class({
 		}
 		this.set('position', position);
 		this.draw();
+		return this;
+	},
+
+	setActive: function(value) {
+		if (!Type.isBoolean(value)) new TypeError('The data type is not an boolean.');
+		this.set('active', value);
+		var container = this._getInstance();
+		if (value) {
+			this.fireEvent('active');
+			container.setStyle('z-index', 10000);
+			container.addClass('active');
+		} else {
+			container.setStyle('z-index', this.getZIndex());
+			container.removeClass('active');
+		}
 		return this;
 	}
 
@@ -612,7 +625,7 @@ MMap.Marker = new Class({
 		title: '',
 		content: '',
 		position: '',
-		zIndex: 0,
+		zIndex: null,
 		visible: true
 		/*
 			onClick: $empty
@@ -634,11 +647,10 @@ MMap.Marker = new Class({
 	},
 
 	_setup: function(container) {
+		this.setDefaultZIndex();
+
 		var className = this.options.className;
 		container.addClass(className);
-
-		var zIndex = this.get('zIndex');
-		container.setStyle('z-index', zIndex);
 
 		var marker = new Element('div', {'class': 'inner'});
 		var hd = new Element('div', {'class': 'hd'});
@@ -654,6 +666,19 @@ MMap.Marker = new Class({
 		this._content.inject(bd);
 
 		return marker;
+	},
+
+	_setupListeners: function(){
+		var self = this;
+		var marker = this._getInstance();
+		var proxy = function(event){
+			event.target = self;
+			self.fireEvent(event.type, event);
+		}
+		var events = ['click', 'dblclick', 'mouseover', 'mouseout', 'mouseup', 'mousedown'];
+		events.each(function(type){
+			marker.addEvent(type, proxy);
+		});
 	},
 
 	_init: function(){
@@ -680,7 +705,7 @@ MMap.Marker = new Class({
 			new TypeError('The data type is not a character string.');
 		}
 		this.set('title', title);
-		this.refresh();
+		this.draw();
 		return this;
 	},
 
@@ -693,9 +718,10 @@ MMap.Marker = new Class({
 			new TypeError('The data type is a character string or not an element.');
 		}
 		this.set('content', content);
-		this.refresh();
+		this.draw();
 		return this;
 	}
+
 
 });
 MMap.Marker.Html = MMap.Marker;
@@ -763,10 +789,10 @@ MMap.Marker.Image = this.MMap.Marker.Image = new Class({
 	},
 
 	_setup: function(container) {
+		this.setDefaultZIndex();
+
 		var className = this.options.className;
 		container.addClass(className);
-		var zIndex = this.get('zIndex');
-		container.setStyle('z-index', zIndex);
 		var photo = new Element('p', {'class': 'photo'});
 		this._anchor = new Element('a', {
 			'title': this.get('title'),
@@ -777,6 +803,19 @@ MMap.Marker.Image = this.MMap.Marker.Image = new Class({
 		this._anchor.inject(photo);
 		this._image.inject(this._anchor);
 		return photo;
+	},
+
+	_setupListeners: function(){
+		var self = this;
+		var marker = this._getInstance();
+		var proxy = function(event){
+			event.target = self;
+			self.fireEvent(event.type, event);
+		}
+		var events = ['click', 'dblclick', 'mouseover', 'mouseout', 'mouseup', 'mousedown'];
+		events.each(function(type){
+			marker.addEvent(type, proxy);
+		});
 	},
 
 	_init: function(){
@@ -814,19 +853,19 @@ MMap.Marker.Image = this.MMap.Marker.Image = new Class({
 
 	setTitle: function(title){
 		this.set('title', title);
-		this.refresh();
+		this.draw();
 		return this;
 	},
 
 	setImage: function(image){
 		this.set('image', image);
-		this.refresh();
+		this.draw();
 		return this;
 	},
 
 	setURL: function(url){
 		this.set('url', url);
-		this.refresh();
+		this.draw();
 		return this;
 	}
 
@@ -886,6 +925,7 @@ MMap.Marker.Images = this.MMap.Marker.Images = new Class({
 		defaultIndex: 0,
 		interval: 2000,
 		duration: 2000,
+		autoplay: true,
 		zIndex: 0,
 		position: null,
 		visible: true
@@ -896,16 +936,17 @@ MMap.Marker.Images = this.MMap.Marker.Images = new Class({
 		this._elements = [];
 		this._stack = [];
 		this._index = 0;
+		this._start = false;
+		this._mouseovered = false;
 	},
 
 	_setup: function(container){
+		this.setDefaultZIndex();
+
 		this.addEvent('add', this._onPrepare.bind(this));
 
 		var className = this.options.className;
 		container.addClass(className);
-
-		var zIndex = this.get('zIndex');
-		container.setStyle('z-index', zIndex);
 
 		this._photos = new Element('ul', {'class': 'photos'});
 		this._photos.inject(container);
@@ -915,6 +956,20 @@ MMap.Marker.Images = this.MMap.Marker.Images = new Class({
 			this.addImages(images);
 		}
 		return this._photos;
+	},
+
+	_setupListeners: function(){
+		var self = this;
+		var marker = this._getInstance();
+		var proxy = function(event){
+			event.target = self;
+			self.fireEvent(event.type, event);
+		}
+		var events = ['click', 'dblclick', 'mouseup', 'mousedown'];
+		events.each(function(type){
+			marker.addEvent(type, proxy);
+		});
+		marker.addEvent('mouseout', this._mouseout.bind(this));
 	},
 
 	_init: function(){
@@ -932,7 +987,10 @@ MMap.Marker.Images = this.MMap.Marker.Images = new Class({
 		delete this._stack;
 		var index = this.options.defaultIndex;
 		this.setCurrent(index);
-		this._timerID = this._next.delay(this.options.interval, this);
+		if (this.options.autoplay) {
+			this._timerID = this._next.delay(this.options.interval, this);
+			this._start = true;
+		}
 	},
 
 	_next: function() {
@@ -957,11 +1015,29 @@ MMap.Marker.Images = this.MMap.Marker.Images = new Class({
 		li.set('tween', {
 			duration: this.options.duration,
 			onComplete: function() {
-				self.setCurrent(self._index);
-				self._timerID = self._next.delay(this.options.interval, self);
+				if (self.isStart()) {
+					self.setCurrent(self._index);
+					self._timerID = self._next.delay(this.options.interval, self);
+				}
 			}
 		});
+		li.addEvent('mouseover', self._mouseover.bind(this));
 		return li;
+	},
+
+	_mouseover: function(event){
+		if (this._mouseovered) return false;
+		event.target = this;
+		this.fireEvent(event.type, event);
+		this._mouseovered = true;
+	},
+	
+	_mouseout: function(event){
+		if (!(event.target == this._photos || event.target == this._getInstance())) return false;
+		if (!this._mouseovered) return false;
+		event.target = this;
+		this.fireEvent(event.type, event);
+		this._mouseovered = false;
 	},
 
 	setCurrent: function(index){
@@ -1030,6 +1106,21 @@ MMap.Marker.Images = this.MMap.Marker.Images = new Class({
 		images.each(function(image){
 			self.removeImage(image);
 		});
+	},
+
+	isStart: function(){
+		return (this._start) ? true : false;
+	},
+
+	start: function(){
+		if (this.isStart()) return;
+		this._timerID = this._next.delay(this.options.interval, this);
+		this._start = true;
+	},
+
+	stop: function(){
+		clearTimeout(this._timerID);
+		this._start = false;
 	}
 
 });
@@ -1532,12 +1623,6 @@ MMap.Window = new Class({
 		zIndex: 0,
 		visible: true
 		/*
-			onClick: $empty
-			onDblClick: $empty
-			onMouseover: $empty
-			onMouseout: $empty
-			onMouseup: $empty
-			onMousedown: $empty
 			onOpen: $empty
 			onClose: $empty
 			onVisibleChanged: $empty
@@ -1585,11 +1670,10 @@ MMap.Window = new Class({
 
 	_setupListeners: function(){
 		var self = this;
-		self.addEvent('click', function(event){
-			if (event.target == self._closeButton) {
-				self.close();
-				self.fireEvent('close');
-			}
+		var win = this._getInstance();
+		this._closeButton.addEvent('click', function(event){
+			self.close();
+			self.fireEvent('close');
 		});
 	},
 
@@ -1603,6 +1687,8 @@ MMap.Window = new Class({
 
 	draw: function(){
 		if (!this.isAdded() || !this.isOpen()) return this;
+
+		this.refresh();
 
 		var anchorHeight = 0;
 		if (this._anchor) {
@@ -1635,7 +1721,6 @@ MMap.Window = new Class({
 		var latlng = projection.fromDivPixelToLatLng(point);
 
 		this.getMap().panTo(latlng);
-		this.refresh();
 	},
 
 	refresh: function(){
@@ -1673,6 +1758,18 @@ MMap.Window = new Class({
 		return (this._opened) ? true : false;
 	},
 
+	getZIndex: function() {
+		return this.get('zIndex');
+	},
+
+	setZIndex: function(index){
+		if (!Type.isNumber(index)) new TypeError('The data type is not an integer.');
+		this.set('zIndex', index);
+		var container = this._getInstance();
+		container.setStyle('z-index', index);
+		return this;
+	},
+
 	getPosition: function() {
 		return this.get('position');
 	},
@@ -1695,7 +1792,7 @@ MMap.Window = new Class({
 			new TypeError('The data type is not a character string.');
 		}
 		this.set('title', title);
-		this.refresh();
+		this.draw();
 		return this;
 	},
 
@@ -1708,7 +1805,20 @@ MMap.Window = new Class({
 			new TypeError('The data type is a character string or not an element.');
 		}
 		this.set('content', content);
-		this.refresh();
+		this.draw();
+		return this;
+	},
+
+	setActive: function(value) {
+		if (!Type.isBoolean(value)) new TypeError('The data type is not an boolean.');
+		this.set('active', value);
+		var container = this._getInstance();
+		if (value) {
+			this.fireEvent('active');
+			container.addClass('active');
+		} else {
+			container.removeClass('active');
+		}
 		return this;
 	}
 

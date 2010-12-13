@@ -234,6 +234,19 @@ MMap.Window = new Class({
 		this.set('content', content);
 		this.draw();
 		return this;
+	},
+
+	setActive: function(value) {
+		if (!Type.isBoolean(value)) new TypeError('The data type is not an boolean.');
+		this.set('active', value);
+		var container = this._getInstance();
+		if (value) {
+			this.fireEvent('active');
+			container.addClass('active');
+		} else {
+			container.removeClass('active');
+		}
+		return this;
 	}
 
 });
