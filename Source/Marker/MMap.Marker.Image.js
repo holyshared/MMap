@@ -59,7 +59,7 @@ MMap.Marker.Image = this.MMap.Marker.Image = new Class({
 	},
 
 	_setup: function(container) {
-		this.parent(container);
+		this.setDefaultZIndex();
 
 		var className = this.options.className;
 		container.addClass(className);
@@ -123,19 +123,19 @@ MMap.Marker.Image = this.MMap.Marker.Image = new Class({
 
 	setTitle: function(title){
 		this.set('title', title);
-		this.refresh();
+		this.draw();
 		return this;
 	},
 
 	setImage: function(image){
 		this.set('image', image);
-		this.refresh();
+		this.draw();
 		return this;
 	},
 
 	setURL: function(url){
 		this.set('url', url);
-		this.refresh();
+		this.draw();
 		return this;
 	}
 

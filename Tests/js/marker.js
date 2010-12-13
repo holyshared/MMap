@@ -126,12 +126,6 @@ window.addEvent("domready", function(){
 		visible: true
 	});
 
-	var a = new google.maps.Marker({
-		map: map,
-		position: new google.maps.LatLng(35.6666870, 139.721859),
-		visible: true
-	});
-
 });
 
 }(document.id));

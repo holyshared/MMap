@@ -73,7 +73,15 @@ MMap.BaseMarker = new Class({
 		});
 	},
 
-	_setup: function(container){
+	_updateVisibleState: function(){
+		this.setZIndex(this.get('zIndex'))
+		.setVisible(this.get('visible'));
+	},
+
+	_update: function(){
+	},
+
+	setDefaultZIndex:function(){
 		var zIndex = this.get('zIndex');
 		if (!zIndex){
 			var projection = this.getProjection();
@@ -85,16 +93,9 @@ MMap.BaseMarker = new Class({
 		}
 	},
 
-	_updateVisibleState: function(){
-		this.setZIndex(this.get('zIndex'))
-		.setVisible(this.get('visible'));
-	},
-
-	_update: function(){
-	},
-
 	draw: function(){
 		if (!this.isAdded()) return;
+		this.refresh();
 		var projection = this.getProjection();
 		var position = this.get('position');
 		var size = this.instance.getSize();
@@ -105,7 +106,6 @@ MMap.BaseMarker = new Class({
 			top: xy.y - size.y
 		};
 		this.instance.setStyles(styles);
-		this.refresh();
 	},
 
 	refresh: function(){
@@ -174,7 +174,7 @@ MMap.Marker = new Class({
 	},
 
 	_setup: function(container) {
-		this.parent(container);
+		this.setDefaultZIndex();
 
 		var className = this.options.className;
 		container.addClass(className);
@@ -232,7 +232,7 @@ MMap.Marker = new Class({
 			new TypeError('The data type is not a character string.');
 		}
 		this.set('title', title);
-		this.refresh();
+		this.draw();
 		return this;
 	},
 
@@ -245,7 +245,7 @@ MMap.Marker = new Class({
 			new TypeError('The data type is a character string or not an element.');
 		}
 		this.set('content', content);
-		this.refresh();
+		this.draw();
 		return this;
 	}
 

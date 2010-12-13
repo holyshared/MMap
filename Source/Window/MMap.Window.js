@@ -115,6 +115,8 @@ MMap.Window = new Class({
 	draw: function(){
 		if (!this.isAdded() || !this.isOpen()) return this;
 
+		this.refresh();
+
 		var anchorHeight = 0;
 		if (this._anchor) {
 			var anchor = this._anchor;
@@ -146,7 +148,6 @@ MMap.Window = new Class({
 		var latlng = projection.fromDivPixelToLatLng(point);
 
 		this.getMap().panTo(latlng);
-		this.refresh();
 	},
 
 	refresh: function(){
@@ -218,7 +219,7 @@ MMap.Window = new Class({
 			new TypeError('The data type is not a character string.');
 		}
 		this.set('title', title);
-		this.refresh();
+		this.draw();
 		return this;
 	},
 
@@ -231,7 +232,7 @@ MMap.Window = new Class({
 			new TypeError('The data type is a character string or not an element.');
 		}
 		this.set('content', content);
-		this.refresh();
+		this.draw();
 		return this;
 	}
 

@@ -66,7 +66,7 @@ MMap.Marker.Images = this.MMap.Marker.Images = new Class({
 	},
 
 	_setup: function(container){
-		this.parent(container);
+		this.setDefaultZIndex();
 
 		this.addEvent('add', this._onPrepare.bind(this));
 
