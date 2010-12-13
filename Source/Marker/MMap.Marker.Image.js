@@ -59,10 +59,10 @@ MMap.Marker.Image = this.MMap.Marker.Image = new Class({
 	},
 
 	_setup: function(container) {
+		this.parent(container);
+
 		var className = this.options.className;
 		container.addClass(className);
-		var zIndex = this.get('zIndex');
-		container.setStyle('z-index', zIndex);
 		var photo = new Element('p', {'class': 'photo'});
 		this._anchor = new Element('a', {
 			'title': this.get('title'),

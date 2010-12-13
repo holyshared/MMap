@@ -66,13 +66,12 @@ MMap.Marker.Images = this.MMap.Marker.Images = new Class({
 	},
 
 	_setup: function(container){
+		this.parent(container);
+
 		this.addEvent('add', this._onPrepare.bind(this));
 
 		var className = this.options.className;
 		container.addClass(className);
-
-		var zIndex = this.get('zIndex');
-		container.setStyle('z-index', zIndex);
 
 		this._photos = new Element('ul', {'class': 'photos'});
 		this._photos.inject(container);

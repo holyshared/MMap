@@ -184,6 +184,18 @@ MMap.Window = new Class({
 		return (this._opened) ? true : false;
 	},
 
+	getZIndex: function() {
+		return this.get('zIndex');
+	},
+
+	setZIndex: function(index){
+		if (!Type.isNumber(index)) new TypeError('The data type is not an integer.');
+		this.set('zIndex', index);
+		var container = this._getInstance();
+		container.setStyle('z-index', index);
+		return this;
+	},
+
 	getPosition: function() {
 		return this.get('position');
 	},

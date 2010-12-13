@@ -116,10 +116,6 @@ MMap.OverlayView = new Class({
 		return this.get('visible');
 	},
 
-	getZIndex: function() {
-		return this.get('zIndex');
-	},
-
 	isAdded: function() {
 		return this._added;
 	},
@@ -141,14 +137,6 @@ MMap.OverlayView = new Class({
 		} else {
 			container.setStyle('display', 'none');
 		}
-		return this;
-	},
-
-	setZIndex: function(index){
-		if (!Type.isNumber(index)) new TypeError('The data type is not an integer.');
-		this.set('zIndex', index);
-		var container = this._getInstance();
-		container.setStyle('z-index', index);
 		return this;
 	},
 

@@ -15,7 +15,6 @@ window.addEvent("domready", function(){
 		title: 'Marker title text',
 		content: 'Marker content text xxxx xxxx xxxx xxxx xxxx xxxxxx xx',
 		position: new google.maps.LatLng(35.6666870, 139.731859),
-		zIndex: 0,
 		visible: true,
 		onPositionChanged: function(event) {
 			logger.log('events', "onPositionChanged OK");
@@ -107,7 +106,7 @@ window.addEvent("domready", function(){
 	marker.setZIndex(10);
 	var zIndex = marker.getZIndex();
 	logger.log('methods', (zIndex == 10) ? "ZIndex setter/getter OK" : "ZIndex setter/getter NG");
-			
+
 	marker.setTitle("foo");
 	var title = marker.getTitle();
 	logger.log('methods', (title == "foo") ? "Title setter/getter OK" : "Title setter/getter NG");
@@ -117,6 +116,21 @@ window.addEvent("domready", function(){
 	logger.log('methods', (content == "foo bar") ? "Content setter/getter OK" : "Content setter/getter NG");
 
 	marker.setVisible(true);
+
+	var marker1 = new MMap.Marker({
+		map: map,
+		className: 'marker markerDefault',
+		title: 'Marker title text',
+		content: 'Marker content text xxxx xxxx xxxx xxxx xxxx xxxxxx xx',
+		position: new google.maps.LatLng(35.6666870, 139.721859),
+		visible: true
+	});
+
+	var a = new google.maps.Marker({
+		map: map,
+		position: new google.maps.LatLng(35.6666870, 139.721859),
+		visible: true
+	});
 
 });
 

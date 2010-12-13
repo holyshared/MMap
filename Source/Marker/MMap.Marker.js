@@ -44,7 +44,7 @@ MMap.BaseMarker = new Class({
 		map: null,
 		className: 'marker markerDefault',
 		position: '',
-		zIndex: 0,
+		zIndex: null,
 		visible: true
 		/*
 			onClick: $empty
@@ -67,9 +67,22 @@ MMap.BaseMarker = new Class({
 		var self = this;
 		var props = ['position', 'zIndex', 'visible'];
 		props.each(function(key){
-			self.set(key, self.options[key]);
+			var value = self.options[key];
+			self.set(key, value);
 			delete self.options[key];
 		});
+	},
+
+	_setup: function(container){
+		var zIndex = this.get('zIndex');
+		if (!zIndex){
+			var projection = this.getProjection();
+			var position = this.get('position');
+			var xy = projection.fromLatLngToDivPixel(position);
+			this.setZIndex(xy.y);
+		} else {
+			this.setZIndex(zIndex);
+		}
 	},
 
 	_updateVisibleState: function(){
@@ -101,6 +114,18 @@ MMap.BaseMarker = new Class({
 		this._update();
 	},
 
+	getZIndex: function() {
+		return this.get('zIndex');
+	},
+
+	setZIndex: function(index){
+		if (!Type.isNumber(index)) new TypeError('The data type is not an integer.');
+		this.set('zIndex', index);
+		var container = this._getInstance();
+		container.setStyle('z-index', index);
+		return this;
+	},
+
 	getPosition: function() {
 		return this.get('position');
 	},
@@ -127,7 +152,7 @@ MMap.Marker = new Class({
 		title: '',
 		content: '',
 		position: '',
-		zIndex: 0,
+		zIndex: null,
 		visible: true
 		/*
 			onClick: $empty
@@ -149,11 +174,10 @@ MMap.Marker = new Class({
 	},
 
 	_setup: function(container) {
+		this.parent(container);
+
 		var className = this.options.className;
 		container.addClass(className);
-
-		var zIndex = this.get('zIndex');
-		container.setStyle('z-index', zIndex);
 
 		var marker = new Element('div', {'class': 'inner'});
 		var hd = new Element('div', {'class': 'hd'});
