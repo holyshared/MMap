@@ -50,6 +50,7 @@ var MarkerLoaderTest = {
 	},
 
 	runTest: function()	{
+
 		this.testContextLoadTestByHTML();
 		this.testContextLoadTestByImage();
 		this.testContextLoadTestByImages();
