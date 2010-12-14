@@ -16,6 +16,7 @@ window.addEvent("domready", function(){
 		content: 'Marker content text xxxx xxxx xxxx xxxx xxxx xxxxxx xx',
 		position: new google.maps.LatLng(35.6666870, 139.731859),
 		visible: true,
+		zIndex: 0,
 		onPositionChanged: function(event) {
 			logger.log('events', "onPositionChanged OK");
 		},

@@ -160,12 +160,6 @@ window.addEvent("domready", function(){
 	logger.log("methods", "overlayView3 - setMap");
 	overlayView3.setMap(map);
 
-	var zIndex = overlayView3.get('zIndex');
-	logger.log("options", "overlayView3 - zIndex: " + zIndex);
-	
-	var visible = overlayView3.get('visible');
-	logger.log("options", "overlayView3 - visible: " + visible);
-
 });
 
 }(document.id));
