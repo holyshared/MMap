@@ -1,0 +1,44 @@
+{
+	"markers": [{
+		"title": "MMap.Marker",
+		"image": "../Demos/images/demo/img01.jpg",
+		"url": "http://holyshared.github.com/marker.html",
+		"position": {
+			"latitude": 35.6666870,
+			"longitude": 139.731859
+		}
+	}, {
+		"title": "MMap.Marker.Image",
+		"image": "../Demos/images/demo/img02.jpg",
+		"url": "http://holyshared.github.com/marker.image.html",
+		"position": {
+			"latitude": 35.6666870,
+			"longitude": 139.733859
+		}
+	}, {
+		"title": "MMap.Marker.Images",
+		"image": "../Demos/images/demo/img03.jpg",
+		"url": "http://holyshared.github.com/marker.images.html",
+		"position": {
+			"latitude": 35.6650870,
+			"longitude": 139.729859
+		}
+	}, {
+		"title": "MMap.Window",
+		"image": "../Demos/images/demo/img04.jpg",
+		"url": "http://holyshared.github.com/window.html",
+		"position": {
+			"latitude": 35.6686870,
+			"longitude": 139.728859
+		}
+	},	{
+		"title": "MMap.MarkerLoader",
+		"image": "../Demos/images/demo/img05.jpg",
+		"url": "http://holyshared.github.com/marker.loader.html",
+		"visible": false,
+		"position": {
+			"latitude": 35.6646870,
+			"longitude": 139.726859
+		}
+	}]
+}

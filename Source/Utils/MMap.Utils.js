@@ -130,8 +130,15 @@ MMap.Events = new Class({
 	fireEvent: function(type, args){
 		type = toFormat(type);
 		if (!this._events[type]) return this;
-		var callArguments = [this, type, args];
-		callArguments = Array.flatten(callArguments);
+		var callArguments = [this, type];
+		if (Type.isArray(args)) {
+			var l = args.length;
+			for (var i = 0; i < l; i++) {
+				callArguments.push(args[i]);
+			}
+		} else {
+			callArguments.push(args);
+		}
 		google.maps.event.trigger.apply(this, callArguments);
 		return this;
 	}
