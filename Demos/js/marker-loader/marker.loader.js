@@ -10,19 +10,17 @@ window.addEvent("domready", function(){
 		mapTypeId: google.maps.MapTypeId.ROADMAP
 	});
 
+	var spinner = new Spinner({ map: map });
 	var manager = new MMap.MarkerManager();
 	var loader = new MMap.MarkerLoader({
 		onPreload: function(){
-		},
-		onFailure: function(xhr){
-			alert(xhr.status);
+			spinner.show();
 		},
 		onLoad: function(markers){
-alert(Type.isArray(markers))
 			manager.setMarkers(markers);
 			manager.setMap(map);
-console.log(markers);
 			manager.visible();
+			spinner.hide();
 		}
 	});
 	loader.load('js/marker-loader/markers.json');

@@ -41,6 +41,155 @@ MMap.MVCObject.prototype = new google.maps.MVCObject();
 
 }(document.id));
 
+/*
+---
+name: MMap.Utils
+
+description: It comes to be able to treat Event and Options like Mootools.
+
+license: MIT-style
+
+authors:
+- Noritaka Horio
+
+requires:
+  - Core/Core
+  - Core/Array
+  - Core/String
+  - Core/Number
+  - Core/Function
+  - Core/Object
+  - Core/Event
+  - Core/Browser
+  - Core/Class
+  - Core/Element
+  - Core/Element.Style
+  - Core/Element.Event
+  - Core/Element.Dimensions
+  - MMap/MMap.Core
+
+provides: [MMap.Options, MMap.Events]
+
+...
+*/
+
+(function($){
+
+var MMap = (this.MMap || {});
+
+MMap.Options = new Class({
+
+	setOptions: function(options){
+		var clone = Object.clone(this.options);
+		var options = Object.append(clone, options);
+		for (var key in options) {
+			var value = options[key]; 
+			if (key == 'map') {
+				this.setMap(value);
+				delete options[key];
+			} else if (instanceOf(value, Function) && (/^on[A-Z]/).test(key)) {
+				this.addEvent(key, value);
+				delete options[key];
+			}
+		}
+		this.options = options;
+		return this;
+	}
+
+});
+
+}(document.id));
+
+
+(function($){
+
+var MMap = (this.MMap || {});
+
+var removeOn = function(string){
+	return string.replace(/^on([A-Z])/, function(full, first){
+		return first.toLowerCase();
+	});
+};
+
+var toNotifyFormat = function(string){
+	var regex = /(Changed)$/;
+	return string.replace(regex, '_$1').toLowerCase();
+};
+
+var toFormat = function(string){
+	return toNotifyFormat(removeOn(string));
+};
+
+MMap.Events = new Class({
+
+	_events: {},
+	_handles: {},
+
+	addEvent: function(type, fn){
+		var listener = null;
+		type = toFormat(type);
+		listener = google.maps.event.addListener(this, type, fn);
+		this._handles[type] = (this._handles[type] || []).include(fn);
+		this._events[type] = (this._events[type] || []).include(listener);
+		return this;
+	},
+
+	addEvents: function(events){
+		for (var key in events) {
+			this.addEvent(key, events[key]);
+		}
+		return this;
+	},
+
+	removeEvent: function(type, fn){
+		type = toFormat(type);
+		var find = this._handles[type].contains(fn);
+		if (find) {
+			var index = this._handles[type].indexOf(fn);
+			var target = this._events[type][index];
+			google.maps.event.removeListener(target);
+			this._events[type].erase(target);
+			this._handles[type].erase(fn);
+		}
+		return this;
+	},
+
+	removeEvents: function(events){
+		if (!events) {
+			google.maps.event.clearInstanceListeners(this);
+			return this;
+		} else if (typeOf(events) == 'object') {
+			for (type in events) this.removeEvent(type, events[type]);
+			return this;
+		}
+		for (type in this._events){
+			if (events && events != type) continue;
+			var fns = this._events[type];
+			for (var i = fns.length; i--;) this.removeEvent(type, fns[i]);
+		}
+		return this;
+	},
+
+	fireEvent: function(type, args){
+		type = toFormat(type);
+		if (!this._events[type]) return this;
+		var callArguments = [this, type];
+		if (Type.isArray(args)) {
+			var l = args.length;
+			for (var i = 0; i < l; i++) {
+				callArguments.push(args[i]);
+			}
+		} else {
+			callArguments.push(args);
+		}
+		google.maps.event.trigger.apply(this, callArguments);
+		return this;
+	}
+
+});
+
+}(document.id));
+
 (function($){
 
 var MMap = (this.MMap || {});
@@ -307,155 +456,6 @@ MMap.OverlayView = new Class({
 	},
 
 	setActive: function(value) {}
-
-});
-
-}(document.id));
-
-/*
----
-name: MMap.Utils
-
-description: It comes to be able to treat Event and Options like Mootools.
-
-license: MIT-style
-
-authors:
-- Noritaka Horio
-
-requires:
-  - Core/Core
-  - Core/Array
-  - Core/String
-  - Core/Number
-  - Core/Function
-  - Core/Object
-  - Core/Event
-  - Core/Browser
-  - Core/Class
-  - Core/Element
-  - Core/Element.Style
-  - Core/Element.Event
-  - Core/Element.Dimensions
-  - MMap/MMap.Core
-
-provides: [MMap.Options, MMap.Events]
-
-...
-*/
-
-(function($){
-
-var MMap = (this.MMap || {});
-
-MMap.Options = new Class({
-
-	setOptions: function(options){
-		var clone = Object.clone(this.options);
-		var options = Object.append(clone, options);
-		for (var key in options) {
-			var value = options[key]; 
-			if (key == 'map') {
-				this.setMap(value);
-				delete options[key];
-			} else if (instanceOf(value, Function) && (/^on[A-Z]/).test(key)) {
-				this.addEvent(key, value);
-				delete options[key];
-			}
-		}
-		this.options = options;
-		return this;
-	}
-
-});
-
-}(document.id));
-
-
-(function($){
-
-var MMap = (this.MMap || {});
-
-var removeOn = function(string){
-	return string.replace(/^on([A-Z])/, function(full, first){
-		return first.toLowerCase();
-	});
-};
-
-var toNotifyFormat = function(string){
-	var regex = /(Changed)$/;
-	return string.replace(regex, '_$1').toLowerCase();
-};
-
-var toFormat = function(string){
-	return toNotifyFormat(removeOn(string));
-};
-
-MMap.Events = new Class({
-
-	_events: {},
-	_handles: {},
-
-	addEvent: function(type, fn){
-		var listener = null;
-		type = toFormat(type);
-		listener = google.maps.event.addListener(this, type, fn);
-		this._handles[type] = (this._handles[type] || []).include(fn);
-		this._events[type] = (this._events[type] || []).include(listener);
-		return this;
-	},
-
-	addEvents: function(events){
-		for (var key in events) {
-			this.addEvent(key, events[key]);
-		}
-		return this;
-	},
-
-	removeEvent: function(type, fn){
-		type = toFormat(type);
-		var find = this._handles[type].contains(fn);
-		if (find) {
-			var index = this._handles[type].indexOf(fn);
-			var target = this._events[type][index];
-			google.maps.event.removeListener(target);
-			this._events[type].erase(target);
-			this._handles[type].erase(fn);
-		}
-		return this;
-	},
-
-	removeEvents: function(events){
-		if (!events) {
-			google.maps.event.clearInstanceListeners(this);
-			return this;
-		} else if (typeOf(events) == 'object') {
-			for (type in events) this.removeEvent(type, events[type]);
-			return this;
-		}
-		for (type in this._events){
-			if (events && events != type) continue;
-			var fns = this._events[type];
-			for (var i = fns.length; i--;) this.removeEvent(type, fns[i]);
-		}
-		return this;
-	},
-
-	fireEvent: function(type, args){
-		type = toFormat(type);
-		if (!this._events[type]) return this;
-		var callArguments = [this, type];
-		if (Type.isArray(args)) {
-			var l = args.length;
-			for (var i = 0; i < l; i++) {
-				callArguments.push(args[i]);
-			}
-		} else {
-			callArguments.push(args);
-		}
-		google.maps.event.trigger.apply(this, callArguments);
-		return this;
-	}
 
 });
 
@@ -1401,6 +1401,182 @@ MMap.MarkerManager = new Class({
 });
 
 }(document.id));
+
+/*
+---
+name: MMap.MarkerLoader
+
+description: The loading of the marker can be done by using json and ajax(The response is json).
+
+license: MIT-style
+
+authors:
+- Noritaka Horio
+
+requires:
+  - Core/Core
+  - Core/Array
+  - Core/String
+  - Core/Number
+  - Core/Function
+  - Core/Object
+  - Core/Event
+  - Core/Browser
+  - Core/Class
+  - Core/Element
+  - Core/Element.Style
+  - Core/Element.Event
+  - Core/Element.Dimensions
+  - MMap/MMap.Core
+  - MMap/MMap.OverlayView
+  - MMap/MMap.Utils
+  - MMap/MMap.Marker
+
+provides: [MMap.MarkerLoader, MMap.MarkerLoader.Parser, MMap.MarkerLoader.Context, MMap.MarkerLoader.JSON]
+
+...
+*/
+
+(function($){
+
+var MMap = (this.MMap || {});
+
+MMap.MarkerLoader = new Class({
+
+	Implements: [MMap.Events, MMap.Options],
+
+	options: {
+/*
+		onPreload: $empty,
+		onFailure: $empty,
+		onComplete: $empty,
+		onLoad: $empty
+*/
+	},
+
+	initialize: function(options){
+		this.setOptions(options);
+	},
+
+	load: function(){
+		var self = this;
+		var args = Array.from(arguments);
+		var loader = (Type.isArray(args[0]))
+		? new MMap.MarkerLoader.Context() : new MMap.MarkerLoader.JSON();
+		loader.addEvents({
+			'onPreload': function(){
+				self.fireEvent('preload');
+			},
+			'onFailure': function(){
+				var args = Array.from(arguments);
+				self.fireEvent('failure', args);
+			},
+			'onComplete': function(response){
+				self.fireEvent('complete', [response]);
+			},
+			'onLoad': function(markers){
+				self.fireEvent('load', [self.build(markers)]);
+			}
+		});
+		loader.load.apply(loader, args);
+	},
+
+	build: function(context){
+		var markers = [], length = context.length;
+		for (var i = 0; i < length; i++) {
+			var options = context[i];
+			var type = options.type || 'html';
+			type = type.capitalize();
+			delete options.type;
+			if (!MMap.Marker[type]) throw TypeError('Specified marker type "' + type + '" is not found.');
+			var marker = new MMap.Marker[type](options);
+			markers.push(marker);
+		};
+		return markers;
+	}
+
+});
+
+
+MMap.MarkerLoader.Parser = new Class({
+
+	Implements: [Events],
+
+	parse: function(markers){
+		var result = [];
+		var l = markers.length;
+		for (var i = 0; i < l; i++){
+			var marker = markers[i];
+			var latlng = marker.position;
+			delete marker.position;
+			marker.position = new google.maps.LatLng(latlng.latitude, latlng.longitude);
+			result.push(marker);
+		}
+		return result;
+	}
+
+});
+
+MMap.MarkerLoader.Context = new Class({
+
+	Extends: MMap.MarkerLoader.Parser,
+
+	load: function(context){
+		this.fireEvent('preload');
+		try {
+			this.fireEvent('complete', [context]);
+			var markers = this.parse(context);
+			this.fireEvent('load', [markers]);
+		} catch (error) {
+			this.fireEvent('failure', [error]);
+		}
+	}
+
+});
+
+MMap.MarkerLoader.JSON = new Class({
+
+	Extends: MMap.MarkerLoader.Parser,
+
+	_onRequest: function(){
+		this.fireEvent('preload');
+	},
+
+	_onFailure: function(xhr){
+		this.fireEvent('failure', [xhr]);
+	},
+
+	_onSuccess: function(json, text){
+		this.fireEvent('complete', [json]);
+		var markers = json.markers;
+		var l = markers.length;
+		var response = this.parse(markers);
+		this.fireEvent('load', [response]);
+	},
+
+	getRequest: function(json){
+		if (this.request) return this.request;
+		var self = this;
+		var events = ['_onRequest', '_onFailure', '_onSuccess'];
+		this.request = new Request.JSON({ url: json, method: 'post' });
+		events.each(function(type){
+			var handler = self[type].bind(self);
+			var eventType = type.replace('_', '');
+			self.request.addEvent(eventType, handler);
+			delete self[type];
+		});
+		return this.request;
+	},
+
+	load: function(){
+		var args = Array.from(arguments);
+		this.getRequest(args.shift()).send(args);
+	}
+
+});
+
+}(document.id));
+
 
 /*
 ---

@@ -1,0 +1,14 @@
+.spinner {
+	padding: 55px 20px 10px 20px;
+	text-align: center;
+	width: 150px;
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	color: #ffffff;
+	background: #333333 url(spinner.gif) no-repeat center 20px;
+	border: 5px solid #303030;
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
+	border-radius: 5px;
+}
