@@ -5,8 +5,8 @@
 		<title>MMap(Moogle Map) 0.2 - MMap.Marker.Images</title>
 		<meta name="description" content="MMap(Moogle Map) 0.2 - MMap.Marker.Images" />
 		<meta name="keywords" content="Mootools,javascript,Marker.Images,Google Maps" />
-		<link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Vollkorn:regular,italic,bold&amp;subset=latin" type="text/css" />
 		<link rel="stylesheet" href="../css/all.css" type="text/css" media="screen" />
+		<link rel="stylesheet" href="../css/core/content.ja.css" type="text/css" media="screen" />
 		<script type="text/javascript" src="http://maps.google.com/maps/api/js?v=3&amp;sensor=false"></script>
 		<script type="text/javascript" src="../js/lib/mootools-core.js"></script>
 		<script type="text/javascript" src="../js/lib/mootools-more.js"></script>
@@ -15,7 +15,7 @@
 		<script type="text/javascript" src="../js/lib/sh/shBrushJScript.js"></script>
 		<script type="text/javascript" src="../js/lib/sh/shBrushCss.js"></script>
 		<script type="text/javascript" src="../js/lib/sh/shBrushXml.js"></script>
-		<script type="text/javascript" src="../js/marker.js"></script>
+		<script type="text/javascript" src="../js/marker.images.js"></script>
 	</head>
 	<body>
 		<div class="page gs960">
@@ -42,7 +42,8 @@
 									<li><a title="MMap.Marker.Images" href="../marker.images.html">MMap.Marker.Images</a></li>
 									<li><a title="MMap.MarkerManager" href="../marker.manager.html">MMap.MarkerManager</a></li>
 									<li><a title="MMap.MarkerLoader" href="../marker.loader.html">MMap.MarkerLoader</a></li>
-									<li><a title="MMap.Window" href="../marker.window.html">MMap.Window</a></li>
+									<li><a title="MMap.Window" href="../window.html">MMap.Window</a></li>
+									<li><a title="Mini Application" href="../mini.application.html">Mini Application</a></li>
 								</ul>
 
 								<h4>Japanese</h4>
@@ -52,7 +53,8 @@
 									<li><strong class="current">MMap.Marker.Images</strong></li>
 									<li><a title="MMap.MarkerManager" href="marker.manager.html">MMap.MarkerManager</a></li>
 									<li><a title="MMap.MarkerLoader" href="marker.loader.html">MMap.MarkerLoader</a></li>
-									<li><a title="MMap.Window" href="marker.window.html">MMap.Window</a></li>
+									<li><a title="MMap.Window" href="window.html">MMap.Window</a></li>
+									<li><a title="Mini Application" href="mini.application.html">Mini Application</a></li>
 								</ul>
 
 							</div>
@@ -66,8 +68,8 @@
 					<div class="mod map">
 						<div class="inner">
 							<div class="hd">
-								<h3>The marker is displayed.</h3>
-								<p>Simple contents are displayed in the marker.</p>
+								<h3>スライドするイメージマーカー</h3>
+								<p>複数のイメージをスライド表示するデモ</p>
 							</div>
 							<div class="bd">
 								<div id="gmap" class="googleMap"></div>
@@ -75,10 +77,92 @@
 						</div>
 					</div>
 
-<pre class="brush: js;" title="Title/caption should render">
-var hoge; 
-</pre>
 
+					<div class="mod code">
+						<div class="inner">
+							<div class="hd">
+								<h3>サンプルコード</h3>
+								<p>このデモのソースコード</p>
+							</div>
+							<div class="bd">
+
+<pre class="brush: js;">
+(function($){
+
+window.addEvent('domready', function(){
+
+	var map = new google.maps.Map($('gmap'), {
+		zoom: 15,
+		center: new google.maps.LatLng(35.6666870, 139.731859),
+		mapTypeId: google.maps.MapTypeId.ROADMAP
+	});
+
+	var marker = new MMap.Marker.Images({
+		map: map,
+		className: 'marker images imagesPaper',
+		position: new google.maps.LatLng(35.6666870, 139.731859),
+		images: [{
+			title: 'demo1',
+			image: 'http://holyshared.github.com/MMap/Demos/images/demo/img01.jpg',
+			url: 'http://sharedhat.com'
+		}, {
+			title: 'demo2',
+			image: 'http://holyshared.github.com/MMap/Demos/images/demo/img02.jpg',
+			url: 'http://sharedhat.com'
+		}, {
+			title: 'demo3',
+			image: 'http://holyshared.github.com/MMap/Demos/images/demo/img03.jpg',
+			url: 'http://sharedhat.com'
+		}, {
+			title: 'demo4',
+			image: 'http://holyshared.github.com/MMap/Demos/images/demo/img04.jpg',
+			url: 'http://sharedhat.com'
+		}, {
+			title: 'demo5',
+			image: 'http://holyshared.github.com/MMap/Demos/images/demo/img05.jpg',
+			url: 'http://sharedhat.com'
+		}]
+	});
+
+});
+
+}(document.id));
+</pre>
+							</div>
+						</div>
+					</div>
+
+					<div class="mod code">
+						<div class="inner">
+							<div class="hd">
+								<h3>HTML</h3>
+								<p>マーカーの文書構造</p>
+							</div>
+							<div class="bd">
+<pre class="brush: html;">
+&lt;div class="ovarlayView marker images imagesPaper"&gt;
+	&lt;ul class="photos"&gt;
+		&lt;li&gt;&lt;a href="http://sharedhat.com" title="demo1"&gt;&lt;img
+			src="http://holyshared.github.com/MMap/Demos/images/demo/img01.jpg"
+			title="demo1"&gt;&lt;/a&gt;&lt;/li&gt;
+		&lt;li&gt;&lt;a href="http://sharedhat.com" title="demo2"&gt;&lt;img
+			src="http://holyshared.github.com/MMap/Demos/images/demo/img02.jpg"
+			title="demo2"&gt;&lt;/a&gt;&lt;/li&gt;
+		&lt;li&gt;&lt;a href="http://sharedhat.com" title="demo3"&gt;&lt;img
+			src="http://holyshared.github.com/MMap/Demos/images/demo/img03.jpg"
+			title="demo3"&gt;&lt;/a&gt;&lt;/li&gt;
+		&lt;li&gt;&lt;a href="http://sharedhat.com" title="demo4"&gt;&lt;img
+			src="http://holyshared.github.com/MMap/Demos/images/demo/img04.jpg"
+			title="demo4"&gt;&lt;/a&gt;&lt;/li&gt;
+		&lt;li&gt;&lt;a href="http://sharedhat.com" title="demo5"&gt;&lt;img
+			src="http://holyshared.github.com/MMap/Demos/images/demo/img05.jpg"
+			title="demo5"&gt;&lt;/a&gt;&lt;/li&gt;
+	&lt;/ul&gt;
+&lt;/div&gt;
+</pre>
+							</div>
+						</div>
+					</div>
 
 				</div>
 				<!--/main-->
