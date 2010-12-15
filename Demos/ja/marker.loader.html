@@ -5,8 +5,9 @@
 		<title>MMap(Moogle Map) 0.2 - MMap.MarkerLoader</title>
 		<meta name="description" content="MMap(Moogle Map) 0.2 - MMap.MarkerLoader" />
 		<meta name="keywords" content="Mootools,javascript,Marker.MarkerLoader,Google Maps" />
-		<link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Vollkorn:regular,italic,bold&amp;subset=latin" type="text/css" />
 		<link rel="stylesheet" href="../css/all.css" type="text/css" media="screen" />
+		<link rel="stylesheet" href="../css/core/content.ja.css" type="text/css" media="screen" />
+		<link rel="stylesheet" href="../css/plugins/spinner/spinner.css" type="text/css" media="screen" />
 		<script type="text/javascript" src="http://maps.google.com/maps/api/js?v=3&amp;sensor=false"></script>
 		<script type="text/javascript" src="../js/lib/mootools-core.js"></script>
 		<script type="text/javascript" src="../js/lib/mootools-more.js"></script>
@@ -15,7 +16,8 @@
 		<script type="text/javascript" src="../js/lib/sh/shBrushJScript.js"></script>
 		<script type="text/javascript" src="../js/lib/sh/shBrushCss.js"></script>
 		<script type="text/javascript" src="../js/lib/sh/shBrushXml.js"></script>
-		<script type="text/javascript" src="../js/marker.js"></script>
+		<script type="text/javascript" src="../js/marker-loader/spinner.js"></script>
+		<script type="text/javascript" src="../js/marker-loader/marker.loader.js"></script>
 	</head>
 	<body>
 		<div class="page gs960">
@@ -42,7 +44,8 @@
 									<li><a title="MMap.Marker.Images" href="../marker.images.html">MMap.Marker.Images</a></li>
 									<li><a title="MMap.MarkerManager" href="../marker.manager.html">MMap.MarkerManager</a></li>
 									<li><a title="MMap.MarkerLoader" href="../marker.loader.html">MMap.MarkerLoader</a></li>
-									<li><a title="MMap.Window" href="../marker.window.html">MMap.Window</a></li>
+									<li><a title="MMap.Window" href="../window.html">MMap.Window</a></li>
+									<li><a title="Mini Application" href="../mini.application.html">Mini Application</a></li>
 								</ul>
 
 								<h4>Japanese</h4>
@@ -52,7 +55,8 @@
 									<li><a title="MMap.Marker.Images" href="marker.images.html">MMap.Marker.Images</a></li>
 									<li><a title="MMap.MarkerManager" href="marker.manager.html">MMap.MarkerManager</a></li>
 									<li><strong class="current">MMap.MarkerLoader</strong></li>
-									<li><a title="MMap.Window" href="marker.window.html">MMap.Window</a></li>
+									<li><a title="MMap.Window" href="window.html">MMap.Window</a></li>
+									<li><a title="Mini Application" href="mini.application.html">Mini Application</a></li>
 								</ul>
 
 							</div>
@@ -66,8 +70,8 @@
 					<div class="mod map">
 						<div class="inner">
 							<div class="hd">
-								<h3>The marker is displayed.</h3>
-								<p>Simple contents are displayed in the marker.</p>
+								<h3>マーカーを動的に読み込む</h3>
+								<p>Ajaxを利用してマーカーを読み込むデモ</p>
 							</div>
 							<div class="bd">
 								<div id="gmap" class="googleMap"></div>
@@ -75,9 +79,145 @@
 						</div>
 					</div>
 
-<pre class="brush: js;" title="Title/caption should render">
-var hoge; 
+					<div class="mod code">
+						<div class="inner">
+							<div class="hd">
+								<h3>サンプルコード</h3>
+								<p>このデモのソースコード</p>
+							</div>
+							<div class="bd">
+
+								<div class="mod modulecode">
+									<div class="inner">
+										<div class="hd">
+											<h4>メインコード</h4>
+										</div>
+										<div class="bd">
+
+<pre class="brush: js;">
+(function($){
+
+window.addEvent("domready", function(){
+
+	var mapDiv = $('gmap');
+	var map = new google.maps.Map(mapDiv, {
+		disableDefaultUI: true,
+		zoom: 15,
+		center: new google.maps.LatLng(35.6666870, 139.731859),
+		mapTypeId: google.maps.MapTypeId.ROADMAP
+	});
+
+	var spinner = new Spinner({ map: map });
+	var manager = new MMap.MarkerManager();
+	var loader = new MMap.MarkerLoader({
+		onPreload: function(){
+			spinner.show();
+		},
+		onLoad: function(markers){
+			manager.setMarkers(markers);
+			manager.setMap(map);
+			manager.visible();
+			spinner.hide();
+		}
+	});
+	loader.load('http://holyshared.github.com/MMap/Demos/js/marker-loader/markers.json');
+});
+
+}(document.id));
 </pre>
+										</div>
+									</div>
+								</div>
+
+								<div class="mod modulecode">
+									<div class="inner">
+										<div class="hd">
+											<h4>スピナーのコード</h4>
+										</div>
+										<div class="bd">
+<pre class="brush: js;">
+(function($){
+
+var Spinner = this.Spinner = new Class({
+
+	Extends: MMap.MVCObject,
+
+	Implements: [MMap.Options],
+
+	options:{
+		map: null,
+		message: 'Now Loading...'
+	},
+
+	initialize: function(options){
+		this.setOptions(options);
+		this._spinner = new Element('div', {'class': 'spinner'});
+		this._message = new Element('p', {'class': 'message'});
+		this._message.inject(this._spinner);
+		this._spinner.inject(document.body);
+		this._message.set('html', this.options.message);
+	},
+
+	setMap: function(map){
+		if (!(map instanceof google.maps.Map)) {
+			throw new TypeError('The specified value is not a map object.');
+		} 
+		this.set('map', map);
+	},
+
+	getMap: function(){
+		return this.get('map');
+	},
+
+	setMessage: function(message){
+		if (!message) return false;
+		this.set('message', message);
+		this._message.set('html', message);
+	},
+
+	getMessage: function(){
+		return this.get('message');
+	},
+
+	center: function(){
+		var map = this.getMap();
+		var container = map.getDiv();
+		var mSize = container.getSize();
+		var sSize = this._spinner.getSize();
+		var position = container.getPosition();
+		var spPosition = {};
+		spPosition.x = position.x + (mSize.x/2) - (sSize.x/2);
+		spPosition.y = position.y + (mSize.y/2) - (sSize.y/2);
+		this._spinner.setStyles({
+			top: spPosition.y,
+			left: spPosition.x
+		});
+	},
+
+	show: function(){
+		var args = Array.from(arguments);
+		var message = args.shift();
+		this.setMessage(message);
+		this.center();
+		this._spinner.fade('in');
+	},
+
+	hide: function(){
+		this._spinner.fade('out');
+	}
+
+});
+
+}(document.id));
+</pre>
+										</div>
+									</div>
+								</div>
+
+							</div>
+						</div>
+					</div>
+
 
 
 				</div>
