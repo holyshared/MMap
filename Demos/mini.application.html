@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ja" lang="ja">
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-		<title>MMap(Moogle Map) 0.2 - Mini Application (part1)</title>
+		<title>MMap(Moogle Map) 0.2 - Mini Application</title>
 		<meta name="description" content="MMap(Moogle Map) 0.2 - Mini Application (part1)" />
 		<meta name="keywords" content="Mootools,javascript,Marker.MarkerManager,Google Maps" />
 		<link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Vollkorn:regular,italic,bold&amp;subset=latin" type="text/css" />
@@ -19,13 +19,13 @@
 		<script type="text/javascript" src="js/lib/sh/shBrushXml.js"></script>
 		<script type="text/javascript" src="js/app/radius.widget.js"></script>
 		<script type="text/javascript" src="js/app/marker.state.view.js"></script>
-		<script type="text/javascript" src="js/app/marker.manager.js"></script>
+		<script type="text/javascript" src="js/app/main.js"></script>
 	</head>
 	<body>
 		<div class="page gs960">
 			<div class="head hgGroup">
 				<h1>MMap(Moogle Map) 0.2</h1>
-				<h2>Mini application part1</h2>
+				<h2>Mini application</h2>
 			</div>
 			<!--/head-->
 
@@ -47,7 +47,7 @@
 									<li><a title="MMap.MarkerManager" href="marker.manager.html">MMap.MarkerManager</a></li>
 									<li><a title="MMap.MarkerLoader" href="marker.loader.html">MMap.MarkerLoader</a></li>
 									<li><a title="MMap.Window" href="window.html">MMap.Window</a></li>
-									<li><a title="Mini Application" href="mini.application.html">Mini Application</a></li>
+									<li><strong>Mini Application</strong></li>
 								</ul>
 
 								<h4>Japanese</h4>
@@ -71,8 +71,8 @@
 					<div class="mod map">
 						<div class="inner">
 							<div class="hd">
-								<h3>The marker is displayed.</h3>
-								<p>Simple contents are displayed in the marker.</p>
+								<h3>Control of the displayed marker</h3>
+								<p>The marker is filtered in the radius.</p>
 							</div>
 							<div class="bd">
 								<div id="gmap" class="googleMap"></div>
@@ -80,13 +80,113 @@
 						</div>
 					</div>
 
-					<div class="mod code">
-						<div class="inner">
-							<div class="hd">
-								<h3>Example code</h3>
-								<p>Source code of this demonstration</p>
-							</div>
-							<div class="bd">
+								<div class="mod modulecode">
+									<div class="inner">
+										<div class="hd">
+											<h4>Main code</h4>
+										</div>
+										<div class="bd">
+
+<pre class="brush: js;">
+(function($){
+
+window.addEvent("domready", function(){
+
+	var markers = [{
+		title: 'Marker1',
+		image: '../Demos/images/demo/img01.jpg',
+		url: 'http://sharedhat.com/',
+		position: new google.maps.LatLng(35.6666870, 139.731859)
+	}, {
+		title: 'Marker2',
+		image: '../Demos/images/demo/img02.jpg',
+		url: 'http://sharedhat.com/',
+		position: new google.maps.LatLng(35.6666870, 139.733859)
+	}, {
+		title: 'Marker3',
+		image: '../Demos/images/demo/img03.jpg',
+		url: 'http://sharedhat.com/',
+		position: new google.maps.LatLng(35.6650870, 139.729859)
+	}, {
+		title: 'Marker4',
+		image: '../Demos/images/demo/img04.jpg',
+		url: 'http://sharedhat.com/',
+		position: new google.maps.LatLng(35.6686870, 139.728859)
+	},	{
+		title: 'Marker5',
+		image: '../Demos/images/demo/img05.jpg',
+		url: 'http://sharedhat.com/',
+		visible: false,
+		position: new google.maps.LatLng(35.6646870, 139.726859)
+	}];
+
+	/*
+	 * The map is made.
+	 * The marker is arranged in this map.
+     */
+	var mapDiv = $('gmap');
+	var map = new google.maps.Map(mapDiv, {
+		disableDefaultUI: true,
+		zoom: 15,
+		center: new google.maps.LatLng(35.6666870, 139.731859),
+		mapTypeId: google.maps.MapTypeId.ROADMAP
+	});
+
+	//The marker is made based on the parameter of the marker.
+	var manageMarkers = [];
+	markers.each(function(context){
+		var imageMarker = new MMap.Marker.Image(context);
+		manageMarkers.push(imageMarker);
+	});
+
+	//The marker manager is made, and the managed marker is set.
+	var markerManager = new MMap.MarkerManager({
+		markers: manageMarkers
+	});
+	markerManager.setMap(map); //The arranged map is specified for all managed markers.
+
+
+	var container = mapDiv.getParent();
+	var stateView = new MarkerStateView();
+	stateView.bindTo('state', markerManager, 'state');
+	stateView.getInstance().inject(container);
+
+
+	//The widget that can specify the radius is arranged in the upper right of the map.
+	var radiusWidget = new RadiusWidget();
+	radiusWidget.setMap(map);
+	map.controls[google.maps.ControlPosition.TOP_RIGHT].push(radiusWidget.getInstance());
+
+	//An initial value is set.
+	markerManager.visible(radiusWidget.getBounds());
+
+	//When the center of the map changes, the displayed marker is adjusted with the radius.
+	google.maps.event.addListener(map, 'center_changed', function(){
+		radiusWidget.setCenter(map.getCenter());
+		markerManager.visible(radiusWidget.getBounds());
+	});
+
+	google.maps.event.addListener(radiusWidget, 'radius_changed', function(){
+		markerManager.visible(radiusWidget.getBounds());
+	});
+
+
+});
+
+}(document.id));
+</pre>
+										</div>
+									</div>
+								</div>
+
+
+								<div class="mod modulecode">
+									<div class="inner">
+										<div class="hd">
+											<h4>Widget code</h4>
+										</div>
+										<div class="bd">
+
 
 <pre class="brush: js;">
 (function($){
@@ -98,7 +198,7 @@ var RadiusWidget = this.RadiusWidget = new Class({
 	Implements: [MMap.Events],
 
 	initialize: function(){
-		this._values = [200, 300, 400];
+		this._values = [200, 300, 400, 500];
 		this._circle = new google.maps.Circle({
 			fillColor: '#ffffff',
 			fillOpacity: 0,
@@ -116,9 +216,9 @@ var RadiusWidget = this.RadiusWidget = new Class({
 		this._values.each(function(radius){
 			var li = new Element('li');
 			var a = new Element('a', {
-				'href': '#' + radius,
-				'title': radius,
-				'html': radius
+				'href': '#' + radius.toString(),
+				'title': radius.toString() + 'm',
+				'html': radius.toString() + 'm'
 			});
 			a.inject(li);
 			li.inject(self._options);
@@ -180,7 +280,7 @@ var RadiusWidget = this.RadiusWidget = new Class({
 
 	setMap: function(map){
 		this._circle.setMap(map);
-		this._circle.setCenter(map.getCenter());
+		this.setCenter(map.getCenter());
 	},
 
 	getMap: function(){
@@ -193,76 +293,73 @@ var RadiusWidget = this.RadiusWidget = new Class({
 
 });
 
-window.addEvent("domready", function(){
+}(document.id));
+</pre>
+										</div>
+									</div>
+								</div>
 
-	var map = new google.maps.Map($('gmap'), {
-		disableDefaultUI: true,
-		zoom: 15,
-		center: new google.maps.LatLng(35.6666870, 139.731859),
-		mapTypeId: google.maps.MapTypeId.ROADMAP
-	});
+								<div class="mod modulecode">
+									<div class="inner">
+										<div class="hd">
+											<h4>View code</h4>
+										</div>
+										<div class="bd">
 
-	var markers = [{
-		title: 'Marker1',
-		image: '../Demos/images/demo/img01.jpg',
-		url: 'http://sharedhat.com/',
-		position: new google.maps.LatLng(35.6666870, 139.731859)
-	}, {
-		title: 'Marker2',
-		image: '../Demos/images/demo/img02.jpg',
-		url: 'http://sharedhat.com/',
-		position: new google.maps.LatLng(35.6666870, 139.733859)
-	}, {
-		title: 'Marker3',
-		image: '../Demos/images/demo/img03.jpg',
-		url: 'http://sharedhat.com/',
-		position: new google.maps.LatLng(35.6650870, 139.729859)
-	}, {
-		title: 'Marker4',
-		image: '../Demos/images/demo/img04.jpg',
-		url: 'http://sharedhat.com/',
-		position: new google.maps.LatLng(35.6686870, 139.728859)
-	},	{
-		title: 'Marker5',
-		image: '../Demos/images/demo/img05.jpg',
-		url: 'http://sharedhat.com/',
-		visible: false,
-		position: new google.maps.LatLng(35.6646870, 139.726859)
-	}];
+<pre class="brush: js;">
 
-	var manageMarkers = [];
-	markers.each(function(context){
-		var imageMarker = new MMap.Marker.Image(context);
-		manageMarkers.push(imageMarker);
-	});
+(function($){
 
-	var markerManager = new MMap.MarkerManager({
-		markers: manageMarkers
-	});
-	markerManager.setMap(map);
+var MarkerStateView = this.MarkerStateView = new Class({
 
+	Extends: MMap.MVCObject,
 
-	var radiusWidget = new RadiusWidget();
-	radiusWidget.setMap(map);
-	map.controls[google.maps.ControlPosition.TOP_RIGHT].push(radiusWidget.getInstance());
+	Implements: [MMap.Events],
 
-	google.maps.event.addListener(map, 'center_changed', function(){
-		radiusWidget.setCenter(map.getCenter());
-		markerManager.visible(radiusWidget.getBounds());
-	});
-	google.maps.event.addListener(radiusWidget, 'radius_changed', function(){
-		markerManager.visible(radiusWidget.getBounds());
-	});
+	initialize: function(){
+		this._setup();
+	},
 
-	SyntaxHighlighter.all();
+	_setup: function(){
+		var self = this;
+		this._container = new Element('div', {'class': 'markerStateView'});
+		this._options = new Element('dl', {'class': 'states'});
+
+		var label = new Element('dt', {'html': 'Marker within the range: '});
+		var count = new Element('dd');
+		this._options.adopt([label, count]);
+		this._visibles = count;
+		
+		var label = new Element('dt', {'html': 'Marker outside range: '});
+		var count = new Element('dd');
+		this._options.adopt([label, count]);
+		this._hiddens = count;
+		this._options.inject(this._container);
+	},
+
+	getInstance: function(){
+		return this._container;
+	},
+
+	state_changed: function(){
+		var state = this.get('state');
+		this._visibles.set('html', state.visibles.length);
+		this._hiddens.set('html', state.hiddens.length);
+	}
+
 });
 
 }(document.id));
+
 </pre>
+
+										</div>
+									</div>
+								</div>
+
 							</div>
 						</div>
 					</div>
-
 
 				</div>
 				<!--/main-->
