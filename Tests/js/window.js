@@ -1,6 +1,7 @@
 (function($){
 
 window.addEvent("domready", function(){
+
 	var logger = new Logger();
 	var win = null;
 	var map = new google.maps.Map($('gmap'), {

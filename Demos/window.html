@@ -15,7 +15,7 @@
 		<script type="text/javascript" src="js/lib/sh/shBrushJScript.js"></script>
 		<script type="text/javascript" src="js/lib/sh/shBrushCss.js"></script>
 		<script type="text/javascript" src="js/lib/sh/shBrushXml.js"></script>
-		<script type="text/javascript" src="js/marker.js"></script>
+		<script type="text/javascript" src="js/window.js"></script>
 	</head>
 	<body>
 		<div class="page gs960">
@@ -75,9 +75,81 @@
 						</div>
 					</div>
 
-<pre class="brush: js;" title="Title/caption should render">
-var hoge; 
+					<div class="mod code">
+						<div class="inner">
+							<div class="hd">
+								<h3>Example code</h3>
+								<p>Source code of this demonstration</p>
+							</div>
+							<div class="bd">
+<pre class="brush: js;">
+(function($){
+
+window.addEvent("domready", function(){
+
+	var map = new google.maps.Map($('gmap'), {
+		zoom: 15,
+		center: new google.maps.LatLng(35.6666870, 139.731859),
+		mapTypeId: google.maps.MapTypeId.ROADMAP
+	});
+
+	var contentWindow = new MMap.Window({
+		className: 'window windowDefault',
+		title: 'Title of window',
+		content: 'Contents displayed in window'
+	});
+
+	var marker = new MMap.Marker.Image({
+		map: map,
+		className: 'marker imageDefault',
+		title: 'Title of image marker [1]',
+		image: '../Demos/images/demo/img01.jpg',
+		url: 'http://mootools.net',
+		position: new google.maps.LatLng(35.6666870, 139.731859),
+		onClick: function(event){
+			event.preventDefault();
+			//The reference to this here is an instance of the marker.
+			contentWindow.open(map, this);
+		}
+	});
+});
+
+}(document.id));
 </pre>
+							</div>
+						</div>
+					</div>
+
+					<div class="mod code">
+						<div class="inner">
+							<div class="hd">
+								<h3>HTML</h3>
+								<p>Document structure of this window</p>
+							</div>
+							<div class="bd">
+
+<pre class="brush: html;">
+
+<div class="ovarlayView window windowDefault">
+	<div class="inner">
+		<div class="hd">
+			<div class="hdgroup">
+				<p class="title">Title of window</p>
+				<p class="close"><a title="Close" href="#">Close</a></p>
+			</div>
+		</div>
+		<div class="bd">
+			<div class="content">Contents displayed in window</div>
+		</div>
+		<div class="ft"></div>
+	</div>
+</div>
+
+</pre>
+
+							</div>
+						</div>
+					</div>
 
 
 				</div>
