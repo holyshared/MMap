@@ -35,6 +35,170 @@
 	</div>
 
 	<div class="main">
+
+<h2 class="h1">Class: <a href='#mmap.overlayview'>MMap.OverlayView</a></h2>
+
+<p>オーバーレイビュー(<a href="http://code.google.com/intl/en/apis/maps/documentation/javascript/reference.html#OverlayView">google.maps.OverlayView</a>)を継承したクラス。 <br />
+このクラスをサブクラス化することで、独自のマーカー、情報ウィンドウを定義できます。</p>
+
+<h3>Implements:</h3>
+
+<p>MMap.Events, MMap.Options</p>
+
+<h2>Method: <a href='#constructor'>constructor</a></h2>
+
+<p>オーバーレイビューのコンストラクタ</p>
+
+<h3>Syntax:</h3>
+
+<pre><code>var myMMap.OverlayView = new MMap.OverlayView(options);
+</code></pre>
+
+<h3>Arguments:</h3>
+
+<ol>
+<li>options - (<em>mixed</em>) オーバーレイビューのオプション</li>
+</ol>
+
+<h3>Options:</h3>
+
+<ul>
+<li>map - (<em>object</em>) オーバーレイビューを表示するMapオブジェクト(<a href="http://code.google.com/intl/en/apis/maps/documentation/javascript/reference.html#Map">google.maps.Map</a>)</li>
+<li>zIndex - (<em>number</em>) オーバーレイビューの表示順序</li>
+<li>visible - (<em>boolean</em>) オーバーレイビューの表示状態</li>
+<li>active - (<em>boolean</em>) オーバーレイビューのアクティブ状態</li>
+</ul>
+
+<h2>Method: <a href='#_init'>_init</a></h2>
+
+<p>オーバーレイビューを初期化する処理を定義します。 <br />
+このメソッドをオーバーライドして、独自の初期化処理を実装できます。 <br />
+このメソッドはオーバーレイビューのインスタンス生成時に実行されます。</p>
+
+<h2>Method: <a href='#_setup'>_setup</a></h2>
+
+<p>オーバーレイビューの構造を定義します。 <br />
+引数のオーバーレイビューを格納するコンテナ要素に整形した文書構造を格納します。 <br />
+このメソッドはオーバーレイビューをマップに配置する前に実行されます。 <br />
+このメソッドをオーバーライドして、独自構造のオーバーレイビューを定義できます。</p>
+
+<h3>Arguments:</h3>
+
+<ol>
+<li>container - (<em>element</em>) オーバーレイビューを格納するコンテナ要素</li>
+</ol>
+
+<h2>Method: <a href='#_setupListeners'>_setupListeners</a></h2>
+
+<p>オーバーレイビューのイベントリスナーを初期設定します。 <br />
+このメソッドはオーバーレイビューをマップに配置する前に実行されます。 
+このメソッドをオーバーライドして、初期時のイベントリスナー指定することができます。</p>
+
+<h2>Method: <a href='#draw'>draw</a></h2>
+
+<p>オーバーレイビューオブジェクトを描画します。 <br />
+このメソッドは抽象的なメソッドですので、サブクラス化して具体的な処理を実装してください。</p>
+
+<h3>Syntax:</h3>
+
+<pre><code>overlayView.draw();
+</code></pre>
+
+<h2>Method: <a href='#getVisible'>getVisible</a></h2>
+
+<p>オーバーレイビューの表示状態を取得します。</p>
+
+<h3>Syntax:</h3>
+
+<pre><code>overlayView.getVisible();
+</code></pre>
+
+<h3>Returns:</h3>
+
+<p>(<em>boolean</em>) 現在の状態</p>
+
+<h2>Method: <a href='#setVisible'>setVisible</a></h2>
+
+<p>オーバーレイビューの表示状態を変更します。</p>
+
+<h3>Syntax:</h3>
+
+<pre><code>overlayView.setVisible(true);
+</code></pre>
+
+<h3>Arguments:</h3>
+
+<ol>
+<li>value - (<em>boolean</em>) trueを指定すると表示、falseを指定すると非表示になります。 <br /></li>
+</ol>
+
+<h3>Returns:</h3>
+
+<p>(<em>object</em>) オーバーレイビュー</p>
+
+<h2>Method: <a href='#isAdded'>isAdded</a></h2>
+
+<p>オーバーレイビューがマップに配置されているか調べます。</p>
+
+<h3>Syntax:</h3>
+
+<pre><code>if (overlayView.isAdded()) {
+    console.log('added');
+}
+</code></pre>
+
+<h3>Returns:</h3>
+
+<p>(<em>boolean</em>) マップに配置されている場合はtrue、まだの場合はfalseを返します。</p>
+
+<h2>Method: <a href='#isVisible'>isVisible</a></h2>
+
+<p>オーバーレイビューの表示状態を調べます。</p>
+
+<h3>Syntax:</h3>
+
+<pre><code>if (overlayView.isVisible()) {
+    console.log('visible');
+}
+</code></pre>
+
+<h3>Returns:</h3>
+
+<p>(<em>boolean</em>) 表示中の場合はtrue、非表示の場合はfalseを返します。</p>
+
+<h2>Method: <a href='#isActive'>isActive</a></h2>
+
+<p>オーバーレイビューの状態を調べます。</p>
+
+<h3>Syntax:</h3>
+
+<pre><code>if (overlayView.isActive()) {
+    console.log('active');
+}
+</code></pre>
+
+<h3>Returns:</h3>
+
+<p>(<em>boolean</em>) アクティブの場合はtrue、非アクティブの場合はfalseを返します。</p>
+
+<h2>Method: <a href='#setActive'>setActive</a></h2>
+
+<p>オーバーレイビューのアクティブ状態を変更します。 <br />
+このメソッドは抽象的なメソッドですので、サブクラス化して具体的な処理を実装してください。</p>
+
+<h3>Syntax:</h3>
+
+<pre><code>overlayView.setActive(true);
+</code></pre>
+
+<h3>Arguments:</h3>
+
+<ol>
+<li>value - (<em>boolean</em>) trueを指定するとアクティブ状態、falseを指定すると非アクティブになります。 <br /></li>
+</ol>
+
+
+
 	</div>
 
 </div>
@@ -42,7 +206,7 @@
 <div class="foot">
 <p>Copyright(c) 2010 <a title="Noritaka Horio" href="http://sharedhat.com">Noritaka Horio</a> All Rights Reserved.</p>
 </div>
-
+</div>
 
 </body>
 
