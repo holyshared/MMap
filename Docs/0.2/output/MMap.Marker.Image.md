@@ -1,22 +1,22 @@
-Class: MMap.Marker.Image {#MMap.Marker.Image}
-=======================================================
+Class: <a href='#this.mmap.marker.image'>this.MMap.Marker.Image</a>
+-------------------------------------------------------------------
 
 
 
 ### Extends:
 
-MMap.Marker
+MMap.BaseMarker
 
 
 
 
-MMap.Marker.Image Method: constructor {#MMap.Marker.Image:constructor}
----------------------------------------------------------------------------------
+Method: <a href='#constructor'>constructor</a>
+-----------------------------------------------
 
 
 ### Syntax:
 
-	var myMMap.Marker.Image = new MMap.Marker.Image(options);
+	var mythis.MMap.Marker.Image = new this.MMap.Marker.Image(options);
 
 ### Arguments:
 
@@ -27,15 +27,15 @@ MMap.Marker.Image Method: constructor {#MMap.Marker.Image:constructor}
 * map - (**)
 * className - (**)
 * title - (**)
-* src - (**)
+* image - (**)
 * url - (**)
 * position - (**)
 * zIndex - (**)
 * visible - (**)
 
 
-MMap.Marker.Image Method: _setup {#MMap.Marker.Image:_setup}
------------------------------------------------------------------------
+Method: <a href='#_setup'>_setup</a>
+-------------------------------------
 
 
 ### Syntax:
@@ -52,8 +52,8 @@ MMap.Marker.Image Method: _setup {#MMap.Marker.Image:_setup}
 
 
 
-MMap.Marker.Image Method: _update {#MMap.Marker.Image:_update}
--------------------------------------------------------------------------
+Method: <a href='#_setupListeners'>_setupListeners</a>
+-------------------------------------------------------
 
 
 ### Syntax:
@@ -61,36 +61,26 @@ MMap.Marker.Image Method: _update {#MMap.Marker.Image:_update}
 
 
 
-MMap.Marker.Image Method: getTitle {#MMap.Marker.Image:getTitle}
----------------------------------------------------------------------------
+Method: <a href='#_init'>_init</a>
+-----------------------------------
 
 
 ### Syntax:
 
 
 
-### Returns:
 
-
-
-
-
-MMap.Marker.Image Method: getImage {#MMap.Marker.Image:getImage}
----------------------------------------------------------------------------
+Method: <a href='#_update'>_update</a>
+---------------------------------------
 
 
 ### Syntax:
 
 
 
-### Returns:
 
-
-
-
-
-MMap.Marker.Image Method: getURL {#MMap.Marker.Image:getURL}
------------------------------------------------------------------------
+Method: <a href='#getTitle'>getTitle</a>
+-----------------------------------------
 
 
 ### Syntax:
@@ -103,8 +93,36 @@ MMap.Marker.Image Method: getURL {#MMap.Marker.Image:getURL}
 
 
 
-MMap.Marker.Image Method: setTitle {#MMap.Marker.Image:setTitle}
----------------------------------------------------------------------------
+Method: <a href='#getImage'>getImage</a>
+-----------------------------------------
+
+
+### Syntax:
+
+
+
+### Returns:
+
+
+
+
+
+Method: <a href='#getURL'>getURL</a>
+-------------------------------------
+
+
+### Syntax:
+
+
+
+### Returns:
+
+
+
+
+
+Method: <a href='#setTitle'>setTitle</a>
+-----------------------------------------
 
 
 ### Syntax:
@@ -121,8 +139,8 @@ MMap.Marker.Image Method: setTitle {#MMap.Marker.Image:setTitle}
 
 
 
-MMap.Marker.Image Method: setImage {#MMap.Marker.Image:setImage}
----------------------------------------------------------------------------
+Method: <a href='#setImage'>setImage</a>
+-----------------------------------------
 
 
 ### Syntax:
@@ -131,7 +149,7 @@ MMap.Marker.Image Method: setImage {#MMap.Marker.Image:setImage}
 
 ### Arguments:
 
-1. src - (**)
+1. image - (**)
 
 ### Returns:
 
@@ -139,8 +157,8 @@ MMap.Marker.Image Method: setImage {#MMap.Marker.Image:setImage}
 
 
 
-MMap.Marker.Image Method: setURL {#MMap.Marker.Image:setURL}
------------------------------------------------------------------------
+Method: <a href='#setURL'>setURL</a>
+-------------------------------------
 
 
 ### Syntax:

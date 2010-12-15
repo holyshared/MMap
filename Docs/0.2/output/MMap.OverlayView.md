@@ -1,5 +1,6 @@
-Class: MMap.OverlayView {#MMap.OverlayView}
-===========================================
+
+Class: <a href='#mmap.overlayview'>MMap.OverlayView</a>
+-------------------------------------------------------
 
 
 
@@ -10,8 +11,8 @@ MMap.Events, MMap.Options
 
 
 
-MMap.OverlayView Method: constructor {#MMap.OverlayView:constructor}
----------------------------------------------------------------------
+Method: <a href='#constructor'>constructor</a>
+-----------------------------------------------
 
 
 ### Syntax:
@@ -27,33 +28,20 @@ MMap.OverlayView Method: constructor {#MMap.OverlayView:constructor}
 * map - (**)
 * zIndex - (**)
 * visible - (**)
-
-
-MMap.OverlayView Method: build {#MMap.OverlayView:build}
----------------------------------------------------------
-
-
-### Syntax:
+* active - (**)
 
 
 
-
-MMap.OverlayView Method: _getInstance {#MMap.OverlayView:_getInstance}
------------------------------------------------------------------------
+Method: <a href='#_init'>_init</a>
+-----------------------------------
 
 
 ### Syntax:
 
 
 
-### Returns:
-
-
-
-
-
-MMap.OverlayView Method: _setup {#MMap.OverlayView:_setup}
------------------------------------------------------------
+Method: <a href='#_setup'>_setup</a>
+-------------------------------------
 
 
 ### Syntax:
@@ -65,7 +53,7 @@ MMap.OverlayView Method: _setup {#MMap.OverlayView:_setup}
 1. container - (**)
 
 
-MMap.OverlayView Method: draw {#MMap.OverlayView:draw}
+Method: <a href='#_setupListeners'>_setupListeners</a>
 -------------------------------------------------------
 
 
@@ -74,26 +62,9 @@ MMap.OverlayView Method: draw {#MMap.OverlayView:draw}
 
 
 
-MMap.OverlayView Method: onAdd {#MMap.OverlayView:onAdd}
----------------------------------------------------------
 
-
-### Syntax:
-
-
-
-
-MMap.OverlayView Method: onRemove {#MMap.OverlayView:onRemove}
----------------------------------------------------------------
-
-
-### Syntax:
-
-
-
-
-MMap.OverlayView Method: getVisible {#MMap.OverlayView:getVisible}
--------------------------------------------------------------------
+Method: <a href='#getVisible'>getVisible</a>
+---------------------------------------------
 
 
 ### Syntax:
@@ -104,24 +75,16 @@ MMap.OverlayView Method: getVisible {#MMap.OverlayView:getVisible}
 
 
 
-
-
-MMap.OverlayView Method: getZIndex {#MMap.OverlayView:getZIndex}
------------------------------------------------------------------
+Method: <a href='#draw'>draw</a>
+---------------------------------
 
 
 ### Syntax:
 
 
 
-### Returns:
-
-
-
-
-
-MMap.OverlayView Method: setVisible {#MMap.OverlayView:setVisible}
--------------------------------------------------------------------
+Method: <a href='#setVisible'>setVisible</a>
+---------------------------------------------
 
 
 ### Syntax:
@@ -137,10 +100,56 @@ MMap.OverlayView Method: setVisible {#MMap.OverlayView:setVisible}
 
 
 
+Method: <a href='#isAdded'>isAdded</a>
+---------------------------------------
 
-MMap.OverlayView Method: setZIndex {#MMap.OverlayView:setZIndex}
------------------------------------------------------------------
 
+### Syntax:
+
+
+
+### Returns:
+
+
+
+
+
+Method: <a href='#isVisible'>isVisible</a>
+-------------------------------------------
+
+
+### Syntax:
+
+
+
+### Returns:
+
+
+
+
+
+Method: <a href='#isActive'>isActive</a>
+-----------------------------------------
+
+
+### Syntax:
+
+
+
+### Returns:
+
+
+
+
+
+
+
+
+
+
+
+Method: <a href='#setActive'>setActive</a>
+-------------------------------------------
 
 ### Syntax:
 
@@ -148,10 +157,4 @@ MMap.OverlayView Method: setZIndex {#MMap.OverlayView:setZIndex}
 
 ### Arguments:
 
-1. index - (**)
-
-### Returns:
-
-
-
-
+1. value - (**)

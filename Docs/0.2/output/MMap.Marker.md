@@ -1,5 +1,5 @@
-Class: MMap.Marker {#MMap.Marker}
-=================================
+Class: <a href='#mmap.basemarker'>MMap.BaseMarker</a>
+-----------------------------------------------------
 
 
 
@@ -10,8 +10,186 @@ MMap.OverlayView
 
 
 
-MMap.Marker Method: constructor {#MMap.Marker:constructor}
------------------------------------------------------------
+Method: <a href='#constructor'>constructor</a>
+-----------------------------------------------
+
+
+### Syntax:
+
+	var myMMap.BaseMarker = new MMap.BaseMarker(options);
+
+### Arguments:
+
+1. options - (**)
+
+### Options:
+
+* map - (**)
+* className - (**)
+* position - (**)
+* zIndex - (**)
+* visible - (**)
+
+
+Method: <a href='#_init'>_init</a>
+-----------------------------------
+
+
+### Syntax:
+
+
+
+
+Method: <a href='#_updateVisibleState'>_updateVisibleState</a>
+---------------------------------------------------------------
+
+
+### Syntax:
+
+
+
+
+Method: <a href='#_update'>_update</a>
+---------------------------------------
+
+
+### Syntax:
+
+
+
+
+Method: <a href='#setDefaultZIndex'>setDefaultZIndex</a>
+---------------------------------------------------------
+
+
+### Syntax:
+
+
+
+
+Method: <a href='#draw'>draw</a>
+---------------------------------
+
+
+### Syntax:
+
+
+
+### Returns:
+
+
+
+
+
+Method: <a href='#refresh'>refresh</a>
+---------------------------------------
+
+
+### Syntax:
+
+
+
+### Returns:
+
+
+
+
+
+Method: <a href='#getZIndex'>getZIndex</a>
+-------------------------------------------
+
+
+### Syntax:
+
+
+
+### Returns:
+
+
+
+
+
+Method: <a href='#setZIndex'>setZIndex</a>
+-------------------------------------------
+
+
+### Syntax:
+
+
+
+### Arguments:
+
+1. index - (**)
+
+### Returns:
+
+
+
+
+
+Method: <a href='#getPosition'>getPosition</a>
+-----------------------------------------------
+
+
+### Syntax:
+
+
+
+### Returns:
+
+
+
+
+
+Method: <a href='#setPosition'>setPosition</a>
+-----------------------------------------------
+
+
+### Syntax:
+
+
+
+### Arguments:
+
+1. position - (**)
+
+### Returns:
+
+
+
+
+
+Method: <a href='#setActive'>setActive</a>
+-------------------------------------------
+
+
+### Syntax:
+
+
+
+### Arguments:
+
+1. value - (**)
+
+### Returns:
+
+
+
+
+Class: <a href='#mmap.marker'>MMap.Marker</a>
+---------------------------------------------
+
+
+
+### Extends:
+
+MMap.BaseMarker
+
+
+
+
+Method: <a href='#constructor'>constructor</a>
+-----------------------------------------------
 
 
 ### Syntax:
@@ -33,8 +211,8 @@ MMap.Marker Method: constructor {#MMap.Marker:constructor}
 * visible - (**)
 
 
-MMap.Marker Method: _setup {#MMap.Marker:_setup}
--------------------------------------------------
+Method: <a href='#_setup'>_setup</a>
+-------------------------------------
 
 
 ### Syntax:
@@ -51,8 +229,35 @@ MMap.Marker Method: _setup {#MMap.Marker:_setup}
 
 
 
-MMap.Marker Method: draw {#MMap.Marker:draw}
----------------------------------------------
+Method: <a href='#_setupListeners'>_setupListeners</a>
+-------------------------------------------------------
+
+
+### Syntax:
+
+
+
+
+Method: <a href='#_init'>_init</a>
+-----------------------------------
+
+
+### Syntax:
+
+
+
+
+Method: <a href='#_update'>_update</a>
+---------------------------------------
+
+
+### Syntax:
+
+
+
+
+Method: <a href='#getTitle'>getTitle</a>
+-----------------------------------------
 
 
 ### Syntax:
@@ -65,81 +270,8 @@ MMap.Marker Method: draw {#MMap.Marker:draw}
 
 
 
-MMap.Marker Method: refresh {#MMap.Marker:refresh}
----------------------------------------------------
-
-
-### Syntax:
-
-
-
-
-MMap.Marker Method: _updateVisibleState {#MMap.Marker:_updateVisibleState}
----------------------------------------------------------------------------
-
-
-### Syntax:
-
-
-
-
-MMap.Marker Method: _update {#MMap.Marker:_update}
----------------------------------------------------
-
-
-### Syntax:
-
-
-
-
-MMap.Marker Method: getPosition {#MMap.Marker:getPosition}
------------------------------------------------------------
-
-
-### Syntax:
-
-
-
-### Returns:
-
-
-
-
-
-MMap.Marker Method: setPosition {#MMap.Marker:setPosition}
------------------------------------------------------------
-
-
-### Syntax:
-
-
-
-### Arguments:
-
-1. position - (**)
-
-### Returns:
-
-
-
-
-
-MMap.Marker Method: getTitle {#MMap.Marker:getTitle}
------------------------------------------------------
-
-
-### Syntax:
-
-
-
-### Returns:
-
-
-
-
-
-MMap.Marker Method: setTitle {#MMap.Marker:setTitle}
------------------------------------------------------
+Method: <a href='#setTitle'>setTitle</a>
+-----------------------------------------
 
 
 ### Syntax:
@@ -156,8 +288,8 @@ MMap.Marker Method: setTitle {#MMap.Marker:setTitle}
 
 
 
-MMap.Marker Method: getContent {#MMap.Marker:getContent}
----------------------------------------------------------
+Method: <a href='#getContent'>getContent</a>
+---------------------------------------------
 
 
 ### Syntax:
@@ -170,8 +302,8 @@ MMap.Marker Method: getContent {#MMap.Marker:getContent}
 
 
 
-MMap.Marker Method: setContent {#MMap.Marker:setContent}
----------------------------------------------------------
+Method: <a href='#setContent'>setContent</a>
+---------------------------------------------
 
 
 ### Syntax:

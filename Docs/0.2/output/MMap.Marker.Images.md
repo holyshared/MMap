@@ -1,22 +1,22 @@
-Class: MMap.Marker.Images {#MMap.Marker.Images}
-=========================================================
+Class: <a href='#this.mmap.marker.images'>this.MMap.Marker.Images</a>
+---------------------------------------------------------------------
 
 
 
 ### Extends:
 
-MMap.Marker
+MMap.BaseMarker
 
 
 
 
-MMap.Marker.Images Method: constructor {#MMap.Marker.Images:constructor}
------------------------------------------------------------------------------------
+Method: <a href='#constructor'>constructor</a>
+-----------------------------------------------
 
 
 ### Syntax:
 
-	var myMMap.Marker.Images = new MMap.Marker.Images(options);
+	var mythis.MMap.Marker.Images = new this.MMap.Marker.Images(options);
 
 ### Arguments:
 
@@ -30,13 +30,14 @@ MMap.Marker.Images Method: constructor {#MMap.Marker.Images:constructor}
 * defaultIndex - (**)
 * interval - (**)
 * duration - (**)
+* autoplay - (**)
 * zIndex - (**)
 * position - (**)
 * visible - (**)
 
 
-MMap.Marker.Images Method: _setup {#MMap.Marker.Images:_setup}
--------------------------------------------------------------------------
+Method: <a href='#_setup'>_setup</a>
+-------------------------------------
 
 
 ### Syntax:
@@ -53,8 +54,8 @@ MMap.Marker.Images Method: _setup {#MMap.Marker.Images:_setup}
 
 
 
-MMap.Marker.Images Method: _update {#MMap.Marker.Images:_update}
----------------------------------------------------------------------------
+Method: <a href='#_setupListeners'>_setupListeners</a>
+-------------------------------------------------------
 
 
 ### Syntax:
@@ -62,8 +63,8 @@ MMap.Marker.Images Method: _update {#MMap.Marker.Images:_update}
 
 
 
-MMap.Marker.Images Method: _onPrepare {#MMap.Marker.Images:_onPrepare}
----------------------------------------------------------------------------------
+Method: <a href='#_init'>_init</a>
+-----------------------------------
 
 
 ### Syntax:
@@ -71,8 +72,89 @@ MMap.Marker.Images Method: _onPrepare {#MMap.Marker.Images:_onPrepare}
 
 
 
-MMap.Marker.Images Method: setCurrent {#MMap.Marker.Images:setCurrent}
----------------------------------------------------------------------------------
+Method: <a href='#_onPrepare'>_onPrepare</a>
+---------------------------------------------
+
+
+### Syntax:
+
+
+
+
+Method: <a href='#_next'>_next</a>
+-----------------------------------
+
+
+### Syntax:
+
+
+
+
+Method: <a href='#_buildElement'>_buildElement</a>
+---------------------------------------------------
+
+
+### Syntax:
+
+
+
+### Arguments:
+
+1. context - (**)
+
+### Returns:
+
+
+
+
+
+Method: <a href='#onComplete'>onComplete</a>
+---------------------------------------------
+
+
+### Syntax:
+
+
+
+
+Method: <a href='#_mouseover'>_mouseover</a>
+---------------------------------------------
+
+
+### Syntax:
+
+
+
+### Arguments:
+
+1. event - (**)
+
+### Returns:
+
+
+
+
+
+Method: <a href='#_mouseout'>_mouseout</a>
+-------------------------------------------
+
+
+### Syntax:
+
+
+
+### Arguments:
+
+1. event - (**)
+
+### Returns:
+
+
+
+
+
+Method: <a href='#setCurrent'>setCurrent</a>
+---------------------------------------------
 
 
 ### Syntax:
@@ -84,17 +166,35 @@ MMap.Marker.Images Method: setCurrent {#MMap.Marker.Images:setCurrent}
 1. index - (**)
 
 
-MMap.Marker.Images Method: _next {#MMap.Marker.Images:_next}
------------------------------------------------------------------------
+Method: <a href='#getImages'>getImages</a>
+-------------------------------------------
 
 
 ### Syntax:
 
 
 
+### Returns:
 
-MMap.Marker.Images Method: addImage {#MMap.Marker.Images:addImage}
------------------------------------------------------------------------------
+
+
+
+
+Method: <a href='#setImages'>setImages</a>
+-------------------------------------------
+
+
+### Syntax:
+
+
+
+### Arguments:
+
+1. images - (**)
+
+
+Method: <a href='#addImage'>addImage</a>
+-----------------------------------------
 
 
 ### Syntax:
@@ -111,17 +211,8 @@ MMap.Marker.Images Method: addImage {#MMap.Marker.Images:addImage}
 
 
 
-MMap.Marker.Images Method: onComplete {#MMap.Marker.Images:onComplete}
----------------------------------------------------------------------------------
-
-
-### Syntax:
-
-
-
-
-MMap.Marker.Images Method: addImages {#MMap.Marker.Images:addImages}
--------------------------------------------------------------------------------
+Method: <a href='#addImages'>addImages</a>
+-------------------------------------------
 
 
 ### Syntax:
@@ -131,4 +222,63 @@ MMap.Marker.Images Method: addImages {#MMap.Marker.Images:addImages}
 ### Arguments:
 
 1. images - (**)
+
+
+Method: <a href='#removeImage'>removeImage</a>
+-----------------------------------------------
+
+
+### Syntax:
+
+
+
+### Arguments:
+
+1. image - (**)
+
+
+Method: <a href='#removeImages'>removeImages</a>
+-------------------------------------------------
+
+
+### Syntax:
+
+
+
+
+Method: <a href='#isStart'>isStart</a>
+---------------------------------------
+
+
+### Syntax:
+
+
+
+### Returns:
+
+
+
+
+
+Method: <a href='#start'>start</a>
+-----------------------------------
+
+
+### Syntax:
+
+
+
+### Returns:
+
+
+
+
+
+Method: <a href='#stop'>stop</a>
+---------------------------------
+
+
+### Syntax:
+
+
 
