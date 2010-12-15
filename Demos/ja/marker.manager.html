@@ -5,8 +5,9 @@
 		<title>MMap(Moogle Map) 0.2 - MMap.MarkerManager</title>
 		<meta name="description" content="MMap(Moogle Map) 0.2 - MMap.MarkerManager" />
 		<meta name="keywords" content="Mootools,javascript,Marker.MarkerManager,Google Maps" />
-		<link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Vollkorn:regular,italic,bold&amp;subset=latin" type="text/css" />
 		<link rel="stylesheet" href="../css/all.css" type="text/css" media="screen" />
+		<link rel="stylesheet" href="../css/core/content.ja.css" type="text/css" media="screen" />
+		<link rel="stylesheet" href="../css/plugins/views/views.css" type="text/css" media="screen" />
 		<script type="text/javascript" src="http://maps.google.com/maps/api/js?v=3&amp;sensor=false"></script>
 		<script type="text/javascript" src="../js/lib/mootools-core.js"></script>
 		<script type="text/javascript" src="../js/lib/mootools-more.js"></script>
@@ -15,7 +16,8 @@
 		<script type="text/javascript" src="../js/lib/sh/shBrushJScript.js"></script>
 		<script type="text/javascript" src="../js/lib/sh/shBrushCss.js"></script>
 		<script type="text/javascript" src="../js/lib/sh/shBrushXml.js"></script>
-		<script type="text/javascript" src="../js/marker.js"></script>
+		<script type="text/javascript" src="../js/marker-manager/current.marker.view.js"></script>
+		<script type="text/javascript" src="../js/marker-manager/marker.manager.js"></script>
 	</head>
 	<body>
 		<div class="page gs960">
@@ -42,7 +44,8 @@
 									<li><a title="MMap.Marker.Images" href="../marker.images.html">MMap.Marker.Images</a></li>
 									<li><a title="MMap.MarkerManager" href="../marker.manager.html">MMap.MarkerManager</a></li>
 									<li><a title="MMap.MarkerLoader" href="../marker.loader.html">MMap.MarkerLoader</a></li>
-									<li><a title="MMap.Window" href="../marker.window.html">MMap.Window</a></li>
+									<li><a title="MMap.Window" href="../window.html">MMap.Window</a></li>
+									<li><a title="Mini Application" href="../mini.application.html">Mini Application</a></li>
 								</ul>
 
 								<h4>Japanese</h4>
@@ -52,7 +55,8 @@
 									<li><a title="MMap.Marker.Images" href="marker.images.html">MMap.Marker.Images</a></li>
 									<li><strong class="current">MMap.MarkerManager</strong></li>
 									<li><a title="MMap.MarkerLoader" href="marker.loader.html">MMap.MarkerLoader</a></li>
-									<li><a title="MMap.Window" href="marker.window.html">MMap.Window</a></li>
+									<li><a title="MMap.Window" href="window.html">MMap.Window</a></li>
+									<li><a title="Mini Application" href="mini.application.html">Mini Application</a></li>
 								</ul>
 
 							</div>
@@ -66,8 +70,8 @@
 					<div class="mod map">
 						<div class="inner">
 							<div class="hd">
-								<h3>The marker is displayed.</h3>
-								<p>Simple contents are displayed in the marker.</p>
+								<h3>複数のマーカーを管理する</h3>
+								<p>マーカーマネージャを利用してマーカーを管理するデモ</p>
 							</div>
 							<div class="bd">
 								<div id="gmap" class="googleMap"></div>
@@ -75,9 +79,171 @@
 						</div>
 					</div>
 
-<pre class="brush: js;" title="Title/caption should render">
-var hoge; 
+					<div class="mod code">
+						<div class="inner">
+							<div class="hd">
+								<h3>サンプルコード</h3>
+								<p>このデモのソースコード</p>
+							</div>
+							<div class="bd">
+
+								<div class="mod modulecode">
+									<div class="inner">
+										<div class="hd">
+											<h4>メインコード</h4>
+										</div>
+										<div class="bd">
+
+<pre class="brush: js;">
+(function($){
+
+window.addEvent("domready", function(){
+
+	var mapDiv = $('gmap');
+	var map = new google.maps.Map(mapDiv, {
+		disableDefaultUI: true,
+		zoom: 15,
+		center: new google.maps.LatLng(35.6666870, 139.731859),
+		mapTypeId: google.maps.MapTypeId.ROADMAP
+	});
+
+	//The marker is made based on the parameter of the marker.
+	var markers = [{
+		title: 'MMap.Marker',
+		image: 'http://holyshared.github.com/MMap/Demos/images/demo/img01.jpg',
+		url: 'http://holyshared.github.com/MMap/Demos/marker.html',
+		position: new google.maps.LatLng(35.6666870, 139.731859)
+	}, {
+		title: 'MMap.Marker.Image',
+		image: 'http://holyshared.github.com/MMap/Demos/images/demo/img02.jpg',
+		url: 'http://holyshared.github.com/MMap/Demos/marker.image.html',
+		position: new google.maps.LatLng(35.6666870, 139.733859)
+	}, {
+		title: 'MMap.Marker.Images',
+		image: 'http://holyshared.github.com/MMap/Demos/images/demo/img03.jpg',
+		url: 'http://holyshared.github.com/MMap/Demos/marker.images.html',
+		position: new google.maps.LatLng(35.6650870, 139.729859)
+	}, {
+		title: 'MMap.Window',
+		image: 'http://holyshared.github.com/MMap/Demos/images/demo/img04.jpg',
+		url: 'http://holyshared.github.com/MMap/Demos/window.html',
+		position: new google.maps.LatLng(35.6686870, 139.728859)
+	},	{
+		title: 'MMap.MarkerLoader',
+		image: 'http://holyshared.github.com/MMap/Demos/images/demo/img05.jpg',
+		url: 'http://holyshared.github.com/MMap/Demos/marker.loader.html',
+		visible: false,
+		position: new google.maps.LatLng(35.6646870, 139.726859)
+	}];
+
+	var view = new CurrentMarkerView();
+	map.controls[google.maps.ControlPosition.TOP_RIGHT].push(view.getInstance());
+
+	var onClick = function(event){
+		event.preventDefault();
+		markerManager.active(this);
+	}
+
+	var onActive = function(event){
+		view.set('title', this.getTitle());
+		view.set('url', this.getURL());
+	}
+
+	var manageMarkers = [];
+	markers.each(function(context){
+		//markerClick
+		var options = Object.merge(context, {
+			onClick: onClick,
+			onActive: onActive
+		});
+		var imageMarker = new MMap.Marker.Image(options);
+		manageMarkers.push(imageMarker);
+	});
+
+	//The marker manager is made, and the managed marker is set.
+	var markerManager = new MMap.MarkerManager({
+		markers: manageMarkers
+	});
+	markerManager.setMap(map); //The arranged map is specified for all managed markers.
+	markerManager.visible();
+	markerManager.active(manageMarkers.getLast());
+});
+
+}(document.id));</pre>
+										</div>
+									</div>
+								</div>
+
+								<div class="mod modulecode">
+									<div class="inner">
+										<div class="hd">
+											<h4>ビューのコード</h4>
+										</div>
+										<div class="bd">
+<pre class="brush: js;">
+(function($){
+
+var CurrentMarkerView = this.CurrentMarkerView = new Class({
+
+	Extends: MMap.MVCObject,
+
+	Implements: [MMap.Events],
+
+	initialize: function(){
+		this._setup();
+	},
+
+	_setup: function(){
+		var self = this;
+		var title = new Element('h3', {'html': 'Information'});
+		this._container = new Element('div', {'class': 'currentMarkerView'});
+		title.inject(this._container);
+
+		this._options = new Element('dl', {'class': 'states'});
+
+		var label = new Element('dt', {'html': 'Title:'});
+		var title = new Element('dd');
+		this._options.adopt([label, title]);
+		this._title = title;
+
+		var label = new Element('dt', {'html': 'Url: '});
+		var url = new Element('dd');
+		var link = new Element('a');
+		link.inject(url);
+
+		this._options.adopt([label, url]);
+		this._url = url;
+		this._link = link;
+		this._options.inject(this._container);
+	},
+
+	getInstance: function(){
+		return this._container;
+	},
+
+	title_changed: function(){
+		var title = this.get('title');
+		this._title.set('html', title);
+		this._link.set('title', title);
+	},
+
+	url_changed: function(){
+		var url = this.get('url');
+		this._link.set('html', url);
+		this._link.set('href', url);
+	}
+
+});
+
+}(document.id));
 </pre>
+										</div>
+									</div>
+								</div>
+
+							</div>
+						</div>
+					</div>
 
 
 				</div>
