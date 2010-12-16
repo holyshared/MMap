@@ -45,7 +45,8 @@ MMap.BaseMarker = new Class({
 		className: 'marker markerDefault',
 		position: '',
 		zIndex: null,
-		visible: true
+		visible: true,
+		active: false
 		/*
 			onClick: $empty
 			onDblClick: $empty
@@ -65,7 +66,7 @@ MMap.BaseMarker = new Class({
 
 	_init: function(){
 		var self = this;
-		var props = ['position', 'zIndex', 'visible'];
+		var props = ['position', 'zIndex', 'visible', 'active'];
 		props.each(function(key){
 			var value = self.options[key];
 			self.set(key, value);
@@ -170,7 +171,8 @@ MMap.Marker = new Class({
 		content: '',
 		position: '',
 		zIndex: null,
-		visible: true
+		visible: true,
+		active: false
 		/*
 			onClick: $empty
 			onDblClick: $empty

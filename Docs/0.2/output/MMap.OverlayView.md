@@ -25,7 +25,7 @@ Method: <a href='#constructor'>constructor</a>
 
 ### Options:
 
-* map - (*object*) オーバーレイビューを表示するMapオブジェクト(<a href="http://code.google.com/intl/en/apis/maps/documentation/javascript/reference.html#Map">google.maps.Map</a>)
+* map - (*<a href="http://code.google.com/intl/en/apis/maps/documentation/javascript/reference.html#Map">Map</a>*) オーバーレイビューを表示するMapオブジェクト
 * zIndex - (*number*) オーバーレイビューの表示順序
 * visible - (*boolean*) オーバーレイビューの表示状態 
 * active - (*boolean*) オーバーレイビューのアクティブ状態
@@ -55,7 +55,7 @@ Method: <a href='#_setupListeners'>_setupListeners</a>
 -------------------------------------------------------
 
 オーバーレイビューのイベントリスナーを初期設定します。  
-このメソッドはオーバーレイビューをマップに配置する前に実行されます。 
+このメソッドはオーバーレイビューをマップに配置する前に実行されます。  
 このメソッドをオーバーライドして、初期時のイベントリスナー指定することができます。
 
 
