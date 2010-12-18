@@ -28,3 +28,27 @@
 * [setZIndex](mmap.basemarker.html#setZIndex "setZIndex")
 * [setPosition](mmap.basemarker.html#setPosition "setPosition")
 * [setActive](mmap.basemarker.html#setActive "setActive")
+
+### <a href='mmap.marker.html#mmap.marker'>MMap.Marker</a>
+
+* [constructor](mmap.marker.html#constructor "constructor")
+* [getTitle](mmap.marker.html#getTitle "getTitle")
+* [getContent](mmap.marker.html#getContent "getContent")
+* [setTitle](mmap.marker.html#setTitle "setTitle")
+* [setContent](mmap.marker.html#setContent "setContent")
+
+### <a href='mmap.marker.image.html#mmap.marker.image'>MMap.Marker.Image</a>
+
+* [constructor](mmap.marker.image.html#constructor "constructor")
+* [getTitle](mmap.marker.image.html#getTitle "getTitle")
+* [getImage](mmap.marker.image.html#getImage "getImage")
+* [getURL](mmap.marker.image.html#getURL "getURL")
+* [setTitle](mmap.marker.image.html#setTitle "setTitle")
+* [setImage](mmap.marker.image.html#setImage "setImage")
+* [setURL](mmap.marker.image.html#setURL "setURL")
+
+
+
+
+
+

@@ -88,8 +88,8 @@ foreach($mooClasses as $className => $mooClass) {
 }
 
 // Markdown Patterns
-$mdClass  = "Class: <a href='#%s'>%s</a>\n";
-$mdMethod = "Method: <a href='#%s'>%s</a>\n";
+$mdClass  = "Class: <a id='%s'>%s</a>\n";
+$mdMethod = "Method: <a id='%s'>%s</a>\n";
 $mdH3     = "### %s:\n\n";
 $mdH4     = "#### %s:\n\n";
 $mdArg    = "%d. %s - (*%s*)\n";

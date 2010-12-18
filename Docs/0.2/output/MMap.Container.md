@@ -1,5 +1,5 @@
-Class: <a href='#mmap.container'>MMap.Container</a>
----------------------------------------------------
+Class: <a id='mmap.container'>MMap.Container</a>
+------------------------------------------------
 
 
 
@@ -10,8 +10,8 @@ MMap.MVCObject
 
 
 
-Method: <a href='#constructor'>constructor</a>
------------------------------------------------
+Method: <a id='constructor'>constructor</a>
+--------------------------------------------
 
 
 ### Syntax:
@@ -19,8 +19,8 @@ Method: <a href='#constructor'>constructor</a>
 	var myMMap.Container = new MMap.Container();
 
 
-Method: <a href='#isValid'>isValid</a>
----------------------------------------
+Method: <a id='isValid'>isValid</a>
+------------------------------------
 
 
 ### Syntax:
@@ -33,8 +33,8 @@ Method: <a href='#isValid'>isValid</a>
 
 
 
-Method: <a href='#getItem'>getItem</a>
----------------------------------------
+Method: <a id='getItem'>getItem</a>
+------------------------------------
 
 
 ### Syntax:
@@ -51,8 +51,8 @@ Method: <a href='#getItem'>getItem</a>
 
 
 
-Method: <a href='#getItems'>getItems</a>
------------------------------------------
+Method: <a id='getItems'>getItems</a>
+--------------------------------------
 
 
 ### Syntax:
@@ -65,8 +65,8 @@ Method: <a href='#getItems'>getItems</a>
 
 
 
-Method: <a href='#getCurrent'>getCurrent</a>
----------------------------------------------
+Method: <a id='getCurrent'>getCurrent</a>
+------------------------------------------
 
 
 ### Syntax:
@@ -79,8 +79,8 @@ Method: <a href='#getCurrent'>getCurrent</a>
 
 
 
-Method: <a href='#setItems'>setItems</a>
------------------------------------------
+Method: <a id='setItems'>setItems</a>
+--------------------------------------
 
 
 ### Syntax:
@@ -97,8 +97,8 @@ Method: <a href='#setItems'>setItems</a>
 
 
 
-Method: <a href='#setCurrent'>setCurrent</a>
----------------------------------------------
+Method: <a id='setCurrent'>setCurrent</a>
+------------------------------------------
 
 
 ### Syntax:
@@ -115,8 +115,8 @@ Method: <a href='#setCurrent'>setCurrent</a>
 
 
 
-Method: <a href='#addItem'>addItem</a>
----------------------------------------
+Method: <a id='addItem'>addItem</a>
+------------------------------------
 
 
 ### Syntax:
@@ -133,8 +133,8 @@ Method: <a href='#addItem'>addItem</a>
 
 
 
-Method: <a href='#hasItem'>hasItem</a>
----------------------------------------
+Method: <a id='hasItem'>hasItem</a>
+------------------------------------
 
 
 ### Syntax:
@@ -151,8 +151,8 @@ Method: <a href='#hasItem'>hasItem</a>
 
 
 
-Method: <a href='#count'>count</a>
------------------------------------
+Method: <a id='count'>count</a>
+--------------------------------
 
 
 ### Syntax:
@@ -165,8 +165,8 @@ Method: <a href='#count'>count</a>
 
 
 
-Method: <a href='#removeItem'>removeItem</a>
----------------------------------------------
+Method: <a id='removeItem'>removeItem</a>
+------------------------------------------
 
 
 ### Syntax:
@@ -183,8 +183,8 @@ Method: <a href='#removeItem'>removeItem</a>
 
 
 
-Method: <a href='#next'>next</a>
----------------------------------
+Method: <a id='next'>next</a>
+------------------------------
 
 
 ### Syntax:
@@ -197,8 +197,8 @@ Method: <a href='#next'>next</a>
 
 
 
-Method: <a href='#rewind'>rewind</a>
--------------------------------------
+Method: <a id='rewind'>rewind</a>
+----------------------------------
 
 
 ### Syntax:
@@ -211,8 +211,8 @@ Method: <a href='#rewind'>rewind</a>
 
 
 
-Method: <a href='#empty'>empty</a>
------------------------------------
+Method: <a id='empty'>empty</a>
+--------------------------------
 
 
 ### Syntax:
@@ -220,8 +220,8 @@ Method: <a href='#empty'>empty</a>
 
 
 
-Method: <a href='#find'>find</a>
----------------------------------
+Method: <a id='find'>find</a>
+------------------------------
 
 
 ### Syntax:
@@ -239,8 +239,8 @@ Method: <a href='#find'>find</a>
 
 
 
-Method: <a href='#findAll'>findAll</a>
----------------------------------------
+Method: <a id='findAll'>findAll</a>
+------------------------------------
 
 
 ### Syntax:

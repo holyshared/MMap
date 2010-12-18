@@ -43,7 +43,7 @@ Method: <a id='getTitle'>getTitle</a>
 
 ### Syntax:
 
-var title = marker.getTitle();
+	var title = marker.getTitle();
 
 ### Returns:
 
@@ -57,7 +57,7 @@ Method: <a id='getImage'>getImage</a>
 
 ### Syntax:
 
-var image = marker.getImage();
+	var image = marker.getImage();
 
 ### Returns:
 
@@ -72,7 +72,7 @@ Method: <a id='getURL'>getURL</a>
 
 ### Syntax:
 
-var url = marker.getURL();
+	var url = marker.getURL();
 
 ### Returns:
 
@@ -87,7 +87,7 @@ Method: <a id='setTitle'>setTitle</a>
 
 ### Syntax:
 
-marker.setTitle('Marker title');
+	marker.setTitle('Marker title');
 
 ### Arguments:
 
@@ -106,7 +106,7 @@ Method: <a id='setImage'>setImage</a>
 
 ### Syntax:
 
-marker.setImage('/images/cafe_marker.png');
+	marker.setImage('/images/cafe_marker.png');
 
 ### Arguments:
 
@@ -125,7 +125,7 @@ Method: <a id='setURL'>setURL</a>
 
 ### Syntax:
 
-marker.setURL('http://mootools.net')
+	marker.setURL('http://mootools.net')
 
 ### Arguments:
 

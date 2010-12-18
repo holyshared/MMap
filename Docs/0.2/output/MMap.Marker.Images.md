@@ -1,7 +1,8 @@
-Class: <a href='#this.mmap.marker.images'>this.MMap.Marker.Images</a>
----------------------------------------------------------------------
 
+Class: <a id='mmap.marker.images'>MMap.Marker.Images</a>
+------------------------------------------------------------------
 
+画像をスライドさせて表示するマーカー。
 
 ### Extends:
 
@@ -9,276 +10,199 @@ MMap.BaseMarker
 
 
 
-
-Method: <a href='#constructor'>constructor</a>
------------------------------------------------
-
+Method: <a id='constructor'>constructor</a>
+--------------------------------------------
 
 ### Syntax:
 
-	var mythis.MMap.Marker.Images = new this.MMap.Marker.Images(options);
+	var myMarker = new MMap.Marker.Images(options);
 
 ### Arguments:
 
-1. options - (**)
+1. options - (*mixed*) マーカーのオプション
 
 ### Options:
 
-* map - (**)
-* className - (**)
-* images - (**)
-* defaultIndex - (**)
-* interval - (**)
-* duration - (**)
-* autoplay - (**)
-* zIndex - (**)
-* position - (**)
-* visible - (**)
+* map - (*<a href="http://code.google.com/intl/en/apis/maps/documentation/javascript/reference.html#Map">Map</a>*) オーバーレイビューを表示するMapオブジェクト
+* className - (*string*) マーカーに適用するスタイル(CSSのクラス名)
+* images - (*array*) <a href='#images'>マーカーに表示する画像情報</a>
+* defaultIndex - (*number*) 初期時に表示する画像の番号
+* interval - (*number*) 画像をスライドさせる感覚
+* duration - (*number*) アニメーションの持続時間
+* autoplay - (*boolean*) trueを設定した場合、自動で画像をスライドします。デファルトはtrueです。
+* position - (<a href="http://code.google.com/intl/eu/apis/maps/documentation/javascript/reference.html#LatLng">*LatLng*</a>) マーカーの座標位置
+* zIndex - (*number*) マーカーの表示順序
+* visible - (*boolean*) マーカーの表示状態 
+* active - (*boolean*) マーカーのアクティブ状態
+
+### <a id='images'>images</a></h3>
+
+下記の情報を持つオブジェクトの配列
+
+* title - (*number*) 画像のタイトル
+* image - (*boolean*) 画像のURL
+* url - (*boolean*) URL
 
 
-Method: <a href='#_setup'>_setup</a>
--------------------------------------
+Method: <a id='setCurrent'>setCurrent</a>
+------------------------------------------
 
+指定した画像を現在の画像に設定します。
 
 ### Syntax:
 
-
+	marker.setCurrent(1);
 
 ### Arguments:
 
-1. container - (**)
+1. index - (*number*) 画像の番号
+
+
+Method: <a id='getImages'>getImages</a>
+----------------------------------------
+
+画像に設定されている画像情報を取得します。
+
+### Syntax:
+
+	var images = marker.getImages();
 
 ### Returns:
 
+(*array*) 画像に設定されている画像情報
 
 
 
+Method: <a id='setImages'>setImages</a>
+----------------------------------------
 
-Method: <a href='#_setupListeners'>_setupListeners</a>
--------------------------------------------------------
-
-
-### Syntax:
-
-
-
-
-Method: <a href='#_init'>_init</a>
------------------------------------
-
+マーカーに画像を設定します。
 
 ### Syntax:
 
-
-
-
-Method: <a href='#_onPrepare'>_onPrepare</a>
----------------------------------------------
-
-
-### Syntax:
-
-
-
-
-Method: <a href='#_next'>_next</a>
------------------------------------
-
-
-### Syntax:
-
-
-
-
-Method: <a href='#_buildElement'>_buildElement</a>
----------------------------------------------------
-
-
-### Syntax:
-
-
+	marker.setImages(images);
 
 ### Arguments:
 
-1. context - (**)
+1. images - (*array*) 設定する画像
 
 ### Returns:
 
+(*object*) marker object
 
 
 
+Method: <a id='addImage'>addImage</a>
+--------------------------------------
 
-Method: <a href='#onComplete'>onComplete</a>
----------------------------------------------
-
-
-### Syntax:
-
-
-
-
-Method: <a href='#_mouseover'>_mouseover</a>
----------------------------------------------
-
+画像をマーカーに追加します。
 
 ### Syntax:
 
-
+	marker.addImage(image);
 
 ### Arguments:
 
-1. event - (**)
+1. image - (*object*) 追加する画像の情報
 
 ### Returns:
 
+(*object*) marker object
 
 
 
+Method: <a id='addImages'>addImages</a>
+----------------------------------------
 
-Method: <a href='#_mouseout'>_mouseout</a>
--------------------------------------------
-
+画像を複数マーカーに追加します。
 
 ### Syntax:
 
+	var images = [{  
+		title: 'demo3',  
+		image: '../Demos/images/demo/img03.jpg',  
+		url: 'http://sharedhat.com'  
+	}, {  
+		title: 'demo4',  
+		image: '../Demos/images/demo/img04.jpg',  
+		url: 'http://sharedhat.com'  
+	}];  
+	marker.addImages(images);
+
+### Arguments:
+
+1. images - (*array*) 追加する画像
+
+
+Method: <a id='removeImage'>removeImage</a>
+--------------------------------------------
+
+マーカーから画像を削除します。
+
+### Syntax:
+
+	marker.removeImage(image); 
 
 
 ### Arguments:
 
-1. event - (**)
+1. image - (*object*) マーカーから削除する画像
+
+
+Method: <a id='removeImages'>removeImages</a>
+----------------------------------------------
+
+マーカーから複数の画像を削除します。
+
+### Syntax:
+
+	//When you enumerate the marker  
+	marker.removeImages(image1, image2);  
+	
+	//When specifying it by the array  
+	var images = [image1, image2];  
+	marker.removeImages(images);
+
+
+### Arguments:
+
+1. images - (*mixed*) マーカーから削除する画像
+
+
+
+Method: <a id='isStart'>isStart</a>
+------------------------------------
+
+マーカーの画像のスライド状態を返します。
+
+### Syntax:
+
+	if (marker.isStart()) {  
+		console.log('It is executing it.');  
+	}
 
 ### Returns:
 
+(*boolean*) スライドの開始状態
 
 
 
+Method: <a id='start'>start</a>
+--------------------------------
 
-Method: <a href='#setCurrent'>setCurrent</a>
----------------------------------------------
-
-
-### Syntax:
-
-
-
-### Arguments:
-
-1. index - (**)
-
-
-Method: <a href='#getImages'>getImages</a>
--------------------------------------------
-
+画像のスライドを開始します。
 
 ### Syntax:
 
+	marker.start();
 
 
-### Returns:
+Method: <a id='stop'>stop</a>
+------------------------------
 
-
-
-
-
-Method: <a href='#setImages'>setImages</a>
--------------------------------------------
-
+画像のスライドを停止します。
 
 ### Syntax:
 
-
-
-### Arguments:
-
-1. images - (**)
-
-
-Method: <a href='#addImage'>addImage</a>
------------------------------------------
-
-
-### Syntax:
-
-
-
-### Arguments:
-
-1. image - (**)
-
-### Returns:
-
-
-
-
-
-Method: <a href='#addImages'>addImages</a>
--------------------------------------------
-
-
-### Syntax:
-
-
-
-### Arguments:
-
-1. images - (**)
-
-
-Method: <a href='#removeImage'>removeImage</a>
------------------------------------------------
-
-
-### Syntax:
-
-
-
-### Arguments:
-
-1. image - (**)
-
-
-Method: <a href='#removeImages'>removeImages</a>
--------------------------------------------------
-
-
-### Syntax:
-
-
-
-
-Method: <a href='#isStart'>isStart</a>
----------------------------------------
-
-
-### Syntax:
-
-
-
-### Returns:
-
-
-
-
-
-Method: <a href='#start'>start</a>
------------------------------------
-
-
-### Syntax:
-
-
-
-### Returns:
-
-
-
-
-
-Method: <a href='#stop'>stop</a>
----------------------------------
-
-
-### Syntax:
-
-
+	marker.stop();
 

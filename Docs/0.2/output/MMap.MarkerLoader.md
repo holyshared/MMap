@@ -1,5 +1,5 @@
-Class: <a href='#mmap.markerloader'>MMap.MarkerLoader</a>
----------------------------------------------------------
+Class: <a id='mmap.markerloader'>MMap.MarkerLoader</a>
+------------------------------------------------------
 
 
 
@@ -10,8 +10,8 @@ MMap.Events, MMap.Options
 
 
 
-Method: <a href='#constructor'>constructor</a>
------------------------------------------------
+Method: <a id='constructor'>constructor</a>
+--------------------------------------------
 
 
 ### Syntax:
@@ -23,8 +23,8 @@ Method: <a href='#constructor'>constructor</a>
 1. options - (**)
 
 
-Method: <a href='#load'>load</a>
----------------------------------
+Method: <a id='load'>load</a>
+------------------------------
 
 
 ### Syntax:
@@ -32,8 +32,8 @@ Method: <a href='#load'>load</a>
 
 
 
-Method: <a href='#build'>build</a>
------------------------------------
+Method: <a id='build'>build</a>
+--------------------------------
 
 
 ### Syntax:
@@ -49,8 +49,8 @@ Method: <a href='#build'>build</a>
 
 
 
-Class: <a href='#mmap.markerloader.parser'>MMap.MarkerLoader.Parser</a>
------------------------------------------------------------------------
+Class: <a id='mmap.markerloader.parser'>MMap.MarkerLoader.Parser</a>
+--------------------------------------------------------------------
 
 
 
@@ -61,8 +61,8 @@ Events
 
 
 
-Method: <a href='#parse'>parse</a>
------------------------------------
+Method: <a id='parse'>parse</a>
+--------------------------------
 
 
 ### Syntax:
@@ -78,8 +78,8 @@ Method: <a href='#parse'>parse</a>
 
 
 
-Class: <a href='#mmap.markerloader.context'>MMap.MarkerLoader.Context</a>
--------------------------------------------------------------------------
+Class: <a id='mmap.markerloader.context'>MMap.MarkerLoader.Context</a>
+----------------------------------------------------------------------
 
 
 
@@ -90,8 +90,8 @@ MMap.MarkerLoader.Parser
 
 
 
-Method: <a href='#load'>load</a>
----------------------------------
+Method: <a id='load'>load</a>
+------------------------------
 
 
 ### Syntax:
@@ -102,8 +102,8 @@ Method: <a href='#load'>load</a>
 
 1. context - (**)
 
-Class: <a href='#mmap.markerloader.json'>MMap.MarkerLoader.JSON</a>
--------------------------------------------------------------------
+Class: <a id='mmap.markerloader.json'>MMap.MarkerLoader.JSON</a>
+----------------------------------------------------------------
 
 
 
@@ -114,8 +114,8 @@ MMap.MarkerLoader.Parser
 
 
 
-Method: <a href='#_onRequest'>_onRequest</a>
----------------------------------------------
+Method: <a id='_onRequest'>_onRequest</a>
+------------------------------------------
 
 
 ### Syntax:
@@ -123,8 +123,8 @@ Method: <a href='#_onRequest'>_onRequest</a>
 
 
 
-Method: <a href='#_onFailure'>_onFailure</a>
----------------------------------------------
+Method: <a id='_onFailure'>_onFailure</a>
+------------------------------------------
 
 
 ### Syntax:
@@ -136,8 +136,8 @@ Method: <a href='#_onFailure'>_onFailure</a>
 1. xhr - (**)
 
 
-Method: <a href='#_onSuccess'>_onSuccess</a>
----------------------------------------------
+Method: <a id='_onSuccess'>_onSuccess</a>
+------------------------------------------
 
 
 ### Syntax:
@@ -150,8 +150,8 @@ Method: <a href='#_onSuccess'>_onSuccess</a>
 2. text - (**)
 
 
-Method: <a href='#getRequest'>getRequest</a>
----------------------------------------------
+Method: <a id='getRequest'>getRequest</a>
+------------------------------------------
 
 
 ### Syntax:
@@ -168,8 +168,8 @@ Method: <a href='#getRequest'>getRequest</a>
 
 
 
-Method: <a href='#load'>load</a>
----------------------------------
+Method: <a id='load'>load</a>
+------------------------------
 
 
 ### Syntax:

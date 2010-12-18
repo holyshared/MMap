@@ -188,6 +188,7 @@ MMap.Marker.Images = this.MMap.Marker.Images = new Class({
 		}
 		this.set('images', images);
 		this.addImages(images);
+		return this;
 	},
 
 	addImage: function(image){
@@ -228,6 +229,7 @@ MMap.Marker.Images = this.MMap.Marker.Images = new Class({
 	removeImages: function(){
 		var self = this;
 		var images = Array.from(arguments);
+		images = images.flatten(images);
 		images.each(function(image){
 			self.removeImage(image);
 		});

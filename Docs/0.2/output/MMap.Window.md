@@ -1,5 +1,5 @@
-Class: <a href='#mmap.window'>MMap.Window</a>
----------------------------------------------
+Class: <a id='mmap.window'>MMap.Window</a>
+------------------------------------------
 
 
 
@@ -10,8 +10,8 @@ MMap.OverlayView
 
 
 
-Method: <a href='#constructor'>constructor</a>
------------------------------------------------
+Method: <a id='constructor'>constructor</a>
+--------------------------------------------
 
 
 ### Syntax:
@@ -32,8 +32,8 @@ Method: <a href='#constructor'>constructor</a>
 * visible - (**)
 
 
-Method: <a href='#_setup'>_setup</a>
--------------------------------------
+Method: <a id='_setup'>_setup</a>
+----------------------------------
 
 
 ### Syntax:
@@ -50,8 +50,8 @@ Method: <a href='#_setup'>_setup</a>
 
 
 
-Method: <a href='#_setupListeners'>_setupListeners</a>
--------------------------------------------------------
+Method: <a id='_setupListeners'>_setupListeners</a>
+----------------------------------------------------
 
 
 ### Syntax:
@@ -59,8 +59,8 @@ Method: <a href='#_setupListeners'>_setupListeners</a>
 
 
 
-Method: <a href='#_init'>_init</a>
------------------------------------
+Method: <a id='_init'>_init</a>
+--------------------------------
 
 
 ### Syntax:
@@ -68,22 +68,8 @@ Method: <a href='#_init'>_init</a>
 
 
 
-Method: <a href='#draw'>draw</a>
----------------------------------
-
-
-### Syntax:
-
-
-
-### Returns:
-
-
-
-
-
-Method: <a href='#refresh'>refresh</a>
----------------------------------------
+Method: <a id='draw'>draw</a>
+------------------------------
 
 
 ### Syntax:
@@ -96,8 +82,22 @@ Method: <a href='#refresh'>refresh</a>
 
 
 
-Method: <a href='#_updateVisibleState'>_updateVisibleState</a>
----------------------------------------------------------------
+Method: <a id='refresh'>refresh</a>
+------------------------------------
+
+
+### Syntax:
+
+
+
+### Returns:
+
+
+
+
+
+Method: <a id='_updateVisibleState'>_updateVisibleState</a>
+------------------------------------------------------------
 
 
 ### Syntax:
@@ -105,8 +105,8 @@ Method: <a href='#_updateVisibleState'>_updateVisibleState</a>
 
 
 
-Method: <a href='#_update'>_update</a>
----------------------------------------
+Method: <a id='_update'>_update</a>
+------------------------------------
 
 
 ### Syntax:
@@ -114,8 +114,8 @@ Method: <a href='#_update'>_update</a>
 
 
 
-Method: <a href='#open'>open</a>
----------------------------------
+Method: <a id='open'>open</a>
+------------------------------
 
 
 ### Syntax:
@@ -133,8 +133,8 @@ Method: <a href='#open'>open</a>
 
 
 
-Method: <a href='#close'>close</a>
------------------------------------
+Method: <a id='close'>close</a>
+--------------------------------
 
 
 ### Syntax:
@@ -142,22 +142,8 @@ Method: <a href='#close'>close</a>
 
 
 
-Method: <a href='#isOpen'>isOpen</a>
--------------------------------------
-
-
-### Syntax:
-
-
-
-### Returns:
-
-
-
-
-
-Method: <a href='#getZIndex'>getZIndex</a>
--------------------------------------------
+Method: <a id='isOpen'>isOpen</a>
+----------------------------------
 
 
 ### Syntax:
@@ -170,8 +156,22 @@ Method: <a href='#getZIndex'>getZIndex</a>
 
 
 
-Method: <a href='#setZIndex'>setZIndex</a>
--------------------------------------------
+Method: <a id='getZIndex'>getZIndex</a>
+----------------------------------------
+
+
+### Syntax:
+
+
+
+### Returns:
+
+
+
+
+
+Method: <a id='setZIndex'>setZIndex</a>
+----------------------------------------
 
 
 ### Syntax:
@@ -188,8 +188,8 @@ Method: <a href='#setZIndex'>setZIndex</a>
 
 
 
-Method: <a href='#getPosition'>getPosition</a>
------------------------------------------------
+Method: <a id='getPosition'>getPosition</a>
+--------------------------------------------
 
 
 ### Syntax:
@@ -202,8 +202,8 @@ Method: <a href='#getPosition'>getPosition</a>
 
 
 
-Method: <a href='#setPosition'>setPosition</a>
------------------------------------------------
+Method: <a id='setPosition'>setPosition</a>
+--------------------------------------------
 
 
 ### Syntax:
@@ -220,8 +220,8 @@ Method: <a href='#setPosition'>setPosition</a>
 
 
 
-Method: <a href='#getTitle'>getTitle</a>
------------------------------------------
+Method: <a id='getTitle'>getTitle</a>
+--------------------------------------
 
 
 ### Syntax:
@@ -234,8 +234,8 @@ Method: <a href='#getTitle'>getTitle</a>
 
 
 
-Method: <a href='#setTitle'>setTitle</a>
------------------------------------------
+Method: <a id='setTitle'>setTitle</a>
+--------------------------------------
 
 
 ### Syntax:
@@ -252,8 +252,8 @@ Method: <a href='#setTitle'>setTitle</a>
 
 
 
-Method: <a href='#getContent'>getContent</a>
----------------------------------------------
+Method: <a id='getContent'>getContent</a>
+------------------------------------------
 
 
 ### Syntax:
@@ -266,8 +266,8 @@ Method: <a href='#getContent'>getContent</a>
 
 
 
-Method: <a href='#setContent'>setContent</a>
----------------------------------------------
+Method: <a id='setContent'>setContent</a>
+------------------------------------------
 
 
 ### Syntax:
@@ -284,8 +284,8 @@ Method: <a href='#setContent'>setContent</a>
 
 
 
-Method: <a href='#setActive'>setActive</a>
--------------------------------------------
+Method: <a id='setActive'>setActive</a>
+----------------------------------------
 
 
 ### Syntax:

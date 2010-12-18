@@ -1,5 +1,5 @@
-Class: <a href='#mmap.markermanager'>MMap.MarkerManager</a>
------------------------------------------------------------
+Class: <a id='mmap.markermanager'>MMap.MarkerManager</a>
+--------------------------------------------------------
 
 
 
@@ -16,8 +16,8 @@ MMap.MVCObject
 
 
 
-Method: <a href='#constructor'>constructor</a>
------------------------------------------------
+Method: <a id='constructor'>constructor</a>
+--------------------------------------------
 
 
 ### Syntax:
@@ -36,8 +36,8 @@ Method: <a href='#constructor'>constructor</a>
 * markers - (**)
 
 
-Method: <a href='#_setup'>_setup</a>
--------------------------------------
+Method: <a id='_setup'>_setup</a>
+----------------------------------
 
 
 ### Syntax:
@@ -45,8 +45,8 @@ Method: <a href='#_setup'>_setup</a>
 
 
 
-Method: <a href='#_init'>_init</a>
------------------------------------
+Method: <a id='_init'>_init</a>
+--------------------------------
 
 
 ### Syntax:
@@ -54,8 +54,8 @@ Method: <a href='#_init'>_init</a>
 
 
 
-Method: <a href='#setMap'>setMap</a>
--------------------------------------
+Method: <a id='setMap'>setMap</a>
+----------------------------------
 
 
 ### Syntax:
@@ -67,8 +67,8 @@ Method: <a href='#setMap'>setMap</a>
 1. map - (**)
 
 
-Method: <a href='#getMap'>getMap</a>
--------------------------------------
+Method: <a id='getMap'>getMap</a>
+----------------------------------
 
 
 ### Syntax:
@@ -81,8 +81,8 @@ Method: <a href='#getMap'>getMap</a>
 
 
 
-Method: <a href='#addMarker'>addMarker</a>
--------------------------------------------
+Method: <a id='addMarker'>addMarker</a>
+----------------------------------------
 
 
 ### Syntax:
@@ -94,8 +94,8 @@ Method: <a href='#addMarker'>addMarker</a>
 1. marker - (**)
 
 
-Method: <a href='#addMarkers'>addMarkers</a>
----------------------------------------------
+Method: <a id='addMarkers'>addMarkers</a>
+------------------------------------------
 
 
 ### Syntax:
@@ -107,8 +107,8 @@ Method: <a href='#addMarkers'>addMarkers</a>
 1. markers - (**)
 
 
-Method: <a href='#removeMarker'>removeMarker</a>
--------------------------------------------------
+Method: <a id='removeMarker'>removeMarker</a>
+----------------------------------------------
 
 
 ### Syntax:
@@ -120,8 +120,8 @@ Method: <a href='#removeMarker'>removeMarker</a>
 1. marker - (**)
 
 
-Method: <a href='#removeMarkers'>removeMarkers</a>
----------------------------------------------------
+Method: <a id='removeMarkers'>removeMarkers</a>
+------------------------------------------------
 
 
 ### Syntax:
@@ -129,8 +129,8 @@ Method: <a href='#removeMarkers'>removeMarkers</a>
 
 
 
-Method: <a href='#setZoom'>setZoom</a>
----------------------------------------
+Method: <a id='setZoom'>setZoom</a>
+------------------------------------
 
 
 ### Syntax:
@@ -147,8 +147,8 @@ Method: <a href='#setZoom'>setZoom</a>
 
 
 
-Method: <a href='#getZoom'>getZoom</a>
----------------------------------------
+Method: <a id='getZoom'>getZoom</a>
+------------------------------------
 
 
 ### Syntax:
@@ -161,8 +161,8 @@ Method: <a href='#getZoom'>getZoom</a>
 
 
 
-Method: <a href='#setBounds'>setBounds</a>
--------------------------------------------
+Method: <a id='setBounds'>setBounds</a>
+----------------------------------------
 
 
 ### Syntax:
@@ -179,8 +179,8 @@ Method: <a href='#setBounds'>setBounds</a>
 
 
 
-Method: <a href='#getBounds'>getBounds</a>
--------------------------------------------
+Method: <a id='getBounds'>getBounds</a>
+----------------------------------------
 
 
 ### Syntax:
@@ -193,8 +193,8 @@ Method: <a href='#getBounds'>getBounds</a>
 
 
 
-Method: <a href='#getContainer'>getContainer</a>
--------------------------------------------------
+Method: <a id='getContainer'>getContainer</a>
+----------------------------------------------
 
 
 ### Syntax:
@@ -207,8 +207,8 @@ Method: <a href='#getContainer'>getContainer</a>
 
 
 
-Method: <a href='#getMarkers'>getMarkers</a>
----------------------------------------------
+Method: <a id='getMarkers'>getMarkers</a>
+------------------------------------------
 
 
 ### Syntax:
@@ -221,8 +221,8 @@ Method: <a href='#getMarkers'>getMarkers</a>
 
 
 
-Method: <a href='#setMarkers'>setMarkers</a>
----------------------------------------------
+Method: <a id='setMarkers'>setMarkers</a>
+------------------------------------------
 
 
 ### Syntax:
@@ -234,8 +234,8 @@ Method: <a href='#setMarkers'>setMarkers</a>
 1. markers - (**)
 
 
-Method: <a href='#getState'>getState</a>
------------------------------------------
+Method: <a id='getState'>getState</a>
+--------------------------------------
 
 
 ### Syntax:
@@ -248,8 +248,8 @@ Method: <a href='#getState'>getState</a>
 
 
 
-Method: <a href='#_displayMarkerChange'>_displayMarkerChange</a>
------------------------------------------------------------------
+Method: <a id='_displayMarkerChange'>_displayMarkerChange</a>
+--------------------------------------------------------------
 
 
 ### Syntax:
@@ -262,8 +262,8 @@ Method: <a href='#_displayMarkerChange'>_displayMarkerChange</a>
 
 
 
-Method: <a href='#hasDisplayMarkers'>hasDisplayMarkers</a>
------------------------------------------------------------
+Method: <a id='hasDisplayMarkers'>hasDisplayMarkers</a>
+--------------------------------------------------------
 
 
 ### Syntax:
@@ -276,8 +276,8 @@ Method: <a href='#hasDisplayMarkers'>hasDisplayMarkers</a>
 
 
 
-Method: <a href='#hasMarker'>hasMarker</a>
--------------------------------------------
+Method: <a id='hasMarker'>hasMarker</a>
+----------------------------------------
 
 
 ### Syntax:
@@ -294,8 +294,8 @@ Method: <a href='#hasMarker'>hasMarker</a>
 
 
 
-Method: <a href='#active'>active</a>
--------------------------------------
+Method: <a id='active'>active</a>
+----------------------------------
 
 
 ### Syntax:
@@ -303,8 +303,8 @@ Method: <a href='#active'>active</a>
 
 
 
-Method: <a href='#visible'>visible</a>
----------------------------------------
+Method: <a id='visible'>visible</a>
+------------------------------------
 
 
 ### Syntax:
@@ -312,22 +312,8 @@ Method: <a href='#visible'>visible</a>
 
 
 
-Method: <a href='#_activeMarkers'>_activeMarkers</a>
------------------------------------------------------
-
-
-### Syntax:
-
-
-
-### Arguments:
-
-1. target - (**)
-2. closer - (**)
-
-
-Method: <a href='#_visibleMarkers'>_visibleMarkers</a>
--------------------------------------------------------
+Method: <a id='_activeMarkers'>_activeMarkers</a>
+--------------------------------------------------
 
 
 ### Syntax:
@@ -340,8 +326,22 @@ Method: <a href='#_visibleMarkers'>_visibleMarkers</a>
 2. closer - (**)
 
 
-Method: <a href='#_getStateChangeHelper'>_getStateChangeHelper</a>
--------------------------------------------------------------------
+Method: <a id='_visibleMarkers'>_visibleMarkers</a>
+----------------------------------------------------
+
+
+### Syntax:
+
+
+
+### Arguments:
+
+1. target - (**)
+2. closer - (**)
+
+
+Method: <a id='_getStateChangeHelper'>_getStateChangeHelper</a>
+----------------------------------------------------------------
 
 
 ### Syntax:

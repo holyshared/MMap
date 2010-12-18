@@ -42,7 +42,8 @@ Method: <a id='getTitle'>getTitle</a>
 マーカーのタイトルを取得します。
 
 ### Syntax:
-var title = marker.getTitle();
+
+	var title = marker.getTitle();
 
 ### Returns:
 
@@ -55,7 +56,8 @@ Method: <a id='getContent'>getContent</a>
 マーカーの内容を取得します。
 
 ### Syntax:
-var content = marker.getContent();
+
+	var content = marker.getContent();
 
 ### Returns:
 
@@ -68,8 +70,9 @@ Method: <a id='setTitle'>setTitle</a>
 マーカーのタイトルに指定した内容を設定します。
 
 ### Syntax:
-var title = 'marker title';
-marker.setTitle(title);
+
+	var title = 'marker title';
+	marker.setTitle(title);
 
 ### Arguments:
 
@@ -86,8 +89,9 @@ Method: <a id='setContent'>setContent</a>
 マーカーに指定した内容を表示させます。
 
 ### Syntax:
-var content = 'marker content';
-marker.setContent(content);
+
+	var content = 'marker content';
+	marker.setContent(content);
 
 ### Arguments:
 
