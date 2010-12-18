@@ -36,7 +36,7 @@
 
 	<div class="main">
 
-<h2>Class: <a href='#mmap.basemarker'>MMap.BaseMarker</a></h2>
+<h2 class="h1">Class: <a id='mmap.basemarker'>MMap.BaseMarker</a></h2>
 
 <p>このクラスはマーカーの下位クラスで抽象的なクラスです。 <br />
 このクラスを継承して独自のマーカーを定義できます。</p>
@@ -45,7 +45,7 @@
 
 <p>MMap.OverlayView</p>
 
-<h2>Method: <a href='#constructor'>constructor</a></h2>
+<h2>Method: <a id='constructor'>constructor</a></h2>
 
 <p>マーカーのコンストラクタ。</p>
 
@@ -71,13 +71,13 @@
 <li>active - (<em>boolean</em>) マーカーのアクティブ状態</li>
 </ul>
 
-<h2>Method: <a href='#_update'>_update</a></h2>
+<h2>Method: <a id='_update'>_update</a></h2>
 
 <p>マーカーの表示内容を更新します。 <br />
 このメソッドは抽象的なメソッドで、drawメソッド、refreshメソッド内でコールされます。 <br />
 このメソッドをオーバーライドして独自の更新処理を定義できます。</p>
 
-<h2>Method: <a href='#setDefaultZIndex'>setDefaultZIndex</a></h2>
+<h2>Method: <a id='setDefaultZIndex'>setDefaultZIndex</a></h2>
 
 <p>マーカーの表示順序を初期設定します。 <br />
 <a href="http://code.google.com/intl/eu/apis/maps/documentation/javascript/reference.html#MarkerOptions">MarkerOptions</a>の説明の通り、低い緯度のマーカーが高い緯度のマーカーより前に表示されます。</p>
@@ -87,7 +87,7 @@
 <pre><code>marker.setDefaultZIndex();
 </code></pre>
 
-<h2>Method: <a href='#draw'>draw</a></h2>
+<h2>Method: <a id='draw'>draw</a></h2>
 
 <p>マーカーを描画します。</p>
 
@@ -96,7 +96,7 @@
 <pre><code>marker.draw();
 </code></pre>
 
-<h2>Method: <a href='#refresh'>refresh</a></h2>
+<h2>Method: <a id='refresh'>refresh</a></h2>
 
 <p>マーカーの表示内容を更新します。 <br />
 マーカーの表示位置も更新したい場合は、変わりにdrawメソッドを使用してください。</p>
@@ -106,7 +106,7 @@
 <pre><code>marker.refresh();
 </code></pre>
 
-<h2>Method: <a href='#getZIndex'>getZIndex</a></h2>
+<h2>Method: <a id='getZIndex'>getZIndex</a></h2>
 
 <p>マーカーの表示順序を取得します。</p>
 
@@ -119,7 +119,7 @@
 
 <p>(<em>number</em>) マーカーの表示順序</p>
 
-<h2>Method: <a href='#getPosition'>getPosition</a></h2>
+<h2>Method: <a id='getPosition'>getPosition</a></h2>
 
 <p>マーカーの座標を取得します。</p>
 
@@ -132,7 +132,7 @@
 
 <p>(<a href="http://code.google.com/intl/eu/apis/maps/documentation/javascript/reference.html#LatLng"><em>LatLng</em></a>) 座標オブジェクト</p>
 
-<h2>Method: <a href='#setZIndex'>setZIndex</a></h2>
+<h2>Method: <a id='setZIndex'>setZIndex</a></h2>
 
 <p>マーカーの表示順序を指定します。</p>
 
@@ -151,7 +151,7 @@
 
 <p>(<em>object</em>) Marker object</p>
 
-<h2>Method: <a href='#setPosition'>setPosition</a></h2>
+<h2>Method: <a id='setPosition'>setPosition</a></h2>
 
 <p>マーカーを配置する座標を設定します。</p>
 
@@ -171,7 +171,7 @@ marker.setPosition(position);
 
 <p>(<em>object</em>) Marker object</p>
 
-<h2>Method: <a href='#setActive'>setActive</a></h2>
+<h2>Method: <a id='setActive'>setActive</a></h2>
 
 <p>マーカーのアクティブ状態を変更します。  </p>
 
@@ -185,7 +185,6 @@ marker.setPosition(position);
 <ol>
 <li>value - (<em>boolean</em>) trueを指定するとアクティブ状態、falseを指定すると非アクティブになります。 <br /></li>
 </ol>
-
 
 
 </div>

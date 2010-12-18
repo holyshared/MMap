@@ -36,11 +36,9 @@
 
 	<div class="main">
 
-<h2 class="h1">Class: <a id='mmap.marker'>MMap.Marker</a></h2>
+<h2>Class: <a id='mmap.marker.image'>MMap.Marker.Image</a></h2>
 
-<p>HTMLコンテンツを表示させるマーカー。 <br />
-マーカーに対して、HTMLコンテンツを表示させることができます。 <br />
-情報ウィンドウを使用するまでもない場合、こちらを使用することをお勧めします。</p>
+<p>スタイル付けが可能な画像を表示するシンプルなマーカー</p>
 
 <h3>Extends:</h3>
 
@@ -48,17 +46,17 @@
 
 <h2>Method: <a id='constructor'>constructor</a></h2>
 
-<p>マーカーのコンストラクタ</p>
+<p>画像マーカーのコンストラクタ</p>
 
 <h3>Syntax:</h3>
 
-<pre><code>var myMMap.Marker = new MMap.Marker(options);
+<pre><code>var myMarker = new MMap.Marker.Image(options);
 </code></pre>
 
 <h3>Arguments:</h3>
 
 <ol>
-<li>options - (<em>mixed</em>) マーカーのオプション</li>
+<li>options - (*mixed*) マーカーのオプション</li>
 </ol>
 
 <h3>Options:</h3>
@@ -67,7 +65,8 @@
 <li>map - (<em><a href="http://code.google.com/intl/en/apis/maps/documentation/javascript/reference.html#Map">Map</a></em>) オーバーレイビューを表示するMapオブジェクト</li>
 <li>className - (<em>string</em>) マーカーに適用するスタイル(CSSのクラス名)</li>
 <li>title - (<em>string</em>) マーカーのタイトルに設定する内容</li>
-<li>content - (<em>string|element</em>) マーカーに表示する内容</li>
+<li>image - (<em>string</em>) マーカーに表示する画像のURL</li>
+<li>url - (<em>string</em>) マーカーに設定するURL</li>
 <li>position - (<a href="http://code.google.com/intl/eu/apis/maps/documentation/javascript/reference.html#LatLng"><em>LatLng</em></a>) マーカーの座標位置</li>
 <li>zIndex - (<em>number</em>) マーカーの表示順序</li>
 <li>visible - (<em>boolean</em>) マーカーの表示状態</li>
@@ -76,7 +75,7 @@
 
 <h2>Method: <a id='getTitle'>getTitle</a></h2>
 
-<p>マーカーのタイトルを取得します。</p>
+<p>マーカーに設定しているタイトルを取得します。</p>
 
 <h3>Syntax:</h3>
 
@@ -84,57 +83,89 @@
 
 <h3>Returns:</h3>
 
-<p>(<em>string</em>) マーカーのタイトルに設定されている内容</p>
+<p>(<em>string</em>) マーカーに設定しているタイトル</p>
 
-<h2>Method: <a id='getContent'>getContent</a></h2>
+<h2>Method: <a id='getImage'>getImage</a></h2>
 
-<p>マーカーの内容を取得します。</p>
+<p>マーカーに表示されている画像のURLを取得します。</p>
 
 <h3>Syntax:</h3>
 
-<p>var content = marker.getContent();</p>
+<p>var image = marker.getImage();</p>
 
 <h3>Returns:</h3>
 
-<p>(<em>string</em>) マーカーに設定されている内容</p>
+<p>(<em>string</em>) マーカーに表示されている画像のURL</p>
+
+<h2>Method: <a id='getURL'>getURL</a></h2>
+
+<p>マーカーに設定されているURLを取得します。</p>
+
+<h3>Syntax:</h3>
+
+<p>var url = marker.getURL();</p>
+
+<h3>Returns:</h3>
+
+<p>(<em>string</em>) マーカーに設定されているURL</p>
 
 <h2>Method: <a id='setTitle'>setTitle</a></h2>
 
-<p>マーカーのタイトルに指定した内容を設定します。</p>
+<p> マーカーにタイトルを設定します。</p>
 
 <h3>Syntax:</h3>
 
-<p>var title = 'marker title';
-marker.setTitle(title);</p>
+<p>marker.setTitle('Marker title');</p>
 
 <h3>Arguments:</h3>
 
 <ol>
-<li>title - (<em>string</em>) マーカーのタイトルに設定する内容</li>
+<li>title - (<em>string</em>) マーカーに設定するタイトル</li>
 </ol>
 
 <h3>Returns:</h3>
 
 <p>(<em>object</em>) marker object</p>
 
-<h2>Method: <a id='setContent'>setContent</a></h2>
+<h2>Method: <a id='setImage'>setImage</a></h2>
 
-<p>マーカーに指定した内容を表示させます。</p>
+<p>マーカーに表示する画像を設定します。</p>
 
 <h3>Syntax:</h3>
 
-<p>var content = 'marker content';
-marker.setContent(content);</p>
+<p>marker.setImage('/images/cafe_marker.png');</p>
 
 <h3>Arguments:</h3>
 
 <ol>
-<li>content - (<em>string|element</em>) マーカーに表示させる内容</li>
+<li>image - (<em>string|element</em>) マーカーに表示する画像</li>
 </ol>
 
 <h3>Returns:</h3>
 
 <p>(<em>object</em>) marker object</p>
+
+<h2>Method: <a id='setURL'>setURL</a></h2>
+
+<p>マーカーにURLを設定します。
+マーカークリック時に設定したURLに遷移します。</p>
+
+<h3>Syntax:</h3>
+
+<p>marker.setURL('http://mootools.net')</p>
+
+<h3>Arguments:</h3>
+
+<ol>
+<li>url - (<em>string</em>) マーカーに設定するURL</li>
+</ol>
+
+<h3>Returns:</h3>
+
+<p>(<em>object</em>) marker object</p>
+
+
+
 
 	</div>
 
@@ -143,8 +174,8 @@ marker.setContent(content);</p>
 	<div class="foot">
 		<p>Copyright(c) 2010 <a title="Noritaka Horio" href="http://sharedhat.com">Noritaka Horio</a> All Rights Reserved.</p>
 	</div>
-
 </div>
+
 </body>
 
 </html>

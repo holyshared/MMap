@@ -1,5 +1,5 @@
 
-Class: <a href='#mmap.marker'>MMap.Marker</a>
+Class: <a id='mmap.marker'>MMap.Marker</a>
 ---------------------------------------------
 
 HTMLコンテンツを表示させるマーカー。  
@@ -11,7 +11,7 @@ HTMLコンテンツを表示させるマーカー。
 MMap.BaseMarker
 
 
-Method: <a href='#constructor'>constructor</a>
+Method: <a id='constructor'>constructor</a>
 -----------------------------------------------
 
 マーカーのコンストラクタ
@@ -36,7 +36,7 @@ Method: <a href='#constructor'>constructor</a>
 * active - (*boolean*) マーカーのアクティブ状態
 
 
-Method: <a href='#getTitle'>getTitle</a>
+Method: <a id='getTitle'>getTitle</a>
 -----------------------------------------
 
 マーカーのタイトルを取得します。
@@ -49,7 +49,7 @@ var title = marker.getTitle();
 (*string*) マーカーのタイトルに設定されている内容
 
 
-Method: <a href='#getContent'>getContent</a>
+Method: <a id='getContent'>getContent</a>
 ---------------------------------------------
 
 マーカーの内容を取得します。
@@ -62,7 +62,7 @@ var content = marker.getContent();
 (*string*) マーカーに設定されている内容
 
 
-Method: <a href='#setTitle'>setTitle</a>
+Method: <a id='setTitle'>setTitle</a>
 -----------------------------------------
 
 マーカーのタイトルに指定した内容を設定します。
@@ -80,7 +80,7 @@ marker.setTitle(title);
 (*object*) marker object
 
 
-Method: <a href='#setContent'>setContent</a>
+Method: <a id='setContent'>setContent</a>
 ---------------------------------------------
 
 マーカーに指定した内容を表示させます。
