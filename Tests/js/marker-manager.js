@@ -58,12 +58,6 @@ var MarkerManagerTest = {
 		this.manager = manager;
 		
 		var self = this.logger;
-		this.manager.addEvent('boundsChanged', function(){
-			self.log('events', 'boundsChanged');
-		});
-		this.manager.addEvent('zoomChanged', function(){
-			self.log('events', 'zoomChanged');
-		});
 		this.manager.addEvent('markersChanged', function(){
 			self.log('events', 'markersChanged');
 		});
@@ -81,15 +75,12 @@ var MarkerManagerTest = {
 		this.testBindTo();
 		this.testVisibleMarkerByMarker();
 		this.testActiveMarkerByMarker();
-		this.testHasDisplayMarkers();
 		this.testHasMarker();
 		this.testGetMarkers();
 		this.testVisibleMarkerByBounds();
 		this.testActiveMarkerByBounds();
-		this.testSetBounds();
 		this.testRemoveMaker();
 		this.testAddMarker();
-		this.testSetZoom();
 		this.testAll();
 	},
 
@@ -99,24 +90,13 @@ var MarkerManagerTest = {
 			position: new google.maps.LatLng(35.6646870, 139.726859)
 		});
 		var mks = [marker];
-		var sw = new google.maps.LatLng(35.6646870, 139.726859)
-		var ne = new google.maps.LatLng(35.6666870, 139.931859)
-		var bounds = new google.maps.LatLngBounds(sw, ne);
 		var manager = new MMap.MarkerManager({
 			map: this.map,
-			zoom: 10,
-			bounds: bounds,
 			markers: mks
 		});
 
-		var zoom = manager.getZoom();
-		this.logger.log('options', (zoom == 10) ? 'options zoom ok' : 'options zoom ng');
-
 		var map = manager.getMap();
 		this.logger.log('options', (map == map) ? 'options map ok' : 'options map ng');
-
-		var nbounds = manager.getBounds();
-		this.logger.log('options', (nbounds == bounds) ? 'options bounds ok' : 'options bounds ng');
 
 		var markers = manager.getMarkers();
 		this.logger.log('options', (mks.length == markers.length) ? 'options markers ok' : 'options markers ng');
@@ -161,10 +141,6 @@ var MarkerManagerTest = {
 			? 'getDeactiveMarkers method OK (argumetns LatLngBounds)' : 'getDeactiveMarkers method NG (argumetns LatLngBounds)');
 	},
 
-	testHasDisplayMarkers: function() {
-		this.logger.log('methods', (this.manager.hasDisplayMarkers())
-			? 'hasDisplayMarkers method OK' : 'hasDisplayMarkers method NG');
-	},
 
 	testHasMarker: function(){
 		var state = this.manager.getState();
@@ -233,24 +209,9 @@ var MarkerManagerTest = {
 		this.logger.log('methods', (deactive)
 			? 'getDeactiveMarkers method OK (argumetns LatLngBounds)' : 'getDeactiveMarkers method NG (argumetns LatLngBounds)');
 		
-		this.logger.log('methods', (this.manager.hasDisplayMarkers()) ? 'hasDisplayMarkers method OK' : 'hasDisplayMarkers method NG');
 	},
 
-	testSetBounds: function(){
-		var sw = new google.maps.LatLng(35.6646870, 139.726859)
-		var ne = new google.maps.LatLng(35.6666870, 139.931859)
-		var bounds = new google.maps.LatLngBounds(sw, ne);
-		this.manager.setBounds(bounds);
-		
-		if (bounds == this.manager.getBounds()) {
-			this.logger.log('methods', 'setBounds method OK');
-			this.logger.log('methods', 'getBounds method OK');
-		}
-		else {
-			this.logger.log('methods', 'setBounds method NG');
-			this.logger.log('methods', 'getBounds method NG');
-		}
-	},
+
 
 	testRemoveMaker: function(){
 		var container = this.manager.getContainer();
@@ -283,33 +244,15 @@ var MarkerManagerTest = {
 		};
 	},
 
-	testSetZoom: function(){
-		this.manager.setZoom(18);
-		var zoom = this.manager.getZoom();
-		if (zoom == 18) {
-			this.logger.log('methods', 'setZoom method OK');
-		} else {
-			this.logger.log('methods', 'setZoom method OK');
-		}
-	},
 
 	testBindTo: function(){
 		var binder = new google.maps.MVCObject();
-		binder.bindTo('zoom', this.manager, 'zoom');
-		binder.bindTo('bounds', this.manager, 'bounds');
 		binder.bindTo('state', this.manager, 'state');
 
 		var self = this;
-		google.maps.event.addListener(binder, 'zoom_changed', function(){
-			self.logger.log('events', 'zoom_changed OK');
-		});
-		google.maps.event.addListener(binder, 'bounds_changed', function(){
-			self.logger.log('events', 'bounds_changed OK');
-		});
 		google.maps.event.addListener(binder, 'state_changed', function(){
 			self.logger.log('events', 'state_changed OK');
 		});
-		this.manager.setZoom(10);
 	},
 
 	testAll: function(){

@@ -43,12 +43,8 @@ MMap.MarkerManager = new Class({
 
 	options: {
 		map: null,
-		zoom: null,
-		bounds: null,
 		markers: []
 /*
-	onZoomChanged
-	onBoundsChanged
 	onStateChanged
 */
 	},
@@ -57,7 +53,6 @@ MMap.MarkerManager = new Class({
 		this._container = new MMap.Container();
 		this.setOptions(options);
 		this._setup();
-		this._init();
 	},
 
 	_setup: function(){
@@ -70,16 +65,6 @@ MMap.MarkerManager = new Class({
 		this.addMarkers(this.options.markers);
 		this.set('state', markers);
 		delete this.options.markers;
-	},
-
-	_init: function(){
-		var self = this;
-		var props = ['zoom', 'bounds'];
-		props.each(function(key){
-			var value = self.options[key];
-			self.set(key, value);
-			delete self.options[key];
-		});
 	},
 
 	setMap: function(map) {
@@ -127,28 +112,6 @@ MMap.MarkerManager = new Class({
 		}
 	},
 
-	setZoom: function(zoom) {
-		var current = this.getZoom();
-		if (current == zoom) return;
-		this.set('zoom', zoom);
-		this._displayMarkerChange();
-	},
-
-	getZoom: function(){
-		return this.get('zoom');
-	},
-
-	setBounds: function(bounds) {
-		var current = this.getBounds();
-		if (current == bounds) return;
-		this.set('bounds', bounds);
-		this._displayMarkerChange();
-	},
-
-	getBounds: function() {
-		return this.get('bounds');
-	},
-
 	getContainer: function() {
 		return this._container;
 	},
@@ -191,11 +154,6 @@ MMap.MarkerManager = new Class({
 			deactives: deactiveMarkers
 		};
 		return this.set('state', markers);
-	},
-
-	hasDisplayMarkers: function() {
-		var state = this.getState();
-		return (state.visibles.length > 0) ? true : false;
 	},
 
 	hasMarker: function(marker) {
@@ -249,7 +207,6 @@ MMap.MarkerManager = new Class({
 	_getStateChangeHelper: function(target) {
 		var helper = function (target, current) { return true; };
 		if (target instanceof google.maps.LatLngBounds) {
-			this.setBounds(target);
 			helper = function(target, current){
 				return target.contains(current.getPosition());
 			};
