@@ -48,7 +48,21 @@
 * [setURL](mmap.marker.image.html#setURL "setURL")
 
 
+### <a href='mmap.markermanager.html#mmap.markermanager'>MMap.MarkerManager</a>
 
-
+* [constructor](mmap.markermanager.html#constructor "constructor")
+* [setMap](mmap.markermanager.html#setMap "setMap")
+* [setMarkers](mmap.markermanager.html#setMarkers "setMarkers")
+* [getMap](mmap.markermanager.html#getMap "getMap")
+* [getContainer](mmap.markermanager.html#getContainer "getContainer")
+* [getMarkers](mmap.markermanager.html#getMarkers "getMarkers")
+* [getState](mmap.markermanager.html#getState "getState")
+* [hasMarker](mmap.markermanager.html#hasMarker "hasMarker")
+* [addMarker](mmap.markermanager.html#addMarker "addMarker")
+* [addMarkers](mmap.markermanager.html#addMarkers "addMarkers")
+* [removeMarker](mmap.markermanager.html#removeMarker "removeMarker")
+* [removeMarkers](mmap.markermanager.html#removeMarkers "removeMarkers")
+* [active](mmap.markermanager.html#active "active")
+* [visible](mmap.markermanager.html#visible "visible")
 
 
