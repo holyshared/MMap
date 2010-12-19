@@ -13,28 +13,28 @@ window.addEvent("domready", function(){
 	//The marker is made based on the parameter of the marker.
 	var markers = [{
 		title: 'MMap.Marker',
-		image: 'http://holyshared.github.com/MMap/Demos/images/demo/img01.jpg',
-		url: 'http://holyshared.github.com/MMap/Demos/marker.html',
+		image: '../Demos/images/demo/img01.jpg',
+		url: 'http://holyshared.github.com/marker.html',
 		position: new google.maps.LatLng(35.6666870, 139.731859)
 	}, {
 		title: 'MMap.Marker.Image',
-		image: 'http://holyshared.github.com/MMap/Demos/images/demo/img02.jpg',
-		url: 'http://holyshared.github.com/MMap/Demos/marker.image.html',
+		image: '../Demos/images/demo/img02.jpg',
+		url: 'http://holyshared.github.com/marker.image.html',
 		position: new google.maps.LatLng(35.6666870, 139.733859)
 	}, {
 		title: 'MMap.Marker.Images',
-		image: 'http://holyshared.github.com/MMap/Demos/images/demo/img03.jpg',
-		url: 'http://holyshared.github.com/MMap/Demos/marker.images.html',
+		image: '../Demos/images/demo/img03.jpg',
+		url: 'http://holyshared.github.com/marker.images.html',
 		position: new google.maps.LatLng(35.6650870, 139.729859)
 	}, {
 		title: 'MMap.Window',
-		image: 'http://holyshared.github.com/MMap/Demos/images/demo/img04.jpg',
-		url: 'http://holyshared.github.com/MMap/Demos/window.html',
+		image: '../Demos/images/demo/img04.jpg',
+		url: 'http://holyshared.github.com/window.html',
 		position: new google.maps.LatLng(35.6686870, 139.728859)
 	},	{
 		title: 'MMap.MarkerLoader',
-		image: 'http://holyshared.github.com/MMap/Demos/images/demo/img05.jpg',
-		url: 'http://holyshared.github.com/MMap/Demos/marker.loader.html',
+		image: '../Demos/images/demo/img05.jpg',
+		url: 'http://holyshared.github.com/marker.loader.html',
 		visible: false,
 		position: new google.maps.LatLng(35.6646870, 139.726859)
 	}];

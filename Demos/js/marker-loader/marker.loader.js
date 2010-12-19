@@ -23,7 +23,7 @@ window.addEvent("domready", function(){
 			spinner.hide();
 		}
 	});
-	loader.load('http://holyshared.github.com/MMap/Demos/js/marker-loader/markers.json');
+	loader.load('js/marker-loader/markers.json');
 
 	SyntaxHighlighter.all();
 });

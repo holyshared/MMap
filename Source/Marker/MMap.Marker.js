@@ -171,8 +171,7 @@ MMap.Marker = new Class({
 		content: '',
 		position: '',
 		zIndex: null,
-		visible: true,
-		active: false
+		visible: true
 		/*
 			onClick: $empty
 			onDblClick: $empty

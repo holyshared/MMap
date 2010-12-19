@@ -229,7 +229,6 @@ MMap.Marker.Images = this.MMap.Marker.Images = new Class({
 	removeImages: function(){
 		var self = this;
 		var images = Array.from(arguments);
-		images = images.flatten(images);
 		images.each(function(image){
 			self.removeImage(image);
 		});
