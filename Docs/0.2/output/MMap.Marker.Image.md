@@ -33,7 +33,19 @@ Method: <a id='constructor'>constructor</a>
 * zIndex - (*number*) マーカーの表示順序
 * visible - (*boolean*) マーカーの表示状態 
 * active - (*boolean*) マーカーのアクティブ状態
-
+* onClick - (*function*) マーカーをクリックした時に発生します。
+* onDblClick - (*function*) マーカーをダブルクリックした時に発生します。
+* onMouseOver - (*function*) マーカーのマウスオーバー時に発生します。
+* onMouseOut - (*function*) マーカーのマウスアウト時に発生します。
+* onMouseUp - (*function*) マーカーのマウスアップ時に発生します。
+* onMouseDown - (*function*) マーカーのマウスダウン時に発生します。
+* onTitleChanged - (*function*) マーカーのタイトルが変わった時に発生します。
+* onImageChanged - (*function*) マーカーの画像が変わった時に発生します。
+* onURLChanged - (*function*) マーカーのURLが変わった時に発生します。
+* onVisibleChanged - (*function*) マーカーの表示状態が変わった場合に発生します。
+* onZIndexChanged - (*function*) マーカーの表示順序が変わった場合に発生します。
+* onPositionChanged - (*function*) マーカーの表示座標が変わった場合に発生します。
+* onActive - (*function*) マーカーの表示座標が変わった場合に発生します。
 
 
 Method: <a id='getTitle'>getTitle</a>

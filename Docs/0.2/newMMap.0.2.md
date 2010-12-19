@@ -16,6 +16,7 @@
 * [isActive](mmap.overlayview.html#isActive "isActive")
 * [setActive](mmap.overlayview.html#setActive "setActive")
 
+
 ### <a href='mmap.basemarker.html#mmap.basemarker'>MMap.BaseMarker</a>
 
 * [constructor](mmap.basemarker.html#constructor "constructor")
@@ -28,6 +29,7 @@
 * [setZIndex](mmap.basemarker.html#setZIndex "setZIndex")
 * [setPosition](mmap.basemarker.html#setPosition "setPosition")
 * [setActive](mmap.basemarker.html#setActive "setActive")
+
 
 ### <a href='mmap.marker.html#mmap.marker'>MMap.Marker</a>
 
@@ -66,3 +68,26 @@
 * [visible](mmap.markermanager.html#visible "visible")
 
 
+### <a href='mmap.markerloader.html#mmap.markerloader'>MMap.MarkerLoader</a>
+
+* [constructor](mmap.markerloader.html#constructor "constructor")
+* [load](mmap.markerloader.html#load "load")
+
+
+### <a href='mmap.window.html#mmap.window'>MMap.Window</a>
+
+* [constructor](mmap.window.html#constructor "constructor")
+* [open](mmap.window.html#open "open")
+* [close](mmap.window.html#close "close")
+* [draw](mmap.window.html#draw "draw")
+* [refresh](mmap.window.html#refresh "refresh")
+* [isOpen](mmap.window.html#isOpen "isOpen")
+* [getTitle](mmap.window.html#getTitle "getTitle")
+* [getContent](mmap.window.html#getContent "getContent")
+* [getPosition](mmap.window.html#getPosition "getPosition")
+* [getZIndex](mmap.window.html#getZIndex "getZIndex")
+* [setTitle](mmap.window.html#setTitle "setTitle")
+* [setContent](mmap.window.html#setContent "setContent")
+* [setPosition](mmap.window.html#setPosition "setPosition")
+* [setZIndex](mmap.window.html#setZIndex "setZIndex")
+* [setActive](mmap.window.html#setActive "setActive")

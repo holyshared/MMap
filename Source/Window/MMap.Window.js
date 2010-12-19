@@ -48,7 +48,8 @@ MMap.Window = new Class({
 		content: '',
 		position: '',
 		zIndex: 0,
-		visible: true
+		visible: true,
+		active: false
 		/*
 			onOpen: $empty
 			onClose: $empty
@@ -106,7 +107,7 @@ MMap.Window = new Class({
 
 	_init: function(){
 		var self = this;
-		var props = ['title', 'content', 'position', 'zIndex', 'visible'];
+		var props = ['title', 'content', 'position', 'zIndex', 'visible', 'active'];
 		props.each(function(key){
 			self.set(key, self.options[key]);
 		});

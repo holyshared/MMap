@@ -24,10 +24,10 @@ Method: <a id='constructor'>constructor</a>
 
 ### Options:
 
-* onPreload - (*function*)
-* onFailure - (*function*)
-* onComplete - (*function*)
-* onLoad - (*function*)
+* onPreload - (*function*) マーカーを読み込む前に発生します。
+* onFailure - (*function*) マーカーの読み込みに失敗した場合に発生します。
+* onComplete - (*function*)　マーカーの情報を取得した後に発生します。
+* onLoad - (*function*)　マーカーを読み込んだ後に発生します。
 
 
 Method: <a id='load'>load</a>
