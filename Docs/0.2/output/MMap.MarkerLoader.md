@@ -1,178 +1,43 @@
+
 Class: <a id='mmap.markerloader'>MMap.MarkerLoader</a>
 ------------------------------------------------------
 
-
+複数のマーカーをコンテキストから読み込みます。
 
 ### Implements:
 
 MMap.Events, MMap.Options
 
 
-
-
 Method: <a id='constructor'>constructor</a>
 --------------------------------------------
 
+マーカーローダーのコンストラクタ
 
 ### Syntax:
 
-	var myMMap.MarkerLoader = new MMap.MarkerLoader(options);
+	var myMarkerLoader = new MMap.MarkerLoader(options);
 
 ### Arguments:
 
-1. options - (**)
+1. options - (*mixed*) マーカーローダーのオプション
+
+### Options:
+
+* onPreload - (*function*)
+* onFailure - (*function*)
+* onComplete - (*function*)
+* onLoad - (*function*)
 
 
 Method: <a id='load'>load</a>
 ------------------------------
 
-
 ### Syntax:
 
-
-
-
-Method: <a id='build'>build</a>
---------------------------------
-
-
-### Syntax:
-
-
-
-### Arguments:
-
-1. context - (**)
-
-### Returns:
-
-
-
-
-Class: <a id='mmap.markerloader.parser'>MMap.MarkerLoader.Parser</a>
---------------------------------------------------------------------
-
-
-
-### Implements:
-
-Events
-
-
-
-
-Method: <a id='parse'>parse</a>
---------------------------------
-
-
-### Syntax:
-
-
-
-### Arguments:
-
-1. markers - (**)
-
-### Returns:
-
-
-
-
-Class: <a id='mmap.markerloader.context'>MMap.MarkerLoader.Context</a>
-----------------------------------------------------------------------
-
-
-
-### Extends:
-
-MMap.MarkerLoader.Parser
-
-
-
-
-Method: <a id='load'>load</a>
-------------------------------
-
-
-### Syntax:
-
-
-
-### Arguments:
-
-1. context - (**)
-
-Class: <a id='mmap.markerloader.json'>MMap.MarkerLoader.JSON</a>
-----------------------------------------------------------------
-
-
-
-### Extends:
-
-MMap.MarkerLoader.Parser
-
-
-
-
-Method: <a id='_onRequest'>_onRequest</a>
-------------------------------------------
-
-
-### Syntax:
-
-
-
-
-Method: <a id='_onFailure'>_onFailure</a>
-------------------------------------------
-
-
-### Syntax:
-
-
-
-### Arguments:
-
-1. xhr - (**)
-
-
-Method: <a id='_onSuccess'>_onSuccess</a>
-------------------------------------------
-
-
-### Syntax:
-
-
-
-### Arguments:
-
-1. json - (**)
-2. text - (**)
-
-
-Method: <a id='getRequest'>getRequest</a>
-------------------------------------------
-
-
-### Syntax:
-
-
-
-### Arguments:
-
-1. json - (**)
-
-### Returns:
-
-
-
-
-
-Method: <a id='load'>load</a>
-------------------------------
-
-
-### Syntax:
-
-
-
+	loader.load(context);
+
+	loader.load('/markers.json', {
+		'username': 'mootools',
+		'keyword': 'interface'
+	});	
