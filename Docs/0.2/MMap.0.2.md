@@ -1,106 +1,152 @@
 # MMap 0.2 Documents
 
-## Menu
+## API Menu
 
-### MMap.Options
+### <a href='mmap.overlayview.html#mmap.overlayview'>MMap.OverlayView</a>
 
-* [setOptions](utils.html#setOptions] "setOptions")
-
-### MMap.Events
-
-* [addEvent](utils.html#addEvent] "addEvent")
-* [addEvents](utils.html#addEvents] "addEvents")
-* [removeEvent](utils.html#removeEvent] "removeEvent")
-* [removeEvents](utils.html#removeEvents] "removeEvents")
-* [fireEvent](utils.html#fireEvent] "fireEvent")
-
-### MMap.OverlayView
-
-* [constructor](overlayview.html#constructor "constructor")
-* [_getInstance](overlayview.html#getInstance] "getInstance")
-* [_setup](overlayview.html#setup] "_setup")
-* [draw](overlayview.html#draw] "draw")
-* [setVisible](overlayview.html#setVisible] "setVisible")
-* [setZIndex](overlayview.html#setZIndex] "setZIndex")
-* [setActive](overlayview.html#setActive] "setActive")
-* [getVisible](overlayview.html#getVisible] "getVisible")
-* [getZIndex](overlayview.html#getZIndex] "getZIndex")
-* [isActive](overlayview.html#isActive] "isActive")
-* [isAdded](overlayview.html#isAdded] "isAdded")
-
-### MMap.Marker
-
-* [constructor](marker.html#constructor "constructor")
-* [_update](marker.html#_update] "_update")
-* [setTitle](marker.html.html#setTitle "setTitle")
-* [setContent](marker.html.html#setTitle "setContent")
-* [setPosition](marker.html#setPosition "setPosition")
-* [getTitle](marker.html.html#getTitle "getTitle")
-* [getContent](marker.html.html#getContent "getContent")
-* [getPosition](marker.html#getPosition "getPosition")
-* [refresh](marker.html#getPosition "getPosition")
-
-### MMap.Marker.Image
-
-* [constructor](marker-image.html#constructor "constructor")
-* [setTitle](marker-image.html#setTitle "setTitle")
-* [setImage](marker-image.html#setImage "setImage")
-* [setURL](marker-image.html#setURL "setURL")
-* [getTitle](marker-image.html#getTitle "getTitle")
-* [getImage](marker-image.html#getImage "getImage")
-* [getURL](marker-image.html#getURL "getURL")
-
-### MMap.Marker.Images
-
-* [constructor](marker-images.html#constructor "constructor")
-* [setCurrent](marker-images.html#setCurrent "setCurrent")
-* [addImage](marker-images.html#addImage "addImage")
-* [addImages](marker-images.html#addImages "addImages")
-* [removeImage](marker-images.html#removeImage "removeImage")
-* [removeImages](marker-images.html#removeImages "removeImages")
-
-### MMap.Window
-
-* [constructor](window.html#constructor "constructor")
-* [open](window.html#open "open")
-* [close](window.html#close "close")
-* [isOpen](window.html#isOpen "isOpen")
-* [setPosition](window.html#setPosition "setPosition")
-* [setTitle](window.html#setTitle "setTitle")
-* [setContent](window.html#setContent "setContent")
-* [getPosition](window.html#getPosition "getPosition")
-* [getTitle](window.html#getTitle "getTitle")
-* [getContent](window.html#getContent "getContent")
-
-### MMap.Window
-
-* [constructor](window.html#constructor "constructor")
-* [open](window.html#open "open")
-* [close](window.html#open "close")
-* [isOpen](window.html#open "isOpen")
-* [getPosition](window.html#getPosition "getPosition")
-* [getTitle](window.html#getTitle "getTitle")
-* [getContent](window.html#getContent "getContent")
-* [setPosition](window.html#setPosition "setPosition")
-* [setTitle](window.html#setTitle "setTitle")
-* [setContent](window.html#setContent "setContent")
-
-### MMap.Container
+* [constructor](mmap.overlayview.html#constructor "constructor")
+* [_init](mmap.overlayview.html#_init "_init")
+* [_setup](mmap.overlayview.html#_setup "_setup")
+* [_setupListeners](mmap.overlayview.html#_setupListeners "_setupListeners")
+* [draw](mmap.overlayview.html#draw "draw")
+* [getVisible](mmap.overlayview.html#getVisible "getVisible")
+* [setVisible](mmap.overlayview.html#setVisible "setVisible")
+* [isAdded](mmap.overlayview.html#isAdded "isAdded")
+* [isVisible](mmap.overlayview.html#isVisible "isVisible")
+* [isActive](mmap.overlayview.html#isActive "isActive")
+* [setActive](mmap.overlayview.html#setActive "setActive")
 
 
-### MMap.MarkerManager
+### <a href='mmap.basemarker.html#mmap.basemarker'>MMap.BaseMarker</a>
 
-* [constructor](marker-manager.html#constructor "constructor")
-* [setBounds](marker-manager.html#setBounds "setBounds")
-* [getBounds](marker-manager.html#getBounds "getBounds")
-* [getDisplayMarkers](marker-manager.html#getDisplayMarkers "getDisplayMarkers")
-* [hasDisplayMarkers](marker-manager.html#hasDisplayMarkers "hasDisplayMarkers")
-* [hasMarker](marker-manager.html#hasMarker "hasMarker")
-* [activate](marker-manager.html#activate "activate")
-* [deactivate](marker-manager.html#deactivate "deactivate")
-* [find](marker-manager.html#find "find")
-* [findAll](marker-manager.html#findAll "findAll")
+* [constructor](mmap.basemarker.html#constructor "constructor")
+* [_update](mmap.basemarker.html#_update "_update")
+* [setDefaultZIndex](mmap.basemarker.html#setDefaultZIndex "setDefaultZIndex")
+* [draw](mmap.basemarker.html#draw "draw")
+* [refresh](mmap.basemarker.html#refresh "refresh")
+* [getZIndex](mmap.basemarker.html#getZIndex "getZIndex")
+* [getPosition](mmap.basemarker.html#getPosition "getPosition")
+* [setZIndex](mmap.basemarker.html#setZIndex "setZIndex")
+* [setPosition](mmap.basemarker.html#setPosition "setPosition")
+* [setActive](mmap.basemarker.html#setActive "setActive")
 
-#### Events
 
-* onDisplayMarkerChanged
+### <a href='mmap.marker.html#mmap.marker'>MMap.Marker</a>
+
+* [constructor](mmap.marker.html#constructor "constructor")
+* [getTitle](mmap.marker.html#getTitle "getTitle")
+* [getContent](mmap.marker.html#getContent "getContent")
+* [setTitle](mmap.marker.html#setTitle "setTitle")
+* [setContent](mmap.marker.html#setContent "setContent")
+
+### <a href='mmap.marker.image.html#mmap.marker.image'>MMap.Marker.Image</a>
+
+* [constructor](mmap.marker.image.html#constructor "constructor")
+* [getTitle](mmap.marker.image.html#getTitle "getTitle")
+* [getImage](mmap.marker.image.html#getImage "getImage")
+* [getURL](mmap.marker.image.html#getURL "getURL")
+* [setTitle](mmap.marker.image.html#setTitle "setTitle")
+* [setImage](mmap.marker.image.html#setImage "setImage")
+* [setURL](mmap.marker.image.html#setURL "setURL")
+
+
+### <a href='mmap.markermanager.html#mmap.markermanager'>MMap.MarkerManager</a>
+
+* [constructor](mmap.markermanager.html#constructor "constructor")
+* [setMap](mmap.markermanager.html#setMap "setMap")
+* [setMarkers](mmap.markermanager.html#setMarkers "setMarkers")
+* [getMap](mmap.markermanager.html#getMap "getMap")
+* [getContainer](mmap.markermanager.html#getContainer "getContainer")
+* [getMarkers](mmap.markermanager.html#getMarkers "getMarkers")
+* [getState](mmap.markermanager.html#getState "getState")
+* [hasMarker](mmap.markermanager.html#hasMarker "hasMarker")
+* [addMarker](mmap.markermanager.html#addMarker "addMarker")
+* [addMarkers](mmap.markermanager.html#addMarkers "addMarkers")
+* [removeMarker](mmap.markermanager.html#removeMarker "removeMarker")
+* [removeMarkers](mmap.markermanager.html#removeMarkers "removeMarkers")
+* [active](mmap.markermanager.html#active "active")
+* [visible](mmap.markermanager.html#visible "visible")
+
+
+### <a href='mmap.markerloader.html#mmap.markerloader'>MMap.MarkerLoader</a>
+
+* [constructor](mmap.markerloader.html#constructor "constructor")
+* [load](mmap.markerloader.html#load "load")
+
+
+### <a href='mmap.window.html#mmap.window'>MMap.Window</a>
+
+* [constructor](mmap.window.html#constructor "constructor")
+* [open](mmap.window.html#open "open")
+* [close](mmap.window.html#close "close")
+* [draw](mmap.window.html#draw "draw")
+* [refresh](mmap.window.html#refresh "refresh")
+* [isOpen](mmap.window.html#isOpen "isOpen")
+* [getTitle](mmap.window.html#getTitle "getTitle")
+* [getContent](mmap.window.html#getContent "getContent")
+* [getPosition](mmap.window.html#getPosition "getPosition")
+* [getZIndex](mmap.window.html#getZIndex "getZIndex")
+* [setTitle](mmap.window.html#setTitle "setTitle")
+* [setContent](mmap.window.html#setContent "setContent")
+* [setPosition](mmap.window.html#setPosition "setPosition")
+* [setZIndex](mmap.window.html#setZIndex "setZIndex")
+* [setActive](mmap.window.html#setActive "setActive")
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+## Class Menu
+
+### Core
+
+* <a href='mmap.overlayview.html#mmap.overlayview'>MMap.OverlayView</a>
+
+### Marker
+
+* <a href='mmap.basemarker.html#mmap.basemarker'>MMap.BaseMarker</a>
+* <a href='mmap.marker.html#mmap.marker'>MMap.Marker</a>
+* <a href='mmap.marker.image.html#mmap.marker.image'>MMap.Marker.Image</a>
+* <a href='mmap.markermanager.html#mmap.markermanager'>MMap.MarkerManager</a>
+* <a href='mmap.markerloader.html#mmap.markerloader'>MMap.MarkerLoader</a>
+
+### Window
+
+* <a href='mmap.window.html#mmap.window'>MMap.Window</a>
