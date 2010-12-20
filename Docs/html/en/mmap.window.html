@@ -1,0 +1,345 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<title></title>
+	<meta http-equiv="Content-Language" content="ja" />
+	<meta http-equiv="Content-Script-Type" content="text/javascript" />
+	<meta http-equiv="Content-Style-Type" content="text/css" />
+	<meta name="description" content="" />
+	<meta name="keywords" content="" />
+	<link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Vollkorn:regular,italic,bold&amp;subset=latin" type="text/css" />
+	<link rel="stylesheet" href="../css/style.css" type="text/css" media="screen" />
+	<link rel="stylesheet" href="../css/core/content.ja.css" type="text/css" media="screen" />
+</head>
+
+<body>
+<div class="page gs960">
+
+	<div class="head">
+		<div class="mod symbol">
+			<div class="inner">
+				<div class="hd">
+					<h1 class="logo">MMap</h1>
+					<p class="version">version 0.2</p>
+				</div>
+			</div>
+		</div>
+	</div>
+
+<div class="body">
+	<div class="leftCol gDocs">
+
+<h3>Core</h3>
+
+<ul>
+<li><a href='mmap.overlayview.html#mmap.overlayview'>MMap.OverlayView</a></li>
+</ul>
+
+<h3>Marker</h3>
+
+<ul>
+<li><a href='mmap.basemarker.html#mmap.basemarker'>MMap.BaseMarker</a></li>
+<li><a href='mmap.marker.html#mmap.marker'>MMap.Marker</a></li>
+<li><a href='mmap.marker.image.html#mmap.marker.image'>MMap.Marker.Image</a></li>
+<li><a href='mmap.marker.images.html#mmap.marker.images'>MMap.Marker.Images</a></li>
+<li><a href='mmap.markermanager.html#mmap.markermanager'>MMap.MarkerManager</a></li>
+<li><a href='mmap.markerloader.html#mmap.markerloader'>MMap.MarkerLoader</a></li>
+</ul>
+
+<h3>Window</h3>
+
+<ul>
+<li><a href='mmap.window.html#mmap.window'>MMap.Window</a></li>
+</ul>
+
+
+	</div>
+
+	<div class="rightCol gDocs">
+
+
+<h3><a href='mmap.window.html#mmap.window'>MMap.Window</a></h3>
+
+<ul>
+<li><a href="mmap.window.html#constructor" title="constructor">constructor</a></li>
+<li><a href="mmap.window.html#open" title="open">open</a></li>
+<li><a href="mmap.window.html#close" title="close">close</a></li>
+<li><a href="mmap.window.html#draw" title="draw">draw</a></li>
+<li><a href="mmap.window.html#refresh" title="refresh">refresh</a></li>
+<li><a href="mmap.window.html#isOpen" title="isOpen">isOpen</a></li>
+<li><a href="mmap.window.html#getTitle" title="getTitle">getTitle</a></li>
+<li><a href="mmap.window.html#getContent" title="getContent">getContent</a></li>
+<li><a href="mmap.window.html#getPosition" title="getPosition">getPosition</a></li>
+<li><a href="mmap.window.html#getZIndex" title="getZIndex">getZIndex</a></li>
+<li><a href="mmap.window.html#setTitle" title="setTitle">setTitle</a></li>
+<li><a href="mmap.window.html#setContent" title="setContent">setContent</a></li>
+<li><a href="mmap.window.html#setPosition" title="setPosition">setPosition</a></li>
+<li><a href="mmap.window.html#setZIndex" title="setZIndex">setZIndex</a></li>
+<li><a href="mmap.window.html#setActive" title="setActive">setActive</a></li>
+</ul>
+
+
+	</div>
+
+	<div class="main">
+
+<h2 class="h1">Class: <a id='mmap.window'>MMap.Window</a></h2>
+
+<p>HTMLコンテンツを表示するウィンドウ</p>
+
+<h3>Extends:</h3>
+
+<p>MMap.OverlayView</p>
+
+<h2>Method: <a id='constructor'>constructor</a></h2>
+
+<p>ウィンドウのコンストラクタ</p>
+
+<h3>Syntax:</h3>
+
+<pre><code>var myWindow = new MMap.Window(options);
+</code></pre>
+
+<h3>Arguments:</h3>
+
+<ol>
+<li>options - (<em>mixed</em>) ウィンドウのオプション</li>
+</ol>
+
+<h3>Options:</h3>
+
+<ul>
+<li>className - (<em>string</em>) ウィンドウに適用するスタイル(CSSのクラス名)</li>
+<li>title - (<em>string</em>) ウィンドウのタイトルに設定する内容</li>
+<li>content - (<em>string|element</em>) ウィンドウに表示する内容</li>
+<li>position - (<a href="http://code.google.com/intl/eu/apis/maps/documentation/javascript/reference.html#LatLng"><em>LatLng</em></a>) ウィンドウの座標位置</li>
+<li>zIndex - (<em>number</em>) ウィンドウの表示順序</li>
+<li>visible - (<em>boolean</em>) ウィンドウの表示状態</li>
+<li>active - (<em>boolean</em>) ウィンドウのアクティブ状態</li>
+<li>onOpen - (<em>function</em>) ウィンドウを開いた時に発生します。</li>
+<li>onClose - (<em>function</em>) ウィンドウを閉じた時に発生します。</li>
+<li>onVisibleChanged - (<em>function</em>) ウィンドウの表示状態が変わった場合に発生します。</li>
+<li>onZIndexChanged - (<em>function</em>) ウィンドウの表示順序が変わった場合に発生します。</li>
+<li>onPositionChanged - (<em>function</em>) ウィンドウの表示座標が変わった場合に発生します。</li>
+<li>onTitleChanged - (<em>function</em>) ウィンドウのタイトルが変わった場合に発生します。</li>
+<li>onContentChanged - (<em>function</em>) ウィンドウの内容が変わった場合に発生します。</li>
+</ul>
+
+<h2>Method: <a id='draw'>draw</a></h2>
+
+<p>ウィンドウを再描画します。</p>
+
+<h3>Syntax:</h3>
+
+<pre><code>window.draw();
+</code></pre>
+
+<h2>Method: <a id='refresh'>refresh</a></h2>
+
+<p>ウィンドウを表示を更新します。</p>
+
+<h3>Syntax:</h3>
+
+<pre><code>window.refresh();
+</code></pre>
+
+<h2>Method: <a id='open'>open</a></h2>
+
+<p>ウィンドウを開きます。</p>
+
+<h3>Syntax:</h3>
+
+<pre><code>window.open(map, marker);
+</code></pre>
+
+<h3>Arguments:</h3>
+
+<ol>
+<li>map - (<em><a href="http://code.google.com/intl/en/apis/maps/documentation/javascript/reference.html#Map">Map</a></em>) ウィンドウを表示する地図</li>
+<li>anchor - (<em>marker</em>) マーカーオブジェクト</li>
+</ol>
+
+<h2>Method: <a id='close'>close</a></h2>
+
+<p>ウィンドウを閉じます。</p>
+
+<h3>Syntax:</h3>
+
+<pre><code>window.close();
+</code></pre>
+
+<h2>Method: <a id='isOpen'>isOpen</a></h2>
+
+<p>ウィンドウのオープン状態を取得します。</p>
+
+<h3>Syntax:</h3>
+
+<pre><code>window.isOpen();
+</code></pre>
+
+<h3>Returns:</h3>
+
+<p>(<em>boolean</em>) trueの場合、ウィンドウを開いています。</p>
+
+<h2>Method: <a id='getZIndex'>getZIndex</a></h2>
+
+<p>ウィンドウの表示順を取得します。</p>
+
+<h3>Syntax:</h3>
+
+<pre><code>var index = window.getZIndex();
+</code></pre>
+
+<h3>Returns:</h3>
+
+<p>(<em>number</em>) 表示順</p>
+
+<h2>Method: <a id='setZIndex'>setZIndex</a></h2>
+
+<p>ウィンドウの表示順を設定します。</p>
+
+<h3>Syntax:</h3>
+
+<pre><code>window.setZIndex(100);
+</code></pre>
+
+<h3>Arguments:</h3>
+
+<ol>
+<li>index - (<em>number</em>) 表示順</li>
+</ol>
+
+<h3>Returns:</h3>
+
+<p>(<em>window</em>) ウィンドウオブジェクト</p>
+
+<h2>Method: <a id='getPosition'>getPosition</a></h2>
+
+<p>ウィンドウを表示している座標を取得します。</p>
+
+<h3>Syntax:</h3>
+
+<pre><code>var latlng = window.getPosition();
+</code></pre>
+
+<h3>Returns:</h3>
+
+<p>(<em><a href="http://code.google.com/intl/eu/apis/maps/documentation/javascript/reference.html#LatLng">LatLng</a></em>) 座標</p>
+
+<h2>Method: <a id='setPosition'>setPosition</a></h2>
+
+<p>ウィンドウを表示する座標を設定します。</p>
+
+<h3>Syntax:</h3>
+
+<pre><code>window.setPosition(latlng);
+</code></pre>
+
+<h3>Arguments:</h3>
+
+<ol>
+<li>position - (<em><a href="http://code.google.com/intl/eu/apis/maps/documentation/javascript/reference.html#LatLng">LatLng</a></em>) 表示する座標</li>
+</ol>
+
+<h3>Returns:</h3>
+
+<p>(<em>window</em>) ウィンドウオブジェクト</p>
+
+<h2>Method: <a id='getTitle'>getTitle</a></h2>
+
+<p>ウィンドウに表示するタイトルを取得します。</p>
+
+<h3>Syntax:</h3>
+
+<pre><code>window.getTitle();
+</code></pre>
+
+<h3>Returns:</h3>
+
+<p>(<em>string</em>) タイトル</p>
+
+<h2>Method: <a id='setTitle'>setTitle</a></h2>
+
+<p>ウィンドウに表示するタイトルを指定します。</p>
+
+<h3>Syntax:</h3>
+
+<pre><code>window.setTitle('Title');
+</code></pre>
+
+<h3>Arguments:</h3>
+
+<ol>
+<li>title - (<em>string</em>) ウィンドウのタイトル</li>
+</ol>
+
+<h3>Returns:</h3>
+
+<p>(<em>window</em>) ウィンドウオブジェクト</p>
+
+<h2>Method: <a id='getContent'>getContent</a></h2>
+
+<p>指定されているコンテンツを取得します。</p>
+
+<h3>Syntax:</h3>
+
+<pre><code>var content = window.getContent();
+</code></pre>
+
+<h3>Returns:</h3>
+
+<p>(<em>string</em>) コンテンツ</p>
+
+<h2>Method: <a id='setContent'>setContent</a></h2>
+
+<p>ウィンドウに指定したコンテンツを表示させます。</p>
+
+<h3>Syntax:</h3>
+
+<pre><code>window.setContent('Content');
+</code></pre>
+
+<h3>Arguments:</h3>
+
+<ol>
+<li>content - (<em>string|element</em>) ウィンドウに表示するコンテンツ</li>
+</ol>
+
+<h3>Returns:</h3>
+
+<p>(<em>window</em>) ウィンドウオブジェクト</p>
+
+<h2>Method: <a id='setActive'>setActive</a></h2>
+
+<p>ウィンドウをアクティブ化します。</p>
+
+<h3>Syntax:</h3>
+
+<pre><code>window.setActive(true);
+</code></pre>
+
+<h3>Arguments:</h3>
+
+<ol>
+<li>value - (<em>boolean</em>) trueを指定するとウインドウをアクティブ化します。</li>
+</ol>
+
+<h3>Returns:</h3>
+
+<p>(<em>window</em>) ウィンドウオブジェクト</p>
+
+
+
+</div>
+
+	</div>
+
+	<div class="foot">
+		<p>Copyright(c) 2010 <a title="Noritaka Horio" href="http://sharedhat.com">Noritaka Horio</a> All Rights Reserved.</p>
+	</div>
+</div>
+
+</body>
+
+</html>
