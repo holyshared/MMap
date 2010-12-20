@@ -25,7 +25,7 @@ Method: <a id='constructor'>constructor</a>
 
 ### Options:
 
-* map - (*<a href="http://code.google.com/intl/en/apis/maps/documentation/javascript/reference.html#Map">Map</a>*) オーバーレイビューを表示するMapオブジェクト
+* map - (*<a href="http://code.google.com/intl/en/apis/maps/documentation/javascript/reference.html#Map">Map</a>*) マーカーを表示するMapオブジェクト
 * className - (*string*) マーカーに適用するスタイル(CSSのクラス名)
 * position - (<a href="http://code.google.com/intl/eu/apis/maps/documentation/javascript/reference.html#LatLng">*LatLng*</a>) マーカーの座標位置
 * zIndex - (*number*) マーカーの表示順序

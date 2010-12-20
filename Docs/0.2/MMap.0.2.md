@@ -50,6 +50,21 @@
 * [setURL](mmap.marker.image.html#setURL "setURL")
 
 
+### <a href='mmap.marker.images.html#mmap.marker.images'>MMap.Marker.Images</a>
+
+* [constructor](mmap.marker.images.html#constructor "constructor")
+* [getImages](mmap.marker.images.html#getImages "getImages")
+* [setCurrent](mmap.marker.images.html#setCurrent "setCurrent")
+* [setImages](mmap.marker.images.html#setImages "setImages")
+* [addImage](mmap.marker.images.html#addImage "addImage")
+* [addImages](mmap.marker.images.html#addImages "addImages")
+* [removeImage](mmap.marker.images.html#removeImage "removeImage")
+* [removeImages](mmap.marker.images.html#removeImages "removeImages")
+* [isStart](mmap.marker.images.html#isStart "isStart")
+* [start](mmap.marker.images.html#start "start")
+* [stop](mmap.marker.images.html#stop "stop")
+
+
 ### <a href='mmap.markermanager.html#mmap.markermanager'>MMap.MarkerManager</a>
 
 * [constructor](mmap.markermanager.html#constructor "constructor")
@@ -144,6 +159,7 @@
 * <a href='mmap.basemarker.html#mmap.basemarker'>MMap.BaseMarker</a>
 * <a href='mmap.marker.html#mmap.marker'>MMap.Marker</a>
 * <a href='mmap.marker.image.html#mmap.marker.image'>MMap.Marker.Image</a>
+* <a href='mmap.marker.images.html#mmap.marker.images'>MMap.Marker.Images</a>
 * <a href='mmap.markermanager.html#mmap.markermanager'>MMap.MarkerManager</a>
 * <a href='mmap.markerloader.html#mmap.markerloader'>MMap.MarkerLoader</a>
 
