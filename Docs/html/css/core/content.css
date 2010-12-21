@@ -19,15 +19,16 @@ code{color:#0B8C8F;}
 /* .h1-.h6 classes should be used to maintain the semantically appropriate heading levels - NOT for use on non-headings */
 h1, .h1{font-size:240%; font-weight:bold; font-style: normal; color:#00407d; line-height: 140%; }
 h2, .h2{font-size:167%; font-weight:bold; font-style: normal; color:#333333; line-height: 140%; }
-h3, .h3{font-size:123.1%; font-weight:bold; font-style: normal; color:#00498e; line-height: 100%; }
-h4, .h4{font-size:123.1%; font-weight:normal; font-style: normal; color: #333;}
-h5, .h5{font-size:108%; font-weight:bold; font-style: normal; color:#AE0345;}
-h6, .h6{font-size:108%; font-weight:normal; font-style: italic; color:#333;}
+h3, .h3{font-size:138.5%; font-weight:bold; font-style: normal; color:#00498e; line-height: 100%; }
+h4, .h4{font-size:123.1%; font-weight:bold; font-style: normal; color: #00498e;}
+h5, .h5{font-size:108%; font-weight:bold; font-style: normal; color: #00498e;}
+h6, .h6{font-size:108%; font-weight:normal; font-style: italic; color: #333;}
 
 .logo { padding: 0px; margin-top: 0px; margin-bottom: 10px; line-height: 100%; }
-.version { padding:0px; }
+.version { padding: 5px 10px; margin-top: 3px; margin-left: 10px; background: #00498e; color: #ffffff; -moz-border-radius: 5px; }
 
 p, ol, ul {
+	font-size: 108%;
 	line-height: 140%;
 }
 

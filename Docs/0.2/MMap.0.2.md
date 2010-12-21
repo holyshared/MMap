@@ -30,6 +30,23 @@
 * [setPosition](mmap.basemarker.html#setPosition "setPosition")
 * [setActive](mmap.basemarker.html#setActive "setActive")
 
+#### Inherited Methods
+
+##### MMap.OverlayView
+
+* [getVisible](mmap.overlayview.html#getVisible "getVisible")
+* [setVisible](mmap.overlayview.html#setVisible "setVisible")
+* [isAdded](mmap.overlayview.html#isAdded "isAdded")
+* [isVisible](mmap.overlayview.html#isVisible "isVisible")
+* [isActive](mmap.overlayview.html#isActive "isActive")
+
+
+
+
+
+
+
+
 
 ### <a href='mmap.marker.html#mmap.marker'>MMap.Marker</a>
 
@@ -38,6 +55,31 @@
 * [getContent](mmap.marker.html#getContent "getContent")
 * [setTitle](mmap.marker.html#setTitle "setTitle")
 * [setContent](mmap.marker.html#setContent "setContent")
+
+#### Inherited Methods
+
+##### MMap.OverlayView
+
+* [getVisible](mmap.overlayview.html#getVisible "getVisible")
+* [setVisible](mmap.overlayview.html#setVisible "setVisible")
+* [isAdded](mmap.overlayview.html#isAdded "isAdded")
+* [isVisible](mmap.overlayview.html#isVisible "isVisible")
+* [isActive](mmap.overlayview.html#isActive "isActive")
+
+##### MMap.BaseMarker
+
+* [draw](mmap.basemarker.html#draw "draw")
+* [refresh](mmap.basemarker.html#refresh "refresh")
+* [getZIndex](mmap.basemarker.html#getZIndex "getZIndex")
+* [getPosition](mmap.basemarker.html#getPosition "getPosition")
+* [setDefaultZIndex](mmap.basemarker.html#setDefaultZIndex "setDefaultZIndex")
+* [setZIndex](mmap.basemarker.html#setZIndex "setZIndex")
+* [setPosition](mmap.basemarker.html#setPosition "setPosition")
+* [setActive](mmap.basemarker.html#setActive "setActive")
+
+
+
+
 
 ### <a href='mmap.marker.image.html#mmap.marker.image'>MMap.Marker.Image</a>
 
@@ -48,6 +90,30 @@
 * [setTitle](mmap.marker.image.html#setTitle "setTitle")
 * [setImage](mmap.marker.image.html#setImage "setImage")
 * [setURL](mmap.marker.image.html#setURL "setURL")
+
+#### Inherited Methods
+
+##### MMap.OverlayView
+
+* [getVisible](mmap.overlayview.html#getVisible "getVisible")
+* [setVisible](mmap.overlayview.html#setVisible "setVisible")
+* [isAdded](mmap.overlayview.html#isAdded "isAdded")
+* [isVisible](mmap.overlayview.html#isVisible "isVisible")
+* [isActive](mmap.overlayview.html#isActive "isActive")
+
+##### MMap.BaseMarker
+
+* [draw](mmap.basemarker.html#draw "draw")
+* [refresh](mmap.basemarker.html#refresh "refresh")
+* [getZIndex](mmap.basemarker.html#getZIndex "getZIndex")
+* [getPosition](mmap.basemarker.html#getPosition "getPosition")
+* [setDefaultZIndex](mmap.basemarker.html#setDefaultZIndex "setDefaultZIndex")
+* [setZIndex](mmap.basemarker.html#setZIndex "setZIndex")
+* [setPosition](mmap.basemarker.html#setPosition "setPosition")
+* [setActive](mmap.basemarker.html#setActive "setActive")
+
+
+
 
 
 ### <a href='mmap.marker.images.html#mmap.marker.images'>MMap.Marker.Images</a>
@@ -63,6 +129,29 @@
 * [isStart](mmap.marker.images.html#isStart "isStart")
 * [start](mmap.marker.images.html#start "start")
 * [stop](mmap.marker.images.html#stop "stop")
+
+#### Inherited Methods
+
+##### MMap.OverlayView
+
+* [getVisible](mmap.overlayview.html#getVisible "getVisible")
+* [setVisible](mmap.overlayview.html#setVisible "setVisible")
+* [isAdded](mmap.overlayview.html#isAdded "isAdded")
+* [isVisible](mmap.overlayview.html#isVisible "isVisible")
+* [isActive](mmap.overlayview.html#isActive "isActive")
+
+##### MMap.BaseMarker
+
+* [draw](mmap.basemarker.html#draw "draw")
+* [refresh](mmap.basemarker.html#refresh "refresh")
+* [getZIndex](mmap.basemarker.html#getZIndex "getZIndex")
+* [getPosition](mmap.basemarker.html#getPosition "getPosition")
+* [setDefaultZIndex](mmap.basemarker.html#setDefaultZIndex "setDefaultZIndex")
+* [setZIndex](mmap.basemarker.html#setZIndex "setZIndex")
+* [setPosition](mmap.basemarker.html#setPosition "setPosition")
+* [setActive](mmap.basemarker.html#setActive "setActive")
+
+
 
 
 ### <a href='mmap.markermanager.html#mmap.markermanager'>MMap.MarkerManager</a>
@@ -107,45 +196,15 @@
 * [setZIndex](mmap.window.html#setZIndex "setZIndex")
 * [setActive](mmap.window.html#setActive "setActive")
 
+#### Inherited Methods
 
+##### MMap.OverlayView
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+* [getVisible](mmap.overlayview.html#getVisible "getVisible")
+* [setVisible](mmap.overlayview.html#setVisible "setVisible")
+* [isAdded](mmap.overlayview.html#isAdded "isAdded")
+* [isVisible](mmap.overlayview.html#isVisible "isVisible")
+* [isActive](mmap.overlayview.html#isActive "isActive")
 
 
 ## Class Menu
