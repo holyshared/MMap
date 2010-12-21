@@ -101,7 +101,7 @@
 
 <h2 class="h1">Class: <a id='mmap.marker.image'>MMap.Marker.Image</a></h2>
 
-<p>スタイル付けが可能な画像を表示するシンプルなマーカー</p>
+<p>Simple marker who displays image that can be injury it with style</p>
 
 <h3>Extends:</h3>
 
@@ -109,7 +109,7 @@
 
 <h2>Method: <a id='constructor'>constructor</a></h2>
 
-<p>画像マーカーのコンストラクタ</p>
+<p>Constructor of image marker</p>
 
 <h3>Syntax:</h3>
 
@@ -119,39 +119,39 @@
 <h3>Arguments:</h3>
 
 <ol>
-<li>options - (<em>mixed</em>) マーカーのオプション</li>
+<li>options - (<em>mixed</em>) Option of marker</li>
 </ol>
 
 <h3>Options:</h3>
 
 <ul>
-<li>map - (<em><a href="http://code.google.com/intl/en/apis/maps/documentation/javascript/reference.html#Map">Map</a></em>) オーバーレイビューを表示するMapオブジェクト</li>
-<li>className - (<em>string</em>) マーカーに適用するスタイル(CSSのクラス名)</li>
-<li>title - (<em>string</em>) マーカーのタイトルに設定する内容</li>
-<li>image - (<em>string</em>) マーカーに表示する画像のURL</li>
-<li>url - (<em>string</em>) マーカーに設定するURL</li>
-<li>position - (<a href="http://code.google.com/intl/eu/apis/maps/documentation/javascript/reference.html#LatLng"><em>LatLng</em></a>) マーカーの座標位置</li>
-<li>zIndex - (<em>number</em>) マーカーの表示順序</li>
-<li>visible - (<em>boolean</em>) マーカーの表示状態</li>
-<li>active - (<em>boolean</em>) マーカーのアクティブ状態</li>
-<li>onClick - (<em>function</em>) マーカーをクリックした時に発生します。</li>
-<li>onDblClick - (<em>function</em>) マーカーをダブルクリックした時に発生します。</li>
-<li>onMouseOver - (<em>function</em>) マーカーのマウスオーバー時に発生します。</li>
-<li>onMouseOut - (<em>function</em>) マーカーのマウスアウト時に発生します。</li>
-<li>onMouseUp - (<em>function</em>) マーカーのマウスアップ時に発生します。</li>
-<li>onMouseDown - (<em>function</em>) マーカーのマウスダウン時に発生します。</li>
-<li>onTitleChanged - (<em>function</em>) マーカーのタイトルが変わった時に発生します。</li>
-<li>onImageChanged - (<em>function</em>) マーカーの画像が変わった時に発生します。</li>
-<li>onURLChanged - (<em>function</em>) マーカーのURLが変わった時に発生します。</li>
-<li>onVisibleChanged - (<em>function</em>) マーカーの表示状態が変わった場合に発生します。</li>
-<li>onZIndexChanged - (<em>function</em>) マーカーの表示順序が変わった場合に発生します。</li>
-<li>onPositionChanged - (<em>function</em>) マーカーの表示座標が変わった場合に発生します。</li>
-<li>onActive - (<em>function</em>) マーカーの表示座標が変わった場合に発生します。</li>
+<li>map - (<em><a href="http://code.google.com/intl/en/apis/maps/documentation/javascript/reference.html#Map">Map</a></em>) Map object that displays overlay view</li>
+<li>className - (<em>string</em>) Style applied to marker (class name of CSS)</li>
+<li>title - (<em>string</em>) Content set to title of marker</li>
+<li>image - (<em>string</em>) URL of image displayed in marker</li>
+<li>url - (<em>string</em>) URL set to marker</li>
+<li>position - (<a href="http://code.google.com/intl/eu/apis/maps/documentation/javascript/reference.html#LatLng"><em>LatLng</em></a>) Coordinates position of marker</li>
+<li>zIndex - (<em>number</em>) The order of displaying marker</li>
+<li>visible - (<em>boolean</em>) State of display of marker</li>
+<li>active - (<em>boolean</em>) Active state of marker</li>
+<li>onClick - (<em>function</em>) When the marker is clicked, it is generated.</li>
+<li>onDblClick - (<em>function</em>) When the marker is double-clicked, it is generated.</li>
+<li>onMouseOver - (<em>function</em>) It is generated at mouse over time of the marker.</li>
+<li>onMouseOut - (<em>function</em>) It is generated at the mouse out of the marker.</li>
+<li>onMouseUp - (<em>function</em>) When the mouse of the marker improves, it is generated.</li>
+<li>onMouseDown - (<em>function</em>) When the mouse of the marker is downed, it is generated.</li>
+<li>onTitleChanged - (<em>function</em>) When the title of the marker changes, it is generated.</li>
+<li>onImageChanged - (<em>function</em>) When the image of the marker changes, it is generated.</li>
+<li>onURLChanged - (<em>function</em>) When URL of the marker changes, it is generated.</li>
+<li>onVisibleChanged - (<em>function</em>) When the marker's display changes, it is generated. </li>
+<li>onZIndexChanged - (<em>function</em>) When the order of displaying the marker changes, it is generated.</li>
+<li>onPositionChanged - (<em>function</em>) When the display coordinates of the marker are changed, it is generated.</li>
+<li>onActive - (<em>function</em>) When the display coordinates of the marker are changed, it is generated.</li>
 </ul>
 
 <h2>Method: <a id='getTitle'>getTitle</a></h2>
 
-<p>マーカーに設定しているタイトルを取得します。</p>
+<p>The title set to the marker is acquired.</p>
 
 <h3>Syntax:</h3>
 
@@ -160,11 +160,11 @@
 
 <h3>Returns:</h3>
 
-<p>(<em>string</em>) マーカーに設定しているタイトル</p>
+<p>(<em>string</em>) Title set to marker</p>
 
 <h2>Method: <a id='getImage'>getImage</a></h2>
 
-<p>マーカーに表示されている画像のURLを取得します。</p>
+<p>URL of the image displayed in the marker is acquired.</p>
 
 <h3>Syntax:</h3>
 
@@ -173,11 +173,11 @@
 
 <h3>Returns:</h3>
 
-<p>(<em>string</em>) マーカーに表示されている画像のURL</p>
+<p>(<em>string</em>) URL of image displayed in marker</p>
 
 <h2>Method: <a id='getURL'>getURL</a></h2>
 
-<p>マーカーに設定されているURLを取得します。</p>
+<p>URL set to the marker is acquired.</p>
 
 <h3>Syntax:</h3>
 
@@ -186,11 +186,11 @@
 
 <h3>Returns:</h3>
 
-<p>(<em>string</em>) マーカーに設定されているURL</p>
+<p>(<em>string</em>) URL set to marker</p>
 
 <h2>Method: <a id='setTitle'>setTitle</a></h2>
 
-<p> マーカーにタイトルを設定します。</p>
+<p>The title is set to the marker. </p>
 
 <h3>Syntax:</h3>
 
@@ -200,7 +200,7 @@
 <h3>Arguments:</h3>
 
 <ol>
-<li>title - (<em>string</em>) マーカーに設定するタイトル</li>
+<li>title - (<em>string</em>) Title set to marker</li>
 </ol>
 
 <h3>Returns:</h3>
@@ -209,7 +209,7 @@
 
 <h2>Method: <a id='setImage'>setImage</a></h2>
 
-<p>マーカーに表示する画像を設定します。</p>
+<p>The image displayed in the marker is set. </p>
 
 <h3>Syntax:</h3>
 
@@ -219,7 +219,7 @@
 <h3>Arguments:</h3>
 
 <ol>
-<li>image - (<em>string|element</em>) マーカーに表示する画像</li>
+<li>image - (<em>string|element</em>) Image displayed in marker</li>
 </ol>
 
 <h3>Returns:</h3>
@@ -228,8 +228,8 @@
 
 <h2>Method: <a id='setURL'>setURL</a></h2>
 
-<p>マーカーにURLを設定します。
-マーカークリック時に設定したURLに遷移します。</p>
+<p>URL is set to the marker.<br />
+It changes to URL set when the marker is clicked. </p>
 
 <h3>Syntax:</h3>
 
@@ -239,7 +239,7 @@
 <h3>Arguments:</h3>
 
 <ol>
-<li>url - (<em>string</em>) マーカーに設定するURL</li>
+<li>url - (<em>string</em>) URL set to marker</li>
 </ol>
 
 <h3>Returns:</h3>
