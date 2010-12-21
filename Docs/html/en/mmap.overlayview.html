@@ -82,8 +82,9 @@
 	<div class="main">
 <h2 class="h1">Class: <a id="mmap.overlayview">MMap.OverlayView</a></h2>
 
-<p>オーバーレイビュー(<a href="http://code.google.com/intl/en/apis/maps/documentation/javascript/reference.html#OverlayView">google.maps.OverlayView</a>)を継承したクラス。 <br />
-このクラスをサブクラス化することで、独自のマーカー、情報ウィンドウを定義できます。</p>
+<p>
+OverlayView (<a href="http://code.google.com/intl/en/apis/maps/documentation/javascript/reference.html#OverlayView">google.maps.OverlayView</a>) inherited class.<br />
+An original marker and the information window can be defined by making this class a subclass.</p>
 
 <h3>Implements:</h3>
 
@@ -91,7 +92,7 @@
 
 <h2>Method: <a id="constructor">constructor</a></h2>
 
-<p>オーバーレイビューのコンストラクタ</p>
+<p>Constructor of overlay view</p>
 
 <h3>Syntax:</h3>
 
@@ -101,47 +102,47 @@
 <h3>Arguments:</h3>
 
 <ol>
-<li>options - (<em>mixed</em>) オーバーレイビューのオプション</li>
+<li>options - (<em>mixed</em>) Option of overlay view</li>
 </ol>
 
 <h3>Options:</h3>
 
 <ul>
-<li>map - (<em><a href="http://code.google.com/intl/en/apis/maps/documentation/javascript/reference.html#Map">Map</a></em>) オーバーレイビューを表示するMapオブジェクト</li>
-<li>zIndex - (<em>number</em>) オーバーレイビューの表示順序</li>
-<li>visible - (<em>boolean</em>) オーバーレイビューの表示状態</li>
-<li>active - (<em>boolean</em>) オーバーレイビューのアクティブ状態</li>
+<li>map - (<em><a href="http://code.google.com/intl/en/apis/maps/documentation/javascript/reference.html#Map">Map</a></em>) Map object that displays overlay view</li>
+<li>zIndex - (<em>number</em>) The order of displaying overlay view</li>
+<li>visible - (<em>boolean</em>) State of display of overlay view</li>
+<li>active - (<em>boolean</em>) Active state of overlay view</li>
 </ul>
 
 <h2>Method: <a id="_init">_init</a></h2>
 
-<p>オーバーレイビューを初期化する処理を定義します。 <br />
-このメソッドをオーバーライドして、独自の初期化処理を実装できます。 <br />
-このメソッドはオーバーレイビューのインスタンス生成時に実行されます。</p>
+<p>Processing to initialize the overlay view is defined.<br />
+Original initialization can be mounted by doing this method in override.<br />
+When the instance of the overlay view is generated, this method is executed.</p>
 
 <h2>Method: <a id="_setup">_setup</a></h2>
 
-<p>オーバーレイビューの構造を定義します。 <br />
-引数のオーバーレイビューを格納するコンテナ要素に整形した文書構造を格納します。 <br />
-このメソッドはオーバーレイビューをマップに配置する前に実行されます。 <br />
-このメソッドをオーバーライドして、独自構造のオーバーレイビューを定義できます。</p>
+<p>The structure of the overlay view is defined. <br />
+The document structure on which it undergoes plastic operation to the container element that stores the overlay view of the argument is stored.<br />
+This method is executed before the overlay view is arranged in the map.<br />
+The overlay view of an original structure can be defined by doing this method in override.</p>
 
 <h3>Arguments:</h3>
 
 <ol>
-<li>container - (<em>element</em>) オーバーレイビューを格納するコンテナ要素</li>
+<li>container - (<em>element</em>) Container element that stores overlay view</li>
 </ol>
 
 <h2>Method: <a id="_setupListeners">_setupListeners</a></h2>
 
-<p>オーバーレイビューのイベントリスナーを初期設定します。 <br />
-このメソッドはオーバーレイビューをマップに配置する前に実行されます。 <br />
-このメソッドをオーバーライドして、初期時のイベントリスナー指定することができます。</p>
+<p>The event listener of the overlay view is initialized. <br />
+This method is executed before the overlay view is arranged in the map.<br />
+The event listener of initial can be specified by doing this method in override.</p>
 
 <h2>Method: <a id="draw">draw</a></h2>
 
-<p>オーバーレイビューオブジェクトを描画します。 <br />
-このメソッドは抽象的なメソッドですので、サブクラス化して具体的な処理を実装してください。</p>
+<p>It draws in the overlay view object. <br />
+It draws in the overlay view object.</p>
 
 <h3>Syntax:</h3>
 
@@ -150,7 +151,7 @@
 
 <h2>Method: <a id="getVisible">getVisible</a></h2>
 
-<p>オーバーレイビューの表示状態を取得します。</p>
+<p>The display of the overlay view is acquired.</p>
 
 <h3>Syntax:</h3>
 
@@ -159,11 +160,11 @@
 
 <h3>Returns:</h3>
 
-<p>(<em>boolean</em>) 現在の状態</p>
+<p>(<em>boolean</em>) Existing state of things</p>
 
 <h2>Method: <a id="setVisible">setVisible</a></h2>
 
-<p>オーバーレイビューの表示状態を変更します。</p>
+<p>The display of the overlay view is changed.</p>
 
 <h3>Syntax:</h3>
 
@@ -173,16 +174,16 @@
 <h3>Arguments:</h3>
 
 <ol>
-<li>value - (<em>boolean</em>) trueを指定すると表示、falseを指定すると非表示になります。 <br /></li>
+<li>value - (<em>boolean</em>) If it is displayed that true is specified, and specifies false, it becomes non-display.</li>
 </ol>
 
 <h3>Returns:</h3>
 
-<p>(<em>object</em>) オーバーレイビュー</p>
+<p>(<em>object</em>) overlay view</p>
 
 <h2>Method: <a id="isAdded">isAdded</a></h2>
 
-<p>オーバーレイビューがマップに配置されているか調べます。</p>
+<p>Whether the overlay view is arranged in the map is examined.</p>
 
 <h3>Syntax:</h3>
 
@@ -193,11 +194,11 @@
 
 <h3>Returns:</h3>
 
-<p>(<em>boolean</em>) マップに配置されている場合はtrue、まだの場合はfalseを返します。</p>
+<p>(<em>boolean</em>) False is returned when it is not true so when arranged in the map.</p>
 
 <h2>Method: <a id="isVisible">isVisible</a></h2>
 
-<p>オーバーレイビューの表示状態を調べます。</p>
+<p>The display of the overlay view is examined.</p>
 
 <h3>Syntax:</h3>
 
@@ -208,11 +209,11 @@
 
 <h3>Returns:</h3>
 
-<p>(<em>boolean</em>) 表示中の場合はtrue、非表示の場合はfalseを返します。</p>
+<p>(<em>boolean</em>) False is returned at true and non-display when displaying it.</p>
 
 <h2>Method: <a id="isActive">isActive</a></h2>
 
-<p>オーバーレイビューの状態を調べます。</p>
+<p>Active of the overlay view is examined.</p>
 
 <h3>Syntax:</h3>
 
@@ -223,12 +224,12 @@
 
 <h3>Returns:</h3>
 
-<p>(<em>boolean</em>) アクティブの場合はtrue、非アクティブの場合はfalseを返します。</p>
+<p>(<em>boolean</em>) False is returned true and actively non-in case of actively.</p>
 
 <h2>Method: <a id="setActive">setActive</a></h2>
 
-<p>オーバーレイビューのアクティブ状態を変更します。 <br />
-このメソッドは抽象的なメソッドですので、サブクラス化して具体的な処理を実装してください。</p>
+<p>Active of the overlay view is changed. <br />
+Please make to the subclass and mount concrete processing because this method is an abstract method.</p>
 
 <h3>Syntax:</h3>
 
@@ -238,7 +239,7 @@
 <h3>Arguments:</h3>
 
 <ol>
-<li>value - (<em>boolean</em>) trueを指定するとアクティブ状態、falseを指定すると非アクティブになります。 <br /></li>
+<li>value - (<em>boolean</em>) If true is specified, it becomes active.</li>
 </ol>
 
 
