@@ -101,9 +101,9 @@
 
 <h2 class="h1">Class: <a id='mmap.marker'>MMap.Marker</a></h2>
 
-<p>HTMLコンテンツを表示させるマーカー。 <br />
-マーカーに対して、HTMLコンテンツを表示させることができます。 <br />
-情報ウィンドウを使用するまでもない場合、こちらを使用することをお勧めします。</p>
+<p>Marker who displays HTML contents. <br />
+HTML contents can be displayed to the marker.<br />
+We will recommend here to be used when the information window need not be used.</p>
 
 <h3>Extends:</h3>
 
@@ -111,7 +111,7 @@
 
 <h2>Method: <a id='constructor'>constructor</a></h2>
 
-<p>マーカーのコンストラクタ</p>
+<p>Constructor of marker</p>
 
 <h3>Syntax:</h3>
 
@@ -121,37 +121,37 @@
 <h3>Arguments:</h3>
 
 <ol>
-<li>options - (<em>mixed</em>) マーカーのオプション</li>
+<li>options - (<em>mixed</em>) Option of marker</li>
 </ol>
 
 <h3>Options:</h3>
 
 <ul>
-<li>map - (<em><a href="http://code.google.com/intl/en/apis/maps/documentation/javascript/reference.html#Map">Map</a></em>) オーバーレイビューを表示するMapオブジェクト</li>
-<li>className - (<em>string</em>) マーカーに適用するスタイル(CSSのクラス名)</li>
-<li>title - (<em>string</em>) マーカーのタイトルに設定する内容</li>
-<li>content - (<em>string|element</em>) マーカーに表示する内容</li>
-<li>position - (<a href="http://code.google.com/intl/eu/apis/maps/documentation/javascript/reference.html#LatLng"><em>LatLng</em></a>) マーカーの座標位置</li>
-<li>zIndex - (<em>number</em>) マーカーの表示順序</li>
-<li>visible - (<em>boolean</em>) マーカーの表示状態</li>
-<li>active - (<em>boolean</em>) マーカーのアクティブ状態</li>
-<li>onClick - (<em>function</em>) マーカーをクリックした時に発生します。</li>
-<li>onDblClick - (<em>function</em>) マーカーをダブルクリックした時に発生します。</li>
-<li>onMouseOver - (<em>function</em>) マーカーのマウスオーバー時に発生します。</li>
-<li>onMouseOut - (<em>function</em>) マーカーのマウスアウト時に発生します。</li>
-<li>onMouseUp - (<em>function</em>) マーカーのマウスアップ時に発生します。</li>
-<li>onMouseDown - (<em>function</em>) マーカーのマウスダウン時に発生します。</li>
-<li>onTitleChanged - (<em>function</em>) マーカーのタイトルが変わった時に発生します。</li>
-<li>onContentChanged - (<em>function</em>) マーカーの内容が変わった時に発生します。</li>
-<li>onVisibleChanged - (<em>function</em>) マーカーの表示状態が変わった場合に発生します。</li>
-<li>onZIndexChanged - (<em>function</em>) マーカーの表示順序が変わった場合に発生します。</li>
-<li>onPositionChanged - (<em>function</em>) マーカーの表示座標が変わった場合に発生します。</li>
-<li>onActive - (<em>function</em>) マーカーの表示座標が変わった場合に発生します。</li>
+<li>map - (<em><a href="http://code.google.com/intl/en/apis/maps/documentation/javascript/reference.html#Map">Map</a></em>) Map object that displays overlay view</li>
+<li>className - (<em>string</em>) Style applied to marker (class name of CSS)</li>
+<li>title - (<em>string</em>) Content set to title of marker</li>
+<li>content - (<em>string|element</em>) Content displayed in marker</li>
+<li>position - (<a href="http://code.google.com/intl/eu/apis/maps/documentation/javascript/reference.html#LatLng"><em>LatLng</em></a>) Coordinates position of marker</li>
+<li>zIndex - (<em>number</em>) The order of displaying marker</li>
+<li>visible - (<em>boolean</em>) State of display of marker</li>
+<li>active - (<em>boolean</em>) Active state of marker</li>
+<li>onClick - (<em>function</em>) When the marker is clicked, it is generated.</li>
+<li>onDblClick - (<em>function</em>) When the marker is double-clicked, it is generated.</li>
+<li>onMouseOver - (<em>function</em>) It is generated at mouse over time of the marker. </li>
+<li>onMouseOut - (<em>function</em>) It is generated at the mouse out of the marker.</li>
+<li>onMouseUp - (<em>function</em>) When the mouse of the marker improves, it is generated.</li>
+<li>onMouseDown - (<em>function</em>) When the mouse of the marker is downed, it is generated.</li>
+<li>onTitleChanged - (<em>function</em>) When the title of the marker changes, it is generated. </li>
+<li>onContentChanged - (<em>function</em>) When the content of the marker changes, it is generated. </li>
+<li>onVisibleChanged - (<em>function</em>) When the marker's display changes, it is generated.</li>
+<li>onZIndexChanged - (<em>function</em>) When the order of displaying the marker changes, it is generated.</li>
+<li>onPositionChanged - (<em>function</em>) When the display coordinates of the marker are changed, it is generated.</li>
+<li>onActive - (<em>function</em>) When the display coordinates of the marker are changed, it is generated.</li>
 </ul>
 
 <h2>Method: <a id='getTitle'>getTitle</a></h2>
 
-<p>マーカーのタイトルを取得します。</p>
+<p>The title of the marker is acquired.</p>
 
 <h3>Syntax:</h3>
 
@@ -160,11 +160,11 @@
 
 <h3>Returns:</h3>
 
-<p>(<em>string</em>) マーカーのタイトルに設定されている内容</p>
+<p>(<em>string</em>) Content set to title of marker</p>
 
 <h2>Method: <a id='getContent'>getContent</a></h2>
 
-<p>マーカーの内容を取得します。</p>
+<p>The content of the marker is acquired.</p>
 
 <h3>Syntax:</h3>
 
@@ -173,11 +173,11 @@
 
 <h3>Returns:</h3>
 
-<p>(<em>string</em>) マーカーに設定されている内容</p>
+<p>(<em>string</em>) Content set to marker</p>
 
 <h2>Method: <a id='setTitle'>setTitle</a></h2>
 
-<p>マーカーのタイトルに指定した内容を設定します。</p>
+<p>The content specified for the title of the marker is set.</p>
 
 <h3>Syntax:</h3>
 
@@ -188,7 +188,7 @@ marker.setTitle(title);
 <h3>Arguments:</h3>
 
 <ol>
-<li>title - (<em>string</em>) マーカーのタイトルに設定する内容</li>
+<li>title - (<em>string</em>) Content set to title of marker</li>
 </ol>
 
 <h3>Returns:</h3>
@@ -197,7 +197,7 @@ marker.setTitle(title);
 
 <h2>Method: <a id='setContent'>setContent</a></h2>
 
-<p>マーカーに指定した内容を表示させます。</p>
+<p>The content specified for the marker is displayed.</p>
 
 <h3>Syntax:</h3>
 
@@ -208,7 +208,7 @@ marker.setContent(content);
 <h3>Arguments:</h3>
 
 <ol>
-<li>content - (<em>string|element</em>) マーカーに表示させる内容</li>
+<li>content - (<em>string|element</em>) Content to display in marker</li>
 </ol>
 
 <h3>Returns:</h3>
