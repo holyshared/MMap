@@ -97,7 +97,7 @@
 
 <h2 class="h1">Class: <a id='mmap.window'>MMap.Window</a></h2>
 
-<p>HTMLコンテンツを表示するウィンドウ</p>
+<p>Window where HTML contents are displayed</p>
 
 <h3>Extends:</h3>
 
@@ -105,7 +105,7 @@
 
 <h2>Method: <a id='constructor'>constructor</a></h2>
 
-<p>ウィンドウのコンストラクタ</p>
+<p>Constructor in window</p>
 
 <h3>Syntax:</h3>
 
@@ -115,31 +115,31 @@
 <h3>Arguments:</h3>
 
 <ol>
-<li>options - (<em>mixed</em>) ウィンドウのオプション</li>
+<li>options - (<em>mixed</em>) Option in window</li>
 </ol>
 
 <h3>Options:</h3>
 
 <ul>
-<li>className - (<em>string</em>) ウィンドウに適用するスタイル(CSSのクラス名)</li>
-<li>title - (<em>string</em>) ウィンドウのタイトルに設定する内容</li>
-<li>content - (<em>string|element</em>) ウィンドウに表示する内容</li>
-<li>position - (<a href="http://code.google.com/intl/eu/apis/maps/documentation/javascript/reference.html#LatLng"><em>LatLng</em></a>) ウィンドウの座標位置</li>
-<li>zIndex - (<em>number</em>) ウィンドウの表示順序</li>
-<li>visible - (<em>boolean</em>) ウィンドウの表示状態</li>
-<li>active - (<em>boolean</em>) ウィンドウのアクティブ状態</li>
-<li>onOpen - (<em>function</em>) ウィンドウを開いた時に発生します。</li>
-<li>onClose - (<em>function</em>) ウィンドウを閉じた時に発生します。</li>
-<li>onVisibleChanged - (<em>function</em>) ウィンドウの表示状態が変わった場合に発生します。</li>
-<li>onZIndexChanged - (<em>function</em>) ウィンドウの表示順序が変わった場合に発生します。</li>
-<li>onPositionChanged - (<em>function</em>) ウィンドウの表示座標が変わった場合に発生します。</li>
-<li>onTitleChanged - (<em>function</em>) ウィンドウのタイトルが変わった場合に発生します。</li>
-<li>onContentChanged - (<em>function</em>) ウィンドウの内容が変わった場合に発生します。</li>
+<li>className - (<em>string</em>) Style applied to window (class name of CSS)</li>
+<li>title - (<em>string</em>) Content set to title of window</li>
+<li>content - (<em>string|element</em>) Content displayed in window</li>
+<li>position - (<a href="http://code.google.com/intl/eu/apis/maps/documentation/javascript/reference.html#LatLng"><em>LatLng</em></a>) Coordinates position of window</li>
+<li>zIndex - (<em>number</em>) The order of displaying window</li>
+<li>visible - (<em>boolean</em>) State of display of window</li>
+<li>active - (<em>boolean</em>) Active state of window</li>
+<li>onOpen - (<em>function</em>) When the window is opened, it is generated.</li>
+<li>onClose - (<em>function</em>) When the window is shut, it is generated.</li>
+<li>onVisibleChanged - (<em>function</em>) When the display of the window changes, it is generated.</li>
+<li>onZIndexChanged - (<em>function</em>) When the order of displaying the window changes, it is generated.</li>
+<li>onPositionChanged - (<em>function</em>) When the display coordinates of the window are changed, it is generated.</li>
+<li>onTitleChanged - (<em>function</em>) When the title of the window changes, it is generated.</li>
+<li>onContentChanged - (<em>function</em>) When the content of the window changes, it is generated.</li>
 </ul>
 
 <h2>Method: <a id='draw'>draw</a></h2>
 
-<p>ウィンドウを再描画します。</p>
+<p>It draws in the window again.</p>
 
 <h3>Syntax:</h3>
 
@@ -148,7 +148,7 @@
 
 <h2>Method: <a id='refresh'>refresh</a></h2>
 
-<p>ウィンドウを表示を更新します。</p>
+<p>The window is updated and the display is updated.</p>
 
 <h3>Syntax:</h3>
 
@@ -157,7 +157,7 @@
 
 <h2>Method: <a id='open'>open</a></h2>
 
-<p>ウィンドウを開きます。</p>
+<p>The window is opened.</p>
 
 <h3>Syntax:</h3>
 
@@ -167,13 +167,13 @@
 <h3>Arguments:</h3>
 
 <ol>
-<li>map - (<em><a href="http://code.google.com/intl/en/apis/maps/documentation/javascript/reference.html#Map">Map</a></em>) ウィンドウを表示する地図</li>
-<li>anchor - (<em>marker</em>) マーカーオブジェクト</li>
+<li>map - (<em><a href="http://code.google.com/intl/en/apis/maps/documentation/javascript/reference.html#Map">Map</a></em>) Map where window is displayed</li>
+<li>anchor - (<em>marker</em>) Marker object</li>
 </ol>
 
 <h2>Method: <a id='close'>close</a></h2>
 
-<p>ウィンドウを閉じます。</p>
+<p>The window is shut.</p>
 
 <h3>Syntax:</h3>
 
@@ -182,7 +182,7 @@
 
 <h2>Method: <a id='isOpen'>isOpen</a></h2>
 
-<p>ウィンドウのオープン状態を取得します。</p>
+<p>The opening of the window is acquired.</p>
 
 <h3>Syntax:</h3>
 
@@ -191,11 +191,11 @@
 
 <h3>Returns:</h3>
 
-<p>(<em>boolean</em>) trueの場合、ウィンドウを開いています。</p>
+<p>(<em>boolean</em>) The window is opened for true.</p>
 
 <h2>Method: <a id='getZIndex'>getZIndex</a></h2>
 
-<p>ウィンドウの表示順を取得します。</p>
+<p>The order of the display of the window is acquired.</p>
 
 <h3>Syntax:</h3>
 
@@ -204,11 +204,11 @@
 
 <h3>Returns:</h3>
 
-<p>(<em>number</em>) 表示順</p>
+<p>(<em>number</em>) The order of display</p>
 
 <h2>Method: <a id='setZIndex'>setZIndex</a></h2>
 
-<p>ウィンドウの表示順を設定します。</p>
+<p>The order of the display of the window is set.</p>
 
 <h3>Syntax:</h3>
 
@@ -218,16 +218,16 @@
 <h3>Arguments:</h3>
 
 <ol>
-<li>index - (<em>number</em>) 表示順</li>
+<li>index - (<em>number</em>) The order of display</li>
 </ol>
 
 <h3>Returns:</h3>
 
-<p>(<em>window</em>) ウィンドウオブジェクト</p>
+<p>(<em>window</em>) Window object(MMap.Window)</p>
 
 <h2>Method: <a id='getPosition'>getPosition</a></h2>
 
-<p>ウィンドウを表示している座標を取得します。</p>
+<p>Coordinates to which the window is displayed are acquired.</p>
 
 <h3>Syntax:</h3>
 
@@ -236,11 +236,11 @@
 
 <h3>Returns:</h3>
 
-<p>(<em><a href="http://code.google.com/intl/eu/apis/maps/documentation/javascript/reference.html#LatLng">LatLng</a></em>) 座標</p>
+<p>(<em><a href="http://code.google.com/intl/eu/apis/maps/documentation/javascript/reference.html#LatLng">LatLng</a></em>) Coordinates</p>
 
 <h2>Method: <a id='setPosition'>setPosition</a></h2>
 
-<p>ウィンドウを表示する座標を設定します。</p>
+<p>Coordinates that display the window are set.</p>
 
 <h3>Syntax:</h3>
 
@@ -250,16 +250,16 @@
 <h3>Arguments:</h3>
 
 <ol>
-<li>position - (<em><a href="http://code.google.com/intl/eu/apis/maps/documentation/javascript/reference.html#LatLng">LatLng</a></em>) 表示する座標</li>
+<li>position - (<em><a href="http://code.google.com/intl/eu/apis/maps/documentation/javascript/reference.html#LatLng">LatLng</a></em>) Displayed coordinates</li>
 </ol>
 
 <h3>Returns:</h3>
 
-<p>(<em>window</em>) ウィンドウオブジェクト</p>
+<p>(<em>window</em>) Window object(MMap.Window)</p>
 
 <h2>Method: <a id='getTitle'>getTitle</a></h2>
 
-<p>ウィンドウに表示するタイトルを取得します。</p>
+<p>The title displayed in the window is acquired.</p>
 
 <h3>Syntax:</h3>
 
@@ -268,11 +268,11 @@
 
 <h3>Returns:</h3>
 
-<p>(<em>string</em>) タイトル</p>
+<p>(<em>string</em>) Title</p>
 
 <h2>Method: <a id='setTitle'>setTitle</a></h2>
 
-<p>ウィンドウに表示するタイトルを指定します。</p>
+<p>The title displayed in the window is specified.</p>
 
 <h3>Syntax:</h3>
 
@@ -282,16 +282,16 @@
 <h3>Arguments:</h3>
 
 <ol>
-<li>title - (<em>string</em>) ウィンドウのタイトル</li>
+<li>title - (<em>string</em>) Title of window</li>
 </ol>
 
 <h3>Returns:</h3>
 
-<p>(<em>window</em>) ウィンドウオブジェクト</p>
+<p>(<em>window</em>) Window object(MMap.Window)</p>
 
 <h2>Method: <a id='getContent'>getContent</a></h2>
 
-<p>指定されているコンテンツを取得します。</p>
+<p>Specified contents are acquired.</p>
 
 <h3>Syntax:</h3>
 
@@ -300,11 +300,11 @@
 
 <h3>Returns:</h3>
 
-<p>(<em>string</em>) コンテンツ</p>
+<p>(<em>string</em>) Contents</p>
 
 <h2>Method: <a id='setContent'>setContent</a></h2>
 
-<p>ウィンドウに指定したコンテンツを表示させます。</p>
+<p>Contents specified for the window are displayed. </p>
 
 <h3>Syntax:</h3>
 
@@ -314,16 +314,16 @@
 <h3>Arguments:</h3>
 
 <ol>
-<li>content - (<em>string|element</em>) ウィンドウに表示するコンテンツ</li>
+<li>content - (<em>string|element</em>) Contents displayed in window</li>
 </ol>
 
 <h3>Returns:</h3>
 
-<p>(<em>window</em>) ウィンドウオブジェクト</p>
+<p>(<em>window</em>) Window object(MMap.Window)</p>
 
 <h2>Method: <a id='setActive'>setActive</a></h2>
 
-<p>ウィンドウをアクティブ化します。</p>
+<p>The window is made active.</p>
 
 <h3>Syntax:</h3>
 
@@ -333,12 +333,12 @@
 <h3>Arguments:</h3>
 
 <ol>
-<li>value - (<em>boolean</em>) trueを指定するとウインドウをアクティブ化します。</li>
+<li>value - (<em>boolean</em>) When true is specified, the window is made active.</li>
 </ol>
 
 <h3>Returns:</h3>
 
-<p>(<em>window</em>) ウィンドウオブジェクト</p>
+<p>(<em>window</em>) Window object(MMap.Window)</p>
 
 
 

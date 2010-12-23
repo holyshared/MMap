@@ -33,7 +33,7 @@ Method: <a id='constructor'>constructor</a>
 
 ### Options:
 
-* map - (*<a href="http://code.google.com/intl/en/apis/maps/documentation/javascript/reference.html#Map">Map</a>*) オーバーレイビューを表示するMapオブジェクト
+* map - (*<a href="http://code.google.com/intl/en/apis/maps/documentation/javascript/reference.html#Map">Map</a>*) Mapオブジェクト
 * markers - (*array*) 管理するマーカー
 
 

@@ -24,7 +24,7 @@ Method: <a id='constructor'>constructor</a>
 
 ### Options:
 
-* map - (*<a href="http://code.google.com/intl/en/apis/maps/documentation/javascript/reference.html#Map">Map</a>*) オーバーレイビューを表示するMapオブジェクト
+* map - (*<a href="http://code.google.com/intl/en/apis/maps/documentation/javascript/reference.html#Map">Map</a>*) マーカーを表示するMapオブジェクト
 * className - (*string*) マーカーに適用するスタイル(CSSのクラス名)
 * title - (*string*) マーカーのタイトルに設定する内容
 * image - (*string*) マーカーに表示する画像のURL

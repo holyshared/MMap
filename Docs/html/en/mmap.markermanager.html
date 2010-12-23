@@ -83,8 +83,8 @@
 
 <h2 class="h1">Class: <a id='mmap.markermanager'>MMap.MarkerManager</a></h2>
 
-<p>複数のマーカーを管理します。<br />
-指定した範囲のマーカーの表示、アクティブ化が可能です。</p>
+<p>Two or more markers are managed.<br />
+The marker within the specified range can be displayed, and be made active.</p>
 
 <h3>Implements:</h3>
 
@@ -96,7 +96,7 @@
 
 <h2>Method: <a id='constructor'>constructor</a></h2>
 
-<p>マーカーマネージャのコンストラクタ</p>
+<p>Marker manager's constructor</p>
 
 <h3>Syntax:</h3>
 
@@ -106,19 +106,19 @@
 <h3>Arguments:</h3>
 
 <ol>
-<li>options - (<em>mixed</em>) マーカーマネージャのオプション</li>
+<li>options - (<em>mixed</em>) Marker manager's option</li>
 </ol>
 
 <h3>Options:</h3>
 
 <ul>
-<li>map - (<em><a href="http://code.google.com/intl/en/apis/maps/documentation/javascript/reference.html#Map">Map</a></em>) オーバーレイビューを表示するMapオブジェクト</li>
-<li>markers - (<em>array</em>) 管理するマーカー</li>
+<li>map - (<em><a href="http://code.google.com/intl/en/apis/maps/documentation/javascript/reference.html#Map">Map</a></em>) Map object</li>
+<li>markers - (<em>array</em>) Managed marker</li>
 </ul>
 
 <h2>Method: <a id='setMap'>setMap</a></h2>
 
-<p>指定したマップに管理しているマーカーをすべて配置します。</p>
+<p>All managed markers are arranged in the specified map.</p>
 
 <h3>Syntax:</h3>
 
@@ -128,12 +128,12 @@
 <h3>Arguments:</h3>
 
 <ol>
-<li>map - (<em><a href="http://code.google.com/intl/en/apis/maps/documentation/javascript/reference.html#Map">Map</a></em>)　マップオブジェクト</li>
+<li>map - (<em><a href="http://code.google.com/intl/en/apis/maps/documentation/javascript/reference.html#Map">Map</a></em>)　Map object</li>
 </ol>
 
 <h2>Method: <a id='getMap'>getMap</a></h2>
 
-<p>指定されているマップオブジェクトを返します。</p>
+<p>The specified map object is returned.</p>
 
 <h3>Syntax:</h3>
 
@@ -142,11 +142,11 @@
 
 <h3>Returns:</h3>
 
-<p>(<em><a href="http://code.google.com/intl/en/apis/maps/documentation/javascript/reference.html#Map">Map</a></em>)　マップオブジェクト</p>
+<p>(<em><a href="http://code.google.com/intl/en/apis/maps/documentation/javascript/reference.html#Map">Map</a></em>)　Map object</p>
 
 <h2>Method: <a id='addMarker'>addMarker</a></h2>
 
-<p>指定したマーカーを追加します。</p>
+<p>The specified marker is added.</p>
 
 <h3>Syntax:</h3>
 
@@ -156,12 +156,12 @@
 <h3>Arguments:</h3>
 
 <ol>
-<li>marker - (<em>marker</em>) 追加するマーカー</li>
+<li>marker - (<em>marker</em>) Added marker</li>
 </ol>
 
 <h2>Method: <a id='addMarkers'>addMarkers</a></h2>
 
-<p>指定した複数のマーカーを追加します。</p>
+<p>Two or more specified markers are added.</p>
 
 <h3>Syntax:</h3>
 
@@ -172,12 +172,12 @@ manager.addMarkers(markers);
 <h3>Arguments:</h3>
 
 <ol>
-<li>markers - (<em>array</em>) 追加するマーカー</li>
+<li>markers - (<em>array</em>) Added marker</li>
 </ol>
 
 <h2>Method: <a id='removeMarker'>removeMarker</a></h2>
 
-<p>指定されたマーカーを削除します。</p>
+<p>The specified marker is deleted.</p>
 
 <h3>Syntax:</h3>
 
@@ -187,12 +187,12 @@ manager.addMarkers(markers);
 <h3>Arguments:</h3>
 
 <ol>
-<li>marker - (<em>marker</em>) 削除するマーカーオブジェクト</li>
+<li>marker - (<em>marker</em>) Deleted marker object</li>
 </ol>
 
 <h2>Method: <a id='removeMarkers'>removeMarkers</a></h2>
 
-<p>指定された複数のマーカーを削除します。</p>
+<p>Two or more specified markers are deleted.</p>
 
 <h3>Syntax:</h3>
 
@@ -205,12 +205,12 @@ manager.removeMarkers(markers);
 <h3>Arguments:</h3>
 
 <ol>
-<li>markers - (<em>mixed</em>) 削除するマーカー</li>
+<li>markers - (<em>mixed</em>) Deleted marker</li>
 </ol>
 
 <h2>Method: <a id='getContainer'>getContainer</a></h2>
 
-<p>マーカーを格納してるコンテナを取得します。</p>
+<p>The container that stores the marker is acquired.</p>
 
 <h3>Syntax:</h3>
 
@@ -219,11 +219,11 @@ manager.removeMarkers(markers);
 
 <h3>Returns:</h3>
 
-<p>(<em>container</em>) コンテナオブジェクト</p>
+<p>(<em>container</em>) Container object</p>
 
 <h2>Method: <a id='getMarkers'>getMarkers</a></h2>
 
-<p>管理しているマーカーを取得します。</p>
+<p>The managed marker is acquired.</p>
 
 <h3>Syntax:</h3>
 
@@ -232,11 +232,11 @@ manager.removeMarkers(markers);
 
 <h3>Returns:</h3>
 
-<p>(<em>array</em>) 管理しているマーカー</p>
+<p>(<em>array</em>) Managed marker</p>
 
 <h2>Method: <a id='setMarkers'>setMarkers</a></h2>
 
-<p>管理するマーカーを設定します。</p>
+<p>The managed marker is set.</p>
 
 <h3>Syntax:</h3>
 
@@ -246,12 +246,12 @@ manager.removeMarkers(markers);
 <h3>Arguments:</h3>
 
 <ol>
-<li>markers - (<em>array</em>) 管理するマーカー</li>
+<li>markers - (<em>array</em>) Managed marker</li>
 </ol>
 
 <h2>Method: <a id='getState'>getState</a></h2>
 
-<p>所持しているマーカーの状態を取得します。</p>
+<p>The state of the had marker is acquired.</p>
 
 <h3>Syntax:</h3>
 
@@ -260,11 +260,11 @@ manager.removeMarkers(markers);
 
 <h3>Returns:</h3>
 
-<p>(<em>object</em>) マーカーの状態</p>
+<p>(<em>object</em>) State of marker</p>
 
 <h2>Method: <a id='hasDisplayMarkers'>hasDisplayMarkers</a></h2>
 
-<p>表示しているマーカーがあるかチェックします。</p>
+<p>It is checked whether there is a displayed marker.</p>
 
 <h3>Syntax:</h3>
 
@@ -273,11 +273,11 @@ manager.removeMarkers(markers);
 
 <h3>Returns:</h3>
 
-<p>(<em>boolean</em>) 表示しているマーカーがある場合はtrueを返します。</p>
+<p>(<em>boolean</em>) True is returned when there is a displayed marker.</p>
 
 <h2>Method: <a id='hasMarker'>hasMarker</a></h2>
 
-<p>マーカーを所持しているかチェックします。</p>
+<p>Whether it has the marker is checked.</p>
 
 <h3>Syntax:</h3>
 
@@ -287,17 +287,17 @@ manager.removeMarkers(markers);
 <h3>Arguments:</h3>
 
 <ol>
-<li>marker - (<em>marker</em>) マーカーオブジェクト</li>
+<li>marker - (<em>marker</em>) Marker object</li>
 </ol>
 
 <h3>Returns:</h3>
 
-<p>(<em>boolean</em>) マーカーを所持している場合はtrueを返します。</p>
+<p>(<em>boolean</em>) With the marker, true is returned.</p>
 
 <h2>Method: <a id='active'>active</a></h2>
 
-<p>指定された範囲内のマーカーや単体のマーカーをアクティブにします。 <br />
-引数を指定しない場合はすべてのマーカーをアクティブにします。</p>
+<p>The marker within the specified range and the marker of the unit are activated. <br />
+When the argument is not specified, all markers are activated.</p>
 
 <h3>Syntax:</h3>
 
@@ -315,8 +315,8 @@ manager.active(bounds);
 
 <h2>Method: <a id='visible'>visible</a></h2>
 
-<p>指定された範囲内のマーカーや単体のマーカーを表示します。 <br />
-引数を指定しない場合はすべてのマーカーを表示します。</p>
+<p>The marker within the specified range and the marker of the unit are displayed. <br />
+When the argument is not specified, all markers are displayed.</p>
 
 <h3>Syntax:</h3>
 

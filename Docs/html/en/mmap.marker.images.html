@@ -107,7 +107,7 @@
 
 <h2 class="h1">Class: <a id='mmap.marker.images'>MMap.Marker.Images</a></h2>
 
-<p>画像をスライドさせて表示するマーカー。</p>
+<p>Marker who does image in slide and displays it.</p>
 
 <h3>Extends:</h3>
 
@@ -123,42 +123,42 @@
 <h3>Arguments:</h3>
 
 <ol>
-<li>options - (<em>mixed</em>) マーカーのオプション</li>
+<li>options - (<em>mixed</em>) Option of marker</li>
 </ol>
 
 <h3>Options:</h3>
 
 <ul>
-<li>map - (<em><a href="http://code.google.com/intl/en/apis/maps/documentation/javascript/reference.html#Map">Map</a></em>) オーバーレイビューを表示するMapオブジェクト</li>
-<li>className - (<em>string</em>) マーカーに適用するスタイル(CSSのクラス名)</li>
-<li>images - (<em>array</em>) <a href='#images'>マーカーに表示する画像情報</a></li>
-<li>defaultIndex - (<em>number</em>) 初期時に表示する画像の番号</li>
-<li>interval - (<em>number</em>) 画像をスライドさせる感覚</li>
-<li>duration - (<em>number</em>) アニメーションの持続時間</li>
-<li>autoplay - (<em>boolean</em>) trueを設定した場合、自動で画像をスライドします。デファルトはtrueです。</li>
-<li>position - (<a href="http://code.google.com/intl/eu/apis/maps/documentation/javascript/reference.html#LatLng"><em>LatLng</em></a>) マーカーの座標位置</li>
-<li>zIndex - (<em>number</em>) マーカーの表示順序</li>
-<li>visible - (<em>boolean</em>) マーカーの表示状態</li>
-<li>active - (<em>boolean</em>) マーカーのアクティブ状態</li>
-<li>onClick - (<em>function</em>) マーカーをクリックした時に発生します。</li>
-<li>onDblClick - (<em>function</em>) マーカーをダブルクリックした時に発生します。</li>
-<li>onMouseOver - (<em>function</em>) マーカーのマウスオーバー時に発生します。</li>
-<li>onMouseOut - (<em>function</em>) マーカーのマウスアウト時に発生します。</li>
-<li>onMouseUp - (<em>function</em>) マーカーのマウスアップ時に発生します。</li>
-<li>onMouseDown - (<em>function</em>) マーカーのマウスダウン時に発生します。</li>
-<li>onVisibleChanged - (<em>function</em>) マーカーの表示状態が変わった場合に発生します。</li>
-<li>onZIndexChanged - (<em>function</em>) マーカーの表示順序が変わった場合に発生します。</li>
-<li>onPositionChanged - (<em>function</em>) マーカーの表示座標が変わった場合に発生します。</li>
-<li>onActive - (<em>function</em>) マーカーの表示座標が変わった場合に発生します。</li>
+<li>map - (<em><a href="http://code.google.com/intl/en/apis/maps/documentation/javascript/reference.html#Map">Map</a></em>) Map object that displays marker</li>
+<li>className - (<em>string</em>) Style applied to marker (class name of CSS)</li>
+<li>images - (<em>array</em>) <a href='#images'>Image information displayed in marker</a></li>
+<li>defaultIndex - (<em>number</em>) Number of image displayed when initial</li>
+<li>interval - (<em>number</em>) Sense to do image in slide</li>
+<li>duration - (<em>number</em>) Duration of animation</li>
+<li>autoplay - (<em>boolean</em>) When true is set, the slide does the image by the automatic operation. Default is true.</li>
+<li>position - (<a href="http://code.google.com/intl/eu/apis/maps/documentation/javascript/reference.html#LatLng"><em>LatLng</em></a>) Coordinates position of marker</li>
+<li>zIndex - (<em>number</em>) The order of displaying marker</li>
+<li>visible - (<em>boolean</em>) State of display of marker</li>
+<li>active - (<em>boolean</em>) Active state of marker</li>
+<li>onClick - (<em>function</em>) When the marker is clicked, it is generated.</li>
+<li>onDblClick - (<em>function</em>) When the marker is double-clicked, it is generated.</li>
+<li>onMouseOver - (<em>function</em>) It is generated at mouse over time of the marker.</li>
+<li>onMouseOut - (<em>function</em>) It is generated at the mouse out of the marker.</li>
+<li>onMouseUp - (<em>function</em>) When the mouse of the marker improves, it is generated.</li>
+<li>onMouseDown - (<em>function</em>) When the mouse of the marker is downed, it is generated.</li>
+<li>onVisibleChanged - (<em>function</em>) When the marker's display changes, it is generated.</li>
+<li>onZIndexChanged - (<em>function</em>) When the order of displaying the marker changes, it is generated.</li>
+<li>onPositionChanged - (<em>function</em>) When the display coordinates of the marker are changed, it is generated.</li>
+<li>onActive - (<em>function</em>) When the display coordinates of the marker are changed, it is generated.</li>
 </ul>
 
 <h3><a id='images'>images</a></h3></h3>
 
-<p>下記の情報を持つオブジェクトの配列</p>
+<p>Array of object with following information</p>
 
 <ul>
-<li>title - (<em>number</em>) 画像のタイトル</li>
-<li>image - (<em>boolean</em>) 画像のURL</li>
+<li>title - (<em>number</em>) Title of image</li>
+<li>image - (<em>boolean</em>) URL of image</li>
 <li>url - (<em>boolean</em>) URL</li>
 </ul>
 

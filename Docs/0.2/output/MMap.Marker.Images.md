@@ -23,13 +23,13 @@ Method: <a id='constructor'>constructor</a>
 
 ### Options:
 
-* map - (*<a href="http://code.google.com/intl/en/apis/maps/documentation/javascript/reference.html#Map">Map</a>*) オーバーレイビューを表示するMapオブジェクト
+* map - (*<a href="http://code.google.com/intl/en/apis/maps/documentation/javascript/reference.html#Map">Map</a>*) マーカーを表示するMapオブジェクト
 * className - (*string*) マーカーに適用するスタイル(CSSのクラス名)
 * images - (*array*) <a href='#images'>マーカーに表示する画像情報</a>
 * defaultIndex - (*number*) 初期時に表示する画像の番号
 * interval - (*number*) 画像をスライドさせる感覚
 * duration - (*number*) アニメーションの持続時間
-* autoplay - (*boolean*) trueを設定した場合、自動で画像をスライドします。デファルトはtrueです。
+* autoplay - (*boolean*) trueを設定した場合、自動で画像をスライドします。デフォルトはtrueです。
 * position - (<a href="http://code.google.com/intl/eu/apis/maps/documentation/javascript/reference.html#LatLng">*LatLng*</a>) マーカーの座標位置
 * zIndex - (*number*) マーカーの表示順序
 * visible - (*boolean*) マーカーの表示状態 
