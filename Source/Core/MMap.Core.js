@@ -2,7 +2,7 @@
 ---
 name: MMap.Core
 
-description: 
+description: Core module of MMap.
 
 license: MIT-style
 
