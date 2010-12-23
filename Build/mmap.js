@@ -370,6 +370,8 @@ requires:
   - MMap/MMap.Core
   - MMap/MMap.Utils
 
+provides: [MMap.OverlayView]
+
 ...
 */
 
