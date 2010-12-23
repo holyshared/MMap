@@ -2,8 +2,7 @@
 ---
 name: MMap.OverlayView
 
-description: Overlayview that can be treated like Mootools.
-  An original marker and the information window can be defined by making this class a subclass.
+description: Overlayview that can be treated like Mootools. An original marker and the information window can be defined by making this class a subclass.
 
 license: MIT-style
 
