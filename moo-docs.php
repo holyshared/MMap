@@ -88,8 +88,8 @@ foreach($mooClasses as $className => $mooClass) {
 }
 
 // Markdown Patterns
-$mdClass  = "Class: %s {#%s}\n";
-$mdMethod = "%s Method: %s {#%s:%s}\n";
+$mdClass  = "Class: <a id='%s'>%s</a>\n";
+$mdMethod = "Method: <a id='%s'>%s</a>\n";
 $mdH3     = "### %s:\n\n";
 $mdH4     = "#### %s:\n\n";
 $mdArg    = "%d. %s - (*%s*)\n";
@@ -100,9 +100,10 @@ $mdLink   = "[%s](%s)";
 
 foreach($mooClasses as $className => $mooClass) {
 	// Class Header
-	$mooHeader = sprintf($mdClass, $className, $className);
+	$className = str_replace('this.', 'this.', $className);
+	$mooHeader = sprintf($mdClass, strtolower($className), $className);
 	for ($i = strlen($mooHeader); $i > 1; $i--) {
-		$mooHeader .= '=';
+		$mooHeader .= '-';
 	}
 	$mooHeader .= "\n\n\n\n";
 	
@@ -132,9 +133,9 @@ foreach($mooClasses as $className => $mooClass) {
 			$mooSection = "\n";
 			// Build Method header (with "constructor" instead of "initialize")
 			if ($methodName == 'initialize') {
-				$mooSection .= sprintf($mdMethod, $className, 'constructor', $className, 'constructor');
+				$mooSection .= sprintf($mdMethod, 'constructor', 'constructor');
 			} else {
-				$mooSection .= sprintf($mdMethod, $className, $methodName, $className, $methodName);
+				$mooSection .= sprintf($mdMethod, $methodName, $methodName);
 			}
 			for ($i = strlen($mooSection); $i > 1; $i--) {
 				$mooSection .= '-';

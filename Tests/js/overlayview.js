@@ -73,21 +73,21 @@ window.addEvent("domready", function(){
 			logger.log('events', 'o1 - onActiveChanged');
 		}
 	});
-	logger.log('options', (o1.getZIndex() == 1000) ? 'zIndex option OK' : 'zIndex option NG' );
+//	logger.log('options', (o1.getZIndex() == 1000) ? 'zIndex option OK' : 'zIndex option NG' );
 	logger.log('options', (o1.getVisible() == false) ? 'visible option OK' : 'visible option NG');
 	logger.log('options', (o1.isActive() == false) ? 'active option OK' : 'active option NG');
 
 	o1.setVisible(true);
 	logger.log('methods', 'o1 - visible: ' + o1.getVisible());
 
-	o1.setZIndex(100);
-	logger.log('methods', 'o1 - z-index: ' + o1.getZIndex());
+//	o1.setZIndex(100);
+//	logger.log('methods', 'o1 - z-index: ' + o1.getZIndex());
 	logger.log('methods', 'o1 - get: ' + o1.get('position').lat() + ' ' + o1.get('position').lng());
 
-	o1.setActive(true);
+	o1.set('active', true);
 	logger.log('methods', 'o1 - active: ' + o1.isActive());
 
-	o1.setActive(false);
+	o1.set('active', false);
 	logger.log('methods', 'o1 - deactive: ' + o1.isActive());
 
 });

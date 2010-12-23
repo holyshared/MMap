@@ -2,8 +2,7 @@
 ---
 name: MMap.OverlayView
 
-description: Overlayview that can be treated like Mootools.
-An original marker and the information window can be defined by making this class a subclass.
+description: Overlayview that can be treated like Mootools. An original marker and the information window can be defined by making this class a subclass.
 
 license: MIT-style
 
@@ -24,6 +23,7 @@ requires:
   - Core/Element.Style
   - Core/Element.Event
   - Core/Element.Dimensions
+  - MMap/MMap.Core
   - MMap/MMap.Utils
 
 provides: [MMap.OverlayView]
@@ -64,8 +64,8 @@ MMap.OverlayView = new Class({
 		for (var k in subclass) { this[k] = subclass[k]; };
 		this.instance = this._getInstance();
 		this.setOptions(options);
-		this._init();
 		this._added = false;
+		this._init();
 	},
 
 	build: function(){
@@ -115,10 +115,6 @@ MMap.OverlayView = new Class({
 		return this.get('visible');
 	},
 
-	getZIndex: function() {
-		return this.get('zIndex');
-	},
-
 	isAdded: function() {
 		return this._added;
 	},
@@ -133,7 +129,6 @@ MMap.OverlayView = new Class({
 
 	setVisible: function(value){
 		if (!Type.isBoolean(value)) new TypeError('The data type is not an boolean.');
-		if (value == this.get('visible')) return this;
 		this.set('visible', value);
 		var container = this._getInstance();
 		if (value) {
@@ -144,28 +139,8 @@ MMap.OverlayView = new Class({
 		return this;
 	},
 
-	setZIndex: function(index){
-		if (!Type.isNumber(index)) new TypeError('The data type is not an integer.');
-		if (index == this.get('zIndex')) return this;
-		this.set('zIndex', index);
-		var container = this._getInstance();
-		container.setStyle('z-index', index);
-		return this;
-	},
-
-	setActive: function(value) {
-		if (!Type.isBoolean(value)) new TypeError('The data type is not an boolean.');
-		if (value == this.get('active')) return this;
-		this.set('active', value);
-		var container = this._getInstance();
-		if (value) {
-			container.addClass('active');
-		} else {
-			container.removeClass('active');
-		}
-		return this;
-	}
+	setActive: function(value) {}
 
 });
 
-}(document.id))
+}(document.id));

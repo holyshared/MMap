@@ -1,0 +1,44 @@
+{
+	"markers": [
+		{
+			"title": "Marker1",
+			"content": "Marker1",
+			"position": {
+				"latitude": 35.6666870,
+				"longitude": 139.731859
+			}
+		},
+		{
+			"title": "Marker2",
+			"content": "Marker2",
+			"position": {
+				"latitude": 35.6666870,
+				"longitude": 139.733859
+			}
+		},
+		{
+			"title": "Marker3",
+			"content": "Marker3",
+			"position": {
+				"latitude": 35.6650870,
+				"longitude": 139.729859
+			}
+		},
+		{
+			"title": "Marker4",
+			"content": "Marker4",
+			"position": {
+				"latitude": 35.6686870,
+				"longitude": 139.728859
+			}
+		},
+		{
+			"title": "Marker5",
+			"content": "Marker5",
+			"position": {
+				"latitude": 35.6646870,
+				"longitude": 139.726859
+			}
+		}
+	]
+}

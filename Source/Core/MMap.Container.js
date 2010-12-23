@@ -1,14 +1,41 @@
+/*
+---
+name: MMap.Container
+
+description: Container that can store MVCObject.
+
+license: MIT-style
+
+authors:
+- Noritaka Horio
+
+requires:
+  - Core/Core
+  - Core/Array
+  - Core/String
+  - Core/Number
+  - Core/Function
+  - Core/Object
+  - Core/Event
+  - Core/Browser
+  - Core/Class
+  - MMap/MMap.Core
+
+provides: [MMap.Container]
+
+...
+*/
+
 (function($){
 
 var MMap = (this.MMap || {});
 
 MMap.Container = new Class({
 
+	Extends: MMap.MVCObject,
+
 	initialize: function() {
 		var map = Array.from(arguments).link({ items: Type.isArray });
-		var subclass = this;
-		subclass = Object.append(new google.maps.MVCObject(), subclass);
-		for (var k in subclass) { this[k] = subclass[k]; };
 		this.setItems(map.items || []);
 		this.setCurrent(0);
 	},
@@ -63,7 +90,7 @@ MMap.Container = new Class({
 	},
 
 	count: function(){
-		return this.getItems().length;		
+		return this.getItems().length;
 	},
 
 	removeItem: function(item){
@@ -95,12 +122,29 @@ MMap.Container = new Class({
 		items.empty();
 	},
 
-	find: function() {
+	find: function(key, value) {
+		while(this.isValid()) {
+			var item = this.getCurrent();
+			if (item[key] == value) {
+				return item;
+			}
+			this.next();
+		}
+		return false;
 	},
 
-	findAll: function() {
+	findAll: function(key, value){
+		var find = [];
+		while(this.isValid()) {
+			var item = this.getCurrent();
+			if (item[key] == value) {
+				find.push(item);
+			}
+			this.next();
+		}
+		return (find.length <= 0) ? false : find;
 	}
 
 });
 
-}(document.id))
+}(document.id));

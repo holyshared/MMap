@@ -12,31 +12,31 @@ var MarkerManagerTest = {
 		this.markers = [
 		    {
 				title: 'Marker1',
-				src: '../Demos/images/demo/img01.jpg',
+				image: '../Demos/images/demo/img01.jpg',
 				url: 'http://sharedhat.com/',
 				position: new google.maps.LatLng(35.6666870, 139.731859)
 			},
 		    {
 				title: 'Marker2',
-				src: '../Demos/images/demo/img02.jpg',
+				image: '../Demos/images/demo/img02.jpg',
 				url: 'http://sharedhat.com/',
 				position: new google.maps.LatLng(35.6666870, 139.733859)
 			},
 		    {
 				title: 'Marker3',
-				src: '../Demos/images/demo/img03.jpg',
+				image: '../Demos/images/demo/img03.jpg',
 				url: 'http://sharedhat.com/',
 				position: new google.maps.LatLng(35.6650870, 139.729859)
 			},
 		    {
 				title: 'Marker4',
-				src: '../Demos/images/demo/img04.jpg',
+				image: '../Demos/images/demo/img04.jpg',
 				url: 'http://sharedhat.com/',
 				position: new google.maps.LatLng(35.6686870, 139.728859)
 			},
 		    {
 				title: 'Marker5',
-				src: '../Demos/images/demo/img05.jpg',
+				image: '../Demos/images/demo/img05.jpg',
 				url: 'http://sharedhat.com/',
 				visible: false,
 				position: new google.maps.LatLng(35.6646870, 139.726859)
@@ -58,14 +58,8 @@ var MarkerManagerTest = {
 		this.manager = manager;
 		
 		var self = this.logger;
-		this.manager.addEvent('boundsChanged', function(){
-			self.log('events', 'boundsChanged');
-		});
-		this.manager.addEvent('zoomChanged', function(){
-			self.log('events', 'zoomChanged');
-		});
-		this.manager.addEvent('displayMarkersChanged', function(){
-			self.log('events', 'displayMarkers');
+		this.manager.addEvent('markersChanged', function(){
+			self.log('events', 'markersChanged');
 		});
 
 		//LatLngBounds
@@ -77,31 +71,46 @@ var MarkerManagerTest = {
 	},
 
 	runTest: function()	{
+		this.testOptions();
+		this.testBindTo();
 		this.testVisibleMarkerByMarker();
 		this.testActiveMarkerByMarker();
-		this.testHasDisplayMarkers();
 		this.testHasMarker();
 		this.testGetMarkers();
 		this.testVisibleMarkerByBounds();
 		this.testActiveMarkerByBounds();
-		this.testSetBounds();
 		this.testRemoveMaker();
 		this.testAddMarker();
-		this.testSetZoom();
-		this.testBindTo();
+		this.testAll();
+	},
+
+	testOptions: function(){
+		var marker = new MMap.Marker({
+			map: this.map,
+			position: new google.maps.LatLng(35.6646870, 139.726859)
+		});
+		var mks = [marker];
+		var manager = new MMap.MarkerManager({
+			map: this.map,
+			markers: mks
+		});
+
+		var map = manager.getMap();
+		this.logger.log('options', (map == map) ? 'options map ok' : 'options map ng');
+
+		var markers = manager.getMarkers();
+		this.logger.log('options', (mks.length == markers.length) ? 'options markers ok' : 'options markers ng');
 	},
 
 	testVisibleMarkerByMarker: function(){
 		this.manager.visible(this.manageMarkers.getLast());
 
-		var visibleMarkers = this.manager.getVisibleMarkers();
-		var hiddenMarkers = this.manager.getHiddenMarkers();
-
-		var hidden = hiddenMarkers.some(function(item, index){
+		var state = this.manager.getState();
+		var hidden = state.hiddens.some(function(item, index){
 			return !item.isVisible();
 		});
 
-		if (visibleMarkers.getLast() == this.manageMarkers.getLast()) {
+		if (state.visibles.getLast() == this.manageMarkers.getLast()) {
 			this.logger.log('methods', 'visible method OK (argumetns marker)');
 			this.logger.log('methods', 'getVisibleMarkers method OK (argumetns marker)');
 		} else {
@@ -115,14 +124,12 @@ var MarkerManagerTest = {
 	testActiveMarkerByMarker: function(){
 		this.manager.active(this.manageMarkers.getLast());
 
-		var deactiveMarkers = this.manager.getDeactiveMarkers();
-		var deactive = deactiveMarkers.some(function(item, index){
+		var state = this.manager.getState();
+		var deactive = state.deactives.some(function(item, index){
 			return !item.isActive();
 		});
 	
-		var activeMarkers = this.manager.getActiveMarkers();
-
-		if (activeMarkers.getLast() == this.manageMarkers.getLast()) {
+		if (state.actives.getLast() == this.manageMarkers.getLast()) {
 			this.logger.log('methods', 'active method OK (argumetns marker)');
 			this.logger.log('methods', 'getActiveMarkers method OK (argumetns marker)');
 		} else {
@@ -134,33 +141,36 @@ var MarkerManagerTest = {
 			? 'getDeactiveMarkers method OK (argumetns LatLngBounds)' : 'getDeactiveMarkers method NG (argumetns LatLngBounds)');
 	},
 
-	testHasDisplayMarkers: function() {
-		this.logger.log('methods', (this.manager.hasDisplayMarkers())
-			? 'hasDisplayMarkers method OK' : 'hasDisplayMarkers method NG');
-	},
 
 	testHasMarker: function(){
-		var activeMarkers = this.manager.getActiveMarkers();
-		this.logger.log('methods', (this.manager.hasMarker(activeMarkers.getLast()))
+		var state = this.manager.getState();
+		this.logger.log('methods', (this.manager.hasMarker(state.actives.getLast()))
 			? 'hasMarker method OK' : 'hasMarker method NG');
 	},
 
 	testGetMarkers: function(){
-		this.logger.log('methods', (instanceOf(this.manager.getMarkers(), MMap.Container))
+		this.logger.log('methods', (Type.isArray(this.manager.getMarkers()))
 			? 'getMarkers method OK' : 'getMarkers method NG');
+
+		var mks = this.manager.getMarkers();
+		var count = mks.length;
+		this.manager.setMarkers(mks);
+		var mks = this.manager.getMarkers();
+
+		this.logger.log('methods', (mks.length == count)
+			? 'setMarkers method OK' : 'setMarkers method NG');
 	},
 
 	testVisibleMarkerByBounds: function(){
 		var self = this;
 		this.manager.visible(this.bounds);
 	
-		var visibleMarkers = this.manager.getVisibleMarkers();
-		var contains = visibleMarkers.some(function(item, index){
+		var state = this.manager.getState();
+		var contains = state.visibles.some(function(item, index){
 			return self.bounds.contains(item.getPosition());
 		});
 
-		var hiddenMarkers = this.manager.getHiddenMarkers();
-		var hidden = hiddenMarkers.some(function(item, index){
+		var hidden = state.hiddens.some(function(item, index){
 			return !item.isVisible();
 		});
 
@@ -179,13 +189,12 @@ var MarkerManagerTest = {
 	testActiveMarkerByBounds: function(){
 		this.manager.active(this.bounds);
 
-		var deactiveMarkers = this.manager.getDeactiveMarkers();
-		var deactive = deactiveMarkers.some(function(item, index){
+		var state = this.manager.getState();
+		var deactive = state.deactives.some(function(item, index){
 			return !item.isActive();
 		});
 
-		var activeMarkers = this.manager.getActiveMarkers();
-		var active = activeMarkers.some(function(item, index){
+		var active = state.actives.some(function(item, index){
 			return item.isActive();
 		});
 
@@ -200,27 +209,12 @@ var MarkerManagerTest = {
 		this.logger.log('methods', (deactive)
 			? 'getDeactiveMarkers method OK (argumetns LatLngBounds)' : 'getDeactiveMarkers method NG (argumetns LatLngBounds)');
 		
-		this.logger.log('methods', (this.manager.hasDisplayMarkers()) ? 'hasDisplayMarkers method OK' : 'hasDisplayMarkers method NG');
 	},
 
-	testSetBounds: function(){
-		var sw = new google.maps.LatLng(35.6646870, 139.726859)
-		var ne = new google.maps.LatLng(35.6666870, 139.931859)
-		var bounds = new google.maps.LatLngBounds(sw, ne);
-		this.manager.setBounds(bounds);
-		
-		if (bounds == this.manager.getBounds()) {
-			this.logger.log('methods', 'setBounds method OK');
-			this.logger.log('methods', 'getBounds method OK');
-		}
-		else {
-			this.logger.log('methods', 'setBounds method NG');
-			this.logger.log('methods', 'getBounds method NG');
-		}
-	},
+
 
 	testRemoveMaker: function(){
-		var container = this.manager.getMarkers();
+		var container = this.manager.getContainer();
 		var items = container.getItems();
 
 		this.manager.visible(this.map.getBounds());
@@ -239,7 +233,7 @@ var MarkerManagerTest = {
 	testAddMarker: function(){
 		this.manager.addMarkers(this.manageMarkers);
 
-		var container = this.manager.getMarkers();
+		var container = this.manager.getContainer();
 		var items = container.getItems();
 		if (items.length >= 0) {
 			this.logger.log('methods', 'addMarkers method OK');
@@ -250,45 +244,41 @@ var MarkerManagerTest = {
 		};
 	},
 
-	testSetZoom: function(){
-		this.manager.setZoom(18);
-		var zoom = this.manager.getZoom();
-		if (zoom == 18) {
-			this.logger.log('methods', 'setZoom method OK');
-		} else {
-			this.logger.log('methods', 'setZoom method OK');
-		}
-	},
 
 	testBindTo: function(){
 		var binder = new google.maps.MVCObject();
-		binder.bindTo('zoom', this.manager, 'zoom');
-		binder.bindTo('bounds', this.manager, 'bounds');
-		binder.bindTo('displayMarkers', this.manager, 'displayMarkers');
-		binder.bindTo('hiddenMarkers', this.manager, 'hiddenMarkers');
-		binder.bindTo('activeMarkers', this.manager, 'activeMarkers');
-		binder.bindTo('deactiveMarkers', this.manager, 'deactiveMarkers');
+		binder.bindTo('state', this.manager, 'state');
 
 		var self = this;
-		google.maps.event.addListener(binder, 'zoom_changed', function(){
-			self.logger.log('events', 'zoom_changed OK');
+		google.maps.event.addListener(binder, 'state_changed', function(){
+			self.logger.log('events', 'state_changed OK');
 		});
-		google.maps.event.addListener(binder, 'bounds_changed', function(){
-			self.logger.log('events', 'bounds_changed OK');
-		});
-		google.maps.event.addListener(binder, 'hiddenmarkers_changed', function(){
-			self.logger.log('events', 'hiddenmarkers_changed OK');
-		});
-		google.maps.event.addListener(binder, 'hiddenmarkers_changed', function(){
-			self.logger.log('events', 'hiddenmarkers_changed OK');
-		});
-		google.maps.event.addListener(binder, 'activemarkers_changed', function(){
-			self.logger.log('events', 'activemarkers_changed OK');
-		});
-		google.maps.event.addListener(binder, 'deactivemarkers_changed', function(){
-			self.logger.log('events', 'deactivemarkers_changed OK');
-		});
-		this.manager.setZoom(10);
+	},
+
+	testAll: function(){
+		var markers = this.manager.getContainer();
+		var checkCount = 0;
+		var count = markers.count();
+
+		this.manager.visible();
+
+		markers = markers.rewind();
+		while(markers.isValid()) {
+			var current = markers.getCurrent();
+			if (current.isVisible()) checkCount++;
+			markers.next();
+		}
+		this.logger.log('methods', (count == checkCount) ? 'visible all OK' : 'visible all NG');
+
+		this.manager.active();
+		markers = markers.rewind();
+		checkCount = 0;
+		while(markers.isValid()) {
+			var current = markers.getCurrent();
+			if (current.isActive()) checkCount++;
+			markers.next();
+		}
+		this.logger.log('methods', (count == checkCount) ? 'active all OK' : 'active all NG');
 	}
 
 };

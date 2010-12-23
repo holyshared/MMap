@@ -23,6 +23,7 @@ requires:
   - Core/Element.Style
   - Core/Element.Event
   - Core/Element.Dimensions
+  - MMap/MMap.Core
 
 provides: [MMap.Options, MMap.Events]
 
@@ -43,7 +44,7 @@ MMap.Options = new Class({
 			if (key == 'map') {
 				this.setMap(value);
 				delete options[key];
-			} else if (instanceOf(value, Function)) {
+			} else if (instanceOf(value, Function) && (/^on[A-Z]/).test(key)) {
 				this.addEvent(key, value);
 				delete options[key];
 			}
@@ -83,13 +84,8 @@ MMap.Events = new Class({
 
 	addEvent: function(type, fn){
 		var listener = null;
-		var domEvents = MMap.Events._domEvents;
 		type = toFormat(type);
-		if (domEvents.contains(type.toLowerCase())) {
-			listener = google.maps.event.addDomListener(this.instance, type.toLowerCase(), fn.bind(this));
-		} else {
-			listener = google.maps.event.addListener(this, type, fn);
-		}
+		listener = google.maps.event.addListener(this, type, fn);
 		this._handles[type] = (this._handles[type] || []).include(fn);
 		this._events[type] = (this._events[type] || []).include(listener);
 		return this;
@@ -123,25 +119,30 @@ MMap.Events = new Class({
 			for (type in events) this.removeEvent(type, events[type]);
 			return this;
 		}
-		type = toFormat(type);
 		for (type in this._events){
 			if (events && events != type) continue;
 			var fns = this._events[type];
 			for (var i = fns.length; i--;) this.removeEvent(type, fns[i]);
 		}
-		return this;		
+		return this;
 	},
 
 	fireEvent: function(type, args){
 		type = toFormat(type);
-		var domEvents = MMap.Events._domEvents;
 		if (!this._events[type]) return this;
-		var target = (domEvents.contains(type.toLowerCase())) ? this.instance : this;
-		google.maps.event.trigger(target, type, Array.from(args));
+		var callArguments = [this, type];
+		if (Type.isArray(args)) {
+			var l = args.length;
+			for (var i = 0; i < l; i++) {
+				callArguments.push(args[i]);
+			}
+		} else {
+			callArguments.push(args);
+		}
+		google.maps.event.trigger.apply(this, callArguments);
 		return this;
 	}
 
 });
-MMap.Events._domEvents = ["mouseover", "mouseout", "mouseup", "mousedown", "click", "dblclick"];
 
-}(document.id))
+}(document.id));

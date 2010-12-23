@@ -1,158 +1,148 @@
-Class: MMap.Marker.Image {#MMap.Marker.Image}
-=======================================================
 
+Class: <a id='mmap.marker.image'>MMap.Marker.Image</a>
+-------------------------------------------------------------------
 
+スタイル付けが可能な画像を表示するシンプルなマーカー
 
 ### Extends:
 
-MMap.Marker
+MMap.BaseMarker
 
 
+Method: <a id='constructor'>constructor</a>
+-----------------------------------------------
 
-
-MMap.Marker.Image Method: constructor {#MMap.Marker.Image:constructor}
----------------------------------------------------------------------------------
-
+画像マーカーのコンストラクタ
 
 ### Syntax:
 
-	var myMMap.Marker.Image = new MMap.Marker.Image(options);
+	var myMarker = new MMap.Marker.Image(options);
 
 ### Arguments:
 
-1. options - (**)
+1. options - (*mixed*) マーカーのオプション
 
 ### Options:
 
-* map - (**)
-* className - (**)
-* title - (**)
-* src - (**)
-* url - (**)
-* position - (**)
-* zIndex - (**)
-* visible - (**)
+* map - (*<a href="http://code.google.com/intl/en/apis/maps/documentation/javascript/reference.html#Map">Map</a>*) マーカーを表示するMapオブジェクト
+* className - (*string*) マーカーに適用するスタイル(CSSのクラス名)
+* title - (*string*) マーカーのタイトルに設定する内容
+* image - (*string*) マーカーに表示する画像のURL
+* url - (*string*) マーカーに設定するURL
+* position - (<a href="http://code.google.com/intl/eu/apis/maps/documentation/javascript/reference.html#LatLng">*LatLng*</a>) マーカーの座標位置
+* zIndex - (*number*) マーカーの表示順序
+* visible - (*boolean*) マーカーの表示状態 
+* active - (*boolean*) マーカーのアクティブ状態
+* onClick - (*function*) マーカーをクリックした時に発生します。
+* onDblClick - (*function*) マーカーをダブルクリックした時に発生します。
+* onMouseOver - (*function*) マーカーのマウスオーバー時に発生します。
+* onMouseOut - (*function*) マーカーのマウスアウト時に発生します。
+* onMouseUp - (*function*) マーカーのマウスアップ時に発生します。
+* onMouseDown - (*function*) マーカーのマウスダウン時に発生します。
+* onTitleChanged - (*function*) マーカーのタイトルが変わった時に発生します。
+* onImageChanged - (*function*) マーカーの画像が変わった時に発生します。
+* onURLChanged - (*function*) マーカーのURLが変わった時に発生します。
+* onVisibleChanged - (*function*) マーカーの表示状態が変わった場合に発生します。
+* onZIndexChanged - (*function*) マーカーの表示順序が変わった場合に発生します。
+* onPositionChanged - (*function*) マーカーの表示座標が変わった場合に発生します。
+* onActive - (*function*) マーカーの表示座標が変わった場合に発生します。
 
 
-MMap.Marker.Image Method: _setup {#MMap.Marker.Image:_setup}
------------------------------------------------------------------------
+Method: <a id='getTitle'>getTitle</a>
+-----------------------------------------
 
+マーカーに設定しているタイトルを取得します。
 
 ### Syntax:
 
+	var title = marker.getTitle();
 
+### Returns:
+
+(*string*) マーカーに設定しているタイトル
+
+
+Method: <a id='getImage'>getImage</a>
+-----------------------------------------
+
+マーカーに表示されている画像のURLを取得します。
+
+### Syntax:
+
+	var image = marker.getImage();
+
+### Returns:
+
+(*string*) マーカーに表示されている画像のURL
+
+
+
+Method: <a id='getURL'>getURL</a>
+-------------------------------------
+
+マーカーに設定されているURLを取得します。
+
+### Syntax:
+
+	var url = marker.getURL();
+
+### Returns:
+
+(*string*) マーカーに設定されているURL
+
+
+
+Method: <a id='setTitle'>setTitle</a>
+-----------------------------------------
+
+ マーカーにタイトルを設定します。
+
+### Syntax:
+
+	marker.setTitle('Marker title');
 
 ### Arguments:
 
-1. container - (**)
+1. title - (*string*) マーカーに設定するタイトル
 
 ### Returns:
 
+(*object*) marker object
 
 
 
+Method: <a id='setImage'>setImage</a>
+-----------------------------------------
 
-MMap.Marker.Image Method: _update {#MMap.Marker.Image:_update}
--------------------------------------------------------------------------
-
-
-### Syntax:
-
-
-
-
-MMap.Marker.Image Method: getTitle {#MMap.Marker.Image:getTitle}
----------------------------------------------------------------------------
-
+マーカーに表示する画像を設定します。
 
 ### Syntax:
 
-
-
-### Returns:
-
-
-
-
-
-MMap.Marker.Image Method: getImage {#MMap.Marker.Image:getImage}
----------------------------------------------------------------------------
-
-
-### Syntax:
-
-
-
-### Returns:
-
-
-
-
-
-MMap.Marker.Image Method: getURL {#MMap.Marker.Image:getURL}
------------------------------------------------------------------------
-
-
-### Syntax:
-
-
-
-### Returns:
-
-
-
-
-
-MMap.Marker.Image Method: setTitle {#MMap.Marker.Image:setTitle}
----------------------------------------------------------------------------
-
-
-### Syntax:
-
-
+	marker.setImage('/images/cafe_marker.png');
 
 ### Arguments:
 
-1. title - (**)
+1. image - (*string|element*) マーカーに表示する画像
 
 ### Returns:
 
+(*object*) marker object
 
 
+Method: <a id='setURL'>setURL</a>
+-------------------------------------
 
-
-MMap.Marker.Image Method: setImage {#MMap.Marker.Image:setImage}
----------------------------------------------------------------------------
-
+マーカーにURLを設定します。
+マーカークリック時に設定したURLに遷移します。
 
 ### Syntax:
 
-
-
-### Arguments:
-
-1. src - (**)
-
-### Returns:
-
-
-
-
-
-MMap.Marker.Image Method: setURL {#MMap.Marker.Image:setURL}
------------------------------------------------------------------------
-
-
-### Syntax:
-
-
+	marker.setURL('http://mootools.net')
 
 ### Arguments:
 
-1. url - (**)
+1. url - (*string*) マーカーに設定するURL
 
 ### Returns:
 
-
-
-
+(*object*) marker object

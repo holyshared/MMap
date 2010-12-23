@@ -15,54 +15,67 @@ window.addEvent("domready", function(){
 		title: 'Marker title text',
 		content: 'Marker content text xxxx xxxx xxxx xxxx xxxx xxxxxx xx',
 		position: new google.maps.LatLng(35.6666870, 139.731859),
-		zIndex: 0,
 		visible: true,
+		zIndex: 0,
 		onPositionChanged: function(event) {
-			logger.log('events', "onPositionChanged");
+			logger.log('events', "onPositionChanged OK");
 		},
 		onZIndexChanged: function(event) {
-			logger.log('events', "onZIndexChanged");
+			logger.log('events', "onZIndexChanged OK");
 		},
 		onTitleChanged: function(event) {
-			logger.log('events', "onTitleChanged");
+			logger.log('events', "onTitleChanged OK");
 		},
 		onContentChanged: function(event) {
-			logger.log('events', "onContentChanged");
+			logger.log('events', "onContentChanged OK");
 		},
 		onVisibleChanged: function(event) {
-			logger.log('events', "onVisibleChanged");
+			logger.log('events', "onVisibleChanged OK");
 		},
 		onMouseOver: function(event) {
-			logger.log('events', "onMouseOver");
+			logger.log('events', "onMouseOver OK");
 		},
 		onMouseOut: function(event) {
-			logger.log('events', "onMouseOut");
+			logger.log('events', "onMouseOut OK");
 		},
 		onMouseUp: function(event) {
-			logger.log('events', "onMouseUp");
+			logger.log('events', "onMouseUp OK");
 		},
 		onMouseDown: function(event) {
-			logger.log('events', "onMouseDown");
+			logger.log('events', "onMouseDown OK");
 		},
-		onAdd: function(event) {
-			var latlng = new google.maps.LatLng(35.6666870, 139.731869);
-			marker.setPosition(latlng);
-			var position = marker.getPosition();
-			logger.log('methods', (position == latlng) ? "Position setter/getter OK" : "Position setter/getter NG");
-			
-			marker.setZIndex(10);
-			var zIndex = marker.getZIndex();
-			logger.log('methods', (zIndex == 10) ? "ZIndex setter/getter OK" : "ZIndex setter/getter NG");
-			
-			marker.setTitle("foo");
-			var title = marker.getTitle();
-			logger.log('methods', (title == "foo") ? "Title setter/getter OK" : "Title setter/getter NG");
-
-			marker.setContent("bar");
-			var content = marker.getContent();
-			logger.log('methods', (content == "bar") ? "Content setter/getter OK" : "Content setter/getter NG");
+		onClick: function(event) {
+			event.preventDefault();
+			logger.log('events', "onClick OK");
+		},
+		onDblClick: function(event) {
+			event.preventDefault();
+			logger.log('events', "onDblClick OK");
 		}
 	});
+
+	var binder = new google.maps.MVCObject();
+	binder.bindTo('title', marker, 'title');
+	binder.bindTo('content', marker, 'content');
+	binder.bindTo('position', marker, 'position');
+	binder.bindTo('zIndex', marker, 'zIndex');
+	binder.bindTo('visible', marker, 'visible');
+
+	var titleListener = google.maps.event.addListener(binder, 'title_changed', function(){
+		logger.log('events', "bindTo title_changed OK");
+	});
+	var contentListener = google.maps.event.addListener(binder, 'content_changed', function(){
+		logger.log('events', "bindTo content_changed OK");
+	});
+	var positionListener = google.maps.event.addListener(binder, 'position_changed', function(){
+		logger.log('events', "bindTo position_changed OK");
+	});
+	var zindexListener = google.maps.event.addListener(binder, 'zindex_changed', function(){
+		logger.log('events', "bindTo zindex_changed OK");
+	});
+	var visibleListener = google.maps.event.addListener(binder, 'visible_changed', function(){
+		logger.log('events', "bindTo visible_changed OK");
+	});	
 
 	var className =	marker.options.className;
 	logger.log('options', (className == 'marker markerDefault') ? 'className option OK' : 'className option NG');
@@ -81,6 +94,38 @@ window.addEvent("domready", function(){
 
 	var visible = marker.get('visible');
 	logger.log('options', (visible == true) ? 'position visible OK' : 'position visible NG');
+
+	var latlng = new google.maps.LatLng(35.6666870, 139.731869);
+	marker.setPosition(latlng);
+	var position = marker.getPosition();
+	logger.log('methods', (position == latlng) ? "Position setter/getter OK" : "Position setter/getter NG");
+
+	marker.setVisible(false);
+	var visible = marker.getVisible();
+	logger.log('methods', (visible == false) ? "Visible setter/getter OK" : "Visible setter/getter NG");
+
+	marker.setZIndex(10);
+	var zIndex = marker.getZIndex();
+	logger.log('methods', (zIndex == 10) ? "ZIndex setter/getter OK" : "ZIndex setter/getter NG");
+
+	marker.setTitle("foo");
+	var title = marker.getTitle();
+	logger.log('methods', (title == "foo") ? "Title setter/getter OK" : "Title setter/getter NG");
+
+	marker.setContent("foo bar");
+	var content = marker.getContent();
+	logger.log('methods', (content == "foo bar") ? "Content setter/getter OK" : "Content setter/getter NG");
+
+	marker.setVisible(true);
+
+	var marker1 = new MMap.Marker({
+		map: map,
+		className: 'marker markerDefault',
+		title: 'Marker title text',
+		content: 'Marker content text xxxx xxxx xxxx xxxx xxxx xxxxxx xx',
+		position: new google.maps.LatLng(35.6666870, 139.721859),
+		visible: true
+	});
 
 });
 

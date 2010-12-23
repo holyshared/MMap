@@ -23,10 +23,11 @@ requires:
   - Core/Element.Style
   - Core/Element.Event
   - Core/Element.Dimensions
+  - MMap/MMap.Core
   - MMap/MMap.Utils
   - MMap/MMap.OverlayView
 
-provides: [MMap.Marker]
+provides: [MMap.Marker, MMap.BaseMarker]
 
 ...
 */
@@ -35,9 +36,133 @@ provides: [MMap.Marker]
 
 var MMap = (this.MMap || {});
 
-MMap.Marker = new Class({
+MMap.BaseMarker = new Class({
 
 	Extends: MMap.OverlayView,
+
+	options: {
+		map: null,
+		className: 'marker markerDefault',
+		position: '',
+		zIndex: null,
+		visible: true,
+		active: false
+		/*
+			onClick: $empty
+			onDblClick: $empty
+			onMouseover: $empty
+			onMouseout: $empty
+			onMouseup: $empty
+			onMousedown: $empty
+			onVisibleChanged: $empty
+			onzIndexChanged: $empty
+			onPositionChanged: $empty,
+		*/
+	},
+
+	initialize: function(options) {
+		this.parent(options);
+	},
+
+	_init: function(){
+		var self = this;
+		var props = ['position', 'zIndex', 'visible', 'active'];
+		props.each(function(key){
+			var value = self.options[key];
+			self.set(key, value);
+			delete self.options[key];
+		});
+	},
+
+	_updateVisibleState: function(){
+		this.setZIndex(this.get('zIndex'))
+		.setVisible(this.get('visible'));
+	},
+
+	_update: function(){
+	},
+
+	setDefaultZIndex:function(){
+		var zIndex = this.get('zIndex');
+		if (!zIndex){
+			var projection = this.getProjection();
+			var position = this.get('position');
+			var xy = projection.fromLatLngToDivPixel(position);
+			this.setZIndex(xy.y);
+		} else {
+			this.setZIndex(zIndex);
+		}
+	},
+
+	draw: function(){
+		if (!this.isAdded()) return;
+		this.refresh();
+		var projection = this.getProjection();
+		var position = this.get('position');
+		var size = this.instance.getSize();
+		var xy = projection.fromLatLngToDivPixel(position);
+		var styles = {
+			position: 'absolute',
+			left: xy.x -(size.x / 2),
+			top: xy.y - size.y
+		};
+		this.instance.setStyles(styles);
+	},
+
+	refresh: function(){
+		if (!this.isAdded()) return;
+		this._updateVisibleState();
+		this._update();
+	},
+
+	getZIndex: function() {
+		return this.get('zIndex');
+	},
+
+	setZIndex: function(index){
+		if (!Type.isNumber(index)) new TypeError('The data type is not an integer.');
+		this.set('zIndex', index);
+		var container = this._getInstance();
+		if (!this.isActive()) {
+			container.setStyle('z-index', index);
+		}
+		return this;
+	},
+
+	getPosition: function() {
+		return this.get('position');
+	},
+
+	setPosition: function(position){
+		if (!instanceOf(position, google.maps.LatLng)) {
+			new TypeError('The data type is not an Latlng.');
+		}
+		this.set('position', position);
+		this.draw();
+		return this;
+	},
+
+	setActive: function(value) {
+		if (!Type.isBoolean(value)) new TypeError('The data type is not an boolean.');
+		this.set('active', value);
+		var container = this._getInstance();
+		if (value) {
+			this.fireEvent('active');
+			container.setStyle('z-index', 10000);
+			container.addClass('active');
+		} else {
+			container.setStyle('z-index', this.getZIndex());
+			container.removeClass('active');
+		}
+		return this;
+	}
+
+});
+
+
+MMap.Marker = new Class({
+
+	Extends: MMap.BaseMarker,
 
 	options: {
 		map: null,
@@ -45,7 +170,7 @@ MMap.Marker = new Class({
 		title: '',
 		content: '',
 		position: '',
-		zIndex: 0,
+		zIndex: null,
 		visible: true
 		/*
 			onClick: $empty
@@ -67,11 +192,10 @@ MMap.Marker = new Class({
 	},
 
 	_setup: function(container) {
+		this.setDefaultZIndex();
+
 		var className = this.options.className;
 		container.addClass(className);
-
-		var zIndex = this.get('zIndex');
-		container.setStyle('z-index', zIndex);
 
 		var marker = new Element('div', {'class': 'inner'});
 		var hd = new Element('div', {'class': 'hd'});
@@ -89,58 +213,32 @@ MMap.Marker = new Class({
 		return marker;
 	},
 
-	_init: function(){
+	_setupListeners: function(){
 		var self = this;
-		var props = ['title', 'content', 'position', 'zIndex', 'visible'];
-		props.each(function(key){
-			self.set(key, self.options[key]);
+		var marker = this._getInstance();
+		var proxy = function(event){
+			event.target = self;
+			self.fireEvent(event.type, event);
+		}
+		var events = ['click', 'dblclick', 'mouseover', 'mouseout', 'mouseup', 'mousedown'];
+		events.each(function(type){
+			marker.addEvent(type, proxy);
 		});
 	},
 
-	draw: function(){
-		if (this._added === false) {
-			return this;
-		}
-
-		var projection = this.getProjection();
-		var position = this.get('position');
-		var size = this.instance.getSize();
-		var xy = projection.fromLatLngToDivPixel(position);
-		var styles = {
-			position: 'absolute',
-			left: xy.x -(size.x / 2),
-			top: xy.y - size.y
-		};
-		this.instance.setStyles(styles);
-		this.refresh();
-	},
-
-	refresh: function(){
-		this._updateVisibleState();
-		this._update();
-	},
-
-	_updateVisibleState: function(){
-		this.setZIndex(this.get('zIndex'))
-		.setVisible(this.get('visible'));
+	_init: function(){
+		this.parent();
+		var self = this;
+		var props = ['title', 'content'];
+		props.each(function(key){
+			self.set(key, self.options[key]);
+			delete self.options[key];
+		});
 	},
 
 	_update: function(){
-		this.setTitle(this.get('title'))
-		.setContent(this.get('content'));
-	},
-
-	getPosition: function() {
-		return this.get('position');
-	},
-
-	setPosition: function(position){
-		if (!instanceOf(position, google.maps.LatLng)) {
-			new TypeError('The data type is not an Latlng.');
-		}
-		this.set('position', position);
-		this.draw();
-		return this;
+		this._title.set('html', this.get('title'));
+		this._content.set('html', this.get('content'));
 	},
 
 	getTitle: function() {
@@ -152,7 +250,7 @@ MMap.Marker = new Class({
 			new TypeError('The data type is not a character string.');
 		}
 		this.set('title', title);
-		this._title.set('html', title);
+		this.draw();
 		return this;
 	},
 
@@ -165,10 +263,12 @@ MMap.Marker = new Class({
 			new TypeError('The data type is a character string or not an element.');
 		}
 		this.set('content', content);
-		this._content.set('html', content);
+		this.draw();
 		return this;
 	}
 
-});
 
-}(document.id))
+});
+MMap.Marker.Html = MMap.Marker;
+
+}(document.id));

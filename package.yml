@@ -6,12 +6,21 @@ description: "Map using Google Maps Api Version 3. A comprehensible map can be d
 
 authors: "[Noritaka Horio](http://sharedhat.com)"
 
-license: "[MIT License](http://sharedhat.com/license.txt)"
+license: "[MIT License](http://holyshared.github.com/MMap/license.txt)"
 
 copyright: "&copy; [Noritaka Horio](http://sharedhat.com)"
 
 sources:
-
+  - "Source/Core/MMap.Core.js"
+  - "Source/Utils/MMap.Utils.js"
+  - "Source/Core/MMap.Container.js"
+  - "Source/Core/MMap.OverlayView.js"
+  - "Source/Marker/MMap.Marker.js"
+  - "Source/Marker/MMap.Marker.Image.js"
+  - "Source/Marker/MMap.Marker.Images.js"
+  - "Source/Marker/MMap.MarkerManager.js"
+  - "Source/Marker/MMap.MarkerLoader.js"
+  - "Source/Window/MMap.Window.js"
 
 author: holyshared
 

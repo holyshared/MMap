@@ -1,3 +1,39 @@
+/*
+---
+name: MMap.Marker.Images
+
+description: Marker who does slide while doing two or more images in fadein/fadeout.
+
+license: MIT-style
+
+authors:
+- Noritaka Horio
+
+requires:
+  - Core/Core
+  - Core/Array
+  - Core/String
+  - Core/Number
+  - Core/Function
+  - Core/Object
+  - Core/Event
+  - Core/Browser
+  - Core/Class
+  - Core/Element
+  - Core/Element.Style
+  - Core/Element.Event
+  - Core/Element.Dimensions
+  - MMap/MMap.Core
+  - MMap/MMap.Utils
+  - MMap/MMap.OverlayView
+  - MMap/MMap.Marker
+  - MMap/MMap.Marker.Images
+
+provides: [MMap.Marker.Images]
+
+...
+*/
+
 (function($){
 
 var MMap = (this.MMap || {});
@@ -5,7 +41,7 @@ MMap.Marker = (this.MMap.Marker || {});
 
 MMap.Marker.Images = this.MMap.Marker.Images = new Class({
 
-	Extends: MMap.Marker,
+	Extends: MMap.BaseMarker,
 
 	options: {
 		map: null,
@@ -14,6 +50,7 @@ MMap.Marker.Images = this.MMap.Marker.Images = new Class({
 		defaultIndex: 0,
 		interval: 2000,
 		duration: 2000,
+		autoplay: true,
 		zIndex: 0,
 		position: null,
 		visible: true
@@ -24,44 +61,61 @@ MMap.Marker.Images = this.MMap.Marker.Images = new Class({
 		this._elements = [];
 		this._stack = [];
 		this._index = 0;
+		this._start = false;
+		this._mouseovered = false;
 	},
 
 	_setup: function(container){
+		this.setDefaultZIndex();
+
 		this.addEvent('add', this._onPrepare.bind(this));
 
 		var className = this.options.className;
 		container.addClass(className);
 
-		var zIndex = this.get('zIndex');
-		container.setStyle('z-index', zIndex);
-
 		this._photos = new Element('ul', {'class': 'photos'});
 		this._photos.inject(container);
 
 		var images = this.get('images');
-		if (images && typeOf(images) == 'array') {
+		if (images && Type.isArray(images)) {
 			this.addImages(images);
 		}
 		return this._photos;
 	},
 
-	_init: function(){
+	_setupListeners: function(){
 		var self = this;
-		var props = ['images', 'position', 'zIndex', 'visible'];
-		props.each(function(key){
-			self.set(key, self.options[key]);
+		var marker = this._getInstance();
+		var proxy = function(event){
+			event.target = self;
+			self.fireEvent(event.type, event);
+		}
+		var events = ['click', 'dblclick', 'mouseup', 'mousedown'];
+		events.each(function(type){
+			marker.addEvent(type, proxy);
 		});
+		marker.addEvent('mouseout', this._mouseout.bind(this));
+	},
+
+	_init: function(){
+		this.parent();
+		this.set('images', this.options['images']);
+		delete this.options['images'];
 	},
 
 	_onPrepare: function(){
-		for (var i = 0; l = this._stack.length, i < l; i++) {
+		var l = this._stack.length;
+		for (var i = 0; i < l; i++) {
 			var image = this._stack[i];
 			image.inject(this._photos);
 		}
 		delete this._stack;
 		var index = this.options.defaultIndex;
 		this.setCurrent(index);
-		this._next.delay(this.options.interval, this);
+		if (this.options.autoplay) {
+			this._timerID = this._next.delay(this.options.interval, this);
+			this._start = true;
+		}
 	},
 
 	_next: function() {
@@ -75,10 +129,10 @@ MMap.Marker.Images = this.MMap.Marker.Images = new Class({
 		tween.start('opacity', 0, 1);
 	},
 
-	_buildElement: function(image){
+	_buildElement: function(context){
 		var li = new Element('li');
-		var a = new Element('a', {href: image.url, title: image.title});
-		var img = new Element('img', {src: image.src, title: image.title});
+		var a = new Element('a', {href: context.url, title: context.title});
+		var img = new Element('img', {src: context.image, title: context.title});
 		img.inject(a);
 		a.inject(li);
 
@@ -86,18 +140,33 @@ MMap.Marker.Images = this.MMap.Marker.Images = new Class({
 		li.set('tween', {
 			duration: this.options.duration,
 			onComplete: function() {
-				self.setCurrent(self._index);
-				self._next.delay(this.options.interval, self);
+				if (self.isStart()) {
+					self.setCurrent(self._index);
+					self._timerID = self._next.delay(this.options.interval, self);
+				}
 			}
 		});
+		li.addEvent('mouseover', self._mouseover.bind(this));
 		return li;
 	},
 
-	_update: function(){
+	_mouseover: function(event){
+		if (this._mouseovered) return false;
+		event.target = this;
+		this.fireEvent(event.type, event);
+		this._mouseovered = true;
+	},
+	
+	_mouseout: function(event){
+		if (!(event.target == this._photos || event.target == this._getInstance())) return false;
+		if (!this._mouseovered) return false;
+		event.target = this;
+		this.fireEvent(event.type, event);
+		this._mouseovered = false;
 	},
 
 	setCurrent: function(index){
-		var i = length = this._elements.length, image = null, style = {};
+		var i = 0, length = this._elements.length, image = null, style = {};
 		for (i = 0; i < length; i++) {
 			image = this._elements[i];
 			style = (i == index) ? { 'z-index': 1, opacity: 1 } : { 'z-index': 0, opacity: 0 };
@@ -106,12 +175,28 @@ MMap.Marker.Images = this.MMap.Marker.Images = new Class({
 		this._index = index;
 	},
 
+	getImages: function(){
+		return this.get('images');
+	},
+
+	setImages: function(images){
+		clearTimeout(this._timerID);
+		this._elements = [];
+		this._index = 0;
+		if (this.isAdded()) {
+			this._photos.dispose();
+		}
+		this.set('images', images);
+		this.addImages(images);
+		return this;
+	},
+
 	addImage: function(image){
 		var li = this._buildElement(image);
 		var images = this.get('images');
 
-		if (images.indexOf(image) < 0) images.push(image);
-		if (this._added === false) {
+		if (!images.contains(image)) images.push(image);
+		if (!this.isAdded()) {
 			this._stack.push(li);
 		} else {
 			li.inject(this._photos);
@@ -121,7 +206,7 @@ MMap.Marker.Images = this.MMap.Marker.Images = new Class({
 	},
 
 	addImages: function(images){
-		var i = length = images.length;
+		var i = 0, length = images.length;
 		for (i = 0; i < length; i++) {
 			this.addImage(images[i]);
 		}
@@ -133,7 +218,7 @@ MMap.Marker.Images = this.MMap.Marker.Images = new Class({
 		if (index >= 0) {
 			var element = this._elements[index];
 			this._elements.erase(element);
-			if (this._stack && this._stack.indexOf(element) >= 0) {
+			if (this._stack && this._stack.contains(element)) {
 				this._stack.erase(element);
 			}
 			images.erase(image);
@@ -147,8 +232,23 @@ MMap.Marker.Images = this.MMap.Marker.Images = new Class({
 		images.each(function(image){
 			self.removeImage(image);
 		});
+	},
+
+	isStart: function(){
+		return (this._start) ? true : false;
+	},
+
+	start: function(){
+		if (this.isStart()) return;
+		this._timerID = this._next.delay(this.options.interval, this);
+		this._start = true;
+	},
+
+	stop: function(){
+		clearTimeout(this._timerID);
+		this._start = false;
 	}
 
 });
 
-}(document.id))
+}(document.id));

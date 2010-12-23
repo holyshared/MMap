@@ -1,0 +1,22 @@
+.radiusWidget {
+	background: #333333;
+	opacity: 0.9;
+	padding: 0px;
+	-moz-border-radius: 5px;
+	margin-right: 10px;
+	margin-top: 10px;
+}
+
+.radiusWidget ul li a {
+	-moz-border-radius: 5px;
+	color: #ffffff;
+	display: block;
+	margin-bottom: 1px;
+	padding: 5px 10px;
+	text-align: left;
+}
+
+.radiusWidget ul li .selected,
+.radiusWidget ul li a:hover {
+	background: #cccccc;
+}

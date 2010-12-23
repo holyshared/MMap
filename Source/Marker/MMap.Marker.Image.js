@@ -1,3 +1,39 @@
+/*
+---
+name: MMap.Marker.Image
+
+description: Simple image marker.
+
+license: MIT-style
+
+authors:
+- Noritaka Horio
+
+requires:
+  - Core/Core
+  - Core/Array
+  - Core/String
+  - Core/Number
+  - Core/Function
+  - Core/Object
+  - Core/Event
+  - Core/Browser
+  - Core/Class
+  - Core/Element
+  - Core/Element.Style
+  - Core/Element.Event
+  - Core/Element.Dimensions
+  - MMap/MMap.Core
+  - MMap/MMap.Utils
+  - MMap/MMap.OverlayView
+  - MMap/MMap.Marker
+  - MMap/MMap.Marker.Image
+
+provides: [MMap.Marker.Image]
+
+...
+*/
+
 (function($){
 
 var MMap = (this.MMap || {});
@@ -5,7 +41,7 @@ MMap.Marker = (this.MMap.Marker || {});
 
 MMap.Marker.Image = this.MMap.Marker.Image = new Class({
 
-	Extends: MMap.Marker,
+	Extends: MMap.BaseMarker,
 
 	options: {
 		map: null,
@@ -23,10 +59,10 @@ MMap.Marker.Image = this.MMap.Marker.Image = new Class({
 	},
 
 	_setup: function(container) {
+		this.setDefaultZIndex();
+
 		var className = this.options.className;
 		container.addClass(className);
-		var zIndex = this.get('zIndex');
-		container.setStyle('z-index', zIndex);
 		var photo = new Element('p', {'class': 'photo'});
 		this._anchor = new Element('a', {
 			'title': this.get('title'),
@@ -39,18 +75,38 @@ MMap.Marker.Image = this.MMap.Marker.Image = new Class({
 		return photo;
 	},
 
-	_init: function(){
+	_setupListeners: function(){
 		var self = this;
-		var props = ['title', 'image', 'url', 'position', 'zIndex', 'visible'];
+		var marker = this._getInstance();
+		var proxy = function(event){
+			event.target = self;
+			self.fireEvent(event.type, event);
+		}
+		var events = ['click', 'dblclick', 'mouseover', 'mouseout', 'mouseup', 'mousedown'];
+		events.each(function(type){
+			marker.addEvent(type, proxy);
+		});
+	},
+
+	_init: function(){
+		this.parent();
+		var self = this;
+		var props = ['title', 'image', 'url'];
 		props.each(function(key){
 			self.set(key, self.options[key]);
+			delete self.options[key];
 		});
 	},
 
 	_update: function(){
-		this.setTitle(this.get('title'))
-		.setImage(this.get('image'))
-		.setURL(this.get('url'));
+		this._anchor.set({
+		    title: this.get('title'),
+		    href: this.get('url')
+		});
+		this._image.set({
+			title: this.get('title'),
+			image: this.get('image')
+		});
 	},
 
 	getTitle: function() {
@@ -66,26 +122,23 @@ MMap.Marker.Image = this.MMap.Marker.Image = new Class({
 	},
 
 	setTitle: function(title){
-		if (this.get('title') == title) return this;
 		this.set('title', title);
-		this._image.set('title', title);
-		this._anchor.set('title', title);
+		this.draw();
 		return this;
 	},
 
 	setImage: function(image){
-		if (this.get('image') == image) return this;
 		this.set('image', image);
-		this._image.set('src', image);
+		this.draw();
 		return this;
 	},
 
 	setURL: function(url){
-		if (this.get('url') == url) return this;
 		this.set('url', url);
-		this._anchor.set('href', url);
+		this.draw();
+		return this;
 	}
 
 });
 
-}(document.id))
+}(document.id));

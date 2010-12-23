@@ -1,6 +1,42 @@
+/*
+---
+name: MMap.Window
+
+description: Simple information window.
+
+license: MIT-style
+
+authors:
+- Noritaka Horio
+
+requires:
+  - Core/Core
+  - Core/Array
+  - Core/String
+  - Core/Number
+  - Core/Function
+  - Core/Object
+  - Core/Event
+  - Core/Browser
+  - Core/Class
+  - Core/Element
+  - Core/Element.Style
+  - Core/Element.Event
+  - Core/Element.Dimensions
+  - MMap/MMap.Core
+  - MMap/MMap.OverlayView
+  - MMap/MMap.Utils.js
+
+provides: [MMap.Window]
+
+...
+*/
+
 (function($){
 
 var MMap = (this.MMap || {});
+
+var	_offsetY = 15;
 
 MMap.Window = new Class({
 
@@ -12,14 +48,9 @@ MMap.Window = new Class({
 		content: '',
 		position: '',
 		zIndex: 0,
-		visible: true
+		visible: true,
+		active: false
 		/*
-			onClick: $empty
-			onDblClick: $empty
-			onMouseover: $empty
-			onMouseout: $empty
-			onMouseup: $empty
-			onMousedown: $empty
 			onOpen: $empty
 			onClose: $empty
 			onVisibleChanged: $empty
@@ -67,24 +98,25 @@ MMap.Window = new Class({
 
 	_setupListeners: function(){
 		var self = this;
-		self.addEvent('click', function(event){
-			if (event.target == self._closeButton) {
-				self.close();
-				self.fireEvent('close');
-			}
+		var win = this._getInstance();
+		this._closeButton.addEvent('click', function(event){
+			self.close();
+			self.fireEvent('close');
 		});
 	},
 
 	_init: function(){
 		var self = this;
-		var props = ['title', 'content', 'position', 'zIndex', 'visible'];
+		var props = ['title', 'content', 'position', 'zIndex', 'visible', 'active'];
 		props.each(function(key){
 			self.set(key, self.options[key]);
 		});
 	},
 
 	draw: function(){
-		if (this._added == false || this._opened == false) return this;
+		if (!this.isAdded() || !this.isOpen()) return this;
+
+		this.refresh();
 
 		var anchorHeight = 0;
 		if (this._anchor) {
@@ -94,26 +126,33 @@ MMap.Window = new Class({
 		}
 		var projection = this.getProjection();
 		var position = this.get('position');
+
 		var size = this.instance.getSize();
 		var xy = projection.fromLatLngToDivPixel(position);
+		var top = xy.y - size.y - anchorHeight;
+		var left = xy.x - (size.x / 2);
 		var styles = {
 			position: 'absolute',
-			left: xy.x - (size.x / 2),
-			top: xy.y - size.y - anchorHeight
+			left: left,
+			top: top
 		};
 		this.instance.setStyles(styles);
 
-		var center = new google.maps.Point(xy.x, xy.y - 20);
-		var centerLatlng = projection.fromDivPixelToLatLng(center);
+		var offset = 0;
+		if (top < _offsetY && top >= 0) {
+			offset = _offsetY - top;
+		} else if (top <= 0) {
+			offset = Math.abs(top) + _offsetY;
+		}
 
-		var bounds = this.getMap().getBounds();
-		bounds.extend(centerLatlng);
+		var point = new google.maps.Point(xy.x, xy.y - offset);
+		var latlng = projection.fromDivPixelToLatLng(point);
 
-		this.getMap().panToBounds(bounds);
-		this.refresh();
+		this.getMap().panTo(latlng);
 	},
 
 	refresh: function(){
+		if (!this.isAdded()) return this;
 		this._updateVisibleState();
 		this._update();
 	},
@@ -124,9 +163,8 @@ MMap.Window = new Class({
 	},
 
 	_update: function(){
-		if (this._added == false) return this;
-		this.setTitle(this.get('title'))
-		.setContent(this.get('content'));
+		this._title.set('html', this.get('title'));
+		this._content.set('html', this.get('content'));
 	},
 
 	open: function(map, anchor){
@@ -146,6 +184,18 @@ MMap.Window = new Class({
 
 	isOpen: function(){
 		return (this._opened) ? true : false;
+	},
+
+	getZIndex: function() {
+		return this.get('zIndex');
+	},
+
+	setZIndex: function(index){
+		if (!Type.isNumber(index)) new TypeError('The data type is not an integer.');
+		this.set('zIndex', index);
+		var container = this._getInstance();
+		container.setStyle('z-index', index);
+		return this;
 	},
 
 	getPosition: function() {
@@ -169,8 +219,8 @@ MMap.Window = new Class({
 		if (!Type.isString(title)) {
 			new TypeError('The data type is not a character string.');
 		}
-		this._title.set('html', title);
 		this.set('title', title);
+		this.draw();
 		return this;
 	},
 
@@ -183,10 +233,23 @@ MMap.Window = new Class({
 			new TypeError('The data type is a character string or not an element.');
 		}
 		this.set('content', content);
-		this._content.set('html', content);
+		this.draw();
+		return this;
+	},
+
+	setActive: function(value) {
+		if (!Type.isBoolean(value)) new TypeError('The data type is not an boolean.');
+		this.set('active', value);
+		var container = this._getInstance();
+		if (value) {
+			this.fireEvent('active');
+			container.addClass('active');
+		} else {
+			container.removeClass('active');
+		}
 		return this;
 	}
 
 });
 
-}(document.id))
+}(document.id));

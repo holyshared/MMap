@@ -1,60 +1,74 @@
+/*
+---
+name: MMap.MarkerManager
+
+description: The marker displayed in the map is managed.
+
+license: MIT-style
+
+authors:
+- Noritaka Horio
+
+requires:
+  - Core/Core
+  - Core/Array
+  - Core/String
+  - Core/Number
+  - Core/Function
+  - Core/Object
+  - Core/Event
+  - Core/Browser
+  - Core/Class
+  - Core/Element
+  - Core/Element.Style
+  - Core/Element.Event
+  - Core/Element.Dimensions
+  - MMap/MMap.Core
+  - MMap/MMap.Utils
+
+provides: [MMap.MarkerManager]
+
+...
+*/
+
 (function($){
 
 var MMap = (this.MMap || {});
 
 MMap.MarkerManager = new Class({
 
+	Extends: MMap.MVCObject,
+
 	Implements: [MMap.Events, MMap.Options],
 
 	options: {
 		map: null,
-		zoom: null,
-		bounds: null,
 		markers: []
 /*
-	onZoomChanged
-	onBoundsChanged
-	onDisplayMarkersChanged
+	onStateChanged
 */
 	},
 
 	initialize: function(options) {
-		var subclass = this;
-		subclass = Object.append(new google.maps.MVCObject(), subclass);
-		for (var k in subclass) { this[k] = subclass[k]; };
-		this.set('container', new MMap.Container());
+		this._container = new MMap.Container();
 		this.setOptions(options);
 		this._setup();
 	},
 
 	_setup: function(){
-		this.addMarkers(this.get('markers'));
-		this.set('displayMarkers', this.getMarkers().getItems());
-		this.set('hiddenMarkers', []);
-		this.set('activeMarkers', []);
-		this.set('deactiveMarkers', []);
-		this.bindTo('bounds', this.getMap(), 'bounds');
-		this.bindTo('zoom', this.getMap(), 'zoom');
-		this.defaultBounds = function(){
-			if (!this.get('bounds')) {
-				var bounds = this.getMap().getBounds();
-				this.setBounds(bounds);
-			}
-			this.removeEvent('boundsChanged', this.defaultBounds);
+		var markers = {
+			visibles: [],
+			hiddens: [],
+			actives: [],
+			deactives: []
 		};
-		this.defaultZoom = function(){
-			if (!this.get('zoom')) {
-				var zoom = this.getMap().getZoom();
-				this.setZoom(zoom);
-			}
-			this.removeEvent('zoomChanged', this.defaultZoom);
-		};
-		this.addEvent('zoomChanged', this.defaultZoom);
-		this.addEvent('boundsChanged', this.defaultBounds);
+		this.addMarkers(this.options.markers);
+		this.set('state', markers);
+		delete this.options.markers;
 	},
 
 	setMap: function(map) {
-		var markers = this.getMarkers().rewind();
+		var markers = this.getContainer().rewind();
 		this.set('map', map);
 		while(markers.isValid()) {
 			var marker = markers.getCurrent();
@@ -68,7 +82,7 @@ MMap.MarkerManager = new Class({
 	},
 
 	addMarker: function(marker){
-		var container = this.getMarkers();
+		var container = this.getContainer();
 		container.addItem(marker);
 		marker.setMap(this.getMap());
 	},
@@ -80,87 +94,71 @@ MMap.MarkerManager = new Class({
 	},
 
 	removeMarker: function(marker){
-		var container = this.getMarkers();
+		var container = this.getContainer();
 		container.removeItem(marker);
 		marker.setMap(null);
 	},
 
-	removeMarkers: function(markers){
-		var marker = null;
+	removeMarkers: function(){
+		var marker = null, markers = [], args = Array.from(arguments);
+		if ((args.length <= 0)) { args = this.getContainer().getItems(); };
+		while (args.length > 0) {
+			markers.push(args.shift());
+		};
+		markers = markers.flatten();
 		while(markers.length > 0) {
 			marker = markers.shift();
 			this.removeMarker(marker);
 		}
 	},
 
-	setZoom: function(zoom) {
-		var current = this.getZoom();
-		if (current == zoom) return;
-		this.set('zoom', zoom);
-		this._displayMarkerChange();
-	},
-
-	getZoom: function(){
-		return this.get('zoom');
-	},
-
-	setBounds: function(bounds) {
-		var current = this.getBounds();
-		if (current == bounds) return;
-		this.set('bounds', bounds);
-		this._displayMarkerChange();
-	},
-
-	getBounds: function() {
-		return this.get('bounds');
+	getContainer: function() {
+		return this._container;
 	},
 
 	getMarkers: function() {
-		return this.get('container');
+		return this.getContainer().getItems();
 	},
 
-	getVisibleMarkers: function() {
-		return this.get('displayMarkers');
+	setMarkers: function(markers) {
+		var l = markers.length, items = [];
+		for(var i = 0; i < l; i++){
+			items.push(markers[i]);
+		}
+		this.getContainer().empty();
+		this.addMarkers(items);
+		this._displayMarkerChange();
 	},
 
-	getHiddenMarkers: function() {
-		return this.get('hiddenMarkers');
-	},
-
-	getActiveMarkers: function() {
-		return this.get('activeMarkers');
-	},
-
-	getDeactiveMarkers: function() {
-		return this.get('deactiveMarkers');
+	getState: function(){
+		var state = this.get('state');
+		return state;
 	},
 
 	_displayMarkerChange: function() {
-		var markers = this.getMarkers().rewind();
-		var displayMarkers = [], hiddenMarkers = [], activeMarkers = [], deactiveMarkers = [];
+		var markers = this.getContainer().rewind();
+		var visibleMarkers = [], hiddenMarkers = [], activeMarkers = [], deactiveMarkers = [];
 		while(markers.isValid()) {
 			var marker = markers.getCurrent();
 			(marker.isVisible())
-			? displayMarkers.push(marker) : hiddenMarkers.push(marker);
+			? visibleMarkers.push(marker) : hiddenMarkers.push(marker);
 
 			(marker.isActive())
 			? activeMarkers.push(marker) : deactiveMarkers.push(marker);
 			markers.next();
 		}
-		this.set('displayMarkers', displayMarkers);
-		this.set('hiddenMarkers', hiddenMarkers);
-		this.set('activeMarkers', activeMarkers);
-		this.set('deactiveMarkers', deactiveMarkers);
-		return displayMarkers;
-	},
-
-	hasDisplayMarkers: function() {
-		return (this.getVisibleMarkers()) ? true : false;
+		var markers = {
+			visibles: visibleMarkers,
+			hiddens: hiddenMarkers,
+			actives: activeMarkers,
+			deactives: deactiveMarkers
+		};
+		return this.set('state', markers);
 	},
 
 	hasMarker: function(marker) {
 		var findMaker = false;
-		var markers = this.getMarkers().rewind();
+		var markers = this.getContainer().rewind();
 		while(markers.isValid()) {
 			if (marker == markers.getCurrent()) {
 				findMaker = true;
@@ -170,20 +168,26 @@ MMap.MarkerManager = new Class({
 		return findMaker;
 	},
 
-	active: function(target) {
-		var helper = this._getStateChangeHelper(target);
-		this._activeMarkers(target, helper);
+	active: function() {
+		var target = Array.from(arguments).shift(), args = [];
+		(target) ? args.push(target) : args.push(null);
+		var helper = this._getStateChangeHelper.apply(this, args);
+		args.push(helper);
+		this._activeMarkers.apply(this, args);
 		this._displayMarkerChange();
 	},
 
-	visible: function(target){
-		var helper = this._getStateChangeHelper(target);
-		this._visibleMarkers(target, helper);
+	visible: function(){
+		var target = Array.from(arguments).shift(), args = [];
+		(target) ? args.push(target) : args.push(null);
+		var helper = this._getStateChangeHelper.apply(this, args);
+		args.push(helper);
+		this._visibleMarkers.apply(this, args);
 		this._displayMarkerChange();
 	},
 
 	_activeMarkers: function(target, closer) {
-		var markers = this.getMarkers().rewind();
+		var markers = this.getContainer().rewind();
 		while(markers.isValid()) {
 			var current = markers.getCurrent();
 			current.setActive(closer(target, current));
@@ -192,7 +196,7 @@ MMap.MarkerManager = new Class({
 	},
 
 	_visibleMarkers: function(target, closer) {
-		var markers = this.getMarkers().rewind();
+		var markers = this.getContainer().rewind();
 		while(markers.isValid()) {
 			var current = markers.getCurrent();
 			current.setVisible(closer(target, current));
@@ -201,13 +205,13 @@ MMap.MarkerManager = new Class({
 	},
 
 	_getStateChangeHelper: function(target) {
-		var helper = null;
+		var helper = function (target, current) { return true; };
 		if (target instanceof google.maps.LatLngBounds) {
-			this.setBounds(target);
 			helper = function(target, current){
 				return target.contains(current.getPosition());
 			};
-		} else if (instanceOf(target, MMap.Marker)) {
+		} else if (instanceOf(target, MMap.BaseMarker)
+			|| target instanceof google.maps.Marker) {
 			helper = function(target, current){
 				return (target == current) ? true : false;
 			};

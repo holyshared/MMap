@@ -1,0 +1,70 @@
+.markerStateView {
+	overflow: hidden;
+	padding: 0px;
+	margin: 0px;
+}
+
+.markerStateView .states {
+	float: right;
+	padding: 0px;
+	margin: 0px;
+	overflow: hidden;
+}
+
+.markerStateView dt {
+	float: left;
+	color: #ffffff;
+	margin: 0px 10px 0px 10px;
+	padding: 10px 0px 0px 0px;
+}
+
+.markerStateView dd {
+	font-size: 1.8em;
+	float: left;
+	color: #ffffff;
+	margin: 0px;
+	padding: 0px;
+}
+
+.currentMarkerView {
+	background: #333333;
+	opacity: 0.9;
+	padding: 0px;
+	-moz-border-radius: 5px;
+	margin-right: 10px;
+	margin-top: 10px;
+	width: 200px;
+	color: #ffffff;
+}
+
+.currentMarkerView h3,
+.currentMarkerView .h3 {
+	color: #ffffff;
+	padding-bottom: 5px;
+	border-bottom: 1px solid #cccccc;
+	margin-bottom: 10px;
+}
+
+.currentMarkerView .states {
+	overflow: hidden;
+	text-align: left;
+}
+
+.currentMarkerView dt {
+	font-weight: bold;
+	margin: 0px 5px 0px 0px;
+	padding: 0px 0px 5px 0px;
+	width: 40px;
+}
+
+.currentMarkerView dd {
+	line-height: 160%;
+	margin: 0px;
+	padding: 5px 0px;
+}
+
+.currentMarkerView dd a {
+	color: #ffda00;
+	text-decoration: underline;
+}
+
