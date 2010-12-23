@@ -1,0 +1,262 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<title></title>
+	<meta http-equiv="Content-Language" content="ja" />
+	<meta http-equiv="Content-Script-Type" content="text/javascript" />
+	<meta http-equiv="Content-Style-Type" content="text/css" />
+	<meta name="description" content="" />
+	<meta name="keywords" content="" />
+	<link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Vollkorn:regular,italic,bold&amp;subset=latin" type="text/css" />
+	<link rel="stylesheet" href="../css/style.css" type="text/css" media="screen" />
+</head>
+
+<body>
+<div class="page gs960">
+
+	<div class="head">
+		<div class="mod symbol">
+			<div class="inner">
+				<div class="hd">
+					<h1 class="logo">MMap</h1>
+					<p class="version">version 0.2</p>
+				</div>
+			</div>
+		</div>
+	</div>
+
+<div class="body">
+	<div class="leftCol gDocs">
+
+<h3>Core</h3>
+
+<ul>
+<li><a href='mmap.overlayview.html#mmap.overlayview'>MMap.OverlayView</a></li>
+</ul>
+
+<h3>Marker</h3>
+
+<ul>
+<li><a href='mmap.basemarker.html#mmap.basemarker'>MMap.BaseMarker</a></li>
+<li><a href='mmap.marker.html#mmap.marker'>MMap.Marker</a></li>
+<li><a href='mmap.marker.image.html#mmap.marker.image'>MMap.Marker.Image</a></li>
+<li><a href='mmap.marker.images.html#mmap.marker.images'>MMap.Marker.Images</a></li>
+<li><a href='mmap.markermanager.html#mmap.markermanager'>MMap.MarkerManager</a></li>
+<li><a href='mmap.markerloader.html#mmap.markerloader'>MMap.MarkerLoader</a></li>
+</ul>
+
+<h3>Window</h3>
+
+<ul>
+<li><a href='mmap.window.html#mmap.window'>MMap.Window</a></li>
+</ul>
+
+	</div>
+
+	<div class="rightCol gDocs">
+
+<h3><a href='mmap.marker.image.html#mmap.marker.image'>MMap.Marker.Image</a></h3>
+
+<ul>
+<li><a href="mmap.marker.image.html#constructor" title="constructor">constructor</a></li>
+<li><a href="mmap.marker.image.html#getTitle" title="getTitle">getTitle</a></li>
+<li><a href="mmap.marker.image.html#getImage" title="getImage">getImage</a></li>
+<li><a href="mmap.marker.image.html#getURL" title="getURL">getURL</a></li>
+<li><a href="mmap.marker.image.html#setTitle" title="setTitle">setTitle</a></li>
+<li><a href="mmap.marker.image.html#setImage" title="setImage">setImage</a></li>
+<li><a href="mmap.marker.image.html#setURL" title="setURL">setURL</a></li>
+</ul>
+
+<h4>Inherited Methods</h4>
+
+<h5>MMap.OverlayView</h5>
+
+<ul>
+<li><a href="mmap.overlayview.html#getVisible" title="getVisible">getVisible</a></li>
+<li><a href="mmap.overlayview.html#setVisible" title="setVisible">setVisible</a></li>
+<li><a href="mmap.overlayview.html#isAdded" title="isAdded">isAdded</a></li>
+<li><a href="mmap.overlayview.html#isVisible" title="isVisible">isVisible</a></li>
+<li><a href="mmap.overlayview.html#isActive" title="isActive">isActive</a></li>
+</ul>
+
+<h5>MMap.BaseMarker</h5>
+
+<ul>
+<li><a href="mmap.basemarker.html#draw" title="draw">draw</a></li>
+<li><a href="mmap.basemarker.html#refresh" title="refresh">refresh</a></li>
+<li><a href="mmap.basemarker.html#getZIndex" title="getZIndex">getZIndex</a></li>
+<li><a href="mmap.basemarker.html#getPosition" title="getPosition">getPosition</a></li>
+<li><a href="mmap.basemarker.html#setDefaultZIndex" title="setDefaultZIndex">setDefaultZIndex</a></li>
+<li><a href="mmap.basemarker.html#setZIndex" title="setZIndex">setZIndex</a></li>
+<li><a href="mmap.basemarker.html#setPosition" title="setPosition">setPosition</a></li>
+<li><a href="mmap.basemarker.html#setActive" title="setActive">setActive</a></li>
+</ul>
+
+
+
+	</div>
+
+	<div class="main">
+
+<h2 class="h1">Class: <a id='mmap.marker.image'>MMap.Marker.Image</a></h2>
+
+<p>Simple marker who displays image that can be injury it with style</p>
+
+<h3>Extends:</h3>
+
+<p>MMap.BaseMarker</p>
+
+<h2>Method: <a id='constructor'>constructor</a></h2>
+
+<p>Constructor of image marker</p>
+
+<h3>Syntax:</h3>
+
+<pre><code>var myMarker = new MMap.Marker.Image(options);
+</code></pre>
+
+<h3>Arguments:</h3>
+
+<ol>
+<li>options - (<em>mixed</em>) Option of marker</li>
+</ol>
+
+<h3>Options:</h3>
+
+<ul>
+<li>map - (<em><a href="http://code.google.com/intl/en/apis/maps/documentation/javascript/reference.html#Map">Map</a></em>) Map object that displays marker</li>
+<li>className - (<em>string</em>) Style applied to marker (class name of CSS)</li>
+<li>title - (<em>string</em>) Content set to title of marker</li>
+<li>image - (<em>string</em>) URL of image displayed in marker</li>
+<li>url - (<em>string</em>) URL set to marker</li>
+<li>position - (<a href="http://code.google.com/intl/eu/apis/maps/documentation/javascript/reference.html#LatLng"><em>LatLng</em></a>) Coordinates position of marker</li>
+<li>zIndex - (<em>number</em>) The order of displaying marker</li>
+<li>visible - (<em>boolean</em>) State of display of marker</li>
+<li>active - (<em>boolean</em>) Active state of marker</li>
+<li>onClick - (<em>function</em>) When the marker is clicked, it is generated.</li>
+<li>onDblClick - (<em>function</em>) When the marker is double-clicked, it is generated.</li>
+<li>onMouseOver - (<em>function</em>) It is generated at mouse over time of the marker.</li>
+<li>onMouseOut - (<em>function</em>) It is generated at the mouse out of the marker.</li>
+<li>onMouseUp - (<em>function</em>) When the mouse of the marker improves, it is generated.</li>
+<li>onMouseDown - (<em>function</em>) When the mouse of the marker is downed, it is generated.</li>
+<li>onTitleChanged - (<em>function</em>) When the title of the marker changes, it is generated.</li>
+<li>onImageChanged - (<em>function</em>) When the image of the marker changes, it is generated.</li>
+<li>onURLChanged - (<em>function</em>) When URL of the marker changes, it is generated.</li>
+<li>onVisibleChanged - (<em>function</em>) When the marker's display changes, it is generated. </li>
+<li>onZIndexChanged - (<em>function</em>) When the order of displaying the marker changes, it is generated.</li>
+<li>onPositionChanged - (<em>function</em>) When the display coordinates of the marker are changed, it is generated.</li>
+<li>onActive - (<em>function</em>) When the display coordinates of the marker are changed, it is generated.</li>
+</ul>
+
+<h2>Method: <a id='getTitle'>getTitle</a></h2>
+
+<p>The title set to the marker is acquired.</p>
+
+<h3>Syntax:</h3>
+
+<pre><code>var title = marker.getTitle();
+</code></pre>
+
+<h3>Returns:</h3>
+
+<p>(<em>string</em>) Title set to marker</p>
+
+<h2>Method: <a id='getImage'>getImage</a></h2>
+
+<p>URL of the image displayed in the marker is acquired.</p>
+
+<h3>Syntax:</h3>
+
+<pre><code>var image = marker.getImage();
+</code></pre>
+
+<h3>Returns:</h3>
+
+<p>(<em>string</em>) URL of image displayed in marker</p>
+
+<h2>Method: <a id='getURL'>getURL</a></h2>
+
+<p>URL set to the marker is acquired.</p>
+
+<h3>Syntax:</h3>
+
+<pre><code>var url = marker.getURL();
+</code></pre>
+
+<h3>Returns:</h3>
+
+<p>(<em>string</em>) URL set to marker</p>
+
+<h2>Method: <a id='setTitle'>setTitle</a></h2>
+
+<p>The title is set to the marker. </p>
+
+<h3>Syntax:</h3>
+
+<pre><code>marker.setTitle('Marker title');
+</code></pre>
+
+<h3>Arguments:</h3>
+
+<ol>
+<li>title - (<em>string</em>) Title set to marker</li>
+</ol>
+
+<h3>Returns:</h3>
+
+<p>(<em>object</em>) marker object</p>
+
+<h2>Method: <a id='setImage'>setImage</a></h2>
+
+<p>The image displayed in the marker is set. </p>
+
+<h3>Syntax:</h3>
+
+<pre><code>marker.setImage('/images/cafe_marker.png');
+</code></pre>
+
+<h3>Arguments:</h3>
+
+<ol>
+<li>image - (<em>string|element</em>) Image displayed in marker</li>
+</ol>
+
+<h3>Returns:</h3>
+
+<p>(<em>object</em>) marker object</p>
+
+<h2>Method: <a id='setURL'>setURL</a></h2>
+
+<p>URL is set to the marker.<br />
+It changes to URL set when the marker is clicked. </p>
+
+<h3>Syntax:</h3>
+
+<pre><code>marker.setURL('http://mootools.net')
+</code></pre>
+
+<h3>Arguments:</h3>
+
+<ol>
+<li>url - (<em>string</em>) URL set to marker</li>
+</ol>
+
+<h3>Returns:</h3>
+
+<p>(<em>object</em>) marker object</p>
+
+
+
+	</div>
+
+</div>
+
+	<div class="foot">
+		<p>Copyright(c) 2010 <a title="Noritaka Horio" href="http://sharedhat.com">Noritaka Horio</a> All Rights Reserved.</p>
+	</div>
+</div>
+
+</body>
+
+</html>

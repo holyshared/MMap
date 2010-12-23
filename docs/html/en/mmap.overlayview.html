@@ -1,0 +1,259 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<title></title>
+	<meta http-equiv="Content-Language" content="ja" />
+	<meta http-equiv="Content-Script-Type" content="text/javascript" />
+	<meta http-equiv="Content-Style-Type" content="text/css" />
+	<meta name="description" content="" />
+	<meta name="keywords" content="" />
+	<link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Vollkorn:regular,italic,bold&amp;subset=latin" type="text/css" />
+	<link rel="stylesheet" href="../css/style.css" type="text/css" media="screen" />
+</head>
+
+<body>
+<div class="page gs960">
+
+	<div class="head">
+		<div class="mod symbol">
+			<div class="inner">
+				<div class="hd">
+					<h1 class="logo">MMap</h1>
+					<p class="version">version 0.2</p>
+				</div>
+			</div>
+		</div>
+	</div>
+
+<div class="body">
+
+	<div class="leftCol gDocs">
+
+<h3>Core</h3>
+
+<ul>
+<li><a href='mmap.overlayview.html#mmap.overlayview'>MMap.OverlayView</a></li>
+</ul>
+
+<h3>Marker</h3>
+
+<ul>
+<li><a href='mmap.basemarker.html#mmap.basemarker'>MMap.BaseMarker</a></li>
+<li><a href='mmap.marker.html#mmap.marker'>MMap.Marker</a></li>
+<li><a href='mmap.marker.image.html#mmap.marker.image'>MMap.Marker.Image</a></li>
+<li><a href='mmap.marker.images.html#mmap.marker.images'>MMap.Marker.Images</a></li>
+<li><a href='mmap.markermanager.html#mmap.markermanager'>MMap.MarkerManager</a></li>
+<li><a href='mmap.markerloader.html#mmap.markerloader'>MMap.MarkerLoader</a></li>
+</ul>
+
+<h3>Window</h3>
+
+<ul>
+<li><a href='mmap.window.html#mmap.window'>MMap.Window</a></li>
+</ul>
+
+
+	</div>
+
+	<div class="rightCol gDocs">
+
+
+<h3><a href='mmap.overlayview.html#mmap.overlayview'>MMap.OverlayView</a></h3>
+
+<ul>
+<li><a href="mmap.overlayview.html#constructor" title="constructor">constructor</a></li>
+<li><a href="mmap.overlayview.html#_init" title="_init">_init</a></li>
+<li><a href="mmap.overlayview.html#_setup" title="_setup">_setup</a></li>
+<li><a href="mmap.overlayview.html#_setupListeners" title="_setupListeners">_setupListeners</a></li>
+<li><a href="mmap.overlayview.html#draw" title="draw">draw</a></li>
+<li><a href="mmap.overlayview.html#getVisible" title="getVisible">getVisible</a></li>
+<li><a href="mmap.overlayview.html#setVisible" title="setVisible">setVisible</a></li>
+<li><a href="mmap.overlayview.html#isAdded" title="isAdded">isAdded</a></li>
+<li><a href="mmap.overlayview.html#isVisible" title="isVisible">isVisible</a></li>
+<li><a href="mmap.overlayview.html#isActive" title="isActive">isActive</a></li>
+<li><a href="mmap.overlayview.html#setActive" title="setActive">setActive</a></li>
+</ul>
+
+
+
+	</div>
+
+	<div class="main">
+<h2 class="h1">Class: <a id="mmap.overlayview">MMap.OverlayView</a></h2>
+
+<p>
+OverlayView (<a href="http://code.google.com/intl/en/apis/maps/documentation/javascript/reference.html#OverlayView">google.maps.OverlayView</a>) inherited class.<br />
+An original marker and the information window can be defined by making this class a subclass.</p>
+
+<h3>Implements:</h3>
+
+<p>MMap.Events, MMap.Options</p>
+
+<h2>Method: <a id="constructor">constructor</a></h2>
+
+<p>Constructor of overlay view</p>
+
+<h3>Syntax:</h3>
+
+<pre><code>var myMMap.OverlayView = new MMap.OverlayView(options);
+</code></pre>
+
+<h3>Arguments:</h3>
+
+<ol>
+<li>options - (<em>mixed</em>) Option of overlay view</li>
+</ol>
+
+<h3>Options:</h3>
+
+<ul>
+<li>map - (<em><a href="http://code.google.com/intl/en/apis/maps/documentation/javascript/reference.html#Map">Map</a></em>) Map object that displays overlay view</li>
+<li>zIndex - (<em>number</em>) The order of displaying overlay view</li>
+<li>visible - (<em>boolean</em>) State of display of overlay view</li>
+<li>active - (<em>boolean</em>) Active state of overlay view</li>
+</ul>
+
+<h2>Method: <a id="_init">_init</a></h2>
+
+<p>Processing to initialize the overlay view is defined.<br />
+Original initialization can be mounted by doing this method in override.<br />
+When the instance of the overlay view is generated, this method is executed.</p>
+
+<h2>Method: <a id="_setup">_setup</a></h2>
+
+<p>The structure of the overlay view is defined. <br />
+The document structure on which it undergoes plastic operation to the container element that stores the overlay view of the argument is stored.<br />
+This method is executed before the overlay view is arranged in the map.<br />
+The overlay view of an original structure can be defined by doing this method in override.</p>
+
+<h3>Arguments:</h3>
+
+<ol>
+<li>container - (<em>element</em>) Container element that stores overlay view</li>
+</ol>
+
+<h2>Method: <a id="_setupListeners">_setupListeners</a></h2>
+
+<p>The event listener of the overlay view is initialized. <br />
+This method is executed before the overlay view is arranged in the map.<br />
+The event listener of initial can be specified by doing this method in override.</p>
+
+<h2>Method: <a id="draw">draw</a></h2>
+
+<p>It draws in the overlay view object. <br />
+It draws in the overlay view object.</p>
+
+<h3>Syntax:</h3>
+
+<pre><code>overlayView.draw();
+</code></pre>
+
+<h2>Method: <a id="getVisible">getVisible</a></h2>
+
+<p>The display of the overlay view is acquired.</p>
+
+<h3>Syntax:</h3>
+
+<pre><code>overlayView.getVisible();
+</code></pre>
+
+<h3>Returns:</h3>
+
+<p>(<em>boolean</em>) Existing state of things</p>
+
+<h2>Method: <a id="setVisible">setVisible</a></h2>
+
+<p>The display of the overlay view is changed.</p>
+
+<h3>Syntax:</h3>
+
+<pre><code>overlayView.setVisible(true);
+</code></pre>
+
+<h3>Arguments:</h3>
+
+<ol>
+<li>value - (<em>boolean</em>) If it is displayed that true is specified, and specifies false, it becomes non-display.</li>
+</ol>
+
+<h3>Returns:</h3>
+
+<p>(<em>object</em>) overlay view</p>
+
+<h2>Method: <a id="isAdded">isAdded</a></h2>
+
+<p>Whether the overlay view is arranged in the map is examined.</p>
+
+<h3>Syntax:</h3>
+
+<pre><code>if (overlayView.isAdded()) {
+    console.log('added');
+}
+</code></pre>
+
+<h3>Returns:</h3>
+
+<p>(<em>boolean</em>) False is returned when it is not true so when arranged in the map.</p>
+
+<h2>Method: <a id="isVisible">isVisible</a></h2>
+
+<p>The display of the overlay view is examined.</p>
+
+<h3>Syntax:</h3>
+
+<pre><code>if (overlayView.isVisible()) {
+    console.log('visible');
+}
+</code></pre>
+
+<h3>Returns:</h3>
+
+<p>(<em>boolean</em>) False is returned at true and non-display when displaying it.</p>
+
+<h2>Method: <a id="isActive">isActive</a></h2>
+
+<p>Active of the overlay view is examined.</p>
+
+<h3>Syntax:</h3>
+
+<pre><code>if (overlayView.isActive()) {
+    console.log('active');
+}
+</code></pre>
+
+<h3>Returns:</h3>
+
+<p>(<em>boolean</em>) False is returned true and actively non-in case of actively.</p>
+
+<h2>Method: <a id="setActive">setActive</a></h2>
+
+<p>Active of the overlay view is changed. <br />
+Please make to the subclass and mount concrete processing because this method is an abstract method.</p>
+
+<h3>Syntax:</h3>
+
+<pre><code>overlayView.setActive(true);
+</code></pre>
+
+<h3>Arguments:</h3>
+
+<ol>
+<li>value - (<em>boolean</em>) If true is specified, it becomes active.</li>
+</ol>
+
+
+
+
+	</div>
+
+</div>
+
+<div class="foot">
+<p>Copyright(c) 2010 <a title="Noritaka Horio" href="http://sharedhat.com">Noritaka Horio</a> All Rights Reserved.</p>
+</div>
+</div>
+
+</body>
+
+</html>

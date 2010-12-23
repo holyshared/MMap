@@ -1,0 +1,349 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<title></title>
+	<meta http-equiv="Content-Language" content="ja" />
+	<meta http-equiv="Content-Script-Type" content="text/javascript" />
+	<meta http-equiv="Content-Style-Type" content="text/css" />
+	<meta name="description" content="" />
+	<meta name="keywords" content="" />
+	<link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Vollkorn:regular,italic,bold&amp;subset=latin" type="text/css" />
+	<link rel="stylesheet" href="../css/style.css" type="text/css" media="screen" />
+	<link rel="stylesheet" href="../css/core/content.ja.css" type="text/css" media="screen" />
+</head>
+
+<body>
+<div class="page gs960">
+
+	<div class="head">
+		<div class="mod symbol">
+			<div class="inner">
+				<div class="hd">
+					<h1 class="logo">MMap</h1>
+					<p class="version">version 0.2</p>
+				</div>
+			</div>
+		</div>
+	</div>
+
+<div class="body">
+	<div class="leftCol gDocs">
+<h3>Core</h3>
+
+<ul>
+<li><a href='mmap.overlayview.html#mmap.overlayview'>MMap.OverlayView</a></li>
+</ul>
+
+<h3>Marker</h3>
+
+<ul>
+<li><a href='mmap.basemarker.html#mmap.basemarker'>MMap.BaseMarker</a></li>
+<li><a href='mmap.marker.html#mmap.marker'>MMap.Marker</a></li>
+<li><a href='mmap.marker.image.html#mmap.marker.image'>MMap.Marker.Image</a></li>
+<li><a href='mmap.marker.images.html#mmap.marker.images'>MMap.Marker.Images</a></li>
+<li><a href='mmap.markermanager.html#mmap.markermanager'>MMap.MarkerManager</a></li>
+<li><a href='mmap.markerloader.html#mmap.markerloader'>MMap.MarkerLoader</a></li>
+</ul>
+
+<h3>Window</h3>
+
+<ul>
+<li><a href='mmap.window.html#mmap.window'>MMap.Window</a></li>
+</ul>
+
+
+	</div>
+
+	<div class="rightCol gDocs">
+
+
+<h3><a href='mmap.markermanager.html#mmap.markermanager'>MMap.MarkerManager</a></h3>
+
+<ul>
+<li><a href="mmap.markermanager.html#constructor" title="constructor">constructor</a></li>
+<li><a href="mmap.markermanager.html#setMap" title="setMap">setMap</a></li>
+<li><a href="mmap.markermanager.html#setMarkers" title="setMarkers">setMarkers</a></li>
+<li><a href="mmap.markermanager.html#getMap" title="getMap">getMap</a></li>
+<li><a href="mmap.markermanager.html#getContainer" title="getContainer">getContainer</a></li>
+<li><a href="mmap.markermanager.html#getMarkers" title="getMarkers">getMarkers</a></li>
+<li><a href="mmap.markermanager.html#getState" title="getState">getState</a></li>
+<li><a href="mmap.markermanager.html#hasMarker" title="hasMarker">hasMarker</a></li>
+<li><a href="mmap.markermanager.html#addMarker" title="addMarker">addMarker</a></li>
+<li><a href="mmap.markermanager.html#addMarkers" title="addMarkers">addMarkers</a></li>
+<li><a href="mmap.markermanager.html#removeMarker" title="removeMarker">removeMarker</a></li>
+<li><a href="mmap.markermanager.html#removeMarkers" title="removeMarkers">removeMarkers</a></li>
+<li><a href="mmap.markermanager.html#active" title="active">active</a></li>
+<li><a href="mmap.markermanager.html#visible" title="visible">visible</a></li>
+</ul>
+
+
+	</div>
+
+	<div class="main">
+
+<h2 class="h1">Class: <a id='mmap.markermanager'>MMap.MarkerManager</a></h2>
+
+<p>複数のマーカーを管理します。<br />
+指定した範囲のマーカーの表示、アクティブ化が可能です。</p>
+
+<h3>Implements:</h3>
+
+<p>MMap.Events, MMap.Options</p>
+
+<h3>Extends:</h3>
+
+<p>MMap.MVCObject</p>
+
+<h2>Method: <a id='constructor'>constructor</a></h2>
+
+<p>マーカーマネージャのコンストラクタ</p>
+
+<h3>Syntax:</h3>
+
+<pre><code>var myMarkerManager = new MMap.MarkerManager(options);
+</code></pre>
+
+<h3>Arguments:</h3>
+
+<ol>
+<li>options - (<em>mixed</em>) マーカーマネージャのオプション</li>
+</ol>
+
+<h3>Options:</h3>
+
+<ul>
+<li>map - (<em><a href="http://code.google.com/intl/en/apis/maps/documentation/javascript/reference.html#Map">Map</a></em>) Mapオブジェクト</li>
+<li>markers - (<em>array</em>) 管理するマーカー</li>
+</ul>
+
+<h2>Method: <a id='setMap'>setMap</a></h2>
+
+<p>指定したマップに管理しているマーカーをすべて配置します。</p>
+
+<h3>Syntax:</h3>
+
+<pre><code>manager.setMap(map);
+</code></pre>
+
+<h3>Arguments:</h3>
+
+<ol>
+<li>map - (<em><a href="http://code.google.com/intl/en/apis/maps/documentation/javascript/reference.html#Map">Map</a></em>)　マップオブジェクト</li>
+</ol>
+
+<h2>Method: <a id='getMap'>getMap</a></h2>
+
+<p>指定されているマップオブジェクトを返します。</p>
+
+<h3>Syntax:</h3>
+
+<pre><code>manager.getMap();
+</code></pre>
+
+<h3>Returns:</h3>
+
+<p>(<em><a href="http://code.google.com/intl/en/apis/maps/documentation/javascript/reference.html#Map">Map</a></em>)　マップオブジェクト</p>
+
+<h2>Method: <a id='addMarker'>addMarker</a></h2>
+
+<p>指定したマーカーを追加します。</p>
+
+<h3>Syntax:</h3>
+
+<pre><code>manager.addMarker(marker);
+</code></pre>
+
+<h3>Arguments:</h3>
+
+<ol>
+<li>marker - (<em>marker</em>) 追加するマーカー</li>
+</ol>
+
+<h2>Method: <a id='addMarkers'>addMarkers</a></h2>
+
+<p>指定した複数のマーカーを追加します。</p>
+
+<h3>Syntax:</h3>
+
+<pre><code>var markers = [marker1, marker2];
+manager.addMarkers(markers);
+</code></pre>
+
+<h3>Arguments:</h3>
+
+<ol>
+<li>markers - (<em>array</em>) 追加するマーカー</li>
+</ol>
+
+<h2>Method: <a id='removeMarker'>removeMarker</a></h2>
+
+<p>指定されたマーカーを削除します。</p>
+
+<h3>Syntax:</h3>
+
+<pre><code>manager.removeMarker(marker);
+</code></pre>
+
+<h3>Arguments:</h3>
+
+<ol>
+<li>marker - (<em>marker</em>) 削除するマーカーオブジェクト</li>
+</ol>
+
+<h2>Method: <a id='removeMarkers'>removeMarkers</a></h2>
+
+<p>指定された複数のマーカーを削除します。</p>
+
+<h3>Syntax:</h3>
+
+<pre><code>manager.removeMarkers(marker1, marker2);
+
+var markers = [marker1, marker2];
+manager.removeMarkers(markers);
+</code></pre>
+
+<h3>Arguments:</h3>
+
+<ol>
+<li>markers - (<em>mixed</em>) 削除するマーカー</li>
+</ol>
+
+<h2>Method: <a id='getContainer'>getContainer</a></h2>
+
+<p>マーカーを格納してるコンテナを取得します。</p>
+
+<h3>Syntax:</h3>
+
+<pre><code>var container = manager.getContainer();
+</code></pre>
+
+<h3>Returns:</h3>
+
+<p>(<em>container</em>) コンテナオブジェクト</p>
+
+<h2>Method: <a id='getMarkers'>getMarkers</a></h2>
+
+<p>管理しているマーカーを取得します。</p>
+
+<h3>Syntax:</h3>
+
+<pre><code>var markers = manager.getMarkers();
+</code></pre>
+
+<h3>Returns:</h3>
+
+<p>(<em>array</em>) 管理しているマーカー</p>
+
+<h2>Method: <a id='setMarkers'>setMarkers</a></h2>
+
+<p>管理するマーカーを設定します。</p>
+
+<h3>Syntax:</h3>
+
+<pre><code>manager.setMarkers(markers);
+</code></pre>
+
+<h3>Arguments:</h3>
+
+<ol>
+<li>markers - (<em>array</em>) 管理するマーカー</li>
+</ol>
+
+<h2>Method: <a id='getState'>getState</a></h2>
+
+<p>所持しているマーカーの状態を取得します。</p>
+
+<h3>Syntax:</h3>
+
+<pre><code>manager.getState();
+</code></pre>
+
+<h3>Returns:</h3>
+
+<p>(<em>object</em>) マーカーの状態</p>
+
+<h2>Method: <a id='hasDisplayMarkers'>hasDisplayMarkers</a></h2>
+
+<p>表示しているマーカーがあるかチェックします。</p>
+
+<h3>Syntax:</h3>
+
+<pre><code>manager.hasDisplayMarkers();
+</code></pre>
+
+<h3>Returns:</h3>
+
+<p>(<em>boolean</em>) 表示しているマーカーがある場合はtrueを返します。</p>
+
+<h2>Method: <a id='hasMarker'>hasMarker</a></h2>
+
+<p>マーカーを所持しているかチェックします。</p>
+
+<h3>Syntax:</h3>
+
+<pre><code>var result = manager.hasMarker(marker);
+</code></pre>
+
+<h3>Arguments:</h3>
+
+<ol>
+<li>marker - (<em>marker</em>) マーカーオブジェクト</li>
+</ol>
+
+<h3>Returns:</h3>
+
+<p>(<em>boolean</em>) マーカーを所持している場合はtrueを返します。</p>
+
+<h2>Method: <a id='active'>active</a></h2>
+
+<p>指定された範囲内のマーカーや単体のマーカーをアクティブにします。 <br />
+引数を指定しない場合はすべてのマーカーをアクティブにします。</p>
+
+<h3>Syntax:</h3>
+
+<pre><code>//All markers are made active.
+manager.active();
+
+//The marker object is specified.
+var marker = new MMap.Marker(options);
+manager.active(marker);
+
+//The rectangular area object is specified.
+var bounds = new google.maps.LatLngBounds(options);
+manager.active(bounds);
+</code></pre>
+
+<h2>Method: <a id='visible'>visible</a></h2>
+
+<p>指定された範囲内のマーカーや単体のマーカーを表示します。 <br />
+引数を指定しない場合はすべてのマーカーを表示します。</p>
+
+<h3>Syntax:</h3>
+
+<pre><code>//All markers are displayed.
+manager.visible();
+
+//The marker object is specified.
+var marker = new MMap.Marker(options);
+manager.visible(marker);
+
+//The rectangular area object is specified.
+var bounds = new google.maps.LatLngBounds(options);
+manager.visible(bounds);
+</code></pre>
+
+
+
+	</div>
+
+</div>
+
+	<div class="foot">
+		<p>Copyright(c) 2010 <a title="Noritaka Horio" href="http://sharedhat.com">Noritaka Horio</a> All Rights Reserved.</p>
+	</div>
+
+</div>
+</body>
+
+</html>
