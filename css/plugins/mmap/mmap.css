@@ -1,0 +1,303 @@
+@charset "utf-8";
+
+.googleMap {
+	width: auto;
+	height: 400px;
+}
+
+/*================Marker Styles================*/
+
+/* Image Marker
+====================================*/
+
+/* Default
+-----------------------*/
+.imageDefault {
+	text-align: center;
+	width: 70px;
+	padding-bottom: 18px;
+	background: url(skins/markers/bgi_default_ft.png) no-repeat left bottom;
+}
+
+.imageDefault .photo {
+	background: url(skins/markers/bgi_default_bd.png) no-repeat left top;
+	margin: 0px;
+	padding: 10px 0px 4px 0px;
+}
+
+.imageDefault .photo img {
+	border: none;
+	vertical-align: bottom;
+	display: inline;
+}
+
+.imageDefault:hover,
+.imageDefault.active {
+	background: url(skins/markers/bgi_default_ft.png) no-repeat -70px bottom;
+}
+
+.imageDefault:hover .photo,
+.imageDefault.active .photo {
+	background: url(skins/markers/bgi_default_bd.png) no-repeat -70px bottom;
+}
+
+
+
+/* Paper
+-----------------------*/
+.imagePaper {
+	text-align: center;
+	width: 72px;
+	padding-bottom: 18px;
+	background: url(skins/markers/img_paper_ft.png) no-repeat left bottom;
+}
+
+.imagePaper .photo {
+	background: url(skins/markers/img_paper_bd.png) no-repeat left top;
+	margin: 0px;
+	padding: 10px 0px 0px 0px;
+}
+
+.imagePaper .photo img {
+	vertical-align: bottom;
+	display: inline;
+	border: 1px solid #ffffff;
+}
+
+.imagePaper:hover {
+	background: url(skins/markers/img_paper_ft.png) no-repeat -72px bottom;
+}
+
+.imagePaper:hover .photo {
+	background: url(skins/markers/img_paper_bd.png) no-repeat -72px bottom;
+}
+
+
+
+
+
+/* Marker
+====================================*/
+
+/* Default
+----------------------*/
+.markerDefault {
+	min-width: 250px;
+}
+
+.markerDefault .hd {
+	border-top: 5px solid #333333;
+	border-left: 5px solid #333333;
+	border-right: 5px solid #333333;
+	background: url(skins/markers/bgi_html_default.jpg) repeat-x left top;
+	-moz-border-radius-topleft: 7px;
+	-moz-border-radius-topright: 7px;
+	-webkit-border-top-left-radius: 7px;
+	-webkit-border-top-right-radius: 7px;
+	margin: 0px;
+	padding: 0px;
+}
+
+.markerDefault .hd .title {
+	padding: 5px 10px 5px 10px;
+	margin: 0px;
+	color: #ffffff;
+	height: 17px;
+	border-bottom: 1px solid #cccccc;
+}
+
+.markerDefault .bd {
+	margin: 0px;
+	padding: 10px;
+	border-left: 5px solid #333333;
+	border-right: 5px solid #333333;
+	border-bottom: 5px solid #333333;
+	background: #ffffff;
+	-moz-border-radius-bottomleft: 7px;
+	-moz-border-radius-bottomright: 7px;
+	-webkit-border-bottom-left-radius: 7px;
+	-webkit-border-bottom-right-radius: 7px;
+}
+
+.markerDefault .ft {
+	background: url(skins/markers/bgi_html_default_arrow.png) no-repeat left top;
+	height: 18px;
+	width: 25px;
+	margin: -5px auto 0px auto;
+}
+
+
+
+
+
+/* Marker Images
+====================================*/
+
+/* Default
+----------------------*/
+.imagesDefault {
+	text-align: center;
+	width: 70px;
+	padding-bottom: 18px;
+	background: url(skins/markers/bgi_default_ft.png) no-repeat left bottom;
+}
+
+.imagesDefault .photos {
+	background: url(skins/markers/bgi_default_bd.png) no-repeat left top;
+	margin: 0px;
+	padding: 10px 0px 4px 0px;
+	position: relative;
+	height: 50px;
+}
+
+.imagesDefault .photos li {
+	position: absolute;
+	left: 10px;
+}
+
+.imagesDefault .photos img {
+	border: none;
+	vertical-align: bottom;
+	display: inline;
+}
+
+.imagesDefault:hover {
+	background: url(skins/markers/bgi_default_ft.png) no-repeat -70px bottom;
+}
+
+.imagesDefault:hover .photos {
+	background: url(skins/markers/bgi_default_bd.png) no-repeat -70px bottom;
+}
+
+
+/* Paper
+ ----------------------*/
+.imagesPaper {
+	text-align: center;
+	width: 72px;
+	padding-bottom: 18px;
+	background: url(skins/markers/img_paper_ft.png) no-repeat left bottom;
+}
+
+.imagesPaper .photos {
+	background: url(skins/markers/img_paper_bd.png) no-repeat left top;
+	margin: 0px;
+	padding: 10px 0px 0px 0px;
+	height: 52px;
+}
+
+.imagesPaper .photos li {
+	position: absolute;
+	left: 10px;
+}
+
+.imagesPaper .photos img {
+	vertical-align: bottom;
+	display: inline;
+	border: 1px solid #ffffff;
+}
+
+.imagesPaper:hover {
+	background: url(skins/markers/img_paper_ft.png) no-repeat -72px bottom;
+}
+
+.imagesPaper:hover .photos {
+	background: url(skins/markers/img_paper_bd.png) no-repeat -72px bottom;
+}
+
+
+
+
+
+
+
+
+
+
+
+/* Window Styles
+====================================*/
+
+
+/* Default
+----------------------*/
+.windowDefault {
+	width: 200px;
+	height: auto;
+}
+
+.windowDefault .hd {
+	border-top: 5px solid #333333;
+	border-left: 5px solid #333333;
+	border-right: 5px solid #333333;
+	background: #333333 url(skins/windows/bgi_html_default.jpg) repeat-x left top;
+	-moz-border-radius-topleft: 7px;
+	-moz-border-radius-topright: 7px;
+	-webkit-border-top-left-radius: 7px;
+	-webkit-border-top-right-radius: 7px;
+	margin: 0px;
+	padding: 0px;
+}
+
+.windowDefault .hd .hdgroup {
+	border-bottom: 1px solid #cccccc;
+}
+
+.windowDefault .hd .title {
+	padding: 5px 10px 5px 10px;
+	margin: 0px;
+	color: #ffffff;
+	height: 17px;
+	float: left;
+}
+
+.windowDefault .hd .close {
+	width: 18px;
+	padding: 3px 3px 0px 0px;
+	margin: 0px;
+	float: right;
+}
+
+.windowDefault .hd .close a {
+	height: 18px;
+	width: auto;
+	text-indent: -9999px;
+	display: block;
+	background: url(skins/windows/bgi_default_close.gif) repeat-x left top;
+}
+
+.windowDefault .hd .close a:hover {
+	background-position: left -18px;
+}
+
+.windowDefault .bd {
+	margin: 0px;
+	padding: 10px;
+	border-left: 5px solid #333333;
+	border-right: 5px solid #333333;
+	border-bottom: 5px solid #333333;
+	background: #ffffff;
+	-moz-border-radius-bottomleft: 7px;
+	-moz-border-radius-bottomright: 7px;
+	-webkit-border-bottom-left-radius: 7px;
+	-webkit-border-bottom-right-radius: 7px;
+}
+
+.windowDefault .ft {
+	background: url(skins/windows/bgi_html_default_arrow.png) no-repeat left top;
+	height: 18px;
+	width: 25px;
+	margin: -5px auto 0px auto;
+}
+
+.windowDefault .hd .hdgroup:after {  
+	visibility: hidden;  
+	display: block;  
+	font-size: 0;  
+	content: " ";  
+	clear: both;  
+	height: 0;  
+}  
+
+* html .windowDefault .hd .hdgroup { zoom: 1; } /* IE6 */
+*:first-child+html .windowDefault .hd .hdgroup { zoom: 1; } /* IE7 */

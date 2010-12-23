@@ -1,0 +1,27 @@
+body{font-family: "Vollkorn", Sylfaen, Georgia, "Times New Roman", serif;}
+/* **************** CONTENT OBJECTS ***************** */
+
+/* ====== Elements ====== */
+img{display:block;}
+em{font-style: italic;}
+strong{font-weight:bold;}
+hr{border: 5px solid #e2e2e2; border-width: 0 0 5px 0; margin: 20px 10px 10px 10px;}
+code{color:#0B8C8F;}
+
+.important a{font-weight:bold;}/* what is this? */
+/* links */
+a {color: #2c4460; text-decoration: none;}
+a:focus, a:hover {text-decoration: underline;}
+a:focus{background-color:#FFFFCC;}
+a:visited { color:#005a9c; }
+/* ====== Lists ======*/
+/* numbered list */
+ol.simpleList li{list-style-type: decimal; margin-left:40px;}
+/* standard list */
+ul.simpleList li{list-style-type:disc; margin-left:40px;}
+/* ====== blockquote ====== */
+cite{display:block; text-align:right; padding-top: 10px;}
+
+.menu li { margin-bottom: 5px; line-height: 140%; }
+
+.copyright { border-top: 1px solid #cccccc; padding-top: 10px; text-align: center; }
