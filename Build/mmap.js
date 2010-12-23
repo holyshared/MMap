@@ -190,6 +190,34 @@ MMap.Events = new Class({
 
 }(document.id));
 
+/*
+---
+name: MMap.Container
+
+description: Container that can store MVCObject.
+
+license: MIT-style
+
+authors:
+- Noritaka Horio
+
+requires:
+  - Core/Core
+  - Core/Array
+  - Core/String
+  - Core/Number
+  - Core/Function
+  - Core/Object
+  - Core/Event
+  - Core/Browser
+  - Core/Class
+  - MMap/MMap.Core
+
+provides: [MMap.Container]
+
+...
+*/
+
 (function($){
 
 var MMap = (this.MMap || {});

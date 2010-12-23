@@ -61,5 +61,5 @@ HTML to use MMap becomes as follows.
 
 ### Online Demonstration
 
-* [English demo](http://holyshared.github.com/MMap/Demos/index.html)
-* [Japanese demo](http://holyshared.github.com/MMap/Demos/ja/index.html)
+* [English demo](http://holyshared.github.com/MMap/Demos/marker.html)
+* [Japanese demo](http://holyshared.github.com/MMap/Demos/ja/marker.html)
