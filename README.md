@@ -56,10 +56,10 @@ HTML to use MMap becomes as follows.
 
 ### Online Document
 
-* [English document](http://holyshared.github.com/MMap/Docs/html/en/mmap.overlayview.html)
-* [Japanese document](http://holyshared.github.com/MMap/Docs/html/ja/mmap.overlayview.html)
+* [English document](http://holyshared.github.com/MMap/docs/html/en/mmap.overlayview.html)
+* [Japanese document](http://holyshared.github.com/MMap/docs/html/ja/mmap.overlayview.html)
 
 ### Online Demonstration
 
-* [English demo](http://holyshared.github.com/MMap/Demos/marker.html)
-* [Japanese demo](http://holyshared.github.com/MMap/Demos/ja/marker.html)
+* [English demo](http://holyshared.github.com/MMap/marker.html)
+* [Japanese demo](http://holyshared.github.com/MMap/ja/marker.html)

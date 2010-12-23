@@ -1541,11 +1541,11 @@ MMap.MarkerLoader.JSON = new Class({
 		this.fireEvent('load', [response]);
 	},
 
-	getRequest: function(json){
+	getRequest: function(json, method){
 		if (this.request) return this.request;
 		var self = this;
 		var events = ['_onRequest', '_onFailure', '_onSuccess'];
-		this.request = new Request.JSON({ url: json, method: 'post' });
+		this.request = new Request.JSON({ url: json, method: method });
 		events.each(function(type){
 			var handler = self[type].bind(self);
 			var eventType = type.replace('_', '');
@@ -1557,7 +1557,15 @@ MMap.MarkerLoader.JSON = new Class({
 
 	load: function(){
 		var args = Array.from(arguments);
-		this.getRequest(args.shift()).send(args);
+		var url = args.shift();
+		var method = 'get';
+		var values = {};
+		if (args.length > 0) {
+			values = args.shift();
+			method = (values.method) ? values.method : 'get';
+			delete values.method;
+		}
+		this.getRequest(url, method).send(values);
 	}
 
 });

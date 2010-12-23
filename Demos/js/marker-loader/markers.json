@@ -3,7 +3,7 @@
 		{
 			"type": "image",
 			"title": "Marker1",
-			"image": "http://holyshared.github.com/MMap/Demos/images/demo/img01.jpg",
+			"image": "http://holyshared.github.com/MMap/images/demo/img01.jpg",
 			"url": "http://sharedhat.com/",
 			"position": {
 				"latitude": 35.6666870,
@@ -13,7 +13,7 @@
 		{
 			"type": "image",
 			"title": "Marker2",
-			"image": "http://holyshared.github.com/MMap/Demos/images/demo/img02.jpg",
+			"image": "http://holyshared.github.com/MMap/images/demo/img02.jpg",
 			"url": "http://sharedhat.com/",
 			"position": {
 				"latitude": 35.6666870,
@@ -23,7 +23,7 @@
 		{
 			"type": "image",
 			"title": "Marker3",
-			"image": "http://holyshared.github.com/MMap/Demos/images/demo/img03.jpg",
+			"image": "http://holyshared.github.com/MMap/images/demo/img03.jpg",
 			"url": "http://sharedhat.com/",
 			"position": {
 				"latitude": 35.6650870,
@@ -33,7 +33,7 @@
 		{
 			"type": "image",
 			"title": "Marker4",
-			"image": "http://holyshared.github.com/MMap/Demos/images/demo/img04.jpg",
+			"image": "http://holyshared.github.com/MMap/images/demo/img04.jpg",
 			"url": "http://sharedhat.com/",
 			"position": {
 				"latitude": 35.6686870,
@@ -43,7 +43,7 @@
 		{
 			"type": "image",
 			"title": "Marker5",
-			"image": "http://holyshared.github.com/MMap/Demos/images/demo/img05.jpg",
+			"image": "http://holyshared.github.com/MMap/images/demo/img05.jpg",
 			"url": "http://sharedhat.com/",
 			"position": {
 				"latitude": 35.6646870,
@@ -53,7 +53,7 @@
 		{
 			"type": "image",
 			"title": "Marker6",
-			"image": "http://holyshared.github.com/MMap/Demos/images/demo/img01.jpg",
+			"image": "http://holyshared.github.com/MMap/images/demo/img01.jpg",
 			"url": "http://sharedhat.com/",
 			"position": {
 				"latitude": 35.6645400,
@@ -63,7 +63,7 @@
 		{
 			"type": "image",
 			"title": "Marker7",
-			"image": "http://holyshared.github.com/MMap/Demos/images/demo/img02.jpg",
+			"image": "http://holyshared.github.com/MMap/images/demo/img02.jpg",
 			"url": "http://sharedhat.com/",
 			"position": {
 				"latitude": 35.6645800,
