@@ -28,8 +28,8 @@ category: Interface
 
 tags: [thumnail, google map, map, marker]
 
-current: 0.2
+current: 0.2.1
 
-#docs: http://url.to.docs
+docs: http://holyshared.github.com/MMap/docs/html/en/mmap.overlayview.html
 
 demo: http://holyshared.github.com/MMap
