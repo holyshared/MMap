@@ -1,5 +1,5 @@
 
-Class: <a id='mmap.marker'>MMap.Marker</a>
+Class: <a id='mmap.marker.html.html'>MMap.Marker.HTML</a>
 ---------------------------------------------
 
 HTMLコンテンツを表示させるマーカー。  
@@ -8,7 +8,7 @@ HTMLコンテンツを表示させるマーカー。
 
 ### Extends:
 
-MMap.BaseMarker
+MMap.Marker.Core
 
 
 Method: <a id='constructor'>constructor</a>
@@ -18,7 +18,7 @@ Method: <a id='constructor'>constructor</a>
 
 ### Syntax:
 
-	var myMMap.Marker = new MMap.Marker(options);
+	var marker = new MMap.Marker.HTML(options);
 
 ### Arguments:
 

@@ -6,7 +6,7 @@ Class: <a id='mmap.marker.images'>MMap.Marker.Images</a>
 
 ### Extends:
 
-MMap.BaseMarker
+MMap.Marker.Core
 
 
 

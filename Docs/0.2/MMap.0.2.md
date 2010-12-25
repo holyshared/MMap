@@ -1,4 +1,4 @@
-# MMap 0.2 Documents
+# MMap 0.2.1 Documents
 
 ## API Menu
 
@@ -17,44 +17,18 @@
 * [setActive](mmap.overlayview.html#setActive "setActive")
 
 
-### <a href='mmap.basemarker.html#mmap.basemarker'>MMap.BaseMarker</a>
+### <a href='mmap.marker.core.html#mmap.marker.core'>MMap.Marker.Core</a>
 
-* [constructor](mmap.basemarker.html#constructor "constructor")
-* [_update](mmap.basemarker.html#_update "_update")
-* [setDefaultZIndex](mmap.basemarker.html#setDefaultZIndex "setDefaultZIndex")
-* [draw](mmap.basemarker.html#draw "draw")
-* [refresh](mmap.basemarker.html#refresh "refresh")
-* [getZIndex](mmap.basemarker.html#getZIndex "getZIndex")
-* [getPosition](mmap.basemarker.html#getPosition "getPosition")
-* [setZIndex](mmap.basemarker.html#setZIndex "setZIndex")
-* [setPosition](mmap.basemarker.html#setPosition "setPosition")
-* [setActive](mmap.basemarker.html#setActive "setActive")
-
-#### Inherited Methods
-
-##### MMap.OverlayView
-
-* [getVisible](mmap.overlayview.html#getVisible "getVisible")
-* [setVisible](mmap.overlayview.html#setVisible "setVisible")
-* [isAdded](mmap.overlayview.html#isAdded "isAdded")
-* [isVisible](mmap.overlayview.html#isVisible "isVisible")
-* [isActive](mmap.overlayview.html#isActive "isActive")
-
-
-
-
-
-
-
-
-
-### <a href='mmap.marker.html#mmap.marker'>MMap.Marker</a>
-
-* [constructor](mmap.marker.html#constructor "constructor")
-* [getTitle](mmap.marker.html#getTitle "getTitle")
-* [getContent](mmap.marker.html#getContent "getContent")
-* [setTitle](mmap.marker.html#setTitle "setTitle")
-* [setContent](mmap.marker.html#setContent "setContent")
+* [constructor](mmap.marker.core.html#constructor "constructor")
+* [_update](mmap.marker.core.html#_update "_update")
+* [setDefaultZIndex](mmap.marker.core.html#setDefaultZIndex "setDefaultZIndex")
+* [draw](mmap.marker.core.html#draw "draw")
+* [refresh](mmap.marker.core.html#refresh "refresh")
+* [getZIndex](mmap.marker.core.html#getZIndex "getZIndex")
+* [getPosition](mmap.marker.core.html#getPosition "getPosition")
+* [setZIndex](mmap.marker.core.html#setZIndex "setZIndex")
+* [setPosition](mmap.marker.core.html#setPosition "setPosition")
+* [setActive](mmap.marker.core.html#setActive "setActive")
 
 #### Inherited Methods
 
@@ -66,16 +40,42 @@
 * [isVisible](mmap.overlayview.html#isVisible "isVisible")
 * [isActive](mmap.overlayview.html#isActive "isActive")
 
-##### MMap.BaseMarker
 
-* [draw](mmap.basemarker.html#draw "draw")
-* [refresh](mmap.basemarker.html#refresh "refresh")
-* [getZIndex](mmap.basemarker.html#getZIndex "getZIndex")
-* [getPosition](mmap.basemarker.html#getPosition "getPosition")
-* [setDefaultZIndex](mmap.basemarker.html#setDefaultZIndex "setDefaultZIndex")
-* [setZIndex](mmap.basemarker.html#setZIndex "setZIndex")
-* [setPosition](mmap.basemarker.html#setPosition "setPosition")
-* [setActive](mmap.basemarker.html#setActive "setActive")
+
+
+
+
+
+
+
+### <a href='mmap.marker.html.html#mmap.marker.html'>MMap.Marker.HTML</a>
+
+* [constructor](mmap.marker.html.html#constructor "constructor")
+* [getTitle](mmap.marker.html.html#getTitle "getTitle")
+* [getContent](mmap.marker.html.html#getContent "getContent")
+* [setTitle](mmap.marker.html.html#setTitle "setTitle")
+* [setContent](mmap.marker.html.html#setContent "setContent")
+
+#### Inherited Methods
+
+##### MMap.OverlayView
+
+* [getVisible](mmap.overlayview.html#getVisible "getVisible")
+* [setVisible](mmap.overlayview.html#setVisible "setVisible")
+* [isAdded](mmap.overlayview.html#isAdded "isAdded")
+* [isVisible](mmap.overlayview.html#isVisible "isVisible")
+* [isActive](mmap.overlayview.html#isActive "isActive")
+
+##### MMap.Marker.Core
+
+* [draw](mmap.marker.core.html#draw "draw")
+* [refresh](mmap.marker.core.html#refresh "refresh")
+* [getZIndex](mmap.marker.core.html#getZIndex "getZIndex")
+* [getPosition](mmap.marker.core.html#getPosition "getPosition")
+* [setDefaultZIndex](mmap.marker.core.html#setDefaultZIndex "setDefaultZIndex")
+* [setZIndex](mmap.marker.core.html#setZIndex "setZIndex")
+* [setPosition](mmap.marker.core.html#setPosition "setPosition")
+* [setActive](mmap.marker.core.html#setActive "setActive")
 
 
 
@@ -101,16 +101,16 @@
 * [isVisible](mmap.overlayview.html#isVisible "isVisible")
 * [isActive](mmap.overlayview.html#isActive "isActive")
 
-##### MMap.BaseMarker
+##### MMap.Marker.Core
 
-* [draw](mmap.basemarker.html#draw "draw")
-* [refresh](mmap.basemarker.html#refresh "refresh")
-* [getZIndex](mmap.basemarker.html#getZIndex "getZIndex")
-* [getPosition](mmap.basemarker.html#getPosition "getPosition")
-* [setDefaultZIndex](mmap.basemarker.html#setDefaultZIndex "setDefaultZIndex")
-* [setZIndex](mmap.basemarker.html#setZIndex "setZIndex")
-* [setPosition](mmap.basemarker.html#setPosition "setPosition")
-* [setActive](mmap.basemarker.html#setActive "setActive")
+* [draw](mmap.marker.core.html#draw "draw")
+* [refresh](mmap.marker.core.html#refresh "refresh")
+* [getZIndex](mmap.marker.core.html#getZIndex "getZIndex")
+* [getPosition](mmap.marker.core.html#getPosition "getPosition")
+* [setDefaultZIndex](mmap.marker.core.html#setDefaultZIndex "setDefaultZIndex")
+* [setZIndex](mmap.marker.core.html#setZIndex "setZIndex")
+* [setPosition](mmap.marker.core.html#setPosition "setPosition")
+* [setActive](mmap.marker.core.html#setActive "setActive")
 
 
 
@@ -140,16 +140,16 @@
 * [isVisible](mmap.overlayview.html#isVisible "isVisible")
 * [isActive](mmap.overlayview.html#isActive "isActive")
 
-##### MMap.BaseMarker
+##### MMap.Marker.Core
 
-* [draw](mmap.basemarker.html#draw "draw")
-* [refresh](mmap.basemarker.html#refresh "refresh")
-* [getZIndex](mmap.basemarker.html#getZIndex "getZIndex")
-* [getPosition](mmap.basemarker.html#getPosition "getPosition")
-* [setDefaultZIndex](mmap.basemarker.html#setDefaultZIndex "setDefaultZIndex")
-* [setZIndex](mmap.basemarker.html#setZIndex "setZIndex")
-* [setPosition](mmap.basemarker.html#setPosition "setPosition")
-* [setActive](mmap.basemarker.html#setActive "setActive")
+* [draw](mmap.marker.core.html#draw "draw")
+* [refresh](mmap.marker.core.html#refresh "refresh")
+* [getZIndex](mmap.marker.core.html#getZIndex "getZIndex")
+* [getPosition](mmap.marker.core.html#getPosition "getPosition")
+* [setDefaultZIndex](mmap.marker.core.html#setDefaultZIndex "setDefaultZIndex")
+* [setZIndex](mmap.marker.core.html#setZIndex "setZIndex")
+* [setPosition](mmap.marker.core.html#setPosition "setPosition")
+* [setActive](mmap.marker.core.html#setActive "setActive")
 
 
 
@@ -215,8 +215,8 @@
 
 ### Marker
 
-* <a href='mmap.basemarker.html#mmap.basemarker'>MMap.BaseMarker</a>
-* <a href='mmap.marker.html#mmap.marker'>MMap.Marker</a>
+* <a href='mmap.marker.core.html#mmap.marker.core'>MMap.Marker.Core</a>
+* <a href='mmap.marker.html.html#mmap.marker'>MMap.Marker</a>
 * <a href='mmap.marker.image.html#mmap.marker.image'>MMap.Marker.Image</a>
 * <a href='mmap.marker.images.html#mmap.marker.images'>MMap.Marker.Images</a>
 * <a href='mmap.markermanager.html#mmap.markermanager'>MMap.MarkerManager</a>

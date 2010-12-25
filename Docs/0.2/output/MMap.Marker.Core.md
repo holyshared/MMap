@@ -1,5 +1,5 @@
 
-Class: <a id='mmap.basemarker'>MMap.BaseMarker</a>
+Class: <a id='mmap.marker.core'>MMap.Marker.Core</a>
 -----------------------------------------------------
 
 このクラスはマーカーの下位クラスで抽象的なクラスです。  
@@ -17,7 +17,7 @@ Method: <a id='constructor'>constructor</a>
 
 ### Syntax:
 
-	var myMMap.BaseMarker = new MMap.BaseMarker(options);
+	var marker = new MMap.Marker.Core(options);
 
 ### Arguments:
 
