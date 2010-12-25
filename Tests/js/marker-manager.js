@@ -85,7 +85,7 @@ var MarkerManagerTest = {
 	},
 
 	testOptions: function(){
-		var marker = new MMap.Marker({
+		var marker = new MMap.Marker.HTML({
 			map: this.map,
 			position: new google.maps.LatLng(35.6646870, 139.726859)
 		});

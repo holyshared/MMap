@@ -41,7 +41,7 @@ MMap.Marker = (this.MMap.Marker || {});
 
 MMap.Marker.Image = this.MMap.Marker.Image = new Class({
 
-	Extends: MMap.BaseMarker,
+	Extends: MMap.Marker.Core,
 
 	options: {
 		map: null,

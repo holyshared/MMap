@@ -210,7 +210,7 @@ MMap.MarkerManager = new Class({
 			helper = function(target, current){
 				return target.contains(current.getPosition());
 			};
-		} else if (instanceOf(target, MMap.BaseMarker)
+		} else if (instanceOf(target, MMap.Marker.Core)
 			|| target instanceof google.maps.Marker) {
 			helper = function(target, current){
 				return (target == current) ? true : false;
