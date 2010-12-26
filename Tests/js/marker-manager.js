@@ -74,6 +74,7 @@ var MarkerManagerTest = {
 		this.testOptions();
 		this.testBindTo();
 		this.testVisibleMarkerByMarker();
+
 		this.testActiveMarkerByMarker();
 		this.testHasMarker();
 		this.testGetMarkers();
@@ -82,10 +83,11 @@ var MarkerManagerTest = {
 		this.testRemoveMaker();
 		this.testAddMarker();
 		this.testAll();
+
 	},
 
 	testOptions: function(){
-		var marker = new MMap.Marker({
+		var marker = new MMap.Marker.HTML({
 			map: this.map,
 			position: new google.maps.LatLng(35.6646870, 139.726859)
 		});
@@ -163,7 +165,7 @@ var MarkerManagerTest = {
 
 	testVisibleMarkerByBounds: function(){
 		var self = this;
-		this.manager.visible(this.bounds);
+		this.manager.visibleByBounds(this.bounds);
 	
 		var state = this.manager.getState();
 		var contains = state.visibles.some(function(item, index){
@@ -187,7 +189,7 @@ var MarkerManagerTest = {
 	},
 
 	testActiveMarkerByBounds: function(){
-		this.manager.active(this.bounds);
+		this.manager.activeByBounds(this.bounds);
 
 		var state = this.manager.getState();
 		var deactive = state.deactives.some(function(item, index){
@@ -260,7 +262,7 @@ var MarkerManagerTest = {
 		var checkCount = 0;
 		var count = markers.count();
 
-		this.manager.visible();
+		this.manager.visibleAll();
 
 		markers = markers.rewind();
 		while(markers.isValid()) {
@@ -270,7 +272,7 @@ var MarkerManagerTest = {
 		}
 		this.logger.log('methods', (count == checkCount) ? 'visible all OK' : 'visible all NG');
 
-		this.manager.active();
+		this.manager.activeAll();
 		markers = markers.rewind();
 		checkCount = 0;
 		while(markers.isValid()) {

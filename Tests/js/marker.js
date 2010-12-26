@@ -9,7 +9,7 @@ window.addEvent("domready", function(){
 		mapTypeId: google.maps.MapTypeId.ROADMAP
 	});
 
-	var marker = new MMap.Marker({
+	var marker = new MMap.Marker.HTML({
 		map: map,
 		className: 'marker markerDefault',
 		title: 'Marker title text',
@@ -118,7 +118,7 @@ window.addEvent("domready", function(){
 
 	marker.setVisible(true);
 
-	var marker1 = new MMap.Marker({
+	var marker1 = new MMap.Marker.HTML({
 		map: map,
 		className: 'marker markerDefault',
 		title: 'Marker title text',

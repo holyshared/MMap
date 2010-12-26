@@ -17,7 +17,7 @@ Method: <a id="constructor">constructor</a>
 
 ### Syntax:
 
-	var myMMap.OverlayView = new MMap.OverlayView(options);
+	var overlayView = new MMap.OverlayView(options);
 
 ### Arguments:
 

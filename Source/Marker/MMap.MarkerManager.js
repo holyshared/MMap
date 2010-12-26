@@ -168,56 +168,75 @@ MMap.MarkerManager = new Class({
 		return findMaker;
 	},
 
-	active: function() {
-		var target = Array.from(arguments).shift(), args = [];
-		(target) ? args.push(target) : args.push(null);
-		var helper = this._getStateChangeHelper.apply(this, args);
-		args.push(helper);
-		this._activeMarkers.apply(this, args);
+	visible: function(marker){
+		var isThis = function(current){
+			return (marker == current) ? true : false;
+		};
+		this._visibleMarkers.apply(this, [isThis]);
 		this._displayMarkerChange();
 	},
 
-	visible: function(){
-		var target = Array.from(arguments).shift(), args = [];
-		(target) ? args.push(target) : args.push(null);
-		var helper = this._getStateChangeHelper.apply(this, args);
-		args.push(helper);
-		this._visibleMarkers.apply(this, args);
-		this._displayMarkerChange();
-	},
-
-	_activeMarkers: function(target, closer) {
+	visibleAll: function(){
 		var markers = this.getContainer().rewind();
 		while(markers.isValid()) {
 			var current = markers.getCurrent();
-			current.setActive(closer(target, current));
+			current.setVisible(true);
+			markers.next();
+		}
+		this._displayMarkerChange();
+	},
+
+	visibleByBounds: function(bounds){
+		var isBoundsContains = function(current){
+			return bounds.contains(current.getPosition());
+		};
+		this._visibleMarkers.apply(this, [isBoundsContains]);
+		this._displayMarkerChange();
+	},
+
+	active: function(marker){
+		var isThis = function(current){
+			return (marker == current) ? true : false;
+		};
+		this._activeMarkers.apply(this, [isThis]);
+		this._displayMarkerChange();
+	},
+
+	activeAll: function(){
+		var markers = this.getContainer().rewind();
+		while(markers.isValid()) {
+			var current = markers.getCurrent();
+			current.setActive(true);
+			markers.next();
+		}
+		this._displayMarkerChange();
+	},
+
+	activeByBounds: function(bounds){
+		var isBoundsContains = function(current){
+			return bounds.contains(current.getPosition());
+		};
+		this._activeMarkers.apply(this, [isBoundsContains]);
+		this._displayMarkerChange();
+	},
+
+	_activeMarkers: function(closer) {
+		var markers = this.getContainer().rewind();
+		while(markers.isValid()) {
+			var current = markers.getCurrent();
+			current.setActive(closer(current));
 			markers.next();
 		}
 	},
 
-	_visibleMarkers: function(target, closer) {
+	_visibleMarkers: function(closer) {
 		var markers = this.getContainer().rewind();
 		while(markers.isValid()) {
 			var current = markers.getCurrent();
-			current.setVisible(closer(target, current));
+			current.setVisible(closer(current));
 			markers.next();
 		}
 	},
-
-	_getStateChangeHelper: function(target) {
-		var helper = function (target, current) { return true; };
-		if (target instanceof google.maps.LatLngBounds) {
-			helper = function(target, current){
-				return target.contains(current.getPosition());
-			};
-		} else if (instanceOf(target, MMap.BaseMarker)
-			|| target instanceof google.maps.Marker) {
-			helper = function(target, current){
-				return (target == current) ? true : false;
-			};
-		}
-		return helper;
-	}
 
 });
 

@@ -27,7 +27,7 @@ requires:
   - MMap/MMap.Utils
   - MMap/MMap.OverlayView
 
-provides: [MMap.Marker, MMap.BaseMarker]
+provides: [MMap.Marker.Core, MMap.Marker.HTML]
 
 ...
 */
@@ -35,8 +35,9 @@ provides: [MMap.Marker, MMap.BaseMarker]
 (function($){
 
 var MMap = (this.MMap || {});
+MMap.Marker = (this.MMap.Marker || {});
 
-MMap.BaseMarker = new Class({
+MMap.Marker.Core = new Class({
 
 	Extends: MMap.OverlayView,
 
@@ -160,9 +161,9 @@ MMap.BaseMarker = new Class({
 });
 
 
-MMap.Marker = new Class({
+MMap.Marker.HTML = new Class({
 
-	Extends: MMap.BaseMarker,
+	Extends: MMap.Marker.Core,
 
 	options: {
 		map: null,
@@ -269,6 +270,5 @@ MMap.Marker = new Class({
 
 
 });
-MMap.Marker.Html = MMap.Marker;
 
 }(document.id));
