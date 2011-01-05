@@ -56,26 +56,28 @@
 
 	<div class="rightCol gDocs">
 
-
 <h3><a href='mmap.markermanager.html#mmap.markermanager'>MMap.MarkerManager</a></h3>
 
 <ul>
-<li><a href="mmap.markermanager.html#constructor" title="constructor">constructor</a></li>
-<li><a href="mmap.markermanager.html#setMap" title="setMap">setMap</a></li>
-<li><a href="mmap.markermanager.html#setMarkers" title="setMarkers">setMarkers</a></li>
-<li><a href="mmap.markermanager.html#getMap" title="getMap">getMap</a></li>
-<li><a href="mmap.markermanager.html#getContainer" title="getContainer">getContainer</a></li>
-<li><a href="mmap.markermanager.html#getMarkers" title="getMarkers">getMarkers</a></li>
-<li><a href="mmap.markermanager.html#getState" title="getState">getState</a></li>
-<li><a href="mmap.markermanager.html#hasMarker" title="hasMarker">hasMarker</a></li>
-<li><a href="mmap.markermanager.html#addMarker" title="addMarker">addMarker</a></li>
-<li><a href="mmap.markermanager.html#addMarkers" title="addMarkers">addMarkers</a></li>
-<li><a href="mmap.markermanager.html#removeMarker" title="removeMarker">removeMarker</a></li>
-<li><a href="mmap.markermanager.html#removeMarkers" title="removeMarkers">removeMarkers</a></li>
-<li><a href="mmap.markermanager.html#active" title="active">active</a></li>
-<li><a href="mmap.markermanager.html#visible" title="visible">visible</a></li>
+	<li><a href="mmap.markermanager.html#constructor" title="constructor">constructor</a></li>
+	<li><a href="mmap.markermanager.html#setMap" title="setMap">setMap</a></li>
+	<li><a href="mmap.markermanager.html#setMarkers" title="setMarkers">setMarkers</a></li>
+	<li><a href="mmap.markermanager.html#getMap" title="getMap">getMap</a></li>
+	<li><a href="mmap.markermanager.html#getContainer" title="getContainer">getContainer</a></li>
+	<li><a href="mmap.markermanager.html#getMarkers" title="getMarkers">getMarkers</a></li>
+	<li><a href="mmap.markermanager.html#getState" title="getState">getState</a></li>
+	<li><a href="mmap.markermanager.html#hasMarker" title="hasMarker">hasMarker</a></li>
+	<li><a href="mmap.markermanager.html#addMarker" title="addMarker">addMarker</a></li>
+	<li><a href="mmap.markermanager.html#addMarkers" title="addMarkers">addMarkers</a></li>
+	<li><a href="mmap.markermanager.html#removeMarker" title="removeMarker">removeMarker</a></li>
+	<li><a href="mmap.markermanager.html#removeMarkers" title="removeMarkers">removeMarkers</a></li>
+	<li><a href="mmap.markermanager.html#active" title="active">active</a></li>
+	<li><a href="mmap.markermanager.html#activeAll" title="activeAll">activeAll</a></li>
+	<li><a href="mmap.markermanager.html#activeByBounds" title="activeByBounds">activeByBounds</a></li>
+	<li><a href="mmap.markermanager.html#visible" title="visible">visible</a></li>
+	<li><a href="mmap.markermanager.html#visibleAll" title="visibleAll">visibleAll</a></li>
+	<li><a href="mmap.markermanager.html#visibleByBounds" title="visibleByBounds">visibleByBounds</a></li>
 </ul>
-
 
 	</div>
 
@@ -296,42 +298,91 @@ manager.removeMarkers(markers);
 
 <h2>Method: <a id='active'>active</a></h2>
 
-<p>The marker within the specified range and the marker of the unit are activated. <br />
-When the argument is not specified, all markers are activated.</p>
+<p>The specified marker is activated.</p>
+
+<h3>Arguments:</h3>
+
+<ol>
+<li>marker - (<em>marker</em>) Marker object</li>
+</ol>
+
+<h3>Syntax:</h3>
+
+<pre><code>//The marker object is specified.
+var marker = new MMap.Marker(options);
+manager.active(marker);
+</code></pre>
+
+<h2>Method: <a id='activeAll'>activeAll</a></h2>
+
+<p>All markers are activated.</p>
 
 <h3>Syntax:</h3>
 
 <pre><code>//All markers are made active.
-manager.active();
+manager.activeAll();
+</code></pre>
 
-//The marker object is specified.
-var marker = new MMap.Marker(options);
-manager.active(marker);
+<h2>Method: <a id='activeByBounds'>activeByBounds</a></h2>
 
-//The rectangular area object is specified.
+<p>The marker within the specified range is activated.</p>
+
+<h3>Arguments:</h3>
+
+<ol>
+<li>bounds - (<a href="http://code.google.com/intl/eu/apis/maps/documentation/javascript/reference.html#LatLngBounds"><em>LatLngBounds</em></a>) Bounds object</li>
+</ol>
+
+<h3>Syntax:</h3>
+
+<pre><code>//The rectangular area object is specified.
 var bounds = new google.maps.LatLngBounds(options);
-manager.active(bounds);
+manager.activeByBounds(bounds);
 </code></pre>
 
 <h2>Method: <a id='visible'>visible</a></h2>
 
-<p>The marker within the specified range and the marker of the unit are displayed. <br />
-When the argument is not specified, all markers are displayed.</p>
+<p>The specified marker is put into the state of the display.</p>
+
+<h3>Arguments:</h3>
+
+<ol>
+<li>marker - (<em>marker</em>) Marker object</li>
+</ol>
+
+<h3>Syntax:</h3>
+
+<pre><code>//The marker object is specified.
+var marker = new MMap.Marker(options);
+manager.visible(marker);
+</code></pre>
+
+<h2>Method: <a id='visibleAll'>visibleAll</a></h2>
+
+<p>All markers are put into the state of the display.</p>
 
 <h3>Syntax:</h3>
 
 <pre><code>//All markers are displayed.
-manager.visible();
-
-//The marker object is specified.
-var marker = new MMap.Marker(options);
-manager.visible(marker);
-
-//The rectangular area object is specified.
-var bounds = new google.maps.LatLngBounds(options);
-manager.visible(bounds);
+manager.visibleAll();
 </code></pre>
 
+<h2>Method: <a id='visibleByBounds'>visibleByBounds</a></h2>
+
+<p>The marker within the specified range is put into the state of the display. </p>
+
+<h3>Arguments:</h3>
+
+<ol>
+<li>bounds - (<a href="http://code.google.com/intl/eu/apis/maps/documentation/javascript/reference.html#LatLngBounds"><em>LatLngBounds</em></a>) Bounds object</li>
+</ol>
+
+<h3>Syntax:</h3>
+
+<pre><code>//The rectangular area object is specified.
+var bounds = new google.maps.LatLngBounds(options);
+manager.visibleByBounds(bounds);
+</code></pre>
 
 
 	</div>
