@@ -74,7 +74,11 @@
 <li><a href="mmap.markermanager.html#removeMarker" title="removeMarker">removeMarker</a></li>
 <li><a href="mmap.markermanager.html#removeMarkers" title="removeMarkers">removeMarkers</a></li>
 <li><a href="mmap.markermanager.html#active" title="active">active</a></li>
+<li><a href="mmap.markermanager.html#activeAll" title="activeAll">activeAll</a></li>
+<li><a href="mmap.markermanager.html#activeByBounds" title="activeByBounds">activeByBounds</a></li>
 <li><a href="mmap.markermanager.html#visible" title="visible">visible</a></li>
+<li><a href="mmap.markermanager.html#visibleAll" title="visibleAll">visibleAll</a></li>
+<li><a href="mmap.markermanager.html#visibleByBounds" title="visibleByBounds">visibleByBounds</a></li>
 </ul>
 
 
@@ -297,42 +301,91 @@ manager.removeMarkers(markers);
 
 <h2>Method: <a id='active'>active</a></h2>
 
-<p>指定された範囲内のマーカーや単体のマーカーをアクティブにします。 <br />
-引数を指定しない場合はすべてのマーカーをアクティブにします。</p>
+<p>指定されたマーカーをアクティブにします。</p>
+
+<h3>Arguments:</h3>
+
+<ol>
+<li>marker - (<em>marker</em>) マーカーオブジェクト</li>
+</ol>
+
+<h3>Syntax:</h3>
+
+<pre><code>//The marker object is specified.
+var marker = new MMap.Marker(options);
+manager.active(marker);
+</code></pre>
+
+<h2>Method: <a id='activeAll'>activeAll</a></h2>
+
+<p>すべてのマーカーをアクティブにします。</p>
 
 <h3>Syntax:</h3>
 
 <pre><code>//All markers are made active.
-manager.active();
+manager.activeAll();
+</code></pre>
 
-//The marker object is specified.
-var marker = new MMap.Marker(options);
-manager.active(marker);
+<h2>Method: <a id='activeByBounds'>activeByBounds</a></h2>
 
-//The rectangular area object is specified.
+<p>指定された範囲内のマーカーをアクティブにします。</p>
+
+<h3>Arguments:</h3>
+
+<ol>
+<li>bounds - (<a href="http://code.google.com/intl/eu/apis/maps/documentation/javascript/reference.html#LatLngBounds"><em>LatLngBounds</em></a>) 領域オブジェクト</li>
+</ol>
+
+<h3>Syntax:</h3>
+
+<pre><code>//The rectangular area object is specified.
 var bounds = new google.maps.LatLngBounds(options);
-manager.active(bounds);
+manager.activeByBounds(bounds);
 </code></pre>
 
 <h2>Method: <a id='visible'>visible</a></h2>
 
-<p>指定された範囲内のマーカーや単体のマーカーを表示します。 <br />
-引数を指定しない場合はすべてのマーカーを表示します。</p>
+<p>指定されたマーカーを表示状態にします。</p>
+
+<h3>Arguments:</h3>
+
+<ol>
+<li>marker - (<em>marker</em>) マーカーオブジェクト</li>
+</ol>
+
+<h3>Syntax:</h3>
+
+<pre><code>//The marker object is specified.
+var marker = new MMap.Marker(options);
+manager.visible(marker);
+</code></pre>
+
+<h2>Method: <a id='visibleAll'>visibleAll</a></h2>
+
+<p>すべてのマーカーを表示状態にします。</p>
 
 <h3>Syntax:</h3>
 
 <pre><code>//All markers are displayed.
-manager.visible();
-
-//The marker object is specified.
-var marker = new MMap.Marker(options);
-manager.visible(marker);
-
-//The rectangular area object is specified.
-var bounds = new google.maps.LatLngBounds(options);
-manager.visible(bounds);
+manager.visibleAll();
 </code></pre>
 
+<h2>Method: <a id='visibleByBounds'>visibleByBounds</a></h2>
+
+<p>指定された範囲のマーカーを表示状態にします。</p>
+
+<h3>Arguments:</h3>
+
+<ol>
+<li>bounds - (<a href="http://code.google.com/intl/eu/apis/maps/documentation/javascript/reference.html#LatLngBounds"><em>LatLngBounds</em></a>) 領域オブジェクト</li>
+</ol>
+
+<h3>Syntax:</h3>
+
+<pre><code>//The rectangular area object is specified.
+var bounds = new google.maps.LatLngBounds(options);
+manager.visibleByBounds(bounds);
+</code></pre>
 
 
 	</div>

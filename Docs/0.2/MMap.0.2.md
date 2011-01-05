@@ -169,7 +169,11 @@
 * [removeMarker](mmap.markermanager.html#removeMarker "removeMarker")
 * [removeMarkers](mmap.markermanager.html#removeMarkers "removeMarkers")
 * [active](mmap.markermanager.html#active "active")
+* [activeAll](mmap.markermanager.html#activeAll "activeAll")
+* [activeByBounds](mmap.markermanager.html#activeByBounds "activeByBounds")
 * [visible](mmap.markermanager.html#visible "visible")
+* [visibleAll](mmap.markermanager.html#visibleAll "visibleAll")
+* [visibleByBounds](mmap.markermanager.html#visibleByBounds "visibleByBounds")
 
 
 ### <a href='mmap.markerloader.html#mmap.markerloader'>MMap.MarkerLoader</a>

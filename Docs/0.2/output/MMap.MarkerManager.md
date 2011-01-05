@@ -187,21 +187,6 @@ Method: <a id='getState'>getState</a>
 
 
 
-Method: <a id='hasDisplayMarkers'>hasDisplayMarkers</a>
---------------------------------------------------------
-
-表示しているマーカーがあるかチェックします。
-
-### Syntax:
-
-	manager.hasDisplayMarkers();
-
-### Returns:
-
-(*boolean*) 表示しているマーカーがある場合はtrueを返します。
-
-
-
 Method: <a id='hasMarker'>hasMarker</a>
 ----------------------------------------
 
@@ -224,43 +209,83 @@ Method: <a id='hasMarker'>hasMarker</a>
 Method: <a id='active'>active</a>
 ----------------------------------
 
-指定された範囲内のマーカーや単体のマーカーをアクティブにします。  
-引数を指定しない場合はすべてのマーカーをアクティブにします。
+指定されたマーカーをアクティブにします。
+
+### Arguments:
+
+1. marker - (*marker*) マーカーオブジェクト
 
 ### Syntax:
-
-	//All markers are made active.
-	manager.active();
 
 	//The marker object is specified.
 	var marker = new MMap.Marker(options);
 	manager.active(marker);
 
+Method: <a id='activeAll'>activeAll</a>
+----------------------------------
+
+すべてのマーカーをアクティブにします。
+
+### Syntax:
+
+	//All markers are made active.
+	manager.activeAll();
+
+
+Method: <a id='activeByBounds'>activeByBounds</a>
+----------------------------------
+
+指定された範囲内のマーカーをアクティブにします。
+
+### Arguments:
+
+1. bounds - (<a href="http://code.google.com/intl/eu/apis/maps/documentation/javascript/reference.html#LatLngBounds">*LatLngBounds*</a>) 領域オブジェクト
+
+### Syntax:
+
 	//The rectangular area object is specified.
 	var bounds = new google.maps.LatLngBounds(options);
-	manager.active(bounds);
-
-
-
+	manager.activeByBounds(bounds);
 
 
 Method: <a id='visible'>visible</a>
 ------------------------------------
 
-指定された範囲内のマーカーや単体のマーカーを表示します。  
-引数を指定しない場合はすべてのマーカーを表示します。
+指定されたマーカーを表示状態にします。
+
+### Arguments:
+
+1. marker - (*marker*) マーカーオブジェクト
 
 ### Syntax:
-
-	//All markers are displayed.
-	manager.visible();
 
 	//The marker object is specified.
 	var marker = new MMap.Marker(options);
 	manager.visible(marker);
 
+
+Method: <a id='visibleAll'>visibleAll</a>
+------------------------------------
+
+すべてのマーカーを表示状態にします。
+
+### Syntax:
+
+	//All markers are displayed.
+	manager.visibleAll();
+
+
+Method: <a id='visibleByBounds'>visibleByBounds</a>
+------------------------------------
+
+指定された範囲のマーカーを表示状態にします。
+
+### Arguments:
+
+1. bounds - (<a href="http://code.google.com/intl/eu/apis/maps/documentation/javascript/reference.html#LatLngBounds">*LatLngBounds*</a>) 領域オブジェクト
+
+### Syntax:
+
 	//The rectangular area object is specified.
 	var bounds = new google.maps.LatLngBounds(options);
-	manager.visible(bounds);
-
-	
+	manager.visibleByBounds(bounds);
