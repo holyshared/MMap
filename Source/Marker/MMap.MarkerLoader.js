@@ -28,7 +28,7 @@ requires:
   - MMap/MMap.Utils
   - MMap/MMap.Marker
 
-provides: [MMap.MarkerLoader, MMap.MarkerLoader.Parser, MMap.MarkerLoader.Context, MMap.MarkerLoader.JSON]
+provides: [MMap.MarkerLoader, MMap.MarkerLoader.Parser, MMap.MarkerLoader.Factory, MMap.MarkerLoader.Context, MMap.MarkerLoader.JSON]
 
 ...
 */
@@ -42,6 +42,7 @@ MMap.MarkerLoader = new Class({
 	Implements: [MMap.Events, MMap.Options],
 
 	options: {
+		'format': 'array'
 /*
 		onPreload: $empty,
 		onFailure: $empty,
@@ -54,11 +55,18 @@ MMap.MarkerLoader = new Class({
 		this.setOptions(options);
 	},
 
-	load: function(){
+	load: function(context){
 		var self = this;
-		var args = Array.from(arguments);
-		var loader = (Type.isArray(args[0]))
-		? new MMap.MarkerLoader.Context() : new MMap.MarkerLoader.JSON();
+		if (context) {
+			if (Type.isArray(context)) {
+				Object.merge(this.options, { 'markers' : context });
+			} else {
+				Object.merge(this.options, context);
+			}
+		}
+		var format = this.options.format;
+		var	loader = MMap.MarkerLoader.factory(format);
+
 		loader.addEvents({
 			'onPreload': function(){
 				self.fireEvent('preload');
@@ -74,7 +82,7 @@ MMap.MarkerLoader = new Class({
 				self.fireEvent('load', [self.build(markers)]);
 			}
 		});
-		loader.load.apply(loader, args);
+		loader.load(this.options);
 	},
 
 	build: function(context){
@@ -82,7 +90,7 @@ MMap.MarkerLoader = new Class({
 		for (var i = 0; i < length; i++) {
 			var options = context[i];
 			var type = options.type || 'html';
-			type = type.capitalize();
+			type = (type == 'html') ? 'HTML' : type.capitalize();
 			delete options.type;
 			if (!MMap.Marker[type]) throw TypeError('Specified marker type "' + type + '" is not found.');
 			var marker = new MMap.Marker[type](options);
@@ -92,6 +100,23 @@ MMap.MarkerLoader = new Class({
 	}
 
 });
+
+MMap.MarkerLoader.factory = function(format){
+	var loader = null;
+	switch(format){
+		case 'array':
+			loader = new MMap.MarkerLoader.Context();
+			break;
+		//TODO Kml support 0.2.2
+		case 'kml':
+			break;
+		case 'json':
+		default:
+			loader = new MMap.MarkerLoader.JSON();
+			break;
+	}
+	return loader;
+};
 
 
 MMap.MarkerLoader.Parser = new Class({
@@ -120,8 +145,8 @@ MMap.MarkerLoader.Context = new Class({
 	load: function(context){
 		this.fireEvent('preload');
 		try {
-			this.fireEvent('complete', [context]);
-			var markers = this.parse(context);
+			this.fireEvent('complete', [context.markers]);
+			var markers = this.parse(context.markers);
 			this.fireEvent('load', [markers]);
 		} catch (error) {
 			this.fireEvent('failure', [error]);
@@ -150,11 +175,14 @@ MMap.MarkerLoader.JSON = new Class({
 		this.fireEvent('load', [response]);
 	},
 
-	getRequest: function(json, method){
-		if (this.request) return this.request;
+	getRequest: function(context){
+		if (this.request) {
+			this.request.setOptions(context);			
+			return this.request;
+		};
 		var self = this;
 		var events = ['_onRequest', '_onFailure', '_onSuccess'];
-		this.request = new Request.JSON({ url: json, method: method });
+		this.request = new Request.JSON(context);
 		events.each(function(type){
 			var handler = self[type].bind(self);
 			var eventType = type.replace('_', '');
@@ -164,19 +192,9 @@ MMap.MarkerLoader.JSON = new Class({
 		return this.request;
 	},
 
-	load: function(){
-		var args = Array.from(arguments);
-		var url = args.shift();
-		var method = 'get';
-		var values = {};
-		if (args.length > 0) {
-			values = args.shift();
-			method = (values.method) ? values.method : 'get';
-			delete values.method;
-		}
-		this.getRequest(url, method).send(values);
+	load: function(context){
+		this.getRequest(context).send();
 	}
-
 
 });
 

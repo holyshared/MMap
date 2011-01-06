@@ -95,6 +95,9 @@ var MarkerLoaderTest = {
 	testJsonLoadTestByHTML: function(){
 		var self = this, manager = null;
 		var loader = new MMap.MarkerLoader({
+			method: 'get',
+			url: 'js/json/content.json',
+			format: 'json',
 			onPreload: function(){
 				self.logger.log('events', 'onPreload event OK');
 			},
@@ -110,7 +113,7 @@ var MarkerLoaderTest = {
 				self.manager.addMarkers(markers);
 			}
 		});
-		loader.load('js/json/content.json');
+		loader.load();
 	},
 
 	testJsonLoadTestByImage: function(){
@@ -131,12 +134,19 @@ var MarkerLoaderTest = {
 				self.manager.addMarkers(markers);
 			}
 		});
-		loader.load('js/json/image.json');
+		loader.load({
+			method: 'get',
+			url: 'js/json/image.json',
+			format: 'json'
+		});
 	},
 
 	testJsonLoadTestByImages: function(){
 		var self = this, manager = null;
 		var loader = new MMap.MarkerLoader({
+			method: 'get',
+			url: 'js/json/images.json',
+			format: 'json',
 			onPreload: function(){
 				self.logger.log('events', 'onPreload event OK');
 			},
@@ -152,7 +162,7 @@ var MarkerLoaderTest = {
 				self.manager.addMarkers(markers);
 			}
 		});
-		loader.load('js/json/images.json');
+		loader.load();
 	}
 
 };
