@@ -38,8 +38,8 @@
 <h3>Marker</h3>
 
 <ul>
-<li><a href='mmap.basemarker.html#mmap.basemarker'>MMap.BaseMarker</a></li>
-<li><a href='mmap.marker.html#mmap.marker'>MMap.Marker</a></li>
+<li><a href='mmap.marker.core.html#mmap.marker.core'>MMap.Marker.Core</a></li>
+<li><a href='mmap.marker.html.html#mmap.marker.html'>MMap.Marker.HTML</a></li>
 <li><a href='mmap.marker.image.html#mmap.marker.image'>MMap.Marker.Image</a></li>
 <li><a href='mmap.marker.images.html#mmap.marker.images'>MMap.Marker.Images</a></li>
 <li><a href='mmap.markermanager.html#mmap.markermanager'>MMap.MarkerManager</a></li>
@@ -95,6 +95,7 @@
 <h3>Options:</h3>
 
 <ul>
+<li>format - (<em>string</em>) Format of context. An initial value is 'array'.</li>
 <li>onPreload - (<em>function</em>) It is generated before the marker is read.</li>
 <li>onFailure - (<em>function</em>) It is generated when failing in reading the marker.</li>
 <li>onComplete - (<em>function</em>)　After information on the marker is acquired, it is generated.</li>
@@ -106,13 +107,80 @@
 
 <h3>Syntax:</h3>
 
-<pre><code>loader.load(context);
+<h4>Example of syntax (Part1)</h4>
 
-loader.load('/markers.json', {
-    'username': 'mootools',
-    'keyword': 'interface'
+<pre><code>var context = [
+    {
+        title: 'Marker1', 
+        content: 'Marker1',
+        position: {
+            latitude: 35.6666870,
+            longitude: 139.731859
+        }
+    },
+    {
+        title: 'Marker2',
+        content: 'Marker2',
+        position: {
+            latitude: 35.6666870,
+            longitude: 139.733859
+        }
+    }
+];
+var loader = new MMap.MarkerLoader({
+    markers: context
 });
+loader.load();
 </code></pre>
+
+<p>or</p>
+
+<pre><code>
+var context = [
+    {
+        title: 'Marker1',
+        content: 'Marker1',
+        position: {
+            latitude: 35.6666870,
+            longitude: 139.731859
+        }
+    },
+    {
+        title: 'Marker2',
+        content: 'Marker2',
+        position: {
+            latitude: 35.6666870,
+            longitude: 139.733859
+        }
+    }
+];
+loader.load(context);
+</code></pre>
+
+<h4>Example of syntax (Part2)</h4>
+
+<pre><code>//When you hand over the options of Request
+//http://mootools.net/docs/core/Request/Request
+var loader = new MMap.MarkerLoader({
+    method: 'get',
+    format: 'json',
+    url: 'http://example.com/json'
+});
+loader.load();
+</code></pre>
+
+<p>or</p>
+
+<pre><code>
+var loader = new MMap.MarkerLoader();
+var context = {
+    method: 'get',
+    format: 'json',
+    url: 'http://example.com/json'
+};
+loader.load(context);
+</code></pre>
+
 
 
 
