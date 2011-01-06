@@ -2,7 +2,7 @@
 ---
 name: MMap.Core
 
-description: 
+description: Core module of MMap.
 
 license: MIT-style
 
@@ -29,7 +29,7 @@ provides: [MMap, MMap.MVCObject]
 
 var MMap = this.MMap = {};
 
-MMap.version = 0.2;
+MMap.version = '0.2.1';
 
 MMap.MVCObject = new Class({
 
@@ -345,8 +345,7 @@ MMap.Container = new Class({
 ---
 name: MMap.OverlayView
 
-description: Overlayview that can be treated like Mootools.
-An original marker and the information window can be defined by making this class a subclass.
+description: Overlayview that can be treated like Mootools. An original marker and the information window can be defined by making this class a subclass.
 
 license: MIT-style
 
@@ -518,7 +517,7 @@ requires:
   - MMap/MMap.Utils
   - MMap/MMap.OverlayView
 
-provides: [MMap.Marker, MMap.BaseMarker]
+provides: [MMap.Marker.Core, MMap.Marker.HTML]
 
 ...
 */
@@ -526,8 +525,9 @@ provides: [MMap.Marker, MMap.BaseMarker]
 (function($){
 
 var MMap = (this.MMap || {});
+MMap.Marker = (this.MMap.Marker || {});
 
-MMap.BaseMarker = new Class({
+MMap.Marker.Core = new Class({
 
 	Extends: MMap.OverlayView,
 
@@ -651,9 +651,9 @@ MMap.BaseMarker = new Class({
 });
 
 
-MMap.Marker = new Class({
+MMap.Marker.HTML = new Class({
 
-	Extends: MMap.BaseMarker,
+	Extends: MMap.Marker.Core,
 
 	options: {
 		map: null,
@@ -760,7 +760,6 @@ MMap.Marker = new Class({
 
 
 });
-MMap.Marker.Html = MMap.Marker;
 
 }(document.id));
 
@@ -807,7 +806,7 @@ MMap.Marker = (this.MMap.Marker || {});
 
 MMap.Marker.Image = this.MMap.Marker.Image = new Class({
 
-	Extends: MMap.BaseMarker,
+	Extends: MMap.Marker.Core,
 
 	options: {
 		map: null,
@@ -952,7 +951,7 @@ MMap.Marker = (this.MMap.Marker || {});
 
 MMap.Marker.Images = this.MMap.Marker.Images = new Class({
 
-	Extends: MMap.BaseMarker,
+	Extends: MMap.Marker.Core,
 
 	options: {
 		map: null,
@@ -1334,56 +1333,75 @@ MMap.MarkerManager = new Class({
 		return findMaker;
 	},
 
-	active: function() {
-		var target = Array.from(arguments).shift(), args = [];
-		(target) ? args.push(target) : args.push(null);
-		var helper = this._getStateChangeHelper.apply(this, args);
-		args.push(helper);
-		this._activeMarkers.apply(this, args);
+	visible: function(marker){
+		var isThis = function(current){
+			return (marker == current) ? true : false;
+		};
+		this._visibleMarkers.apply(this, [isThis]);
 		this._displayMarkerChange();
 	},
 
-	visible: function(){
-		var target = Array.from(arguments).shift(), args = [];
-		(target) ? args.push(target) : args.push(null);
-		var helper = this._getStateChangeHelper.apply(this, args);
-		args.push(helper);
-		this._visibleMarkers.apply(this, args);
-		this._displayMarkerChange();
-	},
-
-	_activeMarkers: function(target, closer) {
+	visibleAll: function(){
 		var markers = this.getContainer().rewind();
 		while(markers.isValid()) {
 			var current = markers.getCurrent();
-			current.setActive(closer(target, current));
+			current.setVisible(true);
+			markers.next();
+		}
+		this._displayMarkerChange();
+	},
+
+	visibleByBounds: function(bounds){
+		var isBoundsContains = function(current){
+			return bounds.contains(current.getPosition());
+		};
+		this._visibleMarkers.apply(this, [isBoundsContains]);
+		this._displayMarkerChange();
+	},
+
+	active: function(marker){
+		var isThis = function(current){
+			return (marker == current) ? true : false;
+		};
+		this._activeMarkers.apply(this, [isThis]);
+		this._displayMarkerChange();
+	},
+
+	activeAll: function(){
+		var markers = this.getContainer().rewind();
+		while(markers.isValid()) {
+			var current = markers.getCurrent();
+			current.setActive(true);
+			markers.next();
+		}
+		this._displayMarkerChange();
+	},
+
+	activeByBounds: function(bounds){
+		var isBoundsContains = function(current){
+			return bounds.contains(current.getPosition());
+		};
+		this._activeMarkers.apply(this, [isBoundsContains]);
+		this._displayMarkerChange();
+	},
+
+	_activeMarkers: function(closer) {
+		var markers = this.getContainer().rewind();
+		while(markers.isValid()) {
+			var current = markers.getCurrent();
+			current.setActive(closer(current));
 			markers.next();
 		}
 	},
 
-	_visibleMarkers: function(target, closer) {
+	_visibleMarkers: function(closer) {
 		var markers = this.getContainer().rewind();
 		while(markers.isValid()) {
 			var current = markers.getCurrent();
-			current.setVisible(closer(target, current));
+			current.setVisible(closer(current));
 			markers.next();
 		}
 	},
-
-	_getStateChangeHelper: function(target) {
-		var helper = function (target, current) { return true; };
-		if (target instanceof google.maps.LatLngBounds) {
-			helper = function(target, current){
-				return target.contains(current.getPosition());
-			};
-		} else if (instanceOf(target, MMap.BaseMarker)
-			|| target instanceof google.maps.Marker) {
-			helper = function(target, current){
-				return (target == current) ? true : false;
-			};
-		}
-		return helper;
-	}
 
 });
 
@@ -1419,7 +1437,7 @@ requires:
   - MMap/MMap.Utils
   - MMap/MMap.Marker
 
-provides: [MMap.MarkerLoader, MMap.MarkerLoader.Parser, MMap.MarkerLoader.Context, MMap.MarkerLoader.JSON]
+provides: [MMap.MarkerLoader, MMap.MarkerLoader.Parser, Map.MarkerLoader.Context, MMap.MarkerLoader.JSON]
 
 ...
 */
@@ -1433,6 +1451,7 @@ MMap.MarkerLoader = new Class({
 	Implements: [MMap.Events, MMap.Options],
 
 	options: {
+		'format': 'array'
 /*
 		onPreload: $empty,
 		onFailure: $empty,
@@ -1445,11 +1464,18 @@ MMap.MarkerLoader = new Class({
 		this.setOptions(options);
 	},
 
-	load: function(){
+	load: function(context){
 		var self = this;
-		var args = Array.from(arguments);
-		var loader = (Type.isArray(args[0]))
-		? new MMap.MarkerLoader.Context() : new MMap.MarkerLoader.JSON();
+		if (context) {
+			if (Type.isArray(context)) {
+				Object.merge(this.options, { 'markers' : context });
+			} else {
+				Object.merge(this.options, context);
+			}
+		}
+		var format = this.options.format;
+		var	loader = MMap.MarkerLoader.factory(format);
+
 		loader.addEvents({
 			'onPreload': function(){
 				self.fireEvent('preload');
@@ -1465,7 +1491,7 @@ MMap.MarkerLoader = new Class({
 				self.fireEvent('load', [self.build(markers)]);
 			}
 		});
-		loader.load.apply(loader, args);
+		loader.load(this.options);
 	},
 
 	build: function(context){
@@ -1473,7 +1499,7 @@ MMap.MarkerLoader = new Class({
 		for (var i = 0; i < length; i++) {
 			var options = context[i];
 			var type = options.type || 'html';
-			type = type.capitalize();
+			type = (type == 'html') ? 'HTML' : type.capitalize();
 			delete options.type;
 			if (!MMap.Marker[type]) throw TypeError('Specified marker type "' + type + '" is not found.');
 			var marker = new MMap.Marker[type](options);
@@ -1483,6 +1509,23 @@ MMap.MarkerLoader = new Class({
 	}
 
 });
+
+MMap.MarkerLoader.factory = function(format){
+	var loader = null;
+	switch(format){
+		case 'array':
+			loader = new MMap.MarkerLoader.Context();
+			break;
+		//TODO Kml support 0.2.2
+		case 'kml':
+			break;
+		case 'json':
+		default:
+			loader = new MMap.MarkerLoader.JSON();
+			break;
+	}
+	return loader;
+};
 
 
 MMap.MarkerLoader.Parser = new Class({
@@ -1511,8 +1554,8 @@ MMap.MarkerLoader.Context = new Class({
 	load: function(context){
 		this.fireEvent('preload');
 		try {
-			this.fireEvent('complete', [context]);
-			var markers = this.parse(context);
+			this.fireEvent('complete', [context.markers]);
+			var markers = this.parse(context.markers);
 			this.fireEvent('load', [markers]);
 		} catch (error) {
 			this.fireEvent('failure', [error]);
@@ -1541,11 +1584,14 @@ MMap.MarkerLoader.JSON = new Class({
 		this.fireEvent('load', [response]);
 	},
 
-	getRequest: function(json, method){
-		if (this.request) return this.request;
+	getRequest: function(context){
+		if (this.request) {
+			this.request.setOptions(context);			
+			return this.request;
+		};
 		var self = this;
 		var events = ['_onRequest', '_onFailure', '_onSuccess'];
-		this.request = new Request.JSON({ url: json, method: method });
+		this.request = new Request.JSON(context);
 		events.each(function(type){
 			var handler = self[type].bind(self);
 			var eventType = type.replace('_', '');
@@ -1555,17 +1601,8 @@ MMap.MarkerLoader.JSON = new Class({
 		return this.request;
 	},
 
-	load: function(){
-		var args = Array.from(arguments);
-		var url = args.shift();
-		var method = 'get';
-		var values = {};
-		if (args.length > 0) {
-			values = args.shift();
-			method = (values.method) ? values.method : 'get';
-			delete values.method;
-		}
-		this.getRequest(url, method).send(values);
+	load: function(context){
+		this.getRequest(context).send();
 	}
 
 });

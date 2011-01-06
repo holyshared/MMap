@@ -28,7 +28,7 @@ requires:
   - MMap/MMap.Utils
   - MMap/MMap.Marker
 
-provides: [MMap.MarkerLoader, MMap.MarkerLoader.Parser, MMap.MarkerLoader.Factory, MMap.MarkerLoader.Context, MMap.MarkerLoader.JSON]
+provides: [MMap.MarkerLoader, MMap.MarkerLoader.Parser, MMap.MarkerLoader.Context, MMap.MarkerLoader.JSON]
 
 ...
 */
