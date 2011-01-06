@@ -13,17 +13,20 @@ window.addEvent("domready", function(){
 	var spinner = new Spinner({ map: map });
 	var manager = new MMap.MarkerManager();
 	var loader = new MMap.MarkerLoader({
+		method: 'get',
+		url: 'http://holyshared.github.com/MMap/js/marker-loader/markers.json',
+		format: 'json',
 		onPreload: function(){
 			spinner.show();
 		},
 		onLoad: function(markers){
 			manager.setMarkers(markers);
 			manager.setMap(map);
-			manager.visible();
+			manager.visibleAll();
 			spinner.hide();
 		}
 	});
-	loader.load('http://holyshared.github.com/MMap/js/marker-loader/markers.json');
+	loader.load();
 
 	SyntaxHighlighter.all();
 });

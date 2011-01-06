@@ -68,7 +68,7 @@ window.addEvent("domready", function(){
 		markers: manageMarkers
 	});
 	markerManager.setMap(map); //The arranged map is specified for all managed markers.
-	markerManager.visible();
+	markerManager.visibleAll();
 	markerManager.active(manageMarkers.getLast());
 
 	SyntaxHighlighter.all();
