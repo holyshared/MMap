@@ -29,7 +29,7 @@ provides: [MMap, MMap.MVCObject]
 
 var MMap = this.MMap = {};
 
-MMap.version = 0.2;
+MMap.version = '0.2.1';
 
 MMap.MVCObject = new Class({
 
