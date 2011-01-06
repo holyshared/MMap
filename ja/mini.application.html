@@ -159,16 +159,16 @@ window.addEvent("domready", function(){
 	map.controls[google.maps.ControlPosition.TOP_RIGHT].push(radiusWidget.getInstance());
 
 	//An initial value is set.
-	markerManager.visible(radiusWidget.getBounds());
+	markerManager.visibleByBounds(radiusWidget.getBounds());
 
 	//When the center of the map changes, the displayed marker is adjusted with the radius.
 	google.maps.event.addListener(map, 'center_changed', function(){
 		radiusWidget.setCenter(map.getCenter());
-		markerManager.visible(radiusWidget.getBounds());
+		markerManager.visibleByBounds(radiusWidget.getBounds());
 	});
 
 	google.maps.event.addListener(radiusWidget, 'radius_changed', function(){
-		markerManager.visible(radiusWidget.getBounds());
+		markerManager.visibleByBounds(radiusWidget.getBounds());
 	});
 
 
