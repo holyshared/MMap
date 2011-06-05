@@ -1,0 +1,336 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<title></title>
+	<meta http-equiv="Content-Language" content="ja" />
+	<meta http-equiv="Content-Script-Type" content="text/javascript" />
+	<meta http-equiv="Content-Style-Type" content="text/css" />
+	<meta name="description" content="" />
+	<meta name="keywords" content="" />
+	<link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Vollkorn:regular,italic,bold&amp;subset=latin" type="text/css" />
+	<link rel="stylesheet" href="../css/style.css" type="text/css" media="screen" />
+	<link rel="stylesheet" href="../css/core/content.ja.css" type="text/css" media="screen" />
+</head>
+
+<body>
+<div class="page gs960">
+
+	<div class="head">
+		<div class="mod symbol">
+			<div class="inner">
+				<div class="hd">
+					<h1 class="logo">MMap</h1>
+					<p class="version">version 0.2</p>
+				</div>
+			</div>
+		</div>
+	</div>
+
+<div class="body">
+	<div class="leftCol gDocs">
+
+<h3>Core</h3>
+
+<ul>
+<li><a href='mmap.overlayview.html#mmap.overlayview'>MMap.OverlayView</a></li>
+</ul>
+
+<h3>Marker</h3>
+
+<ul>
+<li><a href='mmap.marker.core.html#mmap.marker.core'>MMap.Marker.Core</a></li>
+<li><a href='mmap.marker.html.html#mmap.marker.html'>MMap.Marker.HTML</a></li>
+<li><a href='mmap.marker.image.html#mmap.marker.image'>MMap.Marker.Image</a></li>
+<li><a href='mmap.marker.images.html#mmap.marker.images'>MMap.Marker.Images</a></li>
+<li><a href='mmap.markermanager.html#mmap.markermanager'>MMap.MarkerManager</a></li>
+<li><a href='mmap.markerloader.html#mmap.markerloader'>MMap.MarkerLoader</a></li>
+</ul>
+
+<h3>Window</h3>
+
+<ul>
+<li><a href='mmap.window.html#mmap.window'>MMap.Window</a></li>
+</ul>
+
+
+	</div>
+
+	<div class="rightCol gDocs">
+
+
+<h3><a href='mmap.marker.images.html#mmap.marker.images'>MMap.Marker.Images</a></h3>
+
+<ul>
+<li><a href="mmap.marker.images.html#constructor" title="constructor">constructor</a></li>
+<li><a href="mmap.marker.images.html#getImages" title="getImages">getImages</a></li>
+<li><a href="mmap.marker.images.html#setCurrent" title="setCurrent">setCurrent</a></li>
+<li><a href="mmap.marker.images.html#setImages" title="setImages">setImages</a></li>
+<li><a href="mmap.marker.images.html#addImage" title="addImage">addImage</a></li>
+<li><a href="mmap.marker.images.html#addImages" title="addImages">addImages</a></li>
+<li><a href="mmap.marker.images.html#removeImage" title="removeImage">removeImage</a></li>
+<li><a href="mmap.marker.images.html#removeImages" title="removeImages">removeImages</a></li>
+<li><a href="mmap.marker.images.html#isStart" title="isStart">isStart</a></li>
+<li><a href="mmap.marker.images.html#start" title="start">start</a></li>
+<li><a href="mmap.marker.images.html#stop" title="stop">stop</a></li>
+</ul>
+
+
+<h4>Inherited Methods</h4>
+
+<h5>MMap.OverlayView</h5>
+
+<ul>
+<li><a href="mmap.overlayview.html#getVisible" title="getVisible">getVisible</a></li>
+<li><a href="mmap.overlayview.html#setVisible" title="setVisible">setVisible</a></li>
+<li><a href="mmap.overlayview.html#isAdded" title="isAdded">isAdded</a></li>
+<li><a href="mmap.overlayview.html#isVisible" title="isVisible">isVisible</a></li>
+<li><a href="mmap.overlayview.html#isActive" title="isActive">isActive</a></li>
+</ul>
+
+<h5>MMap.Marker.Core</h5>
+
+<ul>
+<li><a href="mmap.marker.core.html#draw" title="draw">draw</a></li>
+<li><a href="mmap.marker.core.html#refresh" title="refresh">refresh</a></li>
+<li><a href="mmap.marker.core.html#getZIndex" title="getZIndex">getZIndex</a></li>
+<li><a href="mmap.marker.core.html#getPosition" title="getPosition">getPosition</a></li>
+<li><a href="mmap.marker.core.html#setDefaultZIndex" title="setDefaultZIndex">setDefaultZIndex</a></li>
+<li><a href="mmap.marker.core.html#setZIndex" title="setZIndex">setZIndex</a></li>
+<li><a href="mmap.marker.core.html#setPosition" title="setPosition">setPosition</a></li>
+<li><a href="mmap.marker.core.html#setActive" title="setActive">setActive</a></li>
+</ul>
+
+
+	</div>
+
+	<div class="main">
+
+<h2 class="h1">Class: <a id='mmap.marker.images'>MMap.Marker.Images</a></h2>
+
+<p>画像をスライドさせて表示するマーカー。</p>
+
+<h3>Extends:</h3>
+
+<p>MMap.Marker.Core</p>
+
+<h2>Method: <a id='constructor'>constructor</a></h2>
+
+<h3>Syntax:</h3>
+
+<pre><code>var myMarker = new MMap.Marker.Images(options);
+</code></pre>
+
+<h3>Arguments:</h3>
+
+<ol>
+<li>options - (<em>mixed</em>) マーカーのオプション</li>
+</ol>
+
+<h3>Options:</h3>
+
+<ul>
+<li>map - (<em><a href="http://code.google.com/intl/en/apis/maps/documentation/javascript/reference.html#Map">Map</a></em>) マーカーを表示するMapオブジェクト</li>
+<li>className - (<em>string</em>) マーカーに適用するスタイル(CSSのクラス名)</li>
+<li>images - (<em>array</em>) <a href='#images'>マーカーに表示する画像情報</a></li>
+<li>defaultIndex - (<em>number</em>) 初期時に表示する画像の番号</li>
+<li>interval - (<em>number</em>) 画像をスライドさせる感覚</li>
+<li>duration - (<em>number</em>) アニメーションの持続時間</li>
+<li>autoplay - (<em>boolean</em>) trueを設定した場合、自動で画像をスライドします。デフォルトはtrueです。</li>
+<li>position - (<a href="http://code.google.com/intl/eu/apis/maps/documentation/javascript/reference.html#LatLng"><em>LatLng</em></a>) マーカーの座標位置</li>
+<li>zIndex - (<em>number</em>) マーカーの表示順序</li>
+<li>visible - (<em>boolean</em>) マーカーの表示状態</li>
+<li>active - (<em>boolean</em>) マーカーのアクティブ状態</li>
+<li>onClick - (<em>function</em>) マーカーをクリックした時に発生します。</li>
+<li>onDblClick - (<em>function</em>) マーカーをダブルクリックした時に発生します。</li>
+<li>onMouseOver - (<em>function</em>) マーカーのマウスオーバー時に発生します。</li>
+<li>onMouseOut - (<em>function</em>) マーカーのマウスアウト時に発生します。</li>
+<li>onMouseUp - (<em>function</em>) マーカーのマウスアップ時に発生します。</li>
+<li>onMouseDown - (<em>function</em>) マーカーのマウスダウン時に発生します。</li>
+<li>onVisibleChanged - (<em>function</em>) マーカーの表示状態が変わった場合に発生します。</li>
+<li>onZIndexChanged - (<em>function</em>) マーカーの表示順序が変わった場合に発生します。</li>
+<li>onPositionChanged - (<em>function</em>) マーカーの表示座標が変わった場合に発生します。</li>
+<li>onActive - (<em>function</em>) マーカーの表示座標が変わった場合に発生します。</li>
+</ul>
+
+<h3><a id='images'>images</a></h3></h3>
+
+<p>下記の情報を持つオブジェクトの配列</p>
+
+<ul>
+<li>title - (<em>number</em>) 画像のタイトル</li>
+<li>image - (<em>boolean</em>) 画像のURL</li>
+<li>url - (<em>boolean</em>) URL</li>
+</ul>
+
+<h2>Method: <a id='setCurrent'>setCurrent</a></h2>
+
+<p>指定した画像を現在の画像に設定します。</p>
+
+<h3>Syntax:</h3>
+
+<pre><code>marker.setCurrent(1);
+</code></pre>
+
+<h3>Arguments:</h3>
+
+<ol>
+<li>index - (<em>number</em>) 画像の番号</li>
+</ol>
+
+<h2>Method: <a id='getImages'>getImages</a></h2>
+
+<p>画像に設定されている画像情報を取得します。</p>
+
+<h3>Syntax:</h3>
+
+<pre><code>var images = marker.getImages();
+</code></pre>
+
+<h3>Returns:</h3>
+
+<p>(<em>array</em>) 画像に設定されている画像情報</p>
+
+<h2>Method: <a id='setImages'>setImages</a></h2>
+
+<p>マーカーに画像を設定します。</p>
+
+<h3>Syntax:</h3>
+
+<pre><code>marker.setImages(images);
+</code></pre>
+
+<h3>Arguments:</h3>
+
+<ol>
+<li>images - (<em>array</em>) 設定する画像</li>
+</ol>
+
+<h3>Returns:</h3>
+
+<p>(<em>object</em>) marker object</p>
+
+<h2>Method: <a id='addImage'>addImage</a></h2>
+
+<p>画像をマーカーに追加します。</p>
+
+<h3>Syntax:</h3>
+
+<pre><code>marker.addImage(image);
+</code></pre>
+
+<h3>Arguments:</h3>
+
+<ol>
+<li>image - (<em>object</em>) 追加する画像の情報</li>
+</ol>
+
+<h3>Returns:</h3>
+
+<p>(<em>object</em>) marker object</p>
+
+<h2>Method: <a id='addImages'>addImages</a></h2>
+
+<p>画像を複数マーカーに追加します。</p>
+
+<h3>Syntax:</h3>
+
+<pre><code>var images = [{  
+    title: 'demo3',  
+    image: '../Demos/images/demo/img03.jpg',  
+    url: 'http://sharedhat.com'  
+}, {  
+    title: 'demo4',  
+    image: '../Demos/images/demo/img04.jpg',  
+    url: 'http://sharedhat.com'  
+}];  
+marker.addImages(images);
+</code></pre>
+
+<h3>Arguments:</h3>
+
+<ol>
+<li>images - (<em>array</em>) 追加する画像</li>
+</ol>
+
+<h2>Method: <a id='removeImage'>removeImage</a></h2>
+
+<p>マーカーから画像を削除します。</p>
+
+<h3>Syntax:</h3>
+
+<pre><code>marker.removeImage(image);
+</code></pre>
+
+<h3>Arguments:</h3>
+
+<ol>
+<li>image - (<em>object</em>) マーカーから削除する画像</li>
+</ol>
+
+<h2>Method: <a id='removeImages'>removeImages</a></h2>
+
+<p>マーカーから複数の画像を削除します。</p>
+
+<h3>Syntax:</h3>
+
+<pre><code>//When you enumerate the marker  
+marker.removeImages(image1, image2);  
+
+//When specifying it by the array  
+var images = [image1, image2];  
+marker.removeImages(images);
+</code></pre>
+
+<h3>Arguments:</h3>
+
+<ol>
+<li>images - (<em>mixed</em>) マーカーから削除する画像</li>
+</ol>
+
+<h2>Method: <a id='isStart'>isStart</a></h2>
+
+<p>マーカーの画像のスライド状態を返します。</p>
+
+<h3>Syntax:</h3>
+
+<pre><code>if (marker.isStart()) {  
+    console.log('It is executing it.');  
+}
+</code></pre>
+
+<h3>Returns:</h3>
+
+<p>(<em>boolean</em>) スライドの開始状態</p>
+
+<h2>Method: <a id='start'>start</a></h2>
+
+<p>画像のスライドを開始します。</p>
+
+<h3>Syntax:</h3>
+
+<pre><code>marker.start();
+</code></pre>
+
+<h2>Method: <a id='stop'>stop</a></h2>
+
+<p>画像のスライドを停止します。</p>
+
+<h3>Syntax:</h3>
+
+<pre><code>marker.stop();
+</code></pre>
+
+
+	</div>
+
+</div>
+
+	<div class="foot">
+		<p>Copyright(c) 2010 <a title="Noritaka Horio" href="http://sharedhat.com">Noritaka Horio</a> All Rights Reserved.</p>
+	</div>
+</div>
+
+</body>
+
+</html>

@@ -1,0 +1,14 @@
+.symbol {
+	padding: 15px 0px 10px 0px;
+	margin: 0px;
+	overflow: hidden;
+}
+
+.symbol h1 {
+	padding: 0px;
+	float: left;
+}
+
+.symbol .version {
+	float: left;
+}
