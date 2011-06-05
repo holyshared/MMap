@@ -1,0 +1,60 @@
+<script type="text/javascript" src="http://maps.google.com/maps/api/js?v=3&amp;sensor=false"></script>
+<script type="text/javascript" src="/depender/build?require=MMap/MMap.OverlayView"></script>
+<script type="text/javascript">
+(function(){
+
+	var Tester = new Class({
+
+		Extends: MMap.OverlayView,
+
+		options: {
+			map: null,
+			zIndex: 0,
+			visible: false,
+			position: null
+		},
+
+		initialize: function(options){
+			this.parent(options);
+		},
+
+		_setup: function(container){
+			container.addClass('marker imageDefault');
+			var photo = new Element('p', {'class': 'photo'}); 
+			var img = new Element('img', {src: '../Demos/images/demo/img05.jpg'});
+			var a = new Element('a', {href: 'http://sharedhat.com/'});
+			img.inject(a);
+			a.inject(photo);
+			photo.inject(container);
+			return photo;
+		},
+
+		_init: function(){
+			var props = [ 'zIndex', 'visible', 'active', 'position' ];
+			var values = Object.subset(this.options, props);
+			this.setValues(values);
+			for (var key in props){ delete this.options[key]; };
+		},
+
+		draw: function(){
+			var projection = this.getProjection();
+			var position = this.get('position');
+			var size = this.instance.getSize();
+			var xy = projection.fromLatLngToDivPixel(position);
+			var styles = {
+				position: 'absolute',
+				left: xy.x -(size.x / 2),
+				top: xy.y -(size.y / 2)
+			};
+			this.instance.setStyles(styles);
+		}
+	});
+
+	window.addEventListener('load', function(){
+
+		var overlayView = new Tester();
+
+	}, false);
+
+}());
+</script>

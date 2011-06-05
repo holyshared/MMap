@@ -1,6 +1,6 @@
 /*
 ---
-name: MMap.Core
+name: MMap
 
 description: Core module of MMap.
 
@@ -10,14 +10,6 @@ authors:
 - Noritaka Horio
 
 requires:
-  - Core/Core
-  - Core/Array
-  - Core/String
-  - Core/Number
-  - Core/Function
-  - Core/Object
-  - Core/Event
-  - Core/Browser
   - Core/Class
 
 provides: [MMap, MMap.MVCObject]
@@ -25,11 +17,11 @@ provides: [MMap, MMap.MVCObject]
 ...
 */
 
-(function($){
+(function(){
 
 var MMap = this.MMap = {};
 
-MMap.version = '0.2.1';
+MMap.version = '0.2.2';
 
 MMap.MVCObject = new Class({
 
@@ -39,4 +31,4 @@ MMap.MVCObject = new Class({
 });
 MMap.MVCObject.prototype = new google.maps.MVCObject();
 
-}(document.id));
+}());
