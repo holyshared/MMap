@@ -10,23 +10,16 @@ authors:
 - Noritaka Horio
 
 requires:
-  - Core/Core
   - Core/Array
-  - Core/String
-  - Core/Number
-  - Core/Function
-  - Core/Object
-  - Core/Event
-  - Core/Browser
-  - Core/Class
-  - MMap/MMap.Core
+  - Core/Type
+  - MMap/MMap
 
 provides: [MMap.Container]
 
 ...
 */
 
-(function($){
+(function(){
 
 var MMap = (this.MMap || {});
 
@@ -147,4 +140,4 @@ MMap.Container = new Class({
 
 });
 
-}(document.id));
+}());

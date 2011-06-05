@@ -10,28 +10,21 @@ authors:
 - Noritaka Horio
 
 requires:
-  - Core/Core
-  - Core/Array
-  - Core/String
-  - Core/Number
-  - Core/Function
+  - Core/Type
   - Core/Object
-  - Core/Event
-  - Core/Browser
   - Core/Class
   - Core/Element
   - Core/Element.Style
-  - Core/Element.Event
-  - Core/Element.Dimensions
-  - MMap/MMap.Core
-  - MMap/MMap.Utils
+  - MMap/MMap
+  - MMap/MMap.Options
+  - MMap/MMap.Events
 
 provides: [MMap.OverlayView]
 
 ...
 */
 
-(function($){
+(function(){
 
 var MMap = (this.MMap || {});
 	
@@ -143,4 +136,4 @@ MMap.OverlayView = new Class({
 
 });
 
-}(document.id));
+}());

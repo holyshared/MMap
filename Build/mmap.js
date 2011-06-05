@@ -1,6 +1,6 @@
 /*
 ---
-name: MMap.Core
+name: MMap
 
 description: Core module of MMap.
 
@@ -10,14 +10,6 @@ authors:
 - Noritaka Horio
 
 requires:
-  - Core/Core
-  - Core/Array
-  - Core/String
-  - Core/Number
-  - Core/Function
-  - Core/Object
-  - Core/Event
-  - Core/Browser
   - Core/Class
 
 provides: [MMap, MMap.MVCObject]
@@ -25,11 +17,11 @@ provides: [MMap, MMap.MVCObject]
 ...
 */
 
-(function($){
+(function(){
 
 var MMap = this.MMap = {};
 
-MMap.version = '0.2.1';
+MMap.version = '0.2.2';
 
 MMap.MVCObject = new Class({
 
@@ -39,7 +31,7 @@ MMap.MVCObject = new Class({
 });
 MMap.MVCObject.prototype = new google.maps.MVCObject();
 
-}(document.id));
+}());
 
 /*
 ---
@@ -53,27 +45,17 @@ authors:
 - Noritaka Horio
 
 requires:
-  - Core/Core
-  - Core/Array
-  - Core/String
-  - Core/Number
-  - Core/Function
+  - Core/Type
   - Core/Object
-  - Core/Event
-  - Core/Browser
   - Core/Class
-  - Core/Element
-  - Core/Element.Style
-  - Core/Element.Event
-  - Core/Element.Dimensions
-  - MMap/MMap.Core
+  - MMap/MMap
 
 provides: [MMap.Options, MMap.Events]
 
 ...
 */
 
-(function($){
+(function(){
 
 var MMap = (this.MMap || {});
 
@@ -98,10 +80,10 @@ MMap.Options = new Class({
 
 });
 
-}(document.id));
+}());
 
 
-(function($){
+(function(){
 
 var MMap = (this.MMap || {});
 
@@ -188,7 +170,7 @@ MMap.Events = new Class({
 
 });
 
-}(document.id));
+}());
 
 /*
 ---
@@ -202,23 +184,16 @@ authors:
 - Noritaka Horio
 
 requires:
-  - Core/Core
   - Core/Array
-  - Core/String
-  - Core/Number
-  - Core/Function
-  - Core/Object
-  - Core/Event
-  - Core/Browser
-  - Core/Class
-  - MMap/MMap.Core
+  - Core/Type
+  - MMap/MMap
 
 provides: [MMap.Container]
 
 ...
 */
 
-(function($){
+(function(){
 
 var MMap = (this.MMap || {});
 
@@ -339,7 +314,7 @@ MMap.Container = new Class({
 
 });
 
-}(document.id));
+}());
 
 /*
 ---
@@ -353,28 +328,21 @@ authors:
 - Noritaka Horio
 
 requires:
-  - Core/Core
-  - Core/Array
-  - Core/String
-  - Core/Number
-  - Core/Function
+  - Core/Type
   - Core/Object
-  - Core/Event
-  - Core/Browser
   - Core/Class
   - Core/Element
   - Core/Element.Style
-  - Core/Element.Event
-  - Core/Element.Dimensions
-  - MMap/MMap.Core
-  - MMap/MMap.Utils
+  - MMap/MMap
+  - MMap/MMap.Options
+  - MMap/MMap.Events
 
 provides: [MMap.OverlayView]
 
 ...
 */
 
-(function($){
+(function(){
 
 var MMap = (this.MMap || {});
 	
@@ -486,7 +454,7 @@ MMap.OverlayView = new Class({
 
 });
 
-}(document.id));
+}());
 
 /*
 ---
@@ -500,29 +468,15 @@ authors:
 - Noritaka Horio
 
 requires:
-  - Core/Core
-  - Core/Array
-  - Core/String
-  - Core/Number
-  - Core/Function
-  - Core/Object
-  - Core/Event
-  - Core/Browser
-  - Core/Class
-  - Core/Element
-  - Core/Element.Style
-  - Core/Element.Event
-  - Core/Element.Dimensions
-  - MMap/MMap.Core
-  - MMap/MMap.Utils
+  - MMap/MMap
   - MMap/MMap.OverlayView
 
-provides: [MMap.Marker.Core, MMap.Marker.HTML]
+provides: [MMap.Marker, MMap.Marker.Core, MMap.Marker.HTML]
 
 ...
 */
 
-(function($){
+(function(){
 
 var MMap = (this.MMap || {});
 MMap.Marker = (this.MMap.Marker || {});
@@ -761,7 +715,7 @@ MMap.Marker.HTML = new Class({
 
 });
 
-}(document.id));
+}());
 
 /*
 ---
@@ -775,31 +729,16 @@ authors:
 - Noritaka Horio
 
 requires:
-  - Core/Core
-  - Core/Array
-  - Core/String
-  - Core/Number
-  - Core/Function
-  - Core/Object
-  - Core/Event
-  - Core/Browser
-  - Core/Class
-  - Core/Element
-  - Core/Element.Style
-  - Core/Element.Event
-  - Core/Element.Dimensions
-  - MMap/MMap.Core
-  - MMap/MMap.Utils
-  - MMap/MMap.OverlayView
+  - MMap/MMap
   - MMap/MMap.Marker
-  - MMap/MMap.Marker.Image
+  - MMap/MMap.Marker.Core
 
 provides: [MMap.Marker.Image]
 
 ...
 */
 
-(function($){
+(function(){
 
 var MMap = (this.MMap || {});
 MMap.Marker = (this.MMap.Marker || {});
@@ -906,7 +845,7 @@ MMap.Marker.Image = this.MMap.Marker.Image = new Class({
 
 });
 
-}(document.id));
+}());
 
 /*
 ---
@@ -920,31 +859,16 @@ authors:
 - Noritaka Horio
 
 requires:
-  - Core/Core
-  - Core/Array
-  - Core/String
-  - Core/Number
-  - Core/Function
-  - Core/Object
-  - Core/Event
-  - Core/Browser
-  - Core/Class
-  - Core/Element
-  - Core/Element.Style
-  - Core/Element.Event
-  - Core/Element.Dimensions
-  - MMap/MMap.Core
-  - MMap/MMap.Utils
-  - MMap/MMap.OverlayView
+  - MMap/MMap
   - MMap/MMap.Marker
-  - MMap/MMap.Marker.Images
+  - MMap/MMap.Marker.Core
 
 provides: [MMap.Marker.Images]
 
 ...
 */
 
-(function($){
+(function(){
 
 var MMap = (this.MMap || {});
 MMap.Marker = (this.MMap.Marker || {});
@@ -1161,7 +1085,7 @@ MMap.Marker.Images = this.MMap.Marker.Images = new Class({
 
 });
 
-}(document.id));
+}());
 
 /*
 ---
@@ -1175,28 +1099,17 @@ authors:
 - Noritaka Horio
 
 requires:
-  - Core/Core
-  - Core/Array
-  - Core/String
-  - Core/Number
-  - Core/Function
-  - Core/Object
-  - Core/Event
-  - Core/Browser
-  - Core/Class
-  - Core/Element
-  - Core/Element.Style
-  - Core/Element.Event
-  - Core/Element.Dimensions
-  - MMap/MMap.Core
-  - MMap/MMap.Utils
+  - MMap/MMap
+  - MMap/MMap.Container
+  - MMap/MMap.Options
+  - MMap/MMap.Events
 
 provides: [MMap.MarkerManager]
 
 ...
 */
 
-(function($){
+(function(){
 
 var MMap = (this.MMap || {});
 
@@ -1405,7 +1318,7 @@ MMap.MarkerManager = new Class({
 
 });
 
-}(document.id));
+}());
 
 /*
 ---
@@ -1419,30 +1332,17 @@ authors:
 - Noritaka Horio
 
 requires:
-  - Core/Core
-  - Core/Array
-  - Core/String
-  - Core/Number
-  - Core/Function
-  - Core/Object
-  - Core/Event
-  - Core/Browser
-  - Core/Class
-  - Core/Element
-  - Core/Element.Style
-  - Core/Element.Event
-  - Core/Element.Dimensions
-  - MMap/MMap.Core
-  - MMap/MMap.OverlayView
-  - MMap/MMap.Utils
-  - MMap/MMap.Marker
+  - Core/Events
+  - MMap/MMap
+  - MMap/MMap.Options
+  - MMap/MMap.Events
 
-provides: [MMap.MarkerLoader, MMap.MarkerLoader.Parser, Map.MarkerLoader.Context, MMap.MarkerLoader.JSON]
+provides: [MMap.MarkerLoader, MMap.MarkerLoader.Parser, MMap.MarkerLoader.Context, MMap.MarkerLoader.JSON]
 
 ...
 */
 
-(function($){
+(function(){
 
 var MMap = (this.MMap || {});
 
@@ -1607,7 +1507,7 @@ MMap.MarkerLoader.JSON = new Class({
 
 });
 
-}(document.id));
+}());
 
 
 /*
@@ -1622,29 +1522,15 @@ authors:
 - Noritaka Horio
 
 requires:
-  - Core/Core
-  - Core/Array
-  - Core/String
-  - Core/Number
-  - Core/Function
-  - Core/Object
-  - Core/Event
-  - Core/Browser
-  - Core/Class
-  - Core/Element
-  - Core/Element.Style
-  - Core/Element.Event
-  - Core/Element.Dimensions
-  - MMap/MMap.Core
+  - MMap/MMap
   - MMap/MMap.OverlayView
-  - MMap/MMap.Utils.js
 
 provides: [MMap.Window]
 
 ...
 */
 
-(function($){
+(function(){
 
 var MMap = (this.MMap || {});
 
@@ -1864,4 +1750,4 @@ MMap.Window = new Class({
 
 });
 
-}(document.id));
+}());

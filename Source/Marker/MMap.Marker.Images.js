@@ -10,31 +10,16 @@ authors:
 - Noritaka Horio
 
 requires:
-  - Core/Core
-  - Core/Array
-  - Core/String
-  - Core/Number
-  - Core/Function
-  - Core/Object
-  - Core/Event
-  - Core/Browser
-  - Core/Class
-  - Core/Element
-  - Core/Element.Style
-  - Core/Element.Event
-  - Core/Element.Dimensions
-  - MMap/MMap.Core
-  - MMap/MMap.Utils
-  - MMap/MMap.OverlayView
+  - MMap/MMap
   - MMap/MMap.Marker
-  - MMap/MMap.Marker.Images
+  - MMap/MMap.Marker.Core
 
 provides: [MMap.Marker.Images]
 
 ...
 */
 
-(function($){
+(function(){
 
 var MMap = (this.MMap || {});
 MMap.Marker = (this.MMap.Marker || {});
@@ -251,4 +236,4 @@ MMap.Marker.Images = this.MMap.Marker.Images = new Class({
 
 });
 
-}(document.id));
+}());
