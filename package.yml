@@ -16,6 +16,7 @@ sources:
   - "Source/Core/MMap.Container.js"
   - "Source/Core/MMap.OverlayView.js"
   - "Source/Marker/MMap.Marker.js"
+  - "Source/Marker/MMap.Marker.Draggable.js"
   - "Source/Marker/MMap.Marker.Image.js"
   - "Source/Marker/MMap.Marker.Images.js"
   - "Source/Marker/MMap.MarkerManager.js"
@@ -28,7 +29,7 @@ category: Interface
 
 tags: [thumnail, google map, map, marker]
 
-current: 0.2.2
+current: 0.2.3
 
 docs: http://holyshared.github.com/MMap/docs/html/en/mmap.overlayview.html
 

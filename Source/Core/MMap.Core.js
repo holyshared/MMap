@@ -21,7 +21,7 @@ provides: [MMap, MMap.MVCObject]
 
 var MMap = this.MMap = {};
 
-MMap.version = '0.2.2';
+MMap.version = '0.2.3';
 
 MMap.MVCObject = new Class({
 
