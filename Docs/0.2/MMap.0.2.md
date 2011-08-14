@@ -182,6 +182,14 @@
 * [load](mmap.markerloader.html#load "load")
 
 
+### <a href='mmap.draggable.html#mmap.draggable'>MMap.Draggable</a>
+
+* [constructor](mmap.draggable.html#constructor "constructor")
+* [draggable](mmap.draggable.html#draggable "draggable")
+* [isDraggable](mmap.draggable.html#isDraggable "isDraggable")
+* [isDragging](mmap.draggable.html#isDragging "isDragging")
+
+
 ### <a href='mmap.window.html#mmap.window'>MMap.Window</a>
 
 * [constructor](mmap.window.html#constructor "constructor")
@@ -225,6 +233,10 @@
 * <a href='mmap.marker.images.html#mmap.marker.images'>MMap.Marker.Images</a>
 * <a href='mmap.markermanager.html#mmap.markermanager'>MMap.MarkerManager</a>
 * <a href='mmap.markerloader.html#mmap.markerloader'>MMap.MarkerLoader</a>
+
+### Utils
+
+* <a href='mmap.draggable.html#mmap.draggable'>MMap.Draggable</a>
 
 ### Window
 
