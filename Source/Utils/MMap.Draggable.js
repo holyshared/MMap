@@ -25,15 +25,26 @@ MMap.Draggable = new Class({
 		draggable: false
 	},
 
+	_dragging: false,
+	_draggable: false,
+
 	draggable: function(){
-		var marker = this._getInstance();
-		marker.addEvent('mousedown', this._onMouseDown.bind(this));
+		if (this._draggable == false) {
+			this._draggable = true;
+			var instance = this._getInstance();
+			instance.addEvent('mousedown', this._onMouseDown.bind(this));
+		}
+	},
+
+	isDragging: function(){
+		return this._dragging;
 	},
 
 	_setMousePosition: function(event){
+		var client = event.client;
 		this._currentMouse = {
-			x: event.clientX,
-			y: event.clientY
+			x: client.x,
+			y: client.y
 		};
 	},
 
@@ -45,6 +56,9 @@ MMap.Draggable = new Class({
 		if (this.isDragging()) {
 			return;
 		}
+		var instance = this._getInstance();
+		instance.setCapture(true);
+
 		this._dragStart(event);
 	},
 
@@ -63,18 +77,20 @@ MMap.Draggable = new Class({
 	},
 
 	_computeDragPosition: function(event){
-		var current, diffX, diffY, marker, position;
+		var current, cX, cY, dX, dY, cp, position;
 
 		current = this._getMousePosition();
-		diffX = event.clientX - current.x;
-		diffY = event.clientX - current.y;
 
-		marker = this._getInstance();
-		position = marker.getPosition();
+		dX = event.client.x - current.x;
+		dY = event.client.y - current.y;
+
+		cp = this._getInstance().getStyles('left', 'top');
+		cX = parseInt(cp.left.replace('px', ''));
+		cY = parseInt(cp.top.replace('px', ''));
 
 		return {
-			left: position.x - diffX,
-			top: position.y - diffY
+			left: cX + dX,
+			top: cY + dY
 		};
 	},
 
@@ -90,12 +106,12 @@ MMap.Draggable = new Class({
 	},
 
 	_dragStart: function(event){
-		var map, marker;
+		var map, instance;
 
 		this._toggleMapDraggable();
 
-		marker = this._getInstance();
-		marker.addEvents({
+		instance = this._getInstance();
+		instance.addEvents({
 			'mouseup': this._onMouseUp.bind(this),
 			'mousemove': this._onMouseMove.bind(this)
 		});
@@ -106,30 +122,33 @@ MMap.Draggable = new Class({
 	},
 
 	_drag: function(event){
-		var marker, current, position, point;
+		var instance, current, position, point;
 
 		current = this._computeDragPosition(event);
 
-		marker = this._getInstance();
-		marker.setStyles(current);
+		instance = this._getInstance();
+		instance.setStyles(current);
 
-		point = new google.maps.Point(current.left, current.top);
+		this._setMousePosition(event);
 
-		position = this.getProjection().fromDivPixelToLatLng(point);
-		this.setPosition(position);
+	//	point = new google.maps.Point(current.left, current.top);
+
+//		position = this.getProjection().fromDivPixelToLatLng(point);
+//		this.setPosition(position);
 		this.fireEvent('drag');
 	},
 
 	_dragStop: function(){
-		var marker;
+		var instance;
 
 		this._toggleMapDraggable();
 
-		marker = this._getInstance();
-		marker.removeEvents({
+		instance = this._getInstance();
+		instance.removeEvents({
 			'mouseup': this._onMouseUp.bind(this),
 			'mousemove': this._onMouseMove.bind(this)
 		});
+		instance.releaseCapture();
 
 		this._dragging = false;
 		this.fireEvent('dragEnd');

@@ -5,8 +5,10 @@ window.addEvent("domready", function(){
 	var logger = new Logger();
 
 	var Tester = new Class({
-		
+
 		Extends: MMap.OverlayView,
+
+		Implements: [MMap.Draggable],
 
 		options: {
 			map: null,
@@ -30,10 +32,25 @@ window.addEvent("domready", function(){
 			return photo;
 		},
 
+		_setupListeners: function(){
+			var self = this;
+			var marker = this._getInstance();
+			var proxy = function(event){
+				event.target = self;
+				self.fireEvent(event.type, event);
+			}
+			var events = ['click', 'dblclick', 'mouseover', 'mouseout', 'mouseup', 'mousedown'];
+			events.each(function(type){
+				marker.addEvent(type, proxy);
+			});
+		},
+
 		_init: function(){
-			var props = [ 'zIndex', 'visible', 'active', 'position' ];
+			var props = [ 'position', 'zIndex', 'visible', 'active' ];
 			var values = Object.subset(this.options, props);
-			this.setValues(values);
+			for (var key in values){
+				this.set(key, values[key]);
+			}
 			for (var key in props){ delete this.options[key]; };
 		},
 
@@ -48,7 +65,21 @@ window.addEvent("domready", function(){
 				top: xy.y -(size.y / 2)
 			};
 			this.instance.setStyles(styles);
+		},
+
+		getPosition: function() {
+			return this.get('position');
+		},
+	
+		setPosition: function(position){
+			if (!instanceOf(position, google.maps.LatLng)) {
+				new TypeError('The data type is not an Latlng.');
+			}
+			this.set('position', position);
+			this.draw();
+			return this;
 		}
+
 	});
 
 
@@ -63,29 +94,11 @@ window.addEvent("domready", function(){
 		zIndex: 1000,
 		visible: false,
 		position: new google.maps.LatLng(35.6566870, 139.750859),
-		onZIndexChanged: function(){
-			logger.log('events', 'o1 - onZIndexChanged');
-		},
-		onVisibleChanged: function(){
-			logger.log('events', 'o1 - onVisibleChanged');
-		},
-		onActiveChanged: function(){
-			logger.log('events', 'o1 - onActiveChanged');
+		onClick: function(event){
+			event.preventDefault();
 		}
 	});
-	logger.log('options', (o1.getVisible() == false) ? 'visible option OK' : 'visible option NG');
-	logger.log('options', (o1.isActive() == false) ? 'active option OK' : 'active option NG');
-
-	o1.setVisible(true);
-	logger.log('methods', 'o1 - visible: ' + o1.getVisible());
-
-	logger.log('methods', 'o1 - get: ' + o1.get('position').lat() + ' ' + o1.get('position').lng());
-
-	o1.set('active', true);
-	logger.log('methods', 'o1 - active: ' + o1.isActive());
-
-	o1.set('active', false);
-	logger.log('methods', 'o1 - deactive: ' + o1.isActive());
+	o1.draggable();
 
 });
 
