@@ -27,16 +27,16 @@ provides: [MMap.OverlayView]
 (function(){
 
 var MMap = (this.MMap || {});
-	
+
 MMap.OverlayView = new Class({
 
-	Implements: [MMap.Events, MMap.Options],
+	Implements: [google.maps.OverlayView, MMap.Events, MMap.Options],
 
 	options: {
 		map: null,
 		zIndex: 0,
 		visible: true,
-		active: false,
+		active: false
 /*
 		onClick
 		onDblClick
@@ -52,9 +52,6 @@ MMap.OverlayView = new Class({
 	},
 
 	initialize: function(options){
-		var subclass = this;
-		subclass = Object.append(new google.maps.OverlayView(), subclass);
-		for (var k in subclass) { this[k] = subclass[k]; };
 		this.instance = this._getInstance();
 		this.setOptions(options);
 		this._added = false;
