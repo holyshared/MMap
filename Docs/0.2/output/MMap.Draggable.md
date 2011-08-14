@@ -26,14 +26,14 @@ MMap.Draggableのコンストラクタ。
 * onDragEnd - (*function*) オブジェクトのドラッグが終了された時に発生します。
 * onDrag - (*function*) オブジェクトをドラッグしている間このイベントが発生します。
 
-Method: <a id='draggable'>draggable</a>
+Method: <a id='setDraggable'>setDraggable</a>
 -----------------------------------------------
 
 ドラッグ機能の有効／無効を切り替えます。
 
 ### Syntax:
 
-	var object = object.draggable(true);
+	var object = object.setDraggable(true);
 
 ### Arguments:
 

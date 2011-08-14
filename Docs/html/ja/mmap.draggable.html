@@ -70,7 +70,7 @@
 
 <ul>
 <li><a href="mmap.draggable.html#constructor" title="constructor">constructor</a></li>
-<li><a href="mmap.draggable.html#draggable" title="draggable">draggable</a></li>
+<li><a href="mmap.draggable.html#setDraggable" title="setDraggable">setDraggable</a></li>
 <li><a href="mmap.draggable.html#isDraggable" title="isDraggable">isDraggable</a></li>
 <li><a href="mmap.draggable.html#isDragging" title="isDragging">isDragging</a></li>
 </ul>
@@ -81,7 +81,7 @@
 	<div class="main">
 <h2 class="h1">Class: <a id='mmap.draggable'>MMap.Draggable</a></h2>
 
-<p>特定のオブジェクトにドラッグ機能を組み込みます。
+<p>特定のオブジェクトにドラッグ機能を組み込みます。<br />
 組み込むオブジェクトはtoElementメソッドとsetPositionメソッドを実装している必要があります。</p>
 
 <h2>Method: <a id='constructor'>constructor</a></h2>
@@ -107,13 +107,13 @@
 <li>onDrag - (<em>function</em>) オブジェクトをドラッグしている間このイベントが発生します。</li>
 </ul>
 
-<h2>Method: <a id='draggable'>draggable</a></h2>
+<h2>Method: <a id='setDraggable'>setDraggable</a></h2>
 
 <p>ドラッグ機能の有効／無効を切り替えます。</p>
 
 <h3>Syntax:</h3>
 
-<pre><code>var object = object.draggable(true);
+<pre><code>var object = object.setDraggable(true);
 </code></pre>
 
 <h3>Arguments:</h3>

@@ -74,6 +74,10 @@ MMap.OverlayView = new Class({
 		return this.instance;
 	},
 
+	toElement: function() {
+		return this._getInstance();
+	},
+
 	//abstract method
 	_setup: function(container){
 	},

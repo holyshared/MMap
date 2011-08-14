@@ -17,7 +17,7 @@ provides: [MMap.Draggable]
 ...
 */
 
-(function(MMap){
+(function(MMap, maps, Point){
 
 MMap.Draggable = new Class({
 
@@ -25,73 +25,70 @@ MMap.Draggable = new Class({
 		draggable: false
 	},
 
+	_mouseX: null,
+	_mouseY: null,
 	_dragging: false,
-	_draggable: false,
+	_mouseEvents: null,
 
-	draggable: function(){
-		if (this._draggable == false) {
-			this._draggable = true;
-			var instance = this._getInstance();
-			instance.addEvent('mousedown', this._onMouseDown.bind(this));
-		}
+	setDraggable: function(value){
+		if (!Type.isBoolean(value)) new TypeError('The data type is not an boolean.');
+		this.set('draggable', value);
+	},
+
+	isDraggable: function(){
+		return this.get('draggable');
 	},
 
 	isDragging: function(){
 		return this._dragging;
 	},
 
-	_setMousePosition: function(event){
-		var client = event.client;
-		this._currentMouse = {
-			x: client.x,
-			y: client.y
-		};
-	},
-
-	_getMousePosition: function(){
-		return this._currentMouse;
-	},
-
-	_onMouseDown: function(event){
-		if (this.isDragging()) {
-			return;
+	draggable_changed: function(){
+		var element = this.toElement();
+		var events = this._mouseEvents = new MouseEventHandler(this);
+		if (this.isDraggable()) {
+			element.addEvent('mousedown', this._mouseEvents.mousedown);
+		} else {
+			element.removeEvent('mousedown', this._mouseEvents.mousedown);
 		}
-		var instance = this._getInstance();
-		instance.setCapture(true);
-
-		this._dragStart(event);
 	},
 
-	_onMouseUp: function(event){
-		if (!this.isDragging()) {
-			return;
-		}
-		this._dragStop();
+	_dragStart: function(event){
+		this._dragging = true;
+		this._mouseX = event.client.x;
+		this._mouseY = event.client.y;
+		this._startCapture();
+		this._toggleMapDraggable();
+		this._enableDragListeners();
+		this.fireEvent('dragStart', [this._getCurrentPosition()]);
 	},
 
-	_onMouseMove: function(event){
-		if (!this.isDragging()) {
-			return;
-		}
-		this._drag(event);
+	_drag: function(event){
+		var position = this._updatePosition(event);
+		this.fireEvent('drag', [position]);
 	},
 
-	_computeDragPosition: function(event){
-		var current, cX, cY, dX, dY, cp, position;
+	_dragStop: function(){
+		this._dragging = false;
+		this._stopCapture();
+		this._toggleMapDraggable();
+		this._disableDragListeners();
+		this.fireEvent('dragEnd', [this._getCurrentPosition()]);
+	},
 
-		current = this._getMousePosition();
-
-		dX = event.client.x - current.x;
-		dY = event.client.y - current.y;
-
-		cp = this._getInstance().getStyles('left', 'top');
-		cX = parseInt(cp.left.replace('px', ''));
-		cY = parseInt(cp.top.replace('px', ''));
-
+	_getCurrentPosition: function(){
+		var element = this.toElement();
+		var position = element.getStyles('left', 'top');
+		var size = element.getSize();
+		var point = new Point(
+			position.left.toInt() + (size.x / 2),
+			position.top.toInt() + (size.y / 2)
+		);
+		var latlng = this.getProjection().fromDivPixelToLatLng(point);
 		return {
-			left: cX + dX,
-			top: cY + dY
-		};
+			latlng: latlng,
+			pixel: point
+		}
 	},
 
 	_toggleMapDraggable: function(){
@@ -105,55 +102,87 @@ MMap.Draggable = new Class({
 		}
 	},
 
-	_dragStart: function(event){
-		var map, instance;
+	_updatePosition: function(event){
+		var element = this.toElement();
 
-		this._toggleMapDraggable();
+		var size = element.getSize();
+		var position = element.getStyles('left', 'top');
 
-		instance = this._getInstance();
-		instance.addEvents({
-			'mouseup': this._onMouseUp.bind(this),
-			'mousemove': this._onMouseMove.bind(this)
-		});
+		var diffX = event.client.x - this._mouseX;
+		var diffY = event.client.y - this._mouseY;
 
-		this._setMousePosition(event);
-		this._dragging = true;
-		this.fireEvent('dragStart');
+		this._mouseX = event.client.x;
+		this._mouseY = event.client.y;
+
+		var next = {
+			left: position.left.toInt() + diffX,
+			top: position.top.toInt() + diffY
+		};
+		element.setStyles(next);
+
+		return this._getCurrentPosition();
 	},
 
-	_drag: function(event){
-		var instance, current, position, point;
-
-		current = this._computeDragPosition(event);
-
-		instance = this._getInstance();
-		instance.setStyles(current);
-
-		this._setMousePosition(event);
-
-	//	point = new google.maps.Point(current.left, current.top);
-
-//		position = this.getProjection().fromDivPixelToLatLng(point);
-//		this.setPosition(position);
-		this.fireEvent('drag');
+	_enableDragListeners: function(){
+		var element = this.toElement();
+		var events = this._mouseEvents;
+		element.addEvents({
+			'mouseup': events.mouseup,
+			'mousemove': events.mousemove
+		});
 	},
 
-	_dragStop: function(){
-		var instance;
-
-		this._toggleMapDraggable();
-
-		instance = this._getInstance();
-		instance.removeEvents({
-			'mouseup': this._onMouseUp.bind(this),
-			'mousemove': this._onMouseMove.bind(this)
+	_disableDragListeners: function(){
+		var element = this.toElement();
+		var events = this._mouseEvents;
+		element.removeEvents({
+			'mouseup': events.mouseup,
+			'mousemove': events.mousemove
 		});
-		instance.releaseCapture();
+	},
 
-		this._dragging = false;
-		this.fireEvent('dragEnd');
+	_startCapture: function() {
+		var element = this.toElement();
+		element.setCapture(true);
+	},
+
+	_stopCapture: function() {
+		var element = this.toElement();
+		element.releaseCapture();
 	}
 
 });
 
-}(MMap));
+
+function MouseEventHandler(overlayView){
+	var events = {
+		mousedown: this._onMouseDown,
+		mouseup: this._onMouseUp,
+		mousemove: this._onMouseMove
+	}
+	for (var key in events) {
+		this[key] = events[key].bind(overlayView)
+	}
+}
+
+MouseEventHandler.implement({
+
+	_onMouseDown: function(event){
+		if (this.isDragging()) return;
+		this._dragStart(event);
+	},
+
+	_onMouseUp: function(event){
+		if (!this.isDragging()) return;
+		this._dragStop();
+	},
+
+	_onMouseMove: function(event){
+		if (!this.isDragging()) return;
+		this._drag(event);
+	}
+
+});
+
+
+}(MMap, google.maps, google.maps.Point));

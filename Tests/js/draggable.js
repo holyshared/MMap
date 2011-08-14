@@ -96,9 +96,20 @@ window.addEvent("domready", function(){
 		position: new google.maps.LatLng(35.6566870, 139.750859),
 		onClick: function(event){
 			event.preventDefault();
+		},
+		onDragStart: function(event){
+console.log(event);
+		},
+		onDragEnd: function(event){
+console.log(event);
+			this.setPosition(event.latlng);
+
+		},
+		onDrag: function(event){
+console.log(event);
 		}
 	});
-	o1.draggable();
+	o1.setDraggable(true);
 
 });
 
