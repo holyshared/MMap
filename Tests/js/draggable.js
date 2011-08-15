@@ -82,7 +82,6 @@ window.addEvent("domready", function(){
 
 	});
 
-
 	var map = new google.maps.Map($('gmap'), {
 		zoom: 13,
 		center: new google.maps.LatLng(35.6566870, 139.750859),

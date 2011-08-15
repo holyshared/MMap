@@ -94,7 +94,7 @@ MMap.Draggable = new Class({
 	_toggleMapDraggable: function(){
 		var map = this.getMap();
 		if (this._mapDraggableOption == null){
-			this._mapDraggableOption = map.get('draggable');
+			this._mapDraggableOption = map.get('draggable') || true;
 			map.set('draggable', false);
 		} else {
 			map.set('draggable', this._mapDraggableOption);
