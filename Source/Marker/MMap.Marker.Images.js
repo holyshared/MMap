@@ -67,7 +67,7 @@ Marker.Images = new Class({
 
 	_setupListeners: function(){
 		var self = this;
-		var marker = this._getInstance();
+		var marker = this.toElement();
 		var proxy = function(event){
 			event.target = self;
 			self.fireEvent(event.type, event);
@@ -140,7 +140,7 @@ Marker.Images = new Class({
 	},
 	
 	_mouseout: function(event){
-		if (!(event.target == this._photos || event.target == this._getInstance())) return false;
+		if (!(event.target == this._photos || event.target == this.toElement())) return false;
 		if (!this._mouseovered) return false;
 		event.target = this;
 		this.fireEvent(event.type, event);

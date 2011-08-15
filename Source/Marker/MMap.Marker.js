@@ -111,7 +111,7 @@ MMap.Marker.Core = new Class({
 	setZIndex: function(index){
 		if (!Type.isNumber(index)) new TypeError('The data type is not an integer.');
 		this.set('zIndex', index);
-		var container = this._getInstance();
+		var container = this.toElement();
 		if (!this.isActive()) {
 			container.setStyle('z-index', index);
 		}
@@ -121,7 +121,7 @@ MMap.Marker.Core = new Class({
 	setActive: function(value) {
 		if (!Type.isBoolean(value)) new TypeError('The data type is not an boolean.');
 		this.set('active', value);
-		var container = this._getInstance();
+		var container = this.toElement();
 		if (value) {
 			this.fireEvent('active');
 			container.setStyle('z-index', 10000);
@@ -190,7 +190,7 @@ MMap.Marker.HTML = new Class({
 
 	_setupListeners: function(){
 		var self = this;
-		var marker = this._getInstance();
+		var marker = this.toElement();
 		var proxy = function(event){
 			event.target = self;
 			self.fireEvent(event.type, event);

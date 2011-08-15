@@ -11,6 +11,7 @@ authors:
 
 requires:
   - MMap/MMap
+  - Core/Element.Event
 
 provides: [MMap.Draggable]
 

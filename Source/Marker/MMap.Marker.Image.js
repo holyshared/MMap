@@ -59,7 +59,7 @@ Marker.Image = new Class({
 
 	_setupListeners: function(){
 		var self = this;
-		var marker = this._getInstance();
+		var marker = this.toElement();
 		var proxy = function(event){
 			event.target = self;
 			self.fireEvent(event.type, event);

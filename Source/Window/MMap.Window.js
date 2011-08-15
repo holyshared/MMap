@@ -84,7 +84,7 @@ MMap.Window = new Class({
 
 	_setupListeners: function(){
 		var self = this;
-		var win = this._getInstance();
+		var win = this.toElement();
 		this._closeButton.addEvent('click', function(event){
 			self.close();
 			self.fireEvent('close');
@@ -179,7 +179,7 @@ MMap.Window = new Class({
 	setZIndex: function(index){
 		if (!Type.isNumber(index)) new TypeError('The data type is not an integer.');
 		this.set('zIndex', index);
-		var container = this._getInstance();
+		var container = this.toElement();
 		container.setStyle('z-index', index);
 		return this;
 	},
@@ -213,7 +213,7 @@ MMap.Window = new Class({
 	setActive: function(value) {
 		if (!Type.isBoolean(value)) new TypeError('The data type is not an boolean.');
 		this.set('active', value);
-		var container = this._getInstance();
+		var container = this.toElement();
 		if (value) {
 			this.fireEvent('active');
 			container.addClass('active');
