@@ -46,7 +46,7 @@ window.addEvent("domready", function(){
 		},
 
 		_init: function(){
-			var props = [ 'position', 'zIndex', 'visible', 'active' ];
+			var props = [ 'position', 'zIndex', 'visible', 'active', 'draggable' ];
 			var values = Object.subset(this.options, props);
 			for (var key in values){
 				this.set(key, values[key]);
@@ -92,23 +92,40 @@ window.addEvent("domready", function(){
 		map: map,
 		zIndex: 1000,
 		visible: false,
+		draggable: false,
 		position: new google.maps.LatLng(35.6566870, 139.750859),
 		onClick: function(event){
 			event.preventDefault();
 		},
 		onDragStart: function(event){
-console.log(event);
+			var latlng = event.latlng;
+			logger.log("events", "o1 - dragstart" + latlng.toString());
+			logger.log("methods", (o1.isDragging()) ? "o1 - isDragging start OK" : 'o1 - isDragging start NG');
 		},
 		onDragEnd: function(event){
-console.log(event);
+			var latlng = event.latlng;
+			logger.log("events", "o1 - dragend" + latlng.toString());
+			logger.log("methods", (o1.isDragging() == false) ? "o1 - isDragging end OK" : 'o1 - isDragging end NG');
 			this.setPosition(event.latlng);
-
 		},
 		onDrag: function(event){
-console.log(event);
+			var latlng = event.latlng;
+			logger.log("events", "o1 - drag" + latlng.toString());
+			logger.log("methods", (o1.isDragging()) ? "o1 - isDragging drag OK" : 'o1 - isDragging drag NG');
+		},
+		onDraggableChanged: function(){
+			logger.log("events", 'onDraggableChanged - ok' );
 		}
 	});
+
+	var value = o1.isDraggable();
+	logger.log("options", (value == false) ? 'options draggable OK' : 'options draggable NG' );
+
 	o1.setDraggable(true);
+
+	var value = o1.isDraggable();
+	logger.log("methods", (value) ? 'setDraggable OK' : 'setDraggable NG' );
+	logger.log("methods", (value) ? 'isDraggable OK' : 'isDraggable NG' );
 
 });
 
