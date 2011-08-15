@@ -28,7 +28,7 @@ MMap.Options = new Class({
 
 	setOptions: function(options){
 		var clone = Object.clone(this.options);
-		var options = Object.append(clone, options);
+		options = Object.append(clone, options);
 		for (var key in options) {
 			var value = options[key]; 
 			if (key == 'map') {
