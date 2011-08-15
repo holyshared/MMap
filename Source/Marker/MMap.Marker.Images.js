@@ -74,7 +74,7 @@ MMap.Marker.Images = this.MMap.Marker.Images = new Class({
 		var proxy = function(event){
 			event.target = self;
 			self.fireEvent(event.type, event);
-		}
+		};
 		var events = ['click', 'dblclick', 'mouseup', 'mousedown'];
 		events.each(function(type){
 			marker.addEvent(type, proxy);

@@ -206,7 +206,7 @@ MMap.Marker.HTML = new Class({
 		var proxy = function(event){
 			event.target = self;
 			self.fireEvent(event.type, event);
-		}
+		};
 		var events = ['click', 'dblclick', 'mouseover', 'mouseout', 'mouseup', 'mousedown'];
 		events.each(function(type){
 			marker.addEvent(type, proxy);
