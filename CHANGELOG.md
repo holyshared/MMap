@@ -2,6 +2,13 @@
 MMAP CHANGELOG
 ========================================
 
+0.2.3
+-------------------------------------------------------------------
+* It is corrected that *_getInstance* is abolished, and *toElement* is used. 
+* *MMap.Position* and *MMap.Draggable* were added. 
+* It corresponded to *dragStart*, *drag*, and the *dragEnd* event of the marker. 
+* The demo page bug is corrected.
+
 0.2.2
 -------------------------------------------------------------------
 * Code refactoring and bug fix.
