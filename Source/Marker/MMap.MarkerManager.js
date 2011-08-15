@@ -225,7 +225,7 @@ MMap.MarkerManager = new Class({
 			current.setVisible(closer(current));
 			markers.next();
 		}
-	},
+	}
 
 });
 

@@ -36,7 +36,7 @@ MMap.OverlayView = new Class({
 		map: null,
 		zIndex: 0,
 		visible: true,
-		active: false,
+		active: false
 /*
 		onClick
 		onDblClick
