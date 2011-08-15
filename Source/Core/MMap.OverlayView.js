@@ -54,7 +54,7 @@ MMap.OverlayView = new Class({
 	initialize: function(options){
 		var subclass = this;
 		subclass = Object.append(new google.maps.OverlayView(), subclass);
-		for (var k in subclass) { this[k] = subclass[k]; };
+		for (var k in subclass) this[k] = subclass[k];
 		this.instance = this._getInstance();
 		this.setOptions(options);
 		this._added = false;
@@ -67,7 +67,7 @@ MMap.OverlayView = new Class({
 		this._getInstance().inject(panel);
 		this._setupListeners();
 		this._added = true;
-		this.fireEvent("add");
+		this.fireEvent('add');
 	},
 
 	_getInstance: function() {
