@@ -20,9 +20,7 @@ provides: [MMap.MarkerLoader, MMap.MarkerLoader.Parser, MMap.MarkerLoader.Contex
 ...
 */
 
-(function(){
-
-var MMap = (this.MMap || {});
+(function(MMap){
 
 MMap.MarkerLoader = new Class({
 
@@ -185,4 +183,4 @@ MMap.MarkerLoader.JSON = new Class({
 
 });
 
-}());
+}(MMap));

@@ -20,9 +20,7 @@ provides: [MMap.Options, MMap.Events]
 ...
 */
 
-(function(){
-
-var MMap = (this.MMap || {});
+(function(MMap){
 
 MMap.Options = new Class({
 
@@ -45,12 +43,10 @@ MMap.Options = new Class({
 
 });
 
-}());
+}(MMap));
 
 
-(function(){
-
-var MMap = (this.MMap || {});
+(function(MMap, observer){
 
 var removeOn = function(string){
 	return string.replace(/^on([A-Z])/, function(full, first){
@@ -75,7 +71,7 @@ MMap.Events = new Class({
 	addEvent: function(type, fn){
 		var listener = null;
 		type = toFormat(type);
-		listener = google.maps.event.addListener(this, type, fn);
+		listener = observer.addListener(this, type, fn);
 		this._handles[type] = (this._handles[type] || []).include(fn);
 		this._events[type] = (this._events[type] || []).include(listener);
 		return this;
@@ -94,7 +90,7 @@ MMap.Events = new Class({
 		if (find) {
 			var index = this._handles[type].indexOf(fn);
 			var target = this._events[type][index];
-			google.maps.event.removeListener(target);
+			observer.removeListener(target);
 			this._events[type].erase(target);
 			this._handles[type].erase(fn);
 		}
@@ -103,7 +99,7 @@ MMap.Events = new Class({
 
 	removeEvents: function(events){
 		if (!events) {
-			google.maps.event.clearInstanceListeners(this);
+			observer.clearInstanceListeners(this);
 			return this;
 		} else if (typeOf(events) == 'object') {
 			for (type in events) this.removeEvent(type, events[type]);
@@ -129,10 +125,10 @@ MMap.Events = new Class({
 		} else {
 			callArguments.push(args);
 		}
-		google.maps.event.trigger.apply(this, callArguments);
+		observer.trigger.apply(this, callArguments);
 		return this;
 	}
 
 });
 
-}());
+}(MMap, google.maps.event));

@@ -19,14 +19,11 @@ provides: [MMap.Marker.Images]
 ...
 */
 
-(function(){
+(function(MMap, Marker){
 
-var MMap = (this.MMap || {});
-MMap.Marker = (this.MMap.Marker || {});
+Marker.Images = new Class({
 
-MMap.Marker.Images = this.MMap.Marker.Images = new Class({
-
-	Extends: MMap.Marker.Core,
+	Extends: Marker.Core,
 
 	options: {
 		map: null,
@@ -236,4 +233,4 @@ MMap.Marker.Images = this.MMap.Marker.Images = new Class({
 
 });
 
-}());
+}(MMap, MMap.Marker));

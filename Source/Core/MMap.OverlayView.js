@@ -24,13 +24,11 @@ provides: [MMap.OverlayView]
 ...
 */
 
-(function(){
-
-var MMap = (this.MMap || {});
+(function(MMap, maps){
 
 MMap.OverlayView = new Class({
 
-	Implements: [google.maps.OverlayView, MMap.Events, MMap.Options],
+	Implements: [maps.OverlayView, MMap.Events, MMap.Options],
 
 	options: {
 		map: null,
@@ -137,4 +135,4 @@ MMap.OverlayView = new Class({
 
 });
 
-}());
+}(MMap, google.maps));

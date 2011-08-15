@@ -20,9 +20,7 @@ provides: [MMap.MarkerManager]
 ...
 */
 
-(function(){
-
-var MMap = (this.MMap || {});
+(function(MMap){
 
 MMap.MarkerManager = new Class({
 
@@ -225,8 +223,8 @@ MMap.MarkerManager = new Class({
 			current.setVisible(closer(current));
 			markers.next();
 		}
-	},
+	}
 
 });
 
-}());
+}(MMap));
