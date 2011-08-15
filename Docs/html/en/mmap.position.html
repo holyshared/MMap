@@ -36,7 +36,6 @@
 <li><a href='mmap.overlayview.html#mmap.overlayview'>MMap.OverlayView</a></li>
 </ul>
 
-
 <h3>Marker</h3>
 
 <ul>
@@ -55,7 +54,6 @@
 <li><a href='mmap.draggable.html#mmap.draggable'>MMap.Draggable</a></li>
 </ul>
 
-
 <h3>Window</h3>
 
 <ul>
@@ -67,26 +65,27 @@
 
 	<div class="rightCol gDocs">
 
-<h3><a href='mmap.draggable.html#mmap.draggable'>MMap.Draggable</a></h3>
+
+<h3><a href="mmap.position.html#mmap.position">MMap.Position</a></h3>
+
 <ul>
-	<li><a href="mmap.draggable.html#constructor" title="constructor">constructor</a></li>
-	<li><a href="mmap.draggable.html#setDraggable" title="setDraggable">setDraggable</a></li>
-	<li><a href="mmap.draggable.html#isDraggable" title="isDraggable">isDraggable</a></li>
-	<li><a href="mmap.draggable.html#isDragging" title="isDragging">isDragging</a></li>
+<li><a href="mmap.position.html#constructor" title="constructor">constructor</a></li>
+<li><a href="mmap.position.html#setPosition" title="setPosition">setPosition</a></li>
+<li><a href="mmap.position.html#getPosition" title="getPosition">getPosition</a></li>
 </ul>
+
 
 	</div>
 
 	<div class="main">
+<h2 class="h1">Class: <a id="mmap.position">MMap.Position</a></h2>
 
-<h2 class="h1">Class: <a id='mmap.draggable'>MMap.Draggable</a></h2>
+<p>The coordinates position is built in in a specific object and a revokable function is built in.<br />
+The object that builds in should mount the draw method. </p>
 
-<p>The drug function is built into a specific object.<br />
-The object built in should mount the toElement method and the setPosition method.</p>
+<h2>Method: <a id="constructor">constructor</a></h2>
 
-<h2>Method: <a id='constructor'>constructor</a></h2>
-
-<p>Constructor of MMap.Draggable.</p>
+<p>Constructor of MMap.Position.</p>
 
 <h3>Syntax:</h3>
 
@@ -94,7 +93,7 @@ The object built in should mount the toElement method and the setPosition method
 
     Extends: [MMap.OverlayView],
 
-    Implements: [MMap.Draggable]
+    Implements: [MMap.Position]
 
 });
 </code></pre>
@@ -102,55 +101,43 @@ The object built in should mount the toElement method and the setPosition method
 <h3>Options:</h3>
 
 <ul>
-<li>onDragStart - (<em>function</em>) When the drug of the object is begun, it is generated.</li>
-<li>onDragEnd - (<em>function</em>) When the drug of the object is ended, it is generated.</li>
-<li>onDrag - (<em>function</em>) This event is generated while the object is being dragged.</li>
+<li>position - (<a href="http://code.google.com/intl/eu/apis/maps/documentation/javascript/reference.html#LatLng"><em>LatLng</em></a>) Coordinates position of object</li>
 </ul>
 
-<h2>Method: <a id='setDraggable'>setDraggable</a></h2>
+<h2>Method: <a id="getPosition">getPosition</a></h2>
 
-<p>Effective/invalidity of the drug function is switched.</p>
+<p>Coordinates of the object are acquired.</p>
 
 <h3>Syntax:</h3>
 
-<pre><code>var object = object.setDraggable(true);
+<pre><code>var position = overlayView.getPosition();
+</code></pre>
+
+<h3>Returns:</h3>
+
+<p>(<a href="http://code.google.com/intl/eu/apis/maps/documentation/javascript/reference.html#LatLng"><em>LatLng</em></a>) Coordinates object</p>
+
+<h2>Method: <a id="setPosition">setPosition</a></h2>
+
+<p>Coordinates that arrange the object are set.</p>
+
+<h3>Syntax:</h3>
+
+<pre><code>var position = new google.maps.LatLng(35.6666870, 139.731859);
+overlayView.setPosition(position);
 </code></pre>
 
 <h3>Arguments:</h3>
 
 <ol>
-<li>value - (<em>boolean</em>) When a possible drug is targeted, true is specified.</li>
+<li>position - (<a href="http://code.google.com/intl/eu/apis/maps/documentation/javascript/reference.html#LatLng"><em>LatLng</em></a>) Coordinates that arrange object</li>
 </ol>
 
 <h3>Returns:</h3>
 
-<p>(<em>object</em>) draggable object</p>
+<p>(<em>object</em>) Object that builds in MMap.Position</p>
 
-<h2>Method: <a id='isDraggable'>isDraggable</a></h2>
 
-<p>Whether the object is a possible drug is examined.</p>
-
-<h3>Syntax:</h3>
-
-<pre><code>var draggable = object.isDraggable();
-</code></pre>
-
-<h3>Returns:</h3>
-
-<p>(<em>boolean</em>) True is returned for a possible drug.</p>
-
-<h2>Method: <a id='isDragging'>isDragging</a></h2>
-
-<p>The state of the drug of the object is returned.</p>
-
-<h3>Syntax:</h3>
-
-<pre><code>var dragging = object.isDragging();
-</code></pre>
-
-<h3>Returns:</h3>
-
-<p>(<em>boolean</em>) Inside true drug is returned.</p>
 
 	</div>
 

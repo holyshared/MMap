@@ -190,6 +190,13 @@
 * [isDragging](mmap.draggable.html#isDragging "isDragging")
 
 
+### <a href='mmap.position.html#mmap.position'>MMap.Position</a>
+
+* [constructor](mmap.position.html#constructor "constructor")
+* [setPosition](mmap.position.html#setPosition "setPosition")
+* [getPosition](mmap.position.html#getPosition "getPosition")
+
+
 ### <a href='mmap.window.html#mmap.window'>MMap.Window</a>
 
 * [constructor](mmap.window.html#constructor "constructor")
@@ -236,6 +243,7 @@
 
 ### Utils
 
+* <a href='mmap.position.html#mmap.position'>MMap.Position</a>
 * <a href='mmap.draggable.html#mmap.draggable'>MMap.Draggable</a>
 
 ### Window
