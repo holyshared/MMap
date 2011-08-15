@@ -1,0 +1,166 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<title></title>
+	<meta http-equiv="Content-Language" content="ja" />
+	<meta http-equiv="Content-Script-Type" content="text/javascript" />
+	<meta http-equiv="Content-Style-Type" content="text/css" />
+	<meta name="description" content="" />
+	<meta name="keywords" content="" />
+	<link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Vollkorn:regular,italic,bold&amp;subset=latin" type="text/css" />
+	<link rel="stylesheet" href="../css/style.css" type="text/css" media="screen" />
+</head>
+
+<body>
+<div class="page gs960">
+
+	<div class="head">
+		<div class="mod symbol">
+			<div class="inner">
+				<div class="hd">
+					<h1 class="logo">MMap</h1>
+					<p class="version">version 0.2</p>
+				</div>
+			</div>
+		</div>
+	</div>
+
+<div class="body">
+
+	<div class="leftCol gDocs">
+
+<h3>Core</h3>
+
+<ul>
+<li><a href='mmap.overlayview.html#mmap.overlayview'>MMap.OverlayView</a></li>
+</ul>
+
+
+<h3>Marker</h3>
+
+<ul>
+<li><a href='mmap.marker.core.html#mmap.marker.core'>MMap.Marker.Core</a></li>
+<li><a href='mmap.marker.html.html#mmap.marker.html'>MMap.Marker.HTML</a></li>
+<li><a href='mmap.marker.image.html#mmap.marker.image'>MMap.Marker.Image</a></li>
+<li><a href='mmap.marker.images.html#mmap.marker.images'>MMap.Marker.Images</a></li>
+<li><a href='mmap.markermanager.html#mmap.markermanager'>MMap.MarkerManager</a></li>
+<li><a href='mmap.markerloader.html#mmap.markerloader'>MMap.MarkerLoader</a></li>
+</ul>
+
+<h3>Utils</h3>
+
+<ul>
+<li><a href='mmap.position.html#mmap.position'>MMap.Position</a></li>
+<li><a href='mmap.draggable.html#mmap.draggable'>MMap.Draggable</a></li>
+</ul>
+
+
+<h3>Window</h3>
+
+<ul>
+<li><a href='mmap.window.html#mmap.window'>MMap.Window</a></li>
+</ul>
+
+
+	</div>
+
+	<div class="rightCol gDocs">
+
+<h3><a href='mmap.draggable.html#mmap.draggable'>MMap.Draggable</a></h3>
+<ul>
+	<li><a href="mmap.draggable.html#constructor" title="constructor">constructor</a></li>
+	<li><a href="mmap.draggable.html#setDraggable" title="setDraggable">setDraggable</a></li>
+	<li><a href="mmap.draggable.html#isDraggable" title="isDraggable">isDraggable</a></li>
+	<li><a href="mmap.draggable.html#isDragging" title="isDragging">isDragging</a></li>
+</ul>
+
+	</div>
+
+	<div class="main">
+
+<h2 class="h1">Class: <a id='mmap.draggable'>MMap.Draggable</a></h2>
+
+<p>The drug function is built into a specific object.<br />
+The object built in should mount the toElement method and the setPosition method.</p>
+
+<h2>Method: <a id='constructor'>constructor</a></h2>
+
+<p>Constructor of MMap.Draggable.</p>
+
+<h3>Syntax:</h3>
+
+<pre><code>var MyClass = new Class({
+
+    Extends: [MMap.OverlayView],
+
+    Implements: [MMap.Draggable]
+
+});
+</code></pre>
+
+<h3>Options:</h3>
+
+<ul>
+<li>onDragStart - (<em>function</em>) When the drug of the object is begun, it is generated.</li>
+<li>onDragEnd - (<em>function</em>) When the drug of the object is ended, it is generated.</li>
+<li>onDrag - (<em>function</em>) This event is generated while the object is being dragged.</li>
+</ul>
+
+<h2>Method: <a id='setDraggable'>setDraggable</a></h2>
+
+<p>Effective/invalidity of the drug function is switched.</p>
+
+<h3>Syntax:</h3>
+
+<pre><code>var object = object.setDraggable(true);
+</code></pre>
+
+<h3>Arguments:</h3>
+
+<ol>
+<li>value - (<em>boolean</em>) When a possible drug is targeted, true is specified.</li>
+</ol>
+
+<h3>Returns:</h3>
+
+<p>(<em>object</em>) draggable object</p>
+
+<h2>Method: <a id='isDraggable'>isDraggable</a></h2>
+
+<p>Whether the object is a possible drug is examined.</p>
+
+<h3>Syntax:</h3>
+
+<pre><code>var draggable = object.isDraggable();
+</code></pre>
+
+<h3>Returns:</h3>
+
+<p>(<em>boolean</em>) True is returned for a possible drug.</p>
+
+<h2>Method: <a id='isDragging'>isDragging</a></h2>
+
+<p>The state of the drug of the object is returned.</p>
+
+<h3>Syntax:</h3>
+
+<pre><code>var dragging = object.isDragging();
+</code></pre>
+
+<h3>Returns:</h3>
+
+<p>(<em>boolean</em>) Inside true drug is returned.</p>
+
+	</div>
+
+</div>
+
+<div class="foot">
+<p>Copyright(c) 2010 <a title="Noritaka Horio" href="http://sharedhat.com">Noritaka Horio</a> All Rights Reserved.</p>
+</div>
+</div>
+
+</body>
+
+</html>
