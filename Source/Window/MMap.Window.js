@@ -86,6 +86,7 @@ MMap.Window = new Class({
 		var self = this;
 		var win = this.toElement();
 		this._closeButton.addEvent('click', function(event){
+			if (event.prevnetDefault) event.prevnetDefault();
 			self.close();
 			self.fireEvent('close');
 		});

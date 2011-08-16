@@ -38,11 +38,9 @@ window.addEvent('domready', function(){
 			logger.log('events', 'onVisibleChanged OK');
 		},
 		onDblClick: function(event) {
-			event.preventDefault();
 			logger.log('events', 'onDblClick OK');
 		},
 		onClick: function(event) {
-			event.preventDefault();
 			logger.log('events', 'onClick OK');
 		},
 		onMouseOver: function(event) {

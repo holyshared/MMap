@@ -69,6 +69,7 @@ Marker.Images = new Class({
 		var self = this;
 		var marker = this.toElement();
 		var proxy = function(event){
+			if (event.prevnetDefault) event.prevnetDefault();
 			event.target = self;
 			self.fireEvent(event.type, event);
 		}
@@ -93,6 +94,7 @@ Marker.Images = new Class({
 		}
 		delete this._stack;
 		var index = this.options.defaultIndex;
+		this.__setCurrent(index);
 		this.setCurrent(index);
 		if (this.options.autoplay) {
 			this._timerID = this._next.delay(this.options.interval, this);
@@ -102,10 +104,21 @@ Marker.Images = new Class({
 
 	_next: function() {
 		var self = this;
-		var image = this._elements[this._index];
+//		alert(this.getCurrent());
+		var image = this._elements[this.getCurrent()];
 		image.setStyle('z-index', 1);
-		this._index = (this._index + 1 < this._elements.length) ? this._index + 1 : 0;
-		var image = this._elements[this._index];
+
+		//this._index = (this.getCurrent() + 1 < this._elements.length) ? this.getCurrent() + 1 : 0;
+		//var image = this._elements[this._index];
+console.log('this._elements.length');
+console.log(this._elements.length);
+		var index = (this.getCurrent() + 1 < this._elements.length) ? this.getCurrent() + 1 : 0;
+
+console.log('new index');
+console.log(index);
+		var image = this._elements[index];
+		this.setCurrent(index);
+
 		image.setStyle('z-index', 2);
 		var tween = image.get('tween');
 		tween.start('opacity', 0, 1);
@@ -123,7 +136,10 @@ Marker.Images = new Class({
 			duration: this.options.duration,
 			onComplete: function() {
 				if (self.isStart()) {
-					self.setCurrent(self._index);
+				//	if (self._elements.length <= self.getCurrent()){
+					//	self.setCurrent(0);
+				//	}
+					self.__setCurrent(self.getCurrent());
 					self._timerID = self._next.delay(this.options.interval, self);
 				}
 			}
@@ -147,24 +163,43 @@ Marker.Images = new Class({
 		this._mouseovered = false;
 	},
 
-	setCurrent: function(index){
+	__setCurrent: function(index){
 		var i = 0, length = this._elements.length, image = null, style = {};
 		for (i = 0; i < length; i++) {
 			image = this._elements[i];
 			style = (i == index) ? { 'z-index': 1, opacity: 1 } : { 'z-index': 0, opacity: 0 };
 			image.setStyles(style);
 		}
-		this._index = index;
+//		this.set('current', index);
+	},
+
+	setCurrent: function(index){
+//		var i = 0, length = this._elements.length, image = null, style = {};
+	//	for (i = 0; i < length; i++) {
+		//	image = this._elements[i];
+		//	style = (i == index) ? { 'z-index': 1, opacity: 1 } : { 'z-index': 0, opacity: 0 };
+		//	image.setStyles(style);
+		//}
+		this.set('current', index);
+	},
+
+	getCurrent: function(){
+		return this.get('current');
 	},
 
 	getImages: function(){
 		return this.get('images');
 	},
 
+	getImage: function(index){
+		var images = this.get('images');
+		return images[index];
+	},
+
 	setImages: function(images){
 		clearTimeout(this._timerID);
 		this._elements = [];
-		this._index = 0;
+		this.set('current', 0);
 		if (this.isAdded()) {
 			this._photos.dispose();
 		}
@@ -199,12 +234,16 @@ Marker.Images = new Class({
 		var index = images.indexOf(image);
 		if (index >= 0) {
 			var element = this._elements[index];
+			element.destroy();
+
 			this._elements.erase(element);
 			if (this._stack && this._stack.contains(element)) {
 				this._stack.erase(element);
 			}
-			images.erase(image);
-			element.destroy();
+//			images.erase(image);
+	//		element.dispose();
+//			element.destroy();
+	//		element.parentNode.removeChild(element);
 		}
 	},
 

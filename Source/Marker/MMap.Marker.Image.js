@@ -61,6 +61,7 @@ Marker.Image = new Class({
 		var self = this;
 		var marker = this.toElement();
 		var proxy = function(event){
+			if (event.prevnetDefault) event.prevnetDefault();
 			event.target = self;
 			self.fireEvent(event.type, event);
 		}

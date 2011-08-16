@@ -45,7 +45,6 @@ window.addEvent("domready", function(){
 			logger.log('events', "onMouseDown OK");
 		},
 		onClick: function(event) {
-			event.preventDefault();
 			logger.log('events', "onClick OK");
 		},
 		onDblClick: function(event) {
