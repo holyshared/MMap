@@ -41,14 +41,6 @@ Marker.Images = new Class({
 	initialize: function(options){
 		this.parent(options);
 		this._state = new State(this);
-/*
-
-		this._elements = [];
-		this._stack = [];
-		this._index = 0;
-		this._start = false;
-		this._mouseovered = false;
-*/
 		this._mouseovered = false;
 	},
 
@@ -71,42 +63,17 @@ Marker.Images = new Class({
 
 		this.addEvent('add', this._onPrepare.bind(this));
 
-
-//		var images = this.get('images');
-//		if (images && Type.isArray(images)) {
-
-
-
-
-
-//			this.addImages(images);
-	//	}
 		return this._photos;
 	},
 
 	_onPrepare: function(){
 		this._state.next();
-/*
-		var l = this._stack.length;
-		for (var i = 0; i < l; i++) {
-			var image = this._stack[i];
-			image.inject(this._photos);
-		}
-
-		delete this._stack;
-
-*/
-//		var index = this.options.defaultIndex;
-//		this.setCurrent(index);
-/*		if (this.options.autoplay) {
-			this._timerID = this._next.delay(this.options.interval, this);
+		this._state.orderByFront();
+		if (this.options.autoplay) {
+			this._next();
 			this._start = true;
 		}
-*/
 	},
-
-
-
 
 	_setupListeners: function(){
 		var self = this;
@@ -136,144 +103,6 @@ Marker.Images = new Class({
 		this.fireEvent(event.type, event);
 		this._mouseovered = false;
 	},
-
-
-/*
-	_onPrepare: function(){
-		var l = this._stack.length;
-		for (var i = 0; i < l; i++) {
-			var image = this._stack[i];
-			image.inject(this._photos);
-		}
-		delete this._stack;
-		var index = this.options.defaultIndex;
-		this.setCurrent(index);
-		if (this.options.autoplay) {
-			this._timerID = this._next.delay(this.options.interval, this);
-			this._start = true;
-		}
-	},
-
-	_next: function() {
-		var self = this;
-		var image = this._elements[this._index];
-		image.setStyle('z-index', 1);
-		this._index = (this._index + 1 < this._elements.length) ? this._index + 1 : 0;
-		var image = this._elements[this._index];
-		image.setStyle('z-index', 2);
-		var tween = image.get('tween');
-		tween.start('opacity', 0, 1);
-	},
-
-	_buildElement: function(context){
-		var li = new Element('li');
-		var a = new Element('a', {href: context.url, title: context.title});
-		var img = new Element('img', {src: context.image, title: context.title});
-		img.inject(a);
-		a.inject(li);
-
-		var self = this;
-		li.set('tween', {
-			duration: this.options.duration,
-			onComplete: function() {
-				if (self.isStart()) {
-					self.setCurrent(self._index);
-					self._timerID = self._next.delay(this.options.interval, self);
-				}
-			}
-		});
-		li.addEvent('mouseover', self._mouseover.bind(this));
-		return li;
-	},
-
-
-
-	setCurrent: function(index){
-		var i = 0, length = this._elements.length, image = null, style = {};
-		for (i = 0; i < length; i++) {
-			image = this._elements[i];
-			style = (i == index) ? { 'z-index': 1, opacity: 1 } : { 'z-index': 0, opacity: 0 };
-			image.setStyles(style);
-		}
-		this._index = index;
-	},
-
-	getImages: function(){
-		return this.get('images');
-	},
-
-	setImages: function(images){
-		clearTimeout(this._timerID);
-		this._elements = [];
-		this._index = 0;
-		if (this.isAdded()) {
-			this._photos.dispose();
-		}
-		this.set('images', images);
-		this.addImages(images);
-		return this;
-	},
-
-	addImage: function(image){
-		var li = this._buildElement(image);
-		var images = this.get('images');
-
-		if (!images.contains(image)) images.push(image);
-		if (!this.isAdded()) {
-console.log('stack = ' + this._stack.length.toString());
-
-			this._stack.push(li);
-		} else {
-			li.inject(this._photos);
-		}
-		this._elements.push(li);
-		return this;
-	},
-
-	addImages: function(images){
-		var i = 0, length = images.length;
-		for (i = 0; i < length; i++) {
-			this.addImage(images[i]);
-		}
-	},
-
-	removeImage: function(image){
-		var images = this.get('images');
-		var index = images.indexOf(image);
-		if (index >= 0) {
-			var element = this._elements[index];
-			this._elements.erase(element);
-			if (this._stack && this._stack.contains(element)) {
-				this._stack.erase(element);
-			}
-			images.erase(image);
-			element.destroy();
-		}
-	},
-
-	removeImages: function(){
-		var self = this;
-		var images = Array.from(arguments);
-		images.each(function(image){
-			self.removeImage(image);
-		});
-	},
-
-	isStart: function(){
-		return (this._start) ? true : false;
-	},
-
-	start: function(){
-		if (this.isStart()) return;
-		this._timerID = this._next.delay(this.options.interval, this);
-		this._start = true;
-	},
-
-	stop: function(){
-		clearTimeout(this._timerID);
-		this._start = false;
-	}
-*/
 
 	setCurrent: function(index){
 		var len = this.get('images').length - 1;
@@ -309,9 +138,89 @@ console.log('stack = ' + this._stack.length.toString());
 
 	getContainer: function(){
 		return this._photos;
+	},
+
+	isStart: function(){
+		return (this._start) ? true : false;
+	},
+
+	start: function(){
+		if (this.isStart()) return;
+		this._next();
+		this._start = true;
+	},
+
+	stop: function(){
+		clearTimeout(this._timerID);
+		this._start = false;
+	},
+
+	_nextImage: function() {
+		var self = this;
+
+		//Current image
+		var image = this.elements[this.getCurrent()];
+		image.setStyle('z-index', 1);
+
+		var index = (this.getCurrent() + 1 < this.elements.length) ? this.getCurrent() + 1 : 0;
+
+		this.setCurrent(index);
+
+console.log(index);
+		//Next image
+		var image = this.elements[index];
+		image.setStyle('z-index', 2);
+		var tween = image.get('tween');
+		tween.start('opacity', 0, 1);
+	},
+
+	_next: function(){
+		this._timerID = this._nextImage.delay(this.options.interval, this);
 	}
 
 });
+
+
+
+
+
+
+
+/*
+	setImages: function(images){
+		this._state.setImages(images);
+	},
+
+	addImage: function(image){
+		this._state.addImage(image);
+	},
+
+	addImages: function(images){
+		this._state.addImages(images);
+	},
+
+	removeImage: function(image){
+		this._state.removeImage(image);
+	},
+
+	removeImages: function(images){
+		this._state.removeImages(images);
+	},
+*/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -321,10 +230,10 @@ function State(marker) {
 	this._marker = marker;
 	this._progress = 0;
 	this.stateChange(this._progress);
-}
+};
 
 State.implement({
-
+/*
 	addImage: function(image){
 		this._state.addImage(image);
 	},
@@ -349,6 +258,10 @@ State.implement({
 		return this._state.getLength();
 	},
 
+	orderByFront: function(){
+		this._state.orderByFront();
+	},
+*/
 	next: function(){
 		this.stateChange(++this._progress);
 	},
@@ -359,6 +272,7 @@ State.implement({
 			case 1:
 				this._state.finish();
 				this._state = new AddMapAfterState(this._marker);
+				this._state.start();
 				break;
 			case 0:
 			default:
@@ -370,22 +284,22 @@ State.implement({
 });
 
 
-function MarkerProxy(marker){
-	this._marker = marker;
-}
+(function(State){
 
-MarkerProxy.implement({
-
-	getElements: function(){
-		this._marker._elements;
-	},
-
-	setElements: function(elements){
-		this._marker._elements = elements;
-	}
-
+var proxies = [
+	'addImage', 'addImages', 'setImages',
+	'removeImage', 'removeImages', 'getLength',
+	'orderByFront'
+];
+var mixins = {}; 
+proxies.each(function(key){
+	mixins[key] = function(){
+		this._state[key].apply(this._state, arguments);
+	};
 });
+State.implement(mixins);
 
+}(State));
 
 
 
@@ -394,7 +308,9 @@ MarkerProxy.implement({
 
 function MarkerState(marker) {
 	this._marker = marker;
-}
+};
+
+
 
 MarkerState.implement({
 
@@ -403,16 +319,29 @@ MarkerState.implement({
 	},
 
 	getOptions: function(){
-		return this._marker.options;
+		return this.getMarker().options;
 	},
-/*
-	_MouseOver: function(event){
-		if (this._mouseovered) return false;
-		event.target = this;
-		this.getMarker().fireEvent(event.type, event);
-		this._mouseovered = true;
+
+	getContainer: function(){
+		return this.getMarker()._photos;
 	},
-*/
+
+	getElements: function(){
+		return this.getMarker().elements;
+	},
+
+	setElements: function(elements){
+		return this.getMarker().elements = elements;
+	},
+
+	getImages: function(){
+		return this.getMarker().get('images');
+	},
+
+	set: function(key, value){
+		this.getMarker().set(key, value);
+	},
+
 	createElement: function(context){
 
 		var li = new Element('li');
@@ -427,26 +356,33 @@ MarkerState.implement({
 	initElement: function(element){
 		var marker = this.getMarker();
 		var options = this.getOptions();
-		var self = this;
+		var state = this;
 		element.set('tween', {
 			duration: options.duration,
 			onComplete: function() {
-/*
-				if (self.isStart()) {
-					self.setCurrent(self._index);
-					self._timerID = self._next.delay(this.options.interval, self);
-
+				if (marker.isStart()) {
+					state.orderByFront();
+					marker._next();
 				}
-*/
 			}
 		});
 		element.addEvent('mouseover', marker._MouseOver.bind(marker));
 		return element;
 	},
 
-	getLength: function(){
+	orderByFront: function(){
 		var marker = this.getMarker();
-		return marker.get('images').length;
+		var elements = this.getElements();
+		var i = 0, length = elements.length, image = null, style = {};
+		for (i = 0; i < length; i++) {
+			image = elements[i];
+			style = (i == marker.getCurrent()) ? { 'z-index': 1, opacity: 1 } : { 'z-index': 0, opacity: 0 };
+			image.setStyles(style);
+		}
+	},
+
+	getLength: function(){
+		return this.getImages().length;
 	}
 
 });
@@ -465,13 +401,11 @@ AddMapBeforeState.implement(new MarkerState());
 AddMapBeforeState.implement({
 
 	setImages: function(images){
-		var marker = this.getMarker();
-		marker.set('images', images);
+		this.set('images', images);
 	},
 
 	addImage: function(image){
-		var marker = this.getMarker();
-		var images = marker.get('images');
+		var images = this.getImages();
 		if (!images.contains(image)) {
 			images.push(image);
 		}
@@ -486,7 +420,7 @@ AddMapBeforeState.implement({
 	},
 
 	removeImage: function(image){
-		var images = this.getMarker().get('images');
+		var images = this.getImages();
 		images.erase(image);
 		return this;
 	},
@@ -500,9 +434,9 @@ AddMapBeforeState.implement({
 
 	finish: function() {
 		var elements = [];
-		var marker = this.getMarker();
-		var images = marker.get('images');
-		var container = marker.getContainer();
+//		var marker = this.getMarker();
+		var images = this.getImages();
+		var container = this.getContainer();
 
 		images.each(function(image){
 			elements.push(this.createElement(image));
@@ -525,16 +459,14 @@ AddMapAfterState.implement(new MarkerState());
 AddMapAfterState.implement({
 
 	start: function(){
-		var marker = this.getMarker();
-		var container = marker.getContainer();
+		var container = this.getContainer();
 		var elements = container.getElements('li');
-		marker.elements = elements;
+		this.setElements(elements);
 	},
 
 	setImages: function(images){
 		var elements = [];
-		var marker = this.getMarker();
-		var container = marker.getContainer();
+		var container = this.getContainer();
 		container.empty();
 
 		images.each(function(image){
@@ -542,19 +474,18 @@ AddMapAfterState.implement({
 			element.inject(container);
 			elements.push(element);
 		}, this);
-		marker.set('images', images);
-		marker.elements = elements;
+		this.set('images', images);
+		this.setElements(elements);
 	},
 
 	addImage: function(image){
-		var marker = this.getMarker();
-		var elements = marker.elements;
-		var images = marker.get('images');
+		var elements = this.getElements();
+		var images = this.getImages();
 
 		if (!images.contains(image)) {
 			images.push(image);
 		}
-		var container = marker.getContainer();
+		var container = this.getContainer();
 		var element = this.createElement(image);
 		element.inject(container);
 		elements.push(element);
@@ -569,9 +500,8 @@ AddMapAfterState.implement({
 	},
 
 	removeImage: function(image){
-		var marker = this.getMarker();
-		var images = marker.get('images');
-		var elements = marker.elements;
+		var images = this.getImages();
+		var elements = this.getElements();
 
 		if (!images.contains(image)) {
 			return;
