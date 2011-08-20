@@ -8,6 +8,10 @@ MMAP CHANGELOG
 * *MMap.Position* and *MMap.Draggable* were added. 
 * It corresponded to *dragStart*, *drag*, and the *dragEnd* event of the marker. 
 * The demo page bug is corrected.
+* The bug of *MMap.Marker.Images* is corrected. 
+* Event *onCurrentChanged* is added to MMap.Marker.Images.  
+  The argument is an *index number* and an *image information*.
+
 
 0.2.2
 -------------------------------------------------------------------
