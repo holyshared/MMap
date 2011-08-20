@@ -121,6 +121,7 @@
 * [constructor](mmap.marker.images.html#constructor "constructor")
 * [getImages](mmap.marker.images.html#getImages "getImages")
 * [setCurrent](mmap.marker.images.html#setCurrent "setCurrent")
+* [getCurrent](mmap.marker.images.html#getCurrent "getCurrent")
 * [setImages](mmap.marker.images.html#setImages "setImages")
 * [addImage](mmap.marker.images.html#addImage "addImage")
 * [addImages](mmap.marker.images.html#addImages "addImages")

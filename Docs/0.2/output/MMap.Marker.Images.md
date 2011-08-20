@@ -70,6 +70,26 @@ Method: <a id='setCurrent'>setCurrent</a>
 1. index - (*number*) 画像の番号
 
 
+
+
+Method: <a id='getCurrent'>getCurrent</a>
+------------------------------------------
+
+現在の画像番号を返します。
+
+### Syntax:
+
+	marker.getCurrent();
+
+### Returns:
+
+(*number*) - 現在の画像番号
+
+
+
+
+
+
 Method: <a id='getImages'>getImages</a>
 ----------------------------------------
 
