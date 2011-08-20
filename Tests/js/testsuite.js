@@ -1,18 +1,28 @@
 (function(win){
 
-	var TestSuite = this.TestSuite = function() {
-
+	var TestSuite = this.TestSuite = function(options) {
+		this.setOptions(options);
+		this.applyOptions();
 		this.logger = new Logger();
-		this.map = new google.maps.Map($('gmap'), {
-			zoom: 15,
-			center: new google.maps.LatLng(35.6666870, 139.731859),
-			mapTypeId: google.maps.MapTypeId.ROADMAP
-		});
 		this.testcases = [];
-
 	}
 
 	TestSuite.implement({
+
+		applyOptions: function(){
+			var opts = this.options;
+			if (opts.container && opts.center) {
+				this.map = new google.maps.Map($(opts.container), {
+					zoom: 15,
+					center: opts.center,
+					mapTypeId: google.maps.MapTypeId.ROADMAP
+				});
+			}
+		},
+
+		setOptions: function(options){
+			this.options = options || {};
+		},
 
 		addTestCase: function(testcase){
 			this.testcases.push(testcase);
