@@ -1,17 +1,6 @@
-(function($, TestSuite){
+(function(MMap){
 
-window.addEvent("domready", function(){
-	
-	var tester = new TestSuite({
-		container: $('gmap'),
-		center: new google.maps.LatLng(35.6666870, 139.731859)
-	});
-	tester.run();
-
-/*
-	var logger = new Logger();
-
-	var Tester = new Class({
+	var MockOverlayView = this.MockOverlayView = new Class({
 
 		Extends: MMap.OverlayView,
 
@@ -74,36 +63,7 @@ window.addEvent("domready", function(){
 			this.instance.setStyles(styles);
 		}
 
+
 	});
 
-	var defaultPosition =  new google.maps.LatLng(35.6566870, 139.750859);
-
-	var map = new google.maps.Map($('gmap'), {
-		zoom: 13,
-		center: defaultPosition,
-		mapTypeId: google.maps.MapTypeId.ROADMAP
-	});
-
-	var o1 = new Tester({
-		map: map,
-		zIndex: 1000,
-		visible: false,
-		position: defaultPosition,
-		onPositionChanged: function(){
-			logger.log("events", 'events - onPositionChanged OK' );
-		}
-	});
-
-	var position = o1.getPosition();
-	logger.log("options", (position == defaultPosition) ? 'options - position OK' : 'options - position NG' );
-	logger.log("methods", (position == defaultPosition) ? 'getPosition OK' : 'getPosition NG' );
-
-	var next = new google.maps.LatLng(35.6566000, 139.750859);
-	o1.setPosition(next);
-	position = o1.getPosition();
-	logger.log("methods", (position == next) ? 'setPosition OK' : 'setPosition NG' );
-*/
-
-});
-
-}(document.id, PositionTestSuite));
+}(MMap));
