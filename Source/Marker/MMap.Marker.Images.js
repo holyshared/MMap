@@ -51,8 +51,8 @@ Marker.Images = new Class({
 	},
 
 	initialize: function(options){
-		this.parent(options);
 		this.state = new MarkerState.StateWrapper(this);
+		this.parent(options);
 	},
 
 	_init: function(){
@@ -90,9 +90,9 @@ Marker.Images = new Class({
 
 		var opts = Object.merge(this.options, handlers, slideOptions);
 
-console.log('Next marker state.');
-console.log(opts);
-
+		if (this.getVisible() == false || this.state.isStart() == false){
+			opts.autoplay = false;
+		}
 		this.state.nextState(opts);
 	},
 
@@ -110,66 +110,28 @@ console.log(opts);
 		events.each(function(key, index){
 			handlers[key] = proxy;
 		});
-/*
-		var events = ['onCurrentChanged'];
-		var proxy = function(){
-			target.fireEvent(event.type, [event]);
-		};
-*/
+
 		handlers.onCurrentChanged = function(){
 			target.fireEvent('currentChanged', Array.from(arguments));
 		};
-		
-		
-		
+
 		return handlers;
 	},
-/*
-	setCurrent: function(current){
-		this.state.setCurrent(current);
-	},
-*/
+
 	getCurrent: function(){
 		return this.get('current');
 	},
 
 	getImages: function(){
 		return this.get('images');
-	} //,
-/*
-	setImages: function(images){
-		this.state.setImages(images);
 	},
 
-	addImage: function(image){
-		this.state.addImage(image);
-	},
-
-	addImages: function(images){
-		this.state.addImages(images);
-	},
-
-	removeImage: function(image){
-		this.state.removeImage(image);
-	},
-
-	removeImages: function(images){
-		this.state.removeImages(images);
-	},
-
-	isStart: function(){
-		return this.state.isStart();
-	},
-
-	start: function(){
-		if (this.isStart()) return;
-		this.state.start();
-	},
-
-	stop: function(){
-		this.state.stop();
+	visible_changed: function(){
+		var visible = this.getVisible();
+		if (visible == false && this.isAdded()) {
+			this.stop();
+		}
 	}
-*/
 
 });
 
@@ -182,7 +144,7 @@ console.log(opts);
 
 	methods.each(function(key, index){
 		hooks[key] = function(){
-			this[key].apply(this, arguments);
+			return this.state[key].apply(this.state, arguments);
 		}
 	});
 	marker.implement(hooks);
@@ -226,7 +188,7 @@ MarkerState.StateWrapper = new Class({
 
 	methods.each(function(key, index){
 		hooks[key] = function(){
-			this.state[key].apply(this.state, arguments);
+			return this.state[key].apply(this.state, arguments);
 		};
 	});
 	warapper.implement(hooks);
@@ -244,15 +206,15 @@ MarkerState.State = new Class({
 	},
 
 	setCurrent: function(index){
-		var len = this.get('images').length - 1;
+		var len = this.marker.get('images').length - 1;
 		if (index < 0 || index > len) {
 			return;
 		}
-		this.set('current', index);
+		this.marker.set('current', index);
 	},
 
 	setImages: function(images){
-		this.marker.set('images', images);
+		this.marker.set('images', this._validateImages(images));
 	},
 
 	addImage: function(image){
@@ -264,6 +226,7 @@ MarkerState.State = new Class({
 	},
 
 	addImages: function(images){
+		images = this._validateImages(images);
 		images.each(function(image){
 			this.addImage(image);
 		}, this);
@@ -281,6 +244,13 @@ MarkerState.State = new Class({
 			this.removeImage(image);
 		}, this);
 		return this;
+	},
+
+	_validateImages: function(images) {
+		if (!Type.isArray(images)){
+			throw new TypeError('The image is an array.');
+		}
+		return images;
 	}
 
 });
@@ -291,16 +261,22 @@ MarkerState.AddMapBeforeState = new Class({
 
 	Extends: MarkerState.State,
 
+	started: true,
+
+	initialize: function(marker, options){
+		this.parent(marker);
+	},
+
 	isStart: function(){
-		return false;
+		return this.started;
 	},
 
 	start: function(){
-		throw new Error('It has not been added to the map yet.');
+		this.started = true;
 	},
 
 	stop: function(){
-		throw new Error('It has not been added to the map yet.');
+		this.started = false;
 	}
 
 });
@@ -367,7 +343,6 @@ MarkerState.AddMapAfterState = new Class({
 	}
 
 });
-
 
 
 var Images = this.Images = new Class({

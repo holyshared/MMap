@@ -17,19 +17,19 @@ window.addEvent("domready", function(){
 		position: new google.maps.LatLng(35.6666870, 139.731859),
 		visible: true,
 		zIndex: 0,
-		onPositionChanged: function(event) {
+		onPositionChanged: function() {
 			logger.log('events', "onPositionChanged OK");
 		},
-		onZIndexChanged: function(event) {
+		onZIndexChanged: function() {
 			logger.log('events', "onZIndexChanged OK");
 		},
-		onTitleChanged: function(event) {
+		onTitleChanged: function() {
 			logger.log('events', "onTitleChanged OK");
 		},
-		onContentChanged: function(event) {
+		onContentChanged: function() {
 			logger.log('events', "onContentChanged OK");
 		},
-		onVisibleChanged: function(event) {
+		onVisibleChanged: function() {
 			logger.log('events', "onVisibleChanged OK");
 		},
 		onMouseOver: function(event) {

@@ -19,22 +19,22 @@ window.addEvent('domready', function(){
 		position: new google.maps.LatLng(35.6666870, 139.731859),
 		zIndex: 0,
 		visible: true,
-		onPositionChanged: function(event) {
+		onPositionChanged: function() {
 			logger.log('events', 'onPositionChanged OK');
 		},
-		onZIndexChanged: function(event) {
+		onZIndexChanged: function() {
 			logger.log('events', 'onZIndexChanged OK');
 		},
-		onTitleChanged: function(event) {
+		onTitleChanged: function() {
 			logger.log('events', 'onTitleChanged OK');
 		},
-		onImageChanged: function(event) {
+		onImageChanged: function() {
 			logger.log('events', 'onImageChanged OK');
 		},
-		onURLChanged: function(event) {
+		onURLChanged: function() {
 			logger.log('events', 'onURLChanged OK');
 		},
-		onVisibleChanged: function(event) {
+		onVisibleChanged: function() {
 			logger.log('events', 'onVisibleChanged OK');
 		},
 		onDblClick: function(event) {
