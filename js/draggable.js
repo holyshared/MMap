@@ -27,10 +27,7 @@ window.addEvent("domready", function(){
 		image: 'http://holyshared.github.com/MMap/images/demo/img01.jpg',
 		url: 'http://mootools.net',
 		position: new google.maps.LatLng(35.6666870, 139.731859),
-		draggable: true,
-		onClick: function(event){
-			event.prevnetDefault();
-		}
+		draggable: true
 	});
 
 	//MMap.Marker.Images
@@ -51,10 +48,7 @@ window.addEvent("domready", function(){
 			image: 'http://holyshared.github.com/MMap/images/demo/img03.jpg',
 			url: 'http://sharedhat.com'
 		}],
-		draggable: true,
-		onClick: function(event){
-			event.prevnetDefault();
-		}
+		draggable: true
 	});
 
 	SyntaxHighlighter.all();
