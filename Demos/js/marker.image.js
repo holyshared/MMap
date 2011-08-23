@@ -13,7 +13,10 @@ window.addEvent('domready', function(){
 		title: 'Title of image marker [1]',
 		image: 'http://holyshared.github.com/MMap/images/demo/img01.jpg',
 		url: 'http://mootools.net',
-		position: new google.maps.LatLng(35.6666870, 139.731859)
+		position: new google.maps.LatLng(35.6666870, 139.731859),
+		onClick: function(event){
+			window.location.href = this.getURL();
+		}
 	});
 
 	var marker2 = new MMap.Marker.Image({
@@ -22,7 +25,10 @@ window.addEvent('domready', function(){
 		title: 'Title of image marker [2]',
 		image: 'http://holyshared.github.com/MMap/images/demo/img02.jpg',
 		url: 'http://mootools.net/forge',
-		position: new google.maps.LatLng(35.6626870, 139.730859)
+		position: new google.maps.LatLng(35.6626870, 139.730859),
+		onClick: function(event){
+			window.location.href = this.getURL();
+		}
 	});
 
 	SyntaxHighlighter.all();

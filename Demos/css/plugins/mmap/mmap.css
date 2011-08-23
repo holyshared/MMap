@@ -209,12 +209,6 @@
 
 
 
-
-
-
-
-
-
 /* Window Styles
 ====================================*/
 
@@ -301,3 +295,11 @@
 
 * html .windowDefault .hd .hdgroup { zoom: 1; } /* IE6 */
 *:first-child+html .windowDefault .hd .hdgroup { zoom: 1; } /* IE7 */
+
+
+/* Draggable
+====================================*/
+
+.drag {
+	cursor: move;
+}
