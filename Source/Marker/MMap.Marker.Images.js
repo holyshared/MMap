@@ -122,6 +122,11 @@ Marker.Images = new Class({
 		return this.get('current');
 	},
 
+	getCurrentImage: function(){
+		var images = this.getImages(); 
+		return images[this.get('current')];
+	},
+
 	getImages: function(){
 		return this.get('images');
 	},

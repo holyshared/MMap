@@ -47,6 +47,7 @@ var testcase = {
 	test: function(){
 		this.testAcceserImages();
 		this.testAcceserCurrent();
+		this.testCurrentImage();
 		this.testAddImage();
 		this.testAddImages();
 		this.testRemoveImage();
@@ -65,6 +66,11 @@ var testcase = {
 	testAcceserCurrent: function(){
 		this.marker.setCurrent(1);
 		this.logger.log('methods', (this.marker.getCurrent() == 1) ? 'current acceser OK' : 'current acceser NG');
+	},
+
+	testCurrentImage: function(){
+		var image = this.marker.getCurrentImage(1);
+		this.logger.log('methods', (image == image2) ? 'testCurrentImage OK' : 'testCurrentImage NG');
 	},
 
 	testAddImage: function(){

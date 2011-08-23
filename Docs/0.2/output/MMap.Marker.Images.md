@@ -87,6 +87,23 @@ Method: <a id='getCurrent'>getCurrent</a>
 
 
 
+Method: <a id='getCurrentImage'>getCurrentImage</a>
+------------------------------------------
+
+現在の画像の情報を取得します。
+
+### Syntax:
+
+	marker.getCurrentImage();
+
+### Returns:
+
+(*object*) - 現在の画像の情報
+
+
+
+
+
 
 
 
