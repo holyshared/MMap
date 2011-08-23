@@ -233,18 +233,13 @@ provides: [MMap.Draggable]
 ...
 */
 
-(function(MMap, maps, Point){
+(function(win, MMap, maps, Point){
 
 MMap.Draggable = new Class({
 
 	options: {
 		draggable: false
 	},
-
-	_mouseX: null,
-	_mouseY: null,
-	_dragging: false,
-	_mouseEvents: null,
 
 	setDraggable: function(value){
 		if (!Type.isBoolean(value)) new TypeError('The data type is not an boolean.');
@@ -255,60 +250,85 @@ MMap.Draggable = new Class({
 		return this.get('draggable');
 	},
 
+	draggable_changed: function(){
+		var that = this;
+		var element = this.toElement();
+		this._strategy = this._strategy || new DragListenerStrategy(this);
+		this._mousedown = this._MouseDown.bind(this);
+		if (this.isDraggable()) {
+			element.addEvent('mousedown', this._mousedown);
+		} else {
+			element.removeEvent('mousedown', this._mousedown);
+		}
+	},
+
+	_MouseDown: function(event){
+		if (this._strategy.isDragging()) return;
+		this._strategy.onDragStart(event);
+	}
+
+});
+
+/**
+ * Private Classes.
+ * DragListenerStrategy - DragListenerStrategy wrapper class
+ * DragListenerStrategy.Window - Chrome, Safari, Opera, IE
+ * DragListenerStrategy.Capture - Firefox
+ */
+var DragListenerStrategy = new Class({
+
+	_overlayView: null,
+	_mouseX: null,
+	_mouseY: null,
+	_dragging: false,
+	_mapDraggableOption: null,
+
+	initialize: function(overlayView){
+		this._overlayView = overlayView;
+		this._strategy = this.createStrategy();
+	},
+
+	isCaptureSupport: function() {
+		var overlayView = this.getOverlayView();
+		var element = overlayView.toElement();
+		return (element.setCapture) ? true : false;
+	},
+
 	isDragging: function(){
 		return this._dragging;
 	},
 
-	draggable_changed: function(){
-		var element = this.toElement();
-		var events = this._mouseEvents = new MouseEventHandler(this);
-		if (this.isDraggable()) {
-			element.addEvent('mousedown', this._mouseEvents.mousedown);
-		} else {
-			element.removeEvent('mousedown', this._mouseEvents.mousedown);
-		}
+	getOverlayView: function(){
+		return this._overlayView;
 	},
 
-	_dragStart: function(event){
+	onDragStart: function(event){
+		var overlayView = this.getOverlayView();
 		this._dragging = true;
+		this._strategy.enable();
 		this._mouseX = event.client.x;
 		this._mouseY = event.client.y;
-		this._startCapture();
 		this._toggleMapDraggable();
-		this._enableDragListeners();
-		this.fireEvent('dragStart', [this._getCurrentPosition()]);
+		overlayView.fireEvent('dragStart', [this._getCurrentPosition()]);
 	},
 
-	_drag: function(event){
+	onDrag: function(event){
+		var overlayView = this.getOverlayView();
 		var position = this._updatePosition(event);
-		this.fireEvent('drag', [position]);
+		overlayView.fireEvent('drag', [position]);
 	},
 
-	_dragStop: function(){
+	onDragStop: function(event){
+		var overlayView = this.getOverlayView();
 		this._dragging = false;
-		this._stopCapture();
+		this._strategy.disable();
 		this._toggleMapDraggable();
-		this._disableDragListeners();
-		this.fireEvent('dragEnd', [this._getCurrentPosition()]);
-	},
-
-	_getCurrentPosition: function(){
-		var element = this.toElement();
-		var position = element.getStyles('left', 'top');
-		var size = element.getSize();
-		var point = new Point(
-			position.left.toInt() + (size.x / 2),
-			position.top.toInt() + (size.y / 2)
-		);
-		var latlng = this.getProjection().fromDivPixelToLatLng(point);
-		return {
-			latlng: latlng,
-			pixel: point
-		}
+		overlayView.fireEvent('dragStart', [this._getCurrentPosition()]);
 	},
 
 	_toggleMapDraggable: function(){
-		var map = this.getMap();
+		var overlayView = this.getOverlayView();
+		var map = overlayView.getMap();
 		if (this._mapDraggableOption == null){
 			this._mapDraggableOption = map.get('draggable') || true;
 			map.set('draggable', false);
@@ -319,7 +339,8 @@ MMap.Draggable = new Class({
 	},
 
 	_updatePosition: function(event){
-		var element = this.toElement();
+		var ovarleyView = this.getOverlayView();
+		var element = ovarleyView.toElement();
 
 		var size = element.getSize();
 		var position = element.getStyles('left', 'top');
@@ -339,69 +360,108 @@ MMap.Draggable = new Class({
 		return this._getCurrentPosition();
 	},
 
-	_enableDragListeners: function(){
-		var element = this.toElement();
-		var events = this._mouseEvents;
-		element.addEvents({
-			'mouseup': events.mouseup,
-			'mousemove': events.mousemove
-		});
+	_getCurrentPosition: function(){
+		var ovarleyView = this.getOverlayView();
+		var element = ovarleyView.toElement();
+		var position = element.getStyles('left', 'top');
+		var size = element.getSize();
+		var point = new Point(
+            position.left.toInt() + (size.x / 2),
+		    position.top.toInt() + size.y
+		);
+        var latlng = ovarleyView.getProjection().fromDivPixelToLatLng(point);
+        return { latlng: latlng, pixel: point }
 	},
 
-	_disableDragListeners: function(){
-		var element = this.toElement();
-		var events = this._mouseEvents;
-		element.removeEvents({
-			'mouseup': events.mouseup,
-			'mousemove': events.mousemove
-		});
-	},
-
-	_startCapture: function() {
-		var element = this.toElement();
-		element.setCapture(true);
-	},
-
-	_stopCapture: function() {
-		var element = this.toElement();
-		element.releaseCapture();
+	createStrategy: function(){
+		var that = this;
+		var ovarleyView = that.getOverlayView();
+		var strategy = null;
+		var options = {
+			element: this.getOverlayView().toElement(),
+			onMouseUp: function(event){
+				if (!that.isDragging()) return;
+				that.onDragStop();
+			},
+			onMouseMove: function(event){
+				if (!that.isDragging()) return;
+				that.onDrag(event);
+			}
+		}
+		if (that.isCaptureSupport()) {
+			strategy = new DragListenerStrategy.Capture(options);
+		} else {
+			strategy = new DragListenerStrategy.Window(options);
+		}
+		return strategy;
 	}
 
 });
 
 
-function MouseEventHandler(overlayView){
-	var events = {
-		mousedown: this._onMouseDown,
-		mouseup: this._onMouseUp,
-		mousemove: this._onMouseMove
-	}
-	for (var key in events) {
-		this[key] = events[key].bind(overlayView)
-	}
-}
+DragListenerStrategy.Strategy = new Class({
 
-MouseEventHandler.implement({
-
-	_onMouseDown: function(event){
-		if (this.isDragging()) return;
-		this._dragStart(event);
-	},
-
-	_onMouseUp: function(event){
-		if (!this.isDragging()) return;
-		this._dragStop();
-	},
-
-	_onMouseMove: function(event){
-		if (!this.isDragging()) return;
-		this._drag(event);
+	initialize: function(options){
+		for (var key in options){
+			this[key] = options[key];
+		}
 	}
 
 });
 
 
-}(MMap, google.maps, google.maps.Point));
+DragListenerStrategy.Window = new Class({
+
+	Extends: DragListenerStrategy.Strategy,
+
+	enable: function(){
+		win.addEvents({
+        	'mouseup': this.onMouseUp,
+    		'mousemove': this.onMouseMove
+    	});
+	},
+
+	disable: function(){
+		win.removeEvents({
+        	'mouseup': this.onMouseUp,
+    		'mousemove': this.onMouseMove
+    	});
+	}
+
+});
+
+
+DragListenerStrategy.Capture = new Class({
+
+	Extends: DragListenerStrategy.Strategy,
+
+	startCapture: function() {
+		this.element.setCapture(true);
+	},
+
+	stopCapture: function() {
+		this.element.releaseCapture();
+	},
+
+	enable: function(){
+		this.startCapture();
+    	this.element.addEvents({
+        	'mouseup': this.onMouseUp,
+    		'mousemove': this.onMouseMove
+		});
+	},
+
+	disable: function(){
+		this.element.releaseCapture();
+    	this.element.removeEvents({
+        	'mouseup': this.onMouseUp,
+    		'mousemove': this.onMouseMove
+		});
+	}
+
+});
+
+}(window, MMap, google.maps, google.maps.Point));
 
 
 /*
@@ -875,6 +935,7 @@ MMap.Marker.HTML = new Class({
 		var self = this;
 		var marker = this.toElement();
 		var proxy = function(event){
+			if (event.preventDefault) event.preventDefault();
 			event.target = self;
 			self.fireEvent(event.type, event);
 		}
@@ -992,6 +1053,7 @@ Marker.Image = new Class({
 		var self = this;
 		var marker = this.toElement();
 		var proxy = function(event){
+			if (event.preventDefault) event.preventDefault();
 			event.target = self;
 			self.fireEvent(event.type, event);
 		}
@@ -1079,6 +1141,18 @@ provides: [MMap.Marker.Images]
 
 (function(MMap, Marker){
 
+//State namespace
+var MarkerState = {};
+
+MarkerState.Methods = [
+	'setCurrent', 'setImages',
+	'addImage', 'addImages',
+	'removeImage', 'removeImages',
+	'isStart', 'start', 'stop'
+];
+
+MarkerState.States = [ 'AddMapBeforeState', 'AddMapAfterState' ];
+
 Marker.Images = new Class({
 
 	Extends: Marker.Core,
@@ -1097,18 +1171,23 @@ Marker.Images = new Class({
 	},
 
 	initialize: function(options){
+		this.state = new MarkerState.StateWrapper(this);
 		this.parent(options);
-		this._elements = [];
-		this._stack = [];
-		this._index = 0;
-		this._start = false;
-		this._mouseovered = false;
+	},
+
+	_init: function(){
+		this.parent();
+		var self = this;
+		var props = ['images', 'defaultIndex'];
+		props.each(function(key){
+			self.set(key, self.options[key]);
+			delete self.options[key];
+		});
 	},
 
 	_setup: function(container){
-		this.setDefaultZIndex();
 
-		this.addEvent('add', this._onPrepare.bind(this));
+		this.setDefaultZIndex();
 
 		var className = this.options.className;
 		container.addClass(className);
@@ -1116,177 +1195,525 @@ Marker.Images = new Class({
 		this._photos = new Element('ul', {'class': 'photos'});
 		this._photos.inject(container);
 
-		var images = this.get('images');
-		if (images && Type.isArray(images)) {
-			this.addImages(images);
-		}
+		this.addEvent('add', this._onPrepare.bind(this));
+
 		return this._photos;
 	},
 
-	_setupListeners: function(){
-		var self = this;
-		var marker = this.toElement();
-		var proxy = function(event){
-			event.target = self;
-			self.fireEvent(event.type, event);
-		}
-		var events = ['click', 'dblclick', 'mouseup', 'mousedown'];
-		events.each(function(type){
-			marker.addEvent(type, proxy);
-		});
-		marker.addEvent('mouseout', this._mouseout.bind(this));
-	},
-
-	_init: function(){
-		this.parent();
-		this.set('images', this.options['images']);
-		delete this.options['images'];
-	},
-
 	_onPrepare: function(){
-		var l = this._stack.length;
-		for (var i = 0; i < l; i++) {
-			var image = this._stack[i];
-			image.inject(this._photos);
+		var slideOptions = {
+			images: this.get('images'),
+			observer: this.toElement(),
+			container: this._photos
+		};
+		var handlers = this._createEventProxies(this);
+
+		var opts = Object.merge(this.options, handlers, slideOptions);
+
+		if (this.getVisible() == false || this.state.isStart() == false){
+			opts.autoplay = false;
 		}
-		delete this._stack;
-		var index = this.options.defaultIndex;
-		this.setCurrent(index);
-		if (this.options.autoplay) {
-			this._timerID = this._next.delay(this.options.interval, this);
-			this._start = true;
-		}
+		this.state.nextState(opts);
 	},
 
-	_next: function() {
-		var self = this;
-		var image = this._elements[this._index];
-		image.setStyle('z-index', 1);
-		this._index = (this._index + 1 < this._elements.length) ? this._index + 1 : 0;
-		var image = this._elements[this._index];
-		image.setStyle('z-index', 2);
-		var tween = image.get('tween');
-		tween.start('opacity', 0, 1);
-	},
-
-	_buildElement: function(context){
-		var li = new Element('li');
-		var a = new Element('a', {href: context.url, title: context.title});
-		var img = new Element('img', {src: context.image, title: context.title});
-		img.inject(a);
-		a.inject(li);
-
-		var self = this;
-		li.set('tween', {
-			duration: this.options.duration,
-			onComplete: function() {
-				if (self.isStart()) {
-					self.setCurrent(self._index);
-					self._timerID = self._next.delay(this.options.interval, self);
-				}
-			}
+	_createEventProxies: function(target){
+		var handlers = {};
+		var events = [
+			'onClick', 'onDblClick',
+			'onMouseOver', 'onMouseOut',
+			'onMouseUp', 'onMouseDown'
+		];
+		var proxy = function(event){
+			event.target = target;
+			target.fireEvent(event.type, [event]);
+		};
+		events.each(function(key, index){
+			handlers[key] = proxy;
 		});
-		li.addEvent('mouseover', self._mouseover.bind(this));
-		return li;
+
+		handlers.onCurrentChanged = function(){
+			target.fireEvent('currentChanged', Array.from(arguments));
+		};
+
+		return handlers;
 	},
 
-	_mouseover: function(event){
-		if (this._mouseovered) return false;
-		event.target = this;
-		this.fireEvent(event.type, event);
-		this._mouseovered = true;
-	},
-	
-	_mouseout: function(event){
-		if (!(event.target == this._photos || event.target == this.toElement())) return false;
-		if (!this._mouseovered) return false;
-		event.target = this;
-		this.fireEvent(event.type, event);
-		this._mouseovered = false;
+	getCurrent: function(){
+		return this.get('current');
 	},
 
-	setCurrent: function(index){
-		var i = 0, length = this._elements.length, image = null, style = {};
-		for (i = 0; i < length; i++) {
-			image = this._elements[i];
-			style = (i == index) ? { 'z-index': 1, opacity: 1 } : { 'z-index': 0, opacity: 0 };
-			image.setStyles(style);
-		}
-		this._index = index;
+	getCurrentImage: function(){
+		var images = this.getImages(); 
+		return images[this.get('current')];
 	},
 
 	getImages: function(){
 		return this.get('images');
 	},
 
-	setImages: function(images){
-		clearTimeout(this._timerID);
-		this._elements = [];
-		this._index = 0;
-		if (this.isAdded()) {
-			this._photos.dispose();
+	visible_changed: function(){
+		var visible = this.getVisible();
+		if (visible == false && this.isAdded()) {
+			this.stop();
 		}
-		this.set('images', images);
-		this.addImages(images);
-		return this;
+	}
+
+});
+
+
+(function(){
+
+	var marker = Marker.Images,
+		methods = MarkerState.Methods,
+		hooks = {};
+
+	methods.each(function(key, index){
+		hooks[key] = function(){
+			return this.state[key].apply(this.state, arguments);
+		}
+	});
+	marker.implement(hooks);
+
+}());
+
+
+MarkerState.StateWrapper = new Class({
+
+	progress: 0,
+	state: null,
+	marker: null,
+
+	initialize: function(marker){
+		this.marker = marker;
+		this.nextState();
+	},
+
+	nextState: function(options){
+		var stateName = MarkerState.States[this.progress++];
+		this.state = this.createState.call(this, stateName, options);
+	},
+
+	createState: function(state, options){
+		if (!MarkerState[state]) {
+			throw new Error('instance!!');
+		}
+		var stateClass = MarkerState[state];
+		return new stateClass(this.marker, options);
+	}
+
+});
+
+
+//The api hook to MarkerState.State instance is made.
+(function(){
+
+	var warapper = MarkerState.StateWrapper,
+		methods = MarkerState.Methods
+		hooks = {};
+
+	methods.each(function(key, index){
+		hooks[key] = function(){
+			return this.state[key].apply(this.state, arguments);
+		};
+	});
+	warapper.implement(hooks);
+
+}());
+
+
+MarkerState.State = new Class({
+
+	Implements: [Options],
+
+	initialize: function(marker, options){
+		this.setOptions(options);
+		this.marker = marker;
+	},
+
+	setCurrent: function(index){
+		var len = this.marker.get('images').length - 1;
+		if (index < 0 || index > len) {
+			return;
+		}
+		this.marker.set('current', index);
+	},
+
+	setImages: function(images){
+		this.marker.set('images', this._validateImages(images));
 	},
 
 	addImage: function(image){
-		var li = this._buildElement(image);
-		var images = this.get('images');
-
-		if (!images.contains(image)) images.push(image);
-		if (!this.isAdded()) {
-			this._stack.push(li);
-		} else {
-			li.inject(this._photos);
+		var images = this.marker.get('images');
+		if (!images.contains(image)) {
+			images.push(image);
 		}
-		this._elements.push(li);
 		return this;
 	},
 
 	addImages: function(images){
-		var i = 0, length = images.length;
-		for (i = 0; i < length; i++) {
-			this.addImage(images[i]);
-		}
+		images = this._validateImages(images);
+		images.each(function(image){
+			this.addImage(image);
+		}, this);
+		return this;
 	},
 
 	removeImage: function(image){
-		var images = this.get('images');
-		var index = images.indexOf(image);
-		if (index >= 0) {
-			var element = this._elements[index];
-			this._elements.erase(element);
-			if (this._stack && this._stack.contains(element)) {
-				this._stack.erase(element);
+		var images = this.marker.get('images');
+		images.erase(image);
+		return this;
+	},
+
+	removeImages: function(images){
+		images.each(function(image){
+			this.removeImage(image);
+		}, this);
+		return this;
+	},
+
+	_validateImages: function(images) {
+		if (!Type.isArray(images)){
+			throw new TypeError('The image is an array.');
+		}
+		return images;
+	}
+
+});
+
+
+//SState before marker is added to map.
+MarkerState.AddMapBeforeState = new Class({
+
+	Extends: MarkerState.State,
+
+	started: true,
+
+	initialize: function(marker, options){
+		this.parent(marker);
+	},
+
+	isStart: function(){
+		return this.started;
+	},
+
+	start: function(){
+		this.started = true;
+	},
+
+	stop: function(){
+		this.started = false;
+	}
+
+});
+
+//State after marker is added to map.
+MarkerState.AddMapAfterState = new Class({
+
+	Extends: MarkerState.State,
+
+	initialize: function(marker, options){
+		this.parent(marker);
+		this.imageChanger = new Images(options);
+	},
+
+	setCurrent: function(index){
+		try {
+			this.imageChanger.setCurrent(index);
+		} catch(exp) {
+			throw exp;
+		}
+		this.parent(index);
+	},
+
+	setImages: function(images){
+		this.parent(images);
+		this.imageChanger.setImages(images);
+		return this;
+	},
+
+	addImage: function(image){
+		this.parent(image);
+		this.imageChanger.addImage(image);
+		return this;
+	},
+
+	addImages: function(images){
+		this.parent(images);
+		this.imageChanger.addImages(images);
+		return this;
+	},
+
+	removeImage: function(image){
+		this.parent(image);
+		this.imageChanger.removeImage(image);
+		return this;
+	},
+
+	removeImages: function(images){
+		this.parent(images);
+		this.imageChanger.removeImages(images);
+		return this;
+	},
+
+	isStart: function(){
+		return this.imageChanger.isStart();
+	},
+
+	start: function(){
+		this.imageChanger.start();
+	},
+
+	stop: function(){
+		this.imageChanger.stop();
+	}
+
+});
+
+
+var Images = this.Images = new Class({
+
+	//Mxins meta classes
+	Implements: [Options, Events],
+
+	//protected members
+	_current: 0,
+	_elements: [],
+	_observer: null,
+	_container: null,
+	_mouseovered: false,
+	_timerId: null,
+	_started: null,
+
+	options: {
+		className: 'marker image imagesDefault',
+		current: 0,
+		images: [],
+		observer: null,
+		container: null,
+		interval: 2000,
+		duration: 2000,
+		autoplay: true
+	},
+
+	initialize: function(options){
+		this.setOptions(this._prepare(options));
+		this._setupListeners();
+		this._setup();
+	},
+
+	_prepare: function(opts){
+		['observer', 'container', 'current'].each(function(key){
+			if (opts[key]) {
+				this['_' + key] = opts[key];
 			}
-			images.erase(image);
-			element.destroy();
+			delete opts[key];
+		}, this);
+		if (opts.images){
+			this.addImages.apply(this, opts.images);
+		}
+		return opts;
+	},
+
+	_setup: function(){
+		var opts = this.options;
+		this._orderByFront(this.getCurrent());
+		if (opts.autoplay) {
+			this.start();
 		}
 	},
 
-	removeImages: function(){
+	_setupListeners: function(){
 		var self = this;
-		var images = Array.from(arguments);
-		images.each(function(image){
-			self.removeImage(image);
+		var events = {
+			'click': 'click',
+			'dblclick': 'dblClick',
+			'mouseup': 'mouseUp',
+			'mousedown': 'mouseDown'
+		};
+		var proxy = function(event){
+			if (event.preventDefault) event.preventDefault();
+			event.target = self;
+			self.fireEvent(events[event.type], [event]);
+		}
+		Object.each(events, function(type, domEventName){
+			this.getObserver().addEvent(domEventName, proxy);
+		}, this);
+		this.getObserver().addEvent('mouseout', this._MouseOut.bind(this));
+	},
+
+	setContainer: function(container){
+		this._container = container;
+	},
+
+	getContainer: function(){
+		return this._container;
+	},
+
+	setObserver: function(observer){
+		this._observer = observer;
+	},
+
+	getObserver: function(){
+		return this._observer;
+	},
+
+	setCurrent: function(index){
+		if (!this.isValid(index)){
+			throw new Error('Specified ' + index + ' is an invalid value.');
+		}
+		this._current = index;
+	},
+
+	getCurrent: function(){
+		return this._current;
+	},
+
+	isValid: function(index){
+		return (index <= 0 || index <= this._elements.length) ? true : false;
+	},
+
+	addImage: function(image){
+		if (!Type.isObject(image)){
+			throw new Error('');
+		}
+		var element = this.createElement(image);
+		var container = this.getContainer();
+
+		element.inject(container);
+		this._elements.push(element);
+		return this;
+	},
+
+	addImages: function(/* mixed */){
+		var elements = Array.from(arguments);
+		elements.each(function(element){
+			this.addImage(element);
+		}, this);
+		return this;
+	},
+
+	hasImage: function(image){
+		var result = null;
+		this._elements.some(function(element, index){
+			var src = element.getElement('img').get('src');
+			if (image.image == src) {
+				result = index;
+				return true;
+			} else {
+				return false;
+			}
+		});
+		return result;
+	},
+
+	removeImage: function(image){
+		var index = this.hasImage(image);
+		if (!Type.isNumber(index)) {
+			return;
+		}
+		var target = this._elements[index];
+		this._elements.erase(target);
+		target.destroy();
+		return this;
+	},
+
+	removeImages: function(/* mixed */){
+		var elements = Array.from(arguments);
+		elements.each(function(element){
+			this.removeImage(element);
+		}, this);
+		return this;
+	},
+
+	getLength: function(){
+		return this._elements.length;
+	},
+
+	createElement: function(context){
+		var li = new Element('li');
+		var a = new Element('a', {href: context.url, title: context.title});
+		var img = new Element('img', {src: context.image, title: context.title});
+		img.inject(a);
+		a.inject(li);
+		li.store('marker.images,context', context);
+		return this.initElement(li);
+	},
+
+	initElement: function(element){
+		var that = this;
+		var opts = this.options;
+		element.set('tween', {
+			duration: opts.duration,
+			onComplete: function() {
+				var current = that.getCurrent();
+				var element = that._elements[current];
+				var context = element.retrieve('marker.images,context');
+				that._orderByFront(current);
+				that.fireEvent('currentChanged', [current, context]);
+				that._next();
+			}
+		});
+		element.addEvent('mouseover', this._MouseOver.bind(this));
+		return element;
+	},
+
+	_next: function(){
+		this._timerId = this._changeImage.delay(this.options.interval, this);
+	},
+
+	_changeImage: function() {
+		if (this.getLength() <= 0){
+			this.stop();
+			return;
+		}
+
+		var image = this._elements[this.getCurrent()];
+		image.setStyle('z-index', 1);
+
+		var index = (this.getCurrent() + 1 < this._elements.length) ? this.getCurrent() + 1 : 0;
+		var image = this._elements[index];
+		this.setCurrent(index);
+
+		image.setStyle('z-index', 2);
+		var tween = image.get('tween');
+		tween.start('opacity', 0, 1);
+	},
+
+	_orderByFront: function(targetIndex){
+		this._elements.each(function(element, index){
+			var style = (targetIndex == index) ? { 'z-index': 1, opacity: 1 } : { 'z-index': 0, opacity: 0 };
+			element.setStyles(style);
 		});
 	},
 
 	isStart: function(){
-		return (this._start) ? true : false;
+		return (this._started) ? true : false;
 	},
 
 	start: function(){
 		if (this.isStart()) return;
-		this._timerID = this._next.delay(this.options.interval, this);
-		this._start = true;
+		this._next();
+		this._started = true;
 	},
 
 	stop: function(){
-		clearTimeout(this._timerID);
-		this._start = false;
+		clearTimeout(this._timerId);
+		this._started = false;
+	},
+
+	_MouseOver: function(event){
+		if (this._mouseovered) return false;
+		event.target = this;
+		this.fireEvent('mouseOver', event);
+		this._mouseovered = true;
+	},
+
+	_MouseOut: function(event){
+		if (!(event.target == this.getContainer() || event.target == this.getObserver())) return false;
+		if (!this._mouseovered) return false;
+		event.target = this;
+		this.fireEvent('mouseOut', event);
+		this._mouseovered = false;
 	}
 
 });
@@ -1800,6 +2227,7 @@ MMap.Window = new Class({
 		var self = this;
 		var win = this.toElement();
 		this._closeButton.addEvent('click', function(event){
+			if (event.prevnetDefault) event.prevnetDefault();
 			self.close();
 			self.fireEvent('close');
 		});

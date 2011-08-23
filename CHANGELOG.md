@@ -11,7 +11,7 @@ MMAP CHANGELOG
 * The bug of *MMap.Marker.Images* is corrected. 
 * Event *onCurrentChanged* is added to MMap.Marker.Images.  
   The argument is an *index number* and an *image information*.
-
+* Method *getCurrentImage* is added to MMap.Marker.Images.  
 
 0.2.2
 -------------------------------------------------------------------
