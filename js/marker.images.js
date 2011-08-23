@@ -15,24 +15,28 @@ window.addEvent('domready', function(){
 		images: [{
 			title: 'demo1',
 			image: 'http://holyshared.github.com/MMap/images/demo/img01.jpg',
-			url: 'http://sharedhat.com'
+			url: 'http://mootools.net'
 		}, {
 			title: 'demo2',
 			image: 'http://holyshared.github.com/MMap/images/demo/img02.jpg',
-			url: 'http://sharedhat.com'
+			url: 'http://mootools.net/core/'
 		}, {
 			title: 'demo3',
 			image: 'http://holyshared.github.com/MMap/images/demo/img03.jpg',
-			url: 'http://sharedhat.com'
+			url: 'http://mootools.net/more/'
 		}, {
 			title: 'demo4',
 			image: 'http://holyshared.github.com/MMap/images/demo/img04.jpg',
-			url: 'http://sharedhat.com'
+			url: 'http://mootools.net/forge/'
 		}, {
 			title: 'demo5',
 			image: 'http://holyshared.github.com/MMap/images/demo/img05.jpg',
-			url: 'http://sharedhat.com'
-		}]
+			url: 'http://mootools.net/blog/'
+		}],
+		onClick: function(event){
+			var image = this.getCurrentImage();
+			window.location.href = image.url;
+		}
 	});
 
 	SyntaxHighlighter.all();
