@@ -71,6 +71,8 @@
 <li><a href="mmap.marker.images.html#constructor" title="constructor">constructor</a></li>
 <li><a href="mmap.marker.images.html#getImages" title="getImages">getImages</a></li>
 <li><a href="mmap.marker.images.html#setCurrent" title="setCurrent">setCurrent</a></li>
+<li><a href="mmap.marker.images.html#getCurrent" title="getCurrent">getCurrent</a></li>
+<li><a href="mmap.marker.images.html#getCurrentImage" title="getCurrentImage">getCurrentImage</a></li>
 <li><a href="mmap.marker.images.html#setImages" title="setImages">setImages</a></li>
 <li><a href="mmap.marker.images.html#addImage" title="addImage">addImage</a></li>
 <li><a href="mmap.marker.images.html#addImages" title="addImages">addImages</a></li>
@@ -156,7 +158,8 @@
 <li>onVisibleChanged - (<em>function</em>) When the marker's display changes, it is generated.</li>
 <li>onZIndexChanged - (<em>function</em>) When the order of displaying the marker changes, it is generated.</li>
 <li>onPositionChanged - (<em>function</em>) When the display coordinates of the marker are changed, it is generated.</li>
-<li>onActive - (<em>function</em>) When the display coordinates of the marker are changed, it is generated.</li>
+<li>onCurrentChanged - (<em>function</em>) When the image changes, it is generated.</li>
+<li>onActive - (<em>function</em>) When the marker becomes active, it is generated.</li>
 </ul>
 
 <h3><a id='images'>images</a></h3></h3>
@@ -183,6 +186,39 @@
 <ol>
 <li>index - (<em>number</em>) Number of image</li>
 </ol>
+
+
+
+
+<h2>Method: <a id='getCurrent'>getCurrent</a></h2>
+
+<p>A present image number is returned.</p>
+
+<h3>Syntax:</h3>
+
+<pre><code>marker.getCurrent();
+</code></pre>
+
+<h3>Returns:</h3>
+
+<p>(<em>number</em>) Image information set to image</p>
+
+
+
+<h2>Method: <a id='getCurrentImage'>getCurrentImage</a></h2>
+
+<p>Information in a present image is acquired.</p>
+
+<h3>Syntax:</h3>
+<pre><code>marker.getCurrentImage();
+</code></pre>
+
+<h3>Returns:</h3>
+
+<p>(<em>object</em>) - Information in present image</p>
+
+
+
 
 <h2>Method: <a id='getImages'>getImages</a></h2>
 
