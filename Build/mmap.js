@@ -304,6 +304,9 @@ var DragListenerStrategy = new Class({
 
 	onDragStart: function(event){
 		var overlayView = this.getOverlayView();
+		var element = overlayView.toElement();
+		element.addClass('drag');
+
 		this._dragging = true;
 		this._strategy.enable();
 		this._mouseX = event.client.x;
@@ -320,6 +323,9 @@ var DragListenerStrategy = new Class({
 
 	onDragStop: function(event){
 		var overlayView = this.getOverlayView();
+		var element = overlayView.toElement();
+		element.removeClass('drag');
+
 		this._dragging = false;
 		this._strategy.disable();
 		this._toggleMapDraggable();
