@@ -1161,7 +1161,7 @@ Marker.Images = new Class({
 		map: null,
 		className: 'marker image imagesDefault',
 		images: [],
-		defaultIndex: 0,
+		current: 0,
 		interval: 2000,
 		duration: 2000,
 		autoplay: true,
@@ -1178,7 +1178,7 @@ Marker.Images = new Class({
 	_init: function(){
 		this.parent();
 		var self = this;
-		var props = ['images', 'defaultIndex'];
+		var props = ['images', 'current'];
 		props.each(function(key){
 			self.set(key, self.options[key]);
 			delete self.options[key];
@@ -1217,7 +1217,15 @@ Marker.Images = new Class({
 	},
 
 	_createEventProxies: function(target){
-		var handlers = {};
+		var handlers = {
+			onImageChangeStart: function(index){
+				target.setCurrent(index);
+			},
+			onImageChangeEnd: function(){
+				target.fireEvent('currentImageChanged', Array.from(arguments));
+			}
+		};
+
 		var events = [
 			'onClick', 'onDblClick',
 			'onMouseOver', 'onMouseOut',
@@ -1231,10 +1239,6 @@ Marker.Images = new Class({
 			handlers[key] = proxy;
 		});
 
-		handlers.onCurrentChanged = function(){
-			target.fireEvent('currentChanged', Array.from(arguments));
-		};
-
 		return handlers;
 	},
 
@@ -1244,7 +1248,7 @@ Marker.Images = new Class({
 
 	getCurrentImage: function(){
 		var images = this.getImages(); 
-		return images[this.get('current')];
+		return images[this.getCurrent()];
 	},
 
 	getImages: function(){
@@ -1635,7 +1639,7 @@ var Images = this.Images = new Class({
 		var img = new Element('img', {src: context.image, title: context.title});
 		img.inject(a);
 		a.inject(li);
-		li.store('marker.images,context', context);
+		li.store('marker.images.context', context);
 		return this.initElement(li);
 	},
 
@@ -1647,9 +1651,9 @@ var Images = this.Images = new Class({
 			onComplete: function() {
 				var current = that.getCurrent();
 				var element = that._elements[current];
-				var context = element.retrieve('marker.images,context');
+				var context = element.retrieve('marker.images.context');
 				that._orderByFront(current);
-				that.fireEvent('currentChanged', [current, context]);
+				that.fireEvent('imageChangeEnd', [current, context]);
 				that._next();
 			}
 		});
@@ -1677,6 +1681,8 @@ var Images = this.Images = new Class({
 		image.setStyle('z-index', 2);
 		var tween = image.get('tween');
 		tween.start('opacity', 0, 1);
+
+		this.fireEvent('imageChangeStart', [index, image]);
 	},
 
 	_orderByFront: function(targetIndex){
