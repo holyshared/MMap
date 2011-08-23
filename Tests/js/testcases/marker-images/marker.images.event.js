@@ -11,6 +11,7 @@ var testcase = {
 			map: this.map,
 			className: 'marker images imagesPaper',
 			position: new google.maps.LatLng(35.6666870, 139.731859),
+			defaultIndex: 0,
 			images: [
 				{
 					title: 'demo1',
@@ -35,7 +36,8 @@ var testcase = {
 				logger.log('events', 'onDblClick OK');
 			},
 			onClick: function(event) {
-				logger.log('events', 'onClick OK');
+				var image = this.getCurrentImage();
+				logger.log('events', 'onClick OK + ' + image.image);
 			},
 			onMouseOver: function(event) {
 				logger.log('events', 'onMouseOver OK');
@@ -49,7 +51,7 @@ var testcase = {
 			onMouseDown: function(event) {
 				logger.log('events', 'onMouseDown OK');
 			},
-			onCurrentChanged: function(index, image) {
+			onCurrentImageChanged: function(index, image) {
 				logger.log('events', 'onCurrentChanged index=' + index + ' src=' + image.image + ' OK');
 			}
 		});

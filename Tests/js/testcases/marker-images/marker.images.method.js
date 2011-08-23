@@ -69,7 +69,7 @@ var testcase = {
 	},
 
 	testCurrentImage: function(){
-		var image = this.marker.getCurrentImage(1);
+		var image = this.marker.getCurrentImage();
 		this.logger.log('methods', (image == image2) ? 'testCurrentImage OK' : 'testCurrentImage NG');
 	},
 
