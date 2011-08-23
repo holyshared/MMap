@@ -12,6 +12,7 @@ MMAP CHANGELOG
 * Event *onCurrentChanged* is added to MMap.Marker.Images.  
   The argument is an *index number* and an *image information*.
 * Method *getCurrentImage* is added to MMap.Marker.Images.  
+* MMap.Marker.Images optional *defaultIndex* is changed to *current*.
 
 0.2.2
 -------------------------------------------------------------------
