@@ -1,0 +1,170 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<title></title>
+	<meta http-equiv="Content-Language" content="ja" />
+	<meta http-equiv="Content-Script-Type" content="text/javascript" />
+	<meta http-equiv="Content-Style-Type" content="text/css" />
+	<meta name="description" content="" />
+	<meta name="keywords" content="" />
+	<link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Vollkorn:regular,italic,bold&amp;subset=latin" type="text/css" />
+	<link rel="stylesheet" href="../css/style.css" type="text/css" media="screen" />
+	<link rel="stylesheet" href="../css/core/content.ja.css" type="text/css" media="screen" />
+</head>
+
+<body>
+<div class="page gs960">
+
+	<div class="head">
+		<div class="mod symbol">
+			<div class="inner">
+				<div class="hd">
+					<h1 class="logo">MMap</h1>
+					<p class="version">version 0.2</p>
+				</div>
+			</div>
+		</div>
+	</div>
+
+<div class="body">
+
+	<div class="leftCol gDocs">
+
+<h3>Core</h3>
+
+<ul>
+<li><a href='mmap.overlayview.html#mmap.overlayview'>MMap.OverlayView</a></li>
+</ul>
+
+<h3>Marker</h3>
+
+<ul>
+<li><a href='mmap.marker.core.html#mmap.marker.core'>MMap.Marker.Core</a></li>
+<li><a href='mmap.marker.html.html#mmap.marker.html'>MMap.Marker.HTML</a></li>
+<li><a href='mmap.marker.image.html#mmap.marker.image'>MMap.Marker.Image</a></li>
+<li><a href='mmap.marker.images.html#mmap.marker.images'>MMap.Marker.Images</a></li>
+<li><a href='mmap.markermanager.html#mmap.markermanager'>MMap.MarkerManager</a></li>
+<li><a href='mmap.markerloader.html#mmap.markerloader'>MMap.MarkerLoader</a></li>
+</ul>
+
+<h3>Utils</h3>
+
+<ul>
+<li><a href='mmap.position.html#mmap.position'>MMap.Position</a></li>
+<li><a href='mmap.draggable.html#mmap.draggable'>MMap.Draggable</a></li>
+</ul>
+
+<h3>Window</h3>
+
+<ul>
+<li><a href='mmap.window.html#mmap.window'>MMap.Window</a></li>
+</ul>
+
+
+	</div>
+
+	<div class="rightCol gDocs">
+
+
+<h3><a href='mmap.draggable.html#mmap.draggable'>MMap.Draggable</a></h3>
+
+<ul>
+<li><a href="mmap.draggable.html#constructor" title="constructor">constructor</a></li>
+<li><a href="mmap.draggable.html#setDraggable" title="setDraggable">setDraggable</a></li>
+<li><a href="mmap.draggable.html#isDraggable" title="isDraggable">isDraggable</a></li>
+<li><a href="mmap.draggable.html#isDragging" title="isDragging">isDragging</a></li>
+</ul>
+
+
+	</div>
+
+	<div class="main">
+<h2 class="h1">Class: <a id='mmap.draggable'>MMap.Draggable</a></h2>
+
+<p>特定のオブジェクトにドラッグ機能を組み込みます。<br />
+組み込むオブジェクトはtoElementメソッドとsetPositionメソッドを実装している必要があります。</p>
+
+<h2>Method: <a id='constructor'>constructor</a></h2>
+
+<p>MMap.Draggableのコンストラクタ。</p>
+
+<h3>Syntax:</h3>
+
+<pre><code>var MyClass = new Class({
+
+    Extends: [MMap.OverlayView],
+
+    Implements: [MMap.Draggable]
+
+});
+</code></pre>
+
+<h3>Options:</h3>
+
+<ul>
+<li>onDragStart - (<em>function</em>) オブジェクトのドラッグが開始された時に発生します。</li>
+<li>onDragEnd - (<em>function</em>) オブジェクトのドラッグが終了された時に発生します。</li>
+<li>onDrag - (<em>function</em>) オブジェクトをドラッグしている間このイベントが発生します。</li>
+</ul>
+
+<h2>Method: <a id='setDraggable'>setDraggable</a></h2>
+
+<p>ドラッグ機能の有効／無効を切り替えます。</p>
+
+<h3>Syntax:</h3>
+
+<pre><code>var object = object.setDraggable(true);
+</code></pre>
+
+<h3>Arguments:</h3>
+
+<ol>
+<li>value - (<em>boolean</em>) オブジェクトをドラッグ可能にする場合はtrueを指定します。</li>
+</ol>
+
+<h3>Returns:</h3>
+
+<p>(<em>object</em>) draggable object</p>
+
+<h2>Method: <a id='isDraggable'>isDraggable</a></h2>
+
+<p>オブジェクトがドラッグ可能か調べます。</p>
+
+<h3>Syntax:</h3>
+
+<pre><code>var draggable = object.isDraggable();
+</code></pre>
+
+<h3>Returns:</h3>
+
+<p>(<em>boolean</em>) ドラッグ可能な場合trueを返します。</p>
+
+<h2>Method: <a id='isDragging'>isDragging</a></h2>
+
+<p>オブジェクトのドラッグ状態を返します。</p>
+
+<h3>Syntax:</h3>
+
+<pre><code>var dragging = object.isDragging();
+</code></pre>
+
+<h3>Returns:</h3>
+
+<p>(<em>boolean</em>) ドラッグ中trueを返します。</p>
+
+
+
+
+	</div>
+
+</div>
+
+<div class="foot">
+<p>Copyright(c) 2010 <a title="Noritaka Horio" href="http://sharedhat.com">Noritaka Horio</a> All Rights Reserved.</p>
+</div>
+</div>
+
+</body>
+
+</html>

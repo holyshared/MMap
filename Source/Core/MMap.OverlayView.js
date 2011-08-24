@@ -24,13 +24,11 @@ provides: [MMap.OverlayView]
 ...
 */
 
-(function(){
+(function(MMap, maps){
 
-var MMap = (this.MMap || {});
-	
 MMap.OverlayView = new Class({
 
-	Implements: [MMap.Events, MMap.Options],
+	Implements: [maps.OverlayView, MMap.Events, MMap.Options],
 
 	options: {
 		map: null,
@@ -52,10 +50,14 @@ MMap.OverlayView = new Class({
 	},
 
 	initialize: function(options){
+<<<<<<< HEAD
 		var subclass = this;
 		subclass = Object.append(new google.maps.OverlayView(), subclass);
 		for (var k in subclass) this[k] = subclass[k];
 		this.instance = this._getInstance();
+=======
+		this.instance = this.toElement();
+>>>>>>> remotes/origin/0.2.3
 		this.setOptions(options);
 		this._added = false;
 		this._init();
@@ -63,14 +65,14 @@ MMap.OverlayView = new Class({
 
 	build: function(){
 		var panel = this.getPanes().overlayImage;
-		this.body = this._setup(this._getInstance());
-		this._getInstance().inject(panel);
+		this.body = this._setup(this.toElement());
+		this.toElement().inject(panel);
 		this._setupListeners();
 		this._added = true;
 		this.fireEvent('add');
 	},
 
-	_getInstance: function() {
+	toElement: function() {
 		if (!this.instance) {
 			this.instance = new Element('div', {'class': 'ovarlayView'});
 		}
@@ -123,7 +125,7 @@ MMap.OverlayView = new Class({
 	setVisible: function(value){
 		if (!Type.isBoolean(value)) new TypeError('The data type is not an boolean.');
 		this.set('visible', value);
-		var container = this._getInstance();
+		var container = this.toElement();
 		if (value) {
 			container.setStyle('display', '');
 		} else {
@@ -136,4 +138,4 @@ MMap.OverlayView = new Class({
 
 });
 
-}());
+}(MMap, google.maps));

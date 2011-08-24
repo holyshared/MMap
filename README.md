@@ -40,7 +40,7 @@ HTML to use MMap becomes as follows.
 			mapTypeId: google.maps.MapTypeId.ROADMAP
 		});
 
-		var marker = new MMap.Marker({
+		var marker = new MMap.Marker.HTML({
 			map: map,
 			className: 'marker markerDefault',
 			title: 'Marker who contains simple contents',

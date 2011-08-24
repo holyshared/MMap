@@ -11,6 +11,7 @@ authors:
 
 requires:
   - MMap/MMap
+  - MMap/MMap.Position
   - MMap/MMap.OverlayView
 
 provides: [MMap.Window]
@@ -18,9 +19,7 @@ provides: [MMap.Window]
 ...
 */
 
-(function(){
-
-var MMap = (this.MMap || {});
+(function(MMap, maps){
 
 var	_offsetY = 15;
 
@@ -28,11 +27,12 @@ MMap.Window = new Class({
 
 	Extends: MMap.OverlayView,
 
+	Implements: [MMap.Position],
+
 	options: {
 		className: 'window windowDefault',
 		title: '',
 		content: '',
-		position: '',
 		zIndex: 0,
 		visible: true,
 		active: false
@@ -84,8 +84,9 @@ MMap.Window = new Class({
 
 	_setupListeners: function(){
 		var self = this;
-		var win = this._getInstance();
+		var win = this.toElement();
 		this._closeButton.addEvent('click', function(event){
+			if (event.prevnetDefault) event.prevnetDefault();
 			self.close();
 			self.fireEvent('close');
 		});
@@ -131,7 +132,7 @@ MMap.Window = new Class({
 			offset = Math.abs(top) + _offsetY;
 		}
 
-		var point = new google.maps.Point(xy.x, xy.y - offset);
+		var point = new maps.Point(xy.x, xy.y - offset);
 		var latlng = projection.fromDivPixelToLatLng(point);
 
 		this.getMap().panTo(latlng);
@@ -179,21 +180,8 @@ MMap.Window = new Class({
 	setZIndex: function(index){
 		if (!Type.isNumber(index)) new TypeError('The data type is not an integer.');
 		this.set('zIndex', index);
-		var container = this._getInstance();
+		var container = this.toElement();
 		container.setStyle('z-index', index);
-		return this;
-	},
-
-	getPosition: function() {
-		return this.get('position');
-	},
-
-	setPosition: function(position){
-		if (!instanceOf(position, google.maps.LatLng)) {
-			new TypeError('The data type is not an Latlng.');
-		}
-		this.set('position', position);
-		this.draw();
 		return this;
 	},
 
@@ -226,7 +214,7 @@ MMap.Window = new Class({
 	setActive: function(value) {
 		if (!Type.isBoolean(value)) new TypeError('The data type is not an boolean.');
 		this.set('active', value);
-		var container = this._getInstance();
+		var container = this.toElement();
 		if (value) {
 			this.fireEvent('active');
 			container.addClass('active');
@@ -238,4 +226,4 @@ MMap.Window = new Class({
 
 });
 
-}());
+}(MMap, google.maps));

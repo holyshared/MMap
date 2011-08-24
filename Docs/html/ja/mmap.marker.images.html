@@ -47,6 +47,13 @@
 <li><a href='mmap.markerloader.html#mmap.markerloader'>MMap.MarkerLoader</a></li>
 </ul>
 
+<h3>Utils</h3>
+
+<ul>
+<li><a href='mmap.position.html#mmap.position'>MMap.Position</a></li>	
+<li><a href='mmap.draggable.html#mmap.draggable'>MMap.Draggable</a></li>
+</ul>
+
 <h3>Window</h3>
 
 <ul>
@@ -65,6 +72,8 @@
 <li><a href="mmap.marker.images.html#constructor" title="constructor">constructor</a></li>
 <li><a href="mmap.marker.images.html#getImages" title="getImages">getImages</a></li>
 <li><a href="mmap.marker.images.html#setCurrent" title="setCurrent">setCurrent</a></li>
+<li><a href="mmap.marker.images.html#getCurrent" title="getCurrent">getCurrent</a></li>
+<li><a href="mmap.marker.images.html#getCurrentImage" title="getCurrentImage">getCurrentImage</a></li>
 <li><a href="mmap.marker.images.html#setImages" title="setImages">setImages</a></li>
 <li><a href="mmap.marker.images.html#addImage" title="addImage">addImage</a></li>
 <li><a href="mmap.marker.images.html#addImages" title="addImages">addImages</a></li>
@@ -133,7 +142,7 @@
 <li>map - (<em><a href="http://code.google.com/intl/en/apis/maps/documentation/javascript/reference.html#Map">Map</a></em>) マーカーを表示するMapオブジェクト</li>
 <li>className - (<em>string</em>) マーカーに適用するスタイル(CSSのクラス名)</li>
 <li>images - (<em>array</em>) <a href='#images'>マーカーに表示する画像情報</a></li>
-<li>defaultIndex - (<em>number</em>) 初期時に表示する画像の番号</li>
+<li>current - (<em>number</em>) 初期時に表示する画像の番号</li>
 <li>interval - (<em>number</em>) 画像をスライドさせる感覚</li>
 <li>duration - (<em>number</em>) アニメーションの持続時間</li>
 <li>autoplay - (<em>boolean</em>) trueを設定した場合、自動で画像をスライドします。デフォルトはtrueです。</li>
@@ -150,6 +159,7 @@
 <li>onVisibleChanged - (<em>function</em>) マーカーの表示状態が変わった場合に発生します。</li>
 <li>onZIndexChanged - (<em>function</em>) マーカーの表示順序が変わった場合に発生します。</li>
 <li>onPositionChanged - (<em>function</em>) マーカーの表示座標が変わった場合に発生します。</li>
+<li>onCurrentChanged - (<em>function</em>) 画像が切り替わった時に発生します。</li>
 <li>onActive - (<em>function</em>) マーカーの表示座標が変わった場合に発生します。</li>
 </ul>
 
@@ -177,6 +187,50 @@
 <ol>
 <li>index - (<em>number</em>) 画像の番号</li>
 </ol>
+
+
+
+
+
+
+
+
+
+
+
+<h2>Method: <a id='getCurrent'>getCurrent</a></h2>
+
+<p>現在の画像番号を返します。</p>
+
+<h3>Syntax:</h3>
+<pre><code>
+	marker.getCurrent();
+</code></pre>
+
+<h3>Returns:</h3>
+
+<p>(<em>number</em>) - 現在の画像番号</p>
+
+
+
+
+<h2>Method: <a id='getCurrentImage'>getCurrentImage</a></h2>
+
+<p>現在の画像の情報を取得します。</p>
+
+<h3>Syntax:</h3>
+<pre><code>
+	marker.getCurrentImage();
+</code></pre>
+
+<h3>Returns:</h3>
+
+<p>(<em>object</em>) - 現在の画像の情報</p>
+
+
+
+
+
 
 <h2>Method: <a id='getImages'>getImages</a></h2>
 

@@ -45,7 +45,7 @@ Method: <a id='constructor'>constructor</a>
 * onVisibleChanged - (*function*) マーカーの表示状態が変わった場合に発生します。
 * onZIndexChanged - (*function*) マーカーの表示順序が変わった場合に発生します。
 * onPositionChanged - (*function*) マーカーの表示座標が変わった場合に発生します。
-* onActive - (*function*) マーカーの表示座標が変わった場合に発生します。
+* onActive - (*function*) マーカーがアクティブになった際に発生します。
 
 
 

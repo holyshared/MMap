@@ -1,4 +1,4 @@
-# MMap 0.2.1 Documents
+# MMap 0.2.3 Documents
 
 ## API Menu
 
@@ -121,6 +121,8 @@
 * [constructor](mmap.marker.images.html#constructor "constructor")
 * [getImages](mmap.marker.images.html#getImages "getImages")
 * [setCurrent](mmap.marker.images.html#setCurrent "setCurrent")
+* [getCurrent](mmap.marker.images.html#getCurrent "getCurrent")
+* [getCurrentImage](mmap.marker.images.html#getCurrentImage "getCurrentImage")
 * [setImages](mmap.marker.images.html#setImages "setImages")
 * [addImage](mmap.marker.images.html#addImage "addImage")
 * [addImages](mmap.marker.images.html#addImages "addImages")
@@ -182,6 +184,21 @@
 * [load](mmap.markerloader.html#load "load")
 
 
+### <a href='mmap.draggable.html#mmap.draggable'>MMap.Draggable</a>
+
+* [constructor](mmap.draggable.html#constructor "constructor")
+* [draggable](mmap.draggable.html#draggable "draggable")
+* [isDraggable](mmap.draggable.html#isDraggable "isDraggable")
+* [isDragging](mmap.draggable.html#isDragging "isDragging")
+
+
+### <a href='mmap.position.html#mmap.position'>MMap.Position</a>
+
+* [constructor](mmap.position.html#constructor "constructor")
+* [setPosition](mmap.position.html#setPosition "setPosition")
+* [getPosition](mmap.position.html#getPosition "getPosition")
+
+
 ### <a href='mmap.window.html#mmap.window'>MMap.Window</a>
 
 * [constructor](mmap.window.html#constructor "constructor")
@@ -225,6 +242,11 @@
 * <a href='mmap.marker.images.html#mmap.marker.images'>MMap.Marker.Images</a>
 * <a href='mmap.markermanager.html#mmap.markermanager'>MMap.MarkerManager</a>
 * <a href='mmap.markerloader.html#mmap.markerloader'>MMap.MarkerLoader</a>
+
+### Utils
+
+* <a href='mmap.position.html#mmap.position'>MMap.Position</a>
+* <a href='mmap.draggable.html#mmap.draggable'>MMap.Draggable</a>
 
 ### Window
 

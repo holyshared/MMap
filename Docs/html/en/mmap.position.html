@@ -1,0 +1,153 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<title></title>
+	<meta http-equiv="Content-Language" content="ja" />
+	<meta http-equiv="Content-Script-Type" content="text/javascript" />
+	<meta http-equiv="Content-Style-Type" content="text/css" />
+	<meta name="description" content="" />
+	<meta name="keywords" content="" />
+	<link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Vollkorn:regular,italic,bold&amp;subset=latin" type="text/css" />
+	<link rel="stylesheet" href="../css/style.css" type="text/css" media="screen" />
+</head>
+
+<body>
+<div class="page gs960">
+
+	<div class="head">
+		<div class="mod symbol">
+			<div class="inner">
+				<div class="hd">
+					<h1 class="logo">MMap</h1>
+					<p class="version">version 0.2</p>
+				</div>
+			</div>
+		</div>
+	</div>
+
+<div class="body">
+
+	<div class="leftCol gDocs">
+
+<h3>Core</h3>
+
+<ul>
+<li><a href='mmap.overlayview.html#mmap.overlayview'>MMap.OverlayView</a></li>
+</ul>
+
+<h3>Marker</h3>
+
+<ul>
+<li><a href='mmap.marker.core.html#mmap.marker.core'>MMap.Marker.Core</a></li>
+<li><a href='mmap.marker.html.html#mmap.marker.html'>MMap.Marker.HTML</a></li>
+<li><a href='mmap.marker.image.html#mmap.marker.image'>MMap.Marker.Image</a></li>
+<li><a href='mmap.marker.images.html#mmap.marker.images'>MMap.Marker.Images</a></li>
+<li><a href='mmap.markermanager.html#mmap.markermanager'>MMap.MarkerManager</a></li>
+<li><a href='mmap.markerloader.html#mmap.markerloader'>MMap.MarkerLoader</a></li>
+</ul>
+
+<h3>Utils</h3>
+
+<ul>
+<li><a href='mmap.position.html#mmap.position'>MMap.Position</a></li>
+<li><a href='mmap.draggable.html#mmap.draggable'>MMap.Draggable</a></li>
+</ul>
+
+<h3>Window</h3>
+
+<ul>
+<li><a href='mmap.window.html#mmap.window'>MMap.Window</a></li>
+</ul>
+
+
+	</div>
+
+	<div class="rightCol gDocs">
+
+
+<h3><a href="mmap.position.html#mmap.position">MMap.Position</a></h3>
+
+<ul>
+<li><a href="mmap.position.html#constructor" title="constructor">constructor</a></li>
+<li><a href="mmap.position.html#setPosition" title="setPosition">setPosition</a></li>
+<li><a href="mmap.position.html#getPosition" title="getPosition">getPosition</a></li>
+</ul>
+
+
+	</div>
+
+	<div class="main">
+<h2 class="h1">Class: <a id="mmap.position">MMap.Position</a></h2>
+
+<p>The coordinates position is built in in a specific object and a revokable function is built in.<br />
+The object that builds in should mount the draw method. </p>
+
+<h2>Method: <a id="constructor">constructor</a></h2>
+
+<p>Constructor of MMap.Position.</p>
+
+<h3>Syntax:</h3>
+
+<pre><code>var MyClass = new Class({
+
+    Extends: [MMap.OverlayView],
+
+    Implements: [MMap.Position]
+
+});
+</code></pre>
+
+<h3>Options:</h3>
+
+<ul>
+<li>position - (<a href="http://code.google.com/intl/eu/apis/maps/documentation/javascript/reference.html#LatLng"><em>LatLng</em></a>) Coordinates position of object</li>
+</ul>
+
+<h2>Method: <a id="getPosition">getPosition</a></h2>
+
+<p>Coordinates of the object are acquired.</p>
+
+<h3>Syntax:</h3>
+
+<pre><code>var position = overlayView.getPosition();
+</code></pre>
+
+<h3>Returns:</h3>
+
+<p>(<a href="http://code.google.com/intl/eu/apis/maps/documentation/javascript/reference.html#LatLng"><em>LatLng</em></a>) Coordinates object</p>
+
+<h2>Method: <a id="setPosition">setPosition</a></h2>
+
+<p>Coordinates that arrange the object are set.</p>
+
+<h3>Syntax:</h3>
+
+<pre><code>var position = new google.maps.LatLng(35.6666870, 139.731859);
+overlayView.setPosition(position);
+</code></pre>
+
+<h3>Arguments:</h3>
+
+<ol>
+<li>position - (<a href="http://code.google.com/intl/eu/apis/maps/documentation/javascript/reference.html#LatLng"><em>LatLng</em></a>) Coordinates that arrange object</li>
+</ol>
+
+<h3>Returns:</h3>
+
+<p>(<em>object</em>) Object that builds in MMap.Position</p>
+
+
+
+	</div>
+
+</div>
+
+<div class="foot">
+<p>Copyright(c) 2010 <a title="Noritaka Horio" href="http://sharedhat.com">Noritaka Horio</a> All Rights Reserved.</p>
+</div>
+</div>
+
+</body>
+
+</html>

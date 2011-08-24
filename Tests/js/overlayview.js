@@ -31,9 +31,11 @@ window.addEvent("domready", function(){
 		},
 
 		_init: function(){
-			var props = [ 'zIndex', 'visible', 'active', 'position' ];
+			var props = [ 'position', 'zIndex', 'visible', 'active' ];
 			var values = Object.subset(this.options, props);
-			this.setValues(values);
+			for (var key in values){
+				this.set(key, values[key]);
+			}
 			for (var key in props){ delete this.options[key]; };
 		},
 
@@ -73,6 +75,8 @@ window.addEvent("domready", function(){
 			logger.log('events', 'o1 - onActiveChanged');
 		}
 	});
+
+
 //	logger.log('options', (o1.getZIndex() == 1000) ? 'zIndex option OK' : 'zIndex option NG' );
 	logger.log('options', (o1.getVisible() == false) ? 'visible option OK' : 'visible option NG');
 	logger.log('options', (o1.isActive() == false) ? 'active option OK' : 'active option NG');

@@ -37,22 +37,24 @@
 
 								<h4>English</h4>
 								<ul class="menu">
-									<li><strong class="current">MMap.Marker</strong></li>
+									<li><strong class="current">MMap.Marker.HTML</strong></li>
 									<li><a title="MMap.Marker.Image" href="marker.image.html">MMap.Marker.Image</a></li>
 									<li><a title="MMap.Marker.Images" href="marker.images.html">MMap.Marker.Images</a></li>
 									<li><a title="MMap.MarkerManager" href="marker.manager.html">MMap.MarkerManager</a></li>
 									<li><a title="MMap.MarkerLoader" href="marker.loader.html">MMap.MarkerLoader</a></li>
+									<li><a title="MMap.Draggable" href="draggable.html">MMap.Draggable</a></li>
 									<li><a title="MMap.Window" href="window.html">MMap.Window</a></li>
 									<li><a title="Mini Application" href="mini.application.html">Mini Application</a></li>
 								</ul>
 
 								<h4>Japanese</h4>
 								<ul class="menu">
-									<li><a title="MMap.Marker" href="ja/marker.html">MMap.Marker</a></li>
+									<li><a title="MMap.Marker.HTML" href="ja/marker.html">MMap.Marker.HTML</a></li>
 									<li><a title="MMap.Marker.Image" href="ja/marker.image.html">MMap.Marker.Image</a></li>
 									<li><a title="MMap.Marker.Images" href="ja/marker.images.html">MMap.Marker.Images</a></li>
 									<li><a title="MMap.MarkerManager" href="ja/marker.manager.html">MMap.MarkerManager</a></li>
 									<li><a title="MMap.MarkerLoader" href="ja/marker.loader.html">MMap.MarkerLoader</a></li>
+									<li><a title="MMap.Draggable" href="ja/draggable.html">MMap.Draggable</a></li>
 									<li><a title="MMap.Window" href="ja/window.html">MMap.Window</a></li>
 									<li><a title="Mini Application" href="ja/mini.application.html">Mini Application</a></li>
 								</ul>
@@ -96,7 +98,7 @@ window.addEvent("domready", function(){
 		mapTypeId: google.maps.MapTypeId.ROADMAP
 	});
 
-	var marker = new MMap.Marker({
+	var marker = new MMap.Marker.HTML({
 		map: map,
 		className: 'marker markerDefault',
 		title: 'Marker who contains simple contents',

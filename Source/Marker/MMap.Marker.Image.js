@@ -19,14 +19,11 @@ provides: [MMap.Marker.Image]
 ...
 */
 
-(function(){
+(function(MMap, Marker){
 
-var MMap = (this.MMap || {});
-MMap.Marker = (this.MMap.Marker || {});
+Marker.Image = new Class({
 
-MMap.Marker.Image = this.MMap.Marker.Image = new Class({
-
-	Extends: MMap.Marker.Core,
+	Extends: Marker.Core,
 
 	options: {
 		map: null,
@@ -62,8 +59,9 @@ MMap.Marker.Image = this.MMap.Marker.Image = new Class({
 
 	_setupListeners: function(){
 		var self = this;
-		var marker = this._getInstance();
+		var marker = this.toElement();
 		var proxy = function(event){
+			if (event.preventDefault) event.preventDefault();
 			event.target = self;
 			self.fireEvent(event.type, event);
 		};
@@ -126,4 +124,4 @@ MMap.Marker.Image = this.MMap.Marker.Image = new Class({
 
 });
 
-}());
+}(MMap, MMap.Marker));

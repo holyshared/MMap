@@ -26,7 +26,7 @@ Method: <a id='constructor'>constructor</a>
 * map - (*<a href="http://code.google.com/intl/en/apis/maps/documentation/javascript/reference.html#Map">Map</a>*) マーカーを表示するMapオブジェクト
 * className - (*string*) マーカーに適用するスタイル(CSSのクラス名)
 * images - (*array*) <a href='#images'>マーカーに表示する画像情報</a>
-* defaultIndex - (*number*) 初期時に表示する画像の番号
+* current - (*number*) 初期時に表示する画像の番号
 * interval - (*number*) 画像をスライドさせる感覚
 * duration - (*number*) アニメーションの持続時間
 * autoplay - (*boolean*) trueを設定した場合、自動で画像をスライドします。デフォルトはtrueです。
@@ -43,7 +43,8 @@ Method: <a id='constructor'>constructor</a>
 * onVisibleChanged - (*function*) マーカーの表示状態が変わった場合に発生します。
 * onZIndexChanged - (*function*) マーカーの表示順序が変わった場合に発生します。
 * onPositionChanged - (*function*) マーカーの表示座標が変わった場合に発生します。
-* onActive - (*function*) マーカーの表示座標が変わった場合に発生します。
+* onCurrentChanged - (*function*) 画像が切り替わった際に発生します。
+* onActive - (*function*) マーカーがアクティブになった際に発生します。
 
 
 ### <a id='images'>images</a></h3>
@@ -67,6 +68,43 @@ Method: <a id='setCurrent'>setCurrent</a>
 ### Arguments:
 
 1. index - (*number*) 画像の番号
+
+
+
+
+Method: <a id='getCurrent'>getCurrent</a>
+------------------------------------------
+
+現在の画像番号を返します。
+
+### Syntax:
+
+	marker.getCurrent();
+
+### Returns:
+
+(*number*) - 現在の画像番号
+
+
+
+Method: <a id='getCurrentImage'>getCurrentImage</a>
+------------------------------------------
+
+現在の画像の情報を取得します。
+
+### Syntax:
+
+	marker.getCurrentImage();
+
+### Returns:
+
+(*object*) - 現在の画像の情報
+
+
+
+
+
+
 
 
 Method: <a id='getImages'>getImages</a>

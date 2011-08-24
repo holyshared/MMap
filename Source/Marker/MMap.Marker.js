@@ -11,6 +11,8 @@ authors:
 
 requires:
   - MMap/MMap
+  - MMap/MMap.Position
+  - MMap/MMap.Draggable
   - MMap/MMap.OverlayView
 
 provides: [MMap.Marker, MMap.Marker.Core, MMap.Marker.HTML]
@@ -18,19 +20,19 @@ provides: [MMap.Marker, MMap.Marker.Core, MMap.Marker.HTML]
 ...
 */
 
-(function(){
+(function(MMap){
 
-var MMap = (this.MMap || {});
-MMap.Marker = (this.MMap.Marker || {});
+MMap.Marker = {};
 
 MMap.Marker.Core = new Class({
 
 	Extends: MMap.OverlayView,
 
+	Implements: [MMap.Position, MMap.Draggable],
+
 	options: {
 		map: null,
 		className: 'marker markerDefault',
-		position: '',
 		zIndex: null,
 		visible: true,
 		active: false
@@ -53,7 +55,7 @@ MMap.Marker.Core = new Class({
 
 	_init: function(){
 		var self = this;
-		var props = ['position', 'zIndex', 'visible', 'active'];
+		var props = ['position', 'zIndex', 'visible', 'active', 'draggable'];
 		props.each(function(key){
 			var value = self.options[key];
 			self.set(key, value);
@@ -109,30 +111,17 @@ MMap.Marker.Core = new Class({
 	setZIndex: function(index){
 		if (!Type.isNumber(index)) new TypeError('The data type is not an integer.');
 		this.set('zIndex', index);
-		var container = this._getInstance();
+		var container = this.toElement();
 		if (!this.isActive()) {
 			container.setStyle('z-index', index);
 		}
 		return this;
 	},
 
-	getPosition: function() {
-		return this.get('position');
-	},
-
-	setPosition: function(position){
-		if (!instanceOf(position, google.maps.LatLng)) {
-			new TypeError('The data type is not an Latlng.');
-		}
-		this.set('position', position);
-		this.draw();
-		return this;
-	},
-
 	setActive: function(value) {
 		if (!Type.isBoolean(value)) new TypeError('The data type is not an boolean.');
 		this.set('active', value);
-		var container = this._getInstance();
+		var container = this.toElement();
 		if (value) {
 			this.fireEvent('active');
 			container.setStyle('z-index', 10000);
@@ -156,7 +145,6 @@ MMap.Marker.HTML = new Class({
 		className: 'marker markerDefault',
 		title: '',
 		content: '',
-		position: '',
 		zIndex: null,
 		visible: true
 		/*
@@ -202,8 +190,9 @@ MMap.Marker.HTML = new Class({
 
 	_setupListeners: function(){
 		var self = this;
-		var marker = this._getInstance();
+		var marker = this.toElement();
 		var proxy = function(event){
+			if (event.preventDefault) event.preventDefault();
 			event.target = self;
 			self.fireEvent(event.type, event);
 		};
@@ -254,7 +243,6 @@ MMap.Marker.HTML = new Class({
 		return this;
 	}
 
-
 });
 
-}());
+}(MMap));

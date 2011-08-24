@@ -37,22 +37,24 @@
 
 								<h4>English</h4>
 								<ul class="menu">
-									<li><a title="MMap.Marker" href="marker.html">MMap.Marker</a></li>
+									<li><a title="MMap.Marker.HTML" href="marker.html">MMap.Marker.HTML</a></li>
 									<li><a title="MMap.Marker.Image" href="marker.image.html">MMap.Marker.Image</a></li>
 									<li><strong class="current">MMap.Marker.Images</strong></li>
 									<li><a title="MMap.MarkerManager" href="marker.manager.html">MMap.MarkerManager</a></li>
 									<li><a title="MMap.MarkerLoader" href="marker.loader.html">MMap.MarkerLoader</a></li>
+									<li><a title="MMap.Draggable" href="draggable.html">MMap.Draggable</a></li>
 									<li><a title="MMap.Window" href="window.html">MMap.Window</a></li>
 									<li><a title="Mini Application" href="mini.application.html">Mini Application</a></li>
 								</ul>
 
 								<h4>Japanese</h4>
 								<ul class="menu">
-									<li><a title="MMap.Marker" href="ja/marker.html">MMap.Marker</a></li>
+									<li><a title="MMap.Marker.HTML" href="ja/marker.html">MMap.Marker.HTML</a></li>
 									<li><a title="MMap.Marker.Image" href="ja/marker.image.html">MMap.Marker.Image</a></li>
 									<li><a title="MMap.Marker.Images" href="ja/marker.images.html">MMap.Marker.Images</a></li>
 									<li><a title="MMap.MarkerManager" href="ja/marker.manager.html">MMap.MarkerManager</a></li>
 									<li><a title="MMap.MarkerLoader" href="ja/marker.loader.html">MMap.MarkerLoader</a></li>
+									<li><a title="MMap.Draggable" href="ja/draggable.html">MMap.Draggable</a></li>
 									<li><a title="MMap.Window" href="ja/window.html">MMap.Window</a></li>
 									<li><a title="Mini Application" href="ja/mini.application.html">Mini Application</a></li>
 								</ul>
@@ -103,25 +105,29 @@ window.addEvent('domready', function(){
 		position: new google.maps.LatLng(35.6666870, 139.731859),
 		images: [{
 			title: 'demo1',
-			image: 'http://holyshared.github.com/MMap/Demos/images/demo/img01.jpg',
-			url: 'http://sharedhat.com'
+			image: 'http://holyshared.github.com/MMap/images/demo/img01.jpg',
+			url: 'http://mootools.net'
 		}, {
 			title: 'demo2',
-			image: 'http://holyshared.github.com/MMap/Demos/images/demo/img02.jpg',
-			url: 'http://sharedhat.com'
+			image: 'http://holyshared.github.com/MMap/images/demo/img02.jpg',
+			url: 'http://mootools.net/core/'
 		}, {
 			title: 'demo3',
-			image: 'http://holyshared.github.com/MMap/Demos/images/demo/img03.jpg',
-			url: 'http://sharedhat.com'
+			image: 'http://holyshared.github.com/MMap/images/demo/img03.jpg',
+			url: 'http://mootools.net/more/'
 		}, {
 			title: 'demo4',
-			image: 'http://holyshared.github.com/MMap/Demos/images/demo/img04.jpg',
-			url: 'http://sharedhat.com'
+			image: 'http://holyshared.github.com/MMap/images/demo/img04.jpg',
+			url: 'http://mootools.net/forge/'
 		}, {
 			title: 'demo5',
-			image: 'http://holyshared.github.com/MMap/Demos/images/demo/img05.jpg',
-			url: 'http://sharedhat.com'
-		}]
+			image: 'http://holyshared.github.com/MMap/images/demo/img05.jpg',
+			url: 'http://mootools.net/blog/'
+		}],
+		onClick: function(event){
+			var image = this.getCurrentImage();
+			window.location.href = image.url;
+		}
 	});
 
 });

@@ -2,6 +2,22 @@
 MMAP CHANGELOG
 ========================================
 
+0.2.3
+-------------------------------------------------------------------
+* It is corrected that *_getInstance* is abolished, and *toElement* is used. 
+* *MMap.Position* and *MMap.Draggable* were added. 
+* It corresponded to *dragStart*, *drag*, and the *dragEnd* event of the marker. 
+* The demo page bug is corrected.
+* The bug of *MMap.Marker.Images* is corrected. 
+* Event *onCurrentChanged* is added to MMap.Marker.Images.  
+  The argument is an *index number* and an *image information*.
+* Method *getCurrentImage* is added to MMap.Marker.Images.  
+* MMap.Marker.Images optional *defaultIndex* is changed to *current*.
+
+0.2.2
+-------------------------------------------------------------------
+* Code refactoring and bug fix.
+
 0.2.1
 -------------------------------------------------------------------
 * MMap.BaseMarker to MMap.Marker.Core

@@ -19,9 +19,7 @@ provides: [MMap.Container]
 ...
 */
 
-(function(){
-
-var MMap = (this.MMap || {});
+(function(MMap){
 
 MMap.Container = new Class({
 
@@ -140,4 +138,4 @@ MMap.Container = new Class({
 
 });
 
-}());
+}(MMap));
