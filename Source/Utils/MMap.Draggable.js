@@ -114,7 +114,7 @@ var DragListenerStrategy = new Class({
 		this._dragging = false;
 		this._strategy.disable();
 		this._toggleMapDraggable();
-		overlayView.fireEvent('dragStart', [this._getCurrentPosition()]);
+		overlayView.fireEvent('dragEnd', [this._getCurrentPosition()]);
 	},
 
 	_toggleMapDraggable: function(){
